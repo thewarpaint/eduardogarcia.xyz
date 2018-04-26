@@ -60,6 +60,14 @@
         fill: #6a89cc;
       }
 
+      .toggler__container {
+        display: none;
+      }
+
+      .toggler__checkbox:checked ~ .toggler__container {
+        display: block;
+      }
+
       /* Adapted from GitHub Enterprise code */
       .calendar-graph {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -1673,21 +1681,28 @@
       </svg>
     </div>
 
-    <ul>
-      <li>January 1st, New Years Day</li>
-      <li>April 14th, Good Friday</li>
-      <li>April 17th, Easter Monday</li>
-      <li>May 1st, Labour Day</li>
-      <li>May 25th, Ascension Day</li>
-      <li>June 5th, Pentecost Monday</li>
-      <li>October 3rd, German Unity Day</li>
-      <li>October 31st, Day of Reformation</li>
-      <li>December 25th, Christmas Day</li>
-      <li>December 26th, St Stephen's Day (2nd Christmas Day)</li>
-      <li>December 31st, New Years Eve (half a day)</li>
-    </ul>
+    <div>
+      <input type="checkbox" class="toggler__checkbox" id="public-holidays-toggler">
+      <label for="public-holidays-toggler"> Show details</label>
 
-    <a href="https://www.officeholidays.com/countries/germany/city.php?year=2017&region_iso=HH">Source</a>
+      <div class="toggler__container">
+        <ul>
+          <li>January 1st, New Years Day</li>
+          <li>April 14th, Good Friday</li>
+          <li>April 17th, Easter Monday</li>
+          <li>May 1st, Labour Day</li>
+          <li>May 25th, Ascension Day</li>
+          <li>June 5th, Pentecost Monday</li>
+          <li>October 3rd, German Unity Day</li>
+          <li>October 31st, Day of Reformation</li>
+          <li>December 25th, Christmas Day</li>
+          <li>December 26th, St Stephen's Day (2nd Christmas Day)</li>
+          <li>December 31st, New Years Eve (half a day)</li>
+        </ul>
+
+        <a href="https://www.officeholidays.com/countries/germany/city.php?year=2017&region_iso=HH">Source</a>
+      </div>
+    </div>
 
     <h2>Holidays</h2>
 
@@ -2692,11 +2707,18 @@
       </svg>
     </div>
 
-    <ul>
-      <li>June 14th - 17th: eSailors Summer Event</li>
-      <li><a href="https://2017.refresh.rocks/">September 8th: Refresh 2017, Tallin, Estonia</a></li>
-      <li><a href="https://2017.js-kongress.de/">November 13rd - 14th: JS Kongress 2017, Munich, Germany</a></li>
-    </ul>
+    <div>
+      <input type="checkbox" class="toggler__checkbox" id="conferences-toggler">
+      <label for="conferences-toggler"> Show details</label>
+
+      <div class="toggler__container">
+        <ul>
+          <li>June 14th - 17th: eSailors Summer Event</li>
+          <li><a href="https://2017.refresh.rocks/">September 8th: Refresh 2017, Tallin, Estonia</a></li>
+          <li><a href="https://2017.js-kongress.de/">November 13rd - 14th: JS Kongress 2017, Munich, Germany</a></li>
+        </ul>
+      </div>
+    </div>
 
     <!-- <h2>{NEW SECTION}</h2>
 
