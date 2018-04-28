@@ -49,6 +49,10 @@
         overflow-x: scroll;
       }
 
+      .highlight-form {
+        margin-top: 1rem;
+      }
+
       .highlight-form__label {
         display: block;
         padding: .125rem;
@@ -78,6 +82,10 @@
 
       .toggler__checkbox:checked ~ .toggler__container {
         display: block;
+      }
+
+      .show-details {
+        margin-top: .5rem;
       }
 
       /* Taken or adapted from GitHub Enterprise code */
@@ -1698,7 +1706,7 @@
       </svg>
     </div>
 
-    <div>
+    <div class="show-details">
       <input type="checkbox" class="toggler__checkbox" id="public-holidays-toggler">
       <label for="public-holidays-toggler"> Show details</label>
 
@@ -2724,7 +2732,7 @@
       </svg>
     </div>
 
-    <div>
+    <div class="show-details">
       <input type="checkbox" class="toggler__checkbox" id="conferences-toggler">
       <label for="conferences-toggler"> Show details</label>
 
