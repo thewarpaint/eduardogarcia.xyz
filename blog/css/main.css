@@ -1,0 +1,22 @@
+html {
+  font-size: 12px;
+}
+
+@media(min-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 1em;
+}
+
+.title {
+  margin-bottom: .5rem;
+}
+
+.subtitle {
+  margin-top: 0;
+  font-weight: normal;
+}
