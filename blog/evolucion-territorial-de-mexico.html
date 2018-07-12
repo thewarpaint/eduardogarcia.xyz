@@ -26,6 +26,32 @@
         width: 500px;
         max-width: 100%;
       }
+
+      .slide-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .slide {
+        width: 100vw;
+        height: 100vh;
+        border: 1px solid black;
+        margin-left: -1em;
+        margin-right: -1em;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .slide__overlay {
+        background-color: rgba(255, 255, 255, .8);
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .slide__title {
+        margin: 0;
+      }
     </style>
   </head>
 
@@ -42,64 +68,68 @@
       %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
 
 
-    <ol>
+    <ul class="slide-list">
       <li>
         <p>Reino de la Nueva España</p>
         <p>1521</p>
       </li>
 
-      <li>
-        <p>Virreinato de la Nueva España</p>
-        <p>1535</p>
-        <p>Cénit: 1795</p>
-        <a href="https://en.wikipedia.org/wiki/New_Spain#/media/File:Map_of_the_Viceroyalty_of_New_Spain.svg">
-          <img class="map"
-               src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg/2880px-Map_of_the_Viceroyalty_of_New_Spain.svg.png">
-        </a>
+      <li class="slide"
+          style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg/2880px-Map_of_the_Viceroyalty_of_New_Spain.svg.png');">
+        <div class="slide__overlay">
+          <h3 class="slide__title">Virreinato de la Nueva España</h3>
+          <p>1535</p>
+          <p>Cénit: 1795</p>
+        </div>
       </li>
 
-      <li>
-        <p>Primer Imperio Mexicano</p>
-        <p>1821</p>
-        <p>Área: 4,925,283 km²</p>
-        <img class="map"
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/First_Mexican_Empire_%28orthographic_projection%29.svg/1280px-First_Mexican_Empire_%28orthographic_projection%29.svg.png">
+      <li class="slide"
+          style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/First_Mexican_Empire_%28orthographic_projection%29.svg/1280px-First_Mexican_Empire_%28orthographic_projection%29.svg.png');">
+        <div class="slide__overlay">
+          <h3 class="slide__title">Primer Imperio Mexicano</h3>
+          <p>1821</p>
+          <p>Área: 4,925,283 km²</p>
+        </div>
       </li>
 
-      <li>
-        <p>Gobierno Provisional de México</p>
-        <p>1823–1824</p>
-        <p>Área: 4,925,283 km²</p>
-        <img class="map"
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg/1280px-Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg.png">
+      <li class="slide"
+          style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg/1280px-Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg.png');">
+        <div class="slide__overlay">
+          <h3 class="slide__title">Gobierno Provisional de México</h3>
+          <p>1823–1824</p>
+        </div>
       </li>
 
-      <li>
-        <p>Primera República Mexicana</p>
-        <p>1824</p>
-        <img class="map"
-             src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Mexico_1824.PNG">
+      <li class="slide"
+          style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b6/Mexico_1824.PNG');">
+        <div class="slide__overlay">
+          <h3 class="slide__title">Primera República Mexicana</h3>
+          <p>1824</p>
+        </div>
       </li>
 
-      <li>
-        <p>República de Texas</p>
-        <p>1836</p>
-        <img class="map"
-             src="https://upload.wikimedia.org/wikipedia/commons/5/56/Mapa_Mexico_1836.PNG">
+      <li class="slide"
+          style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Mapa_Mexico_1836.PNG');">
+        <div class="slide__overlay">
+          <h3 class="slide__title">República de Texas</h3>
+          <p>1836</p>
+        </div>
       </li>
 
-      <li>
-        <p>República de Río Grande</p>
-        <p>1840</p>
-        <img class="map"
-             src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Mapa_Mexico_1840_1.PNG">
+      <li class="slide"
+          style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Mapa_Mexico_1840_1.PNG');">
+        <div class="slide__overlay">
+          <h3 class="slide__title">República de Río Grande</h3>
+          <p>1840</p>
+        </div>
       </li>
 
-      <li>
-        <p>Fin de la República de Río Grande</p>
-        <p>1840</p>
-        <img class="map"
-             src="https://upload.wikimedia.org/wikipedia/commons/0/06/Mapa_de_Mexico_1840_2.PNG">
+      <li class="slide"
+          style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/06/Mapa_de_Mexico_1840_2.PNG');">
+        <div class="slide__overlay">
+          <h3 class="slide__title">Fin de la República de Río Grande</h3>
+          <p>1840</p>
+        </div>
       </li>
 
       <li>
@@ -164,7 +194,7 @@
         <img class="map"
              src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Mapa_de_Mexico_1931_1.PNG">
       </li>
-    </ol>
+    </ul>
 
     <ul>
       <li><a href="https://en.wikipedia.org/wiki/New_Spain">New Spain</a></li>
