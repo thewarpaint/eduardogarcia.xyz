@@ -22,6 +22,14 @@
 
     <link href="css/main.css" rel="stylesheet">
     <style type="text/css">
+      * {
+        box-sizing: border-box;
+      }
+
+      p {
+        margin: 0;
+      }
+
       .map {
         width: 500px;
         max-width: 100%;
@@ -34,23 +42,45 @@
 
       .slide {
         width: 100vw;
-        height: 100vh;
+        height: calc(100vh - 3rem);
+        position: relative;
         border: 1px solid black;
-        margin-left: -1em;
-        margin-right: -1em;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        margin-bottom: 3rem;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
       }
 
       .slide__overlay {
+        position: absolute;
+        width: 100%;
         background-color: rgba(255, 255, 255, .8);
         text-align: center;
         padding: 1rem;
       }
 
+      .slide__overlay--bottom {
+        bottom: 0;
+      }
+
       .slide__title {
+        font-size: 1.75rem;
         margin: 0;
+      }
+
+      .nav {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .nav__item {
+        display: inline-block;
+      }
+
+      .nav__item:not(:last-child) {
+        margin-right: 1rem;
       }
     </style>
   </head>
@@ -68,12 +98,10 @@
       %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
 
 
-    <ul class="slide-list">
-      <li>
-        <p>Reino de la Nueva España</p>
-        <p>1521</p>
-      </li>
+    <p><a href="#1">¡Iniciar!</a></p>
 
+
+    <ul class="slide-list">
       <li class="slide"
           id="1"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg/2880px-Map_of_the_Viceroyalty_of_New_Spain.svg.png');">
@@ -81,7 +109,30 @@
           <h3 class="slide__title">Virreinato de la Nueva España</h3>
           <p>1535</p>
           <p>Cénit: 1795</p>
-          <a href="#2">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#1">← Anterior</a>
+          <a href="#2">Siguiente →</a>
         </div>
       </li>
 
@@ -92,8 +143,30 @@
           <h3 class="slide__title">Primer Imperio Mexicano</h3>
           <p>1821</p>
           <p>Área: 4,925,283 km²</p>
-          <a href="#1">&lt; Previous</a>
-          <a href="#3">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#1">← Anterior</a>
+          <a href="#3">Siguiente →</a>
         </div>
       </li>
 
@@ -103,8 +176,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Gobierno Provisional de México</h3>
           <p>1823–1824</p>
-          <a href="#2">&lt; Previous</a>
-          <a href="#4">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#2">← Anterior</a>
+          <a href="#4">Siguiente →</a>
         </div>
       </li>
 
@@ -114,8 +209,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Primera República Mexicana</h3>
           <p>1824</p>
-          <a href="#3">&lt; Previous</a>
-          <a href="#5">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#3">← Anterior</a>
+          <a href="#5">Siguiente →</a>
         </div>
       </li>
 
@@ -125,8 +242,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">República de Texas</h3>
           <p>1836</p>
-          <a href="#4">&lt; Previous</a>
-          <a href="#6">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#4">← Anterior</a>
+          <a href="#6">Siguiente →</a>
         </div>
       </li>
 
@@ -136,8 +275,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">República de Río Grande</h3>
           <p>1840</p>
-          <a href="#5">&lt; Previous</a>
-          <a href="#7">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#5">← Anterior</a>
+          <a href="#7">Siguiente →</a>
         </div>
       </li>
 
@@ -147,8 +308,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Fin de la República de Río Grande</h3>
           <p>1840</p>
-          <a href="#6">&lt; Previous</a>
-          <a href="#8">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#6">← Anterior</a>
+          <a href="#8">Siguiente →</a>
         </div>
       </li>
 
@@ -158,8 +341,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Segunda República de Yucatán</h3>
           <p>1841</p>
-          <a href="#7">&lt; Previous</a>
-          <a href="#9">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#7">← Anterior</a>
+          <a href="#9">Siguiente →</a>
         </div>
       </li>
 
@@ -169,8 +374,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Anexión del Soconusco</h3>
           <p>1842</p>
-          <a href="#8">&lt; Previous</a>
-          <a href="#10">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#8">← Anterior</a>
+          <a href="#10">Siguiente →</a>
         </div>
       </li>
 
@@ -180,8 +407,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Tratado de Guadalupe Hidalgo</h3>
           <p>1848</p>
-          <a href="#9">&lt; Previous</a>
-          <a href="#11">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#9">← Anterior</a>
+          <a href="#11">Siguiente →</a>
         </div>
       </li>
 
@@ -191,8 +440,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Regreso de Yucatán a la federación</h3>
           <p>1848</p>
-          <a href="#10">&lt; Previous</a>
-          <a href="#12">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#10">← Anterior</a>
+          <a href="#12">Siguiente →</a>
         </div>
       </li>
 
@@ -202,8 +473,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Venta de la Mesilla (Gadsden purchase)</h3>
           <p>1853</p>
-          <a href="#11">&lt; Previous</a>
-          <a href="#13">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#11">← Anterior</a>
+          <a href="#13">Siguiente →</a>
         </div>
       </li>
 
@@ -213,8 +506,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Segundo Imperio Mexicano</h3>
           <p>1865</p>
-          <a href="#12">&lt; Previous</a>
-          <a href="#14">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#12">← Anterior</a>
+          <a href="#14">Siguiente →</a>
         </div>
       </li>
 
@@ -224,8 +539,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Segunda República Mexicana</h3>
           <p>1867</p>
-          <a href="#13">&lt; Previous</a>
-          <a href="#15">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#13">← Anterior</a>
+          <a href="#15">Siguiente →</a>
         </div>
       </li>
 
@@ -235,8 +572,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Definición de la frontera con Honduras Británica (hoy Belize)</h3>
           <p>1897</p>
-          <a href="#14">&lt; Previous</a>
-          <a href="#16">Next &gt;</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#14">← Anterior</a>
+          <a href="#16">Siguiente →</a>
         </div>
       </li>
 
@@ -246,7 +605,30 @@
         <div class="slide__overlay">
           <h3 class="slide__title">Pérdida de la Isla de la Pasión (Clipperton Island)</h3>
           <p>1931</p>
-          <a href="#15">&lt; Previous</a>
+        </div>
+
+        <div class="slide__overlay slide__overlay--bottom">
+          <ul class="nav">
+            <li class="nav__item"><a href="#1">1535</a></li>
+            <li class="nav__item"><a href="#2">1821</a></li>
+            <li class="nav__item"><a href="#3">1823</a></li>
+            <li class="nav__item"><a href="#4">1824</a></li>
+            <li class="nav__item"><a href="#5">1836</a></li>
+            <li class="nav__item"><a href="#6">1840</a></li>
+            <li class="nav__item"><a href="#7">1840</a></li>
+            <li class="nav__item"><a href="#8">1841</a></li>
+            <li class="nav__item"><a href="#9">1842</a></li>
+            <li class="nav__item"><a href="#10">1848</a></li>
+            <li class="nav__item"><a href="#11">1848</a></li>
+            <li class="nav__item"><a href="#12">1853</a></li>
+            <li class="nav__item"><a href="#13">1865</a></li>
+            <li class="nav__item"><a href="#14">1867</a></li>
+            <li class="nav__item"><a href="#15">1897</a></li>
+            <li class="nav__item"><a href="#16">1931</a></li>
+          </ul>
+
+          <a href="#15">← Anterior</a>
+          <a href="#16">Siguiente →</a>
         </div>
       </li>
     </ul>
