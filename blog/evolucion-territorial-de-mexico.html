@@ -44,10 +44,9 @@
         width: 100vw;
         height: calc(100vh - 3rem);
         position: relative;
-        border: 1px solid black;
         margin-left: -1rem;
         margin-right: -1rem;
-        margin-bottom: 3rem;
+        margin-bottom: 3.5rem;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -66,21 +65,51 @@
       }
 
       .slide__title {
-        font-size: 1.75rem;
+        font-size: 1.25rem;
         margin: 0;
       }
 
       .nav {
         list-style: none;
         padding-left: 0;
+        margin-bottom: .25rem;
       }
 
       .nav__item {
         display: inline-block;
       }
 
-      .nav__item:not(:last-child) {
-        margin-right: 1rem;
+      .nav-link {
+        display: inline-block;
+        padding: .25rem;
+        font-size: .875rem;
+        text-decoration: none;
+        color: #000000;
+      }
+
+      @media(min-width: 640px) {
+        .nav-link {
+          padding: .5rem;
+        }
+      }
+
+      .nav-link--small {
+        font-size: .5rem;
+      }
+
+      @media(min-width: 640px) {
+        .nav-link--small {
+          font-size: .75rem;
+        }
+      }
+
+      .nav-link__inner {
+        border-bottom: .125rem solid rgba(206, 17, 38, .5);
+        padding-bottom: .125rem;
+      }
+
+      .nav-link:hover .nav-link__inner {
+        border-bottom-color: rgba(206, 17, 38, 1);
       }
     </style>
   </head>
@@ -106,33 +135,100 @@
           id="1"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg/2880px-Map_of_the_Viceroyalty_of_New_Spain.svg.png');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Virreinato de la Nueva España</h3>
-          <p>1535</p>
+          <h3 class="slide__title">Virreinato de la Nueva España, 1535</h3>
           <p>Cénit: 1795</p>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#1">← Anterior</a>
-          <a href="#2">Siguiente →</a>
+          <a href="#1" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#2" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -140,33 +236,100 @@
           id="2"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/First_Mexican_Empire_%28orthographic_projection%29.svg/1280px-First_Mexican_Empire_%28orthographic_projection%29.svg.png');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Primer Imperio Mexicano</h3>
-          <p>1821</p>
+          <h3 class="slide__title">Primer Imperio Mexicano, 1821</h3>
           <p>Área: 4,925,283 km²</p>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#1">← Anterior</a>
-          <a href="#3">Siguiente →</a>
+          <a href="#1" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#3" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -174,32 +337,99 @@
           id="3"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg/1280px-Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg.png');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Gobierno Provisional de México</h3>
-          <p>1823–1824</p>
+          <h3 class="slide__title">Gobierno Provisional de México, 1823</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#2">← Anterior</a>
-          <a href="#4">Siguiente →</a>
+          <a href="#2" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#4" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -207,32 +437,99 @@
           id="4"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b6/Mexico_1824.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Primera República Mexicana</h3>
-          <p>1824</p>
+          <h3 class="slide__title">Primera República Mexicana, 1824</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#3">← Anterior</a>
-          <a href="#5">Siguiente →</a>
+          <a href="#3" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#5" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -240,32 +537,99 @@
           id="5"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Mapa_Mexico_1836.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">República de Texas</h3>
-          <p>1836</p>
+          <h3 class="slide__title">República de Texas, 1836</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#4">← Anterior</a>
-          <a href="#6">Siguiente →</a>
+          <a href="#4" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#6" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -273,32 +637,99 @@
           id="6"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Mapa_Mexico_1840_1.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">República de Río Grande</h3>
-          <p>1840</p>
+          <h3 class="slide__title">República de Río Grande, 1840</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#5">← Anterior</a>
-          <a href="#7">Siguiente →</a>
+          <a href="#5" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#7" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -306,32 +737,99 @@
           id="7"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/06/Mapa_de_Mexico_1840_2.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Fin de la República de Río Grande</h3>
-          <p>1840</p>
+          <h3 class="slide__title">Fin de la República de Río Grande, 1840</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#6">← Anterior</a>
-          <a href="#8">Siguiente →</a>
+          <a href="#6" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#8" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -339,32 +837,99 @@
           id="8"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/25/Mapa_de_Mexico_1841.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Segunda República de Yucatán</h3>
-          <p>1841</p>
+          <h3 class="slide__title">Segunda República de Yucatán, 1841</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#7">← Anterior</a>
-          <a href="#9">Siguiente →</a>
+          <a href="#7" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#9" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -372,32 +937,99 @@
           id="9"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/84/Mapa_Mexico_1842.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Anexión del Soconusco</h3>
-          <p>1842</p>
+          <h3 class="slide__title">Anexión del Soconusco, 1842</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#8">← Anterior</a>
-          <a href="#10">Siguiente →</a>
+          <a href="#8" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#10" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -405,32 +1037,99 @@
           id="10"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6a/Mapa_Mexico_1848_1.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Tratado de Guadalupe Hidalgo</h3>
-          <p>1848</p>
+          <h3 class="slide__title">Tratado de Guadalupe Hidalgo, 1848</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#9">← Anterior</a>
-          <a href="#11">Siguiente →</a>
+          <a href="#9" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#10" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -438,32 +1137,99 @@
           id="11"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a4/Mapa_Mexico_1848_2.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Regreso de Yucatán a la federación</h3>
-          <p>1848</p>
+          <h3 class="slide__title">Regreso de Yucatán a la federación, 1848</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#10">← Anterior</a>
-          <a href="#12">Siguiente →</a>
+          <a href="#10" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#12" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -471,32 +1237,99 @@
           id="12"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4f/Mapa_Mexico_1853_1.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Venta de la Mesilla (Gadsden purchase)</h3>
-          <p>1853</p>
+          <h3 class="slide__title">Venta de la Mesilla (Gadsden purchase), 1853</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#11">← Anterior</a>
-          <a href="#13">Siguiente →</a>
+          <a href="#11" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#13" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -504,32 +1337,99 @@
           id="13"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/29/Mapa_de_Mexico_1865.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Segundo Imperio Mexicano</h3>
-          <p>1865</p>
+          <h3 class="slide__title">Segundo Imperio Mexicano, 1865</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#12">← Anterior</a>
-          <a href="#14">Siguiente →</a>
+          <a href="#12" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#14" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -537,32 +1437,99 @@
           id="14"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/29/Mapa_de_Mexico_1865.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Segunda República Mexicana</h3>
-          <p>1867</p>
+          <h3 class="slide__title">Segunda República Mexicana, 1867</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#13">← Anterior</a>
-          <a href="#15">Siguiente →</a>
+          <a href="#13" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#15" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -570,32 +1537,99 @@
           id="15"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Mapa_de_Mexico_1902.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Definición de la frontera con Honduras Británica (hoy Belize)</h3>
-          <p>1897</p>
+          <h3 class="slide__title">Definición de la frontera con Honduras Británica (hoy Belize), 1897</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#14">← Anterior</a>
-          <a href="#16">Siguiente →</a>
+          <a href="#14" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#16" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
 
@@ -603,32 +1637,99 @@
           id="16"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e6/Mapa_de_Mexico_1931_1.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Pérdida de la Isla de la Pasión (Clipperton Island)</h3>
-          <p>1931</p>
+          <h3 class="slide__title">Pérdida de la Isla de la Pasión (Clipperton Island), 1931</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
-            <li class="nav__item"><a href="#1">1535</a></li>
-            <li class="nav__item"><a href="#2">1821</a></li>
-            <li class="nav__item"><a href="#3">1823</a></li>
-            <li class="nav__item"><a href="#4">1824</a></li>
-            <li class="nav__item"><a href="#5">1836</a></li>
-            <li class="nav__item"><a href="#6">1840</a></li>
-            <li class="nav__item"><a href="#7">1840</a></li>
-            <li class="nav__item"><a href="#8">1841</a></li>
-            <li class="nav__item"><a href="#9">1842</a></li>
-            <li class="nav__item"><a href="#10">1848</a></li>
-            <li class="nav__item"><a href="#11">1848</a></li>
-            <li class="nav__item"><a href="#12">1853</a></li>
-            <li class="nav__item"><a href="#13">1865</a></li>
-            <li class="nav__item"><a href="#14">1867</a></li>
-            <li class="nav__item"><a href="#15">1897</a></li>
-            <li class="nav__item"><a href="#16">1931</a></li>
+            <li class="nav__item">
+              <a href="#1" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1535</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#2" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1821</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#3" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1823</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#4" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1824</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#5" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1836</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#6" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#7" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1840</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#8" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1841</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#9" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1842</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#10" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#11" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1848</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#12" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1853</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#13" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1865</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#14" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1867</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#15" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1897</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#16" class="nav-link nav-link--small">
+                <span class="nav-link__inner">1931</span>
+              </a>
+            </li>
           </ul>
 
-          <a href="#15">← Anterior</a>
-          <a href="#16">Siguiente →</a>
+          <a href="#15" class="nav-link nav-link--previous">
+            <span class="nav-link__inner">← Anterior</span>
+          </a>
+          <a href="#16" class="nav-link nav-link--next">
+            <span class="nav-link__inner">Siguiente →</span>
+          </a>
         </div>
       </li>
     </ul>
