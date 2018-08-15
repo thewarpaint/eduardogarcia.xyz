@@ -30,6 +30,19 @@
         margin: 0;
       }
 
+      .body {
+        background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/00/Map_of_Mexico_1847.jpg');
+        background-size: 125%;
+        background-position: center center;
+        background-attachment: fixed;
+      }
+
+      .intro {
+        height: 100vh;
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, .666);
+      }
+
       .map {
         width: 500px;
         max-width: 100%;
@@ -46,6 +59,7 @@
         position: relative;
         margin-left: -1rem;
         margin-right: -1rem;
+        background-color: white;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -149,23 +163,24 @@
     </style>
   </head>
 
-  <body>
-    <nav>
-      <a href="http://eduardogarcia.xyz/">← Home</a>
-    </nav>
+  <body class="body">
+    <div class="intro">
+      <nav>
+        <a href="http://eduardogarcia.xyz/">← Home</a>
+      </nav>
 
-    <h1 class="title">Evolución territorial de México</h1>
-    <h2 class="subtitle">Las transformaciones que ha sufrido desde 1521 hasta hoy</h2>
+      <h1 class="title">Evolución territorial de México</h1>
+      <h2 class="subtitle">Las transformaciones que ha sufrido desde 1521 hasta hoy</h2>
 
-    Last updated:
-    <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
-      %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
+      Last updated:
+      <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
+        %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
 
 
-    <div>
-      <a href="#1" class="start">¡Iniciar!</a>
+      <div>
+        <a href="#1" class="start">¡Iniciar!</a>
+      </div>
     </div>
-
 
     <ul class="slide-list">
       <li class="slide"
