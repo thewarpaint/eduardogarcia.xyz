@@ -40,7 +40,21 @@
       .intro {
         height: 100vh;
         padding: 1rem;
-        background-color: rgba(255, 255, 255, .666);
+      }
+
+      .title {
+        font-size: 6rem;
+      }
+
+      .subtitle {
+        font-size: 4rem;
+      }
+
+      .title__inner, .subtitle__inner {
+        display: inline-block;
+        background-color: rgba(245, 232, 199, .9);
+        color: #7e7678;
+        padding: 1rem 2rem;
       }
 
       .map {
@@ -169,8 +183,12 @@
         <a href="http://eduardogarcia.xyz/">← Home</a>
       </nav>
 
-      <h1 class="title">Evolución territorial de México</h1>
-      <h2 class="subtitle">Las transformaciones que ha sufrido desde 1521 hasta hoy</h2>
+      <h1 class="title">
+        <span class="title__inner">Evolución territorial de México</span>
+      </h1>
+      <h2 class="subtitle">
+        <span class="subtitle__inner">Las transformaciones que ha sufrido desde 1521 hasta hoy</span>
+      </h2>
 
       Last updated:
       <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
