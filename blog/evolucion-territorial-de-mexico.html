@@ -42,11 +42,10 @@
 
       .slide {
         width: 100vw;
-        height: calc(100vh - 3.75rem);
+        height: 100vh;
         position: relative;
         margin-left: -1rem;
         margin-right: -1rem;
-        margin-bottom: 3.75rem;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -57,7 +56,7 @@
         width: 100%;
         background-color: rgba(255, 255, 255, .8);
         text-align: center;
-        padding: 1rem;
+        padding: .25rem .25rem 1.25rem;
       }
 
       .slide__overlay--bottom {
@@ -72,19 +71,21 @@
       .nav {
         list-style: none;
         padding-left: 0;
-        margin-bottom: .25rem;
+        margin: 0 -.25rem .5rem;
+        display: flex;
       }
 
       .nav__item {
-        display: inline-block;
+        flex: 1 0 auto;
       }
 
       .nav-link {
-        display: inline-block;
-        padding: .1875rem;
+        display: block;
+        padding: .125rem;
         font-size: .875rem;
         text-decoration: none;
         color: #000000;
+        opacity: .5;
       }
 
       @media(min-width: 640px) {
@@ -104,20 +105,46 @@
       }
 
       .slide:target .nav-link--target {
-        font-weight: bold;
-      }
-
-      .slide:target .nav-link--target .nav-link__inner {
-        border-bottom-color: rgba(206, 17, 38, 1);
+        opacity: 1;
       }
 
       .nav-link__inner {
-        border-bottom: .125rem solid rgba(206, 17, 38, .5);
-        padding-bottom: .125rem;
+        border-top: .25rem solid rgb(206, 17, 38);
+        padding-top: .25rem;
+        display: block;
       }
 
       .nav-link:hover .nav-link__inner {
-        border-bottom-color: rgba(206, 17, 38, 1);
+        border-top-color: rgba(206, 17, 38, 1);
+      }
+
+      .nav-link--previous, .nav-link--next {
+        position: absolute;
+        top: 50%;
+        background-color: rgba(0, 0, 0, .5);
+        color: white;
+        padding: 1.25rem 1rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+        opacity: 1;
+      }
+
+      .nav-link--previous {
+        left: 0;
+        border-radius: 0 .5rem .5rem 0;
+      }
+
+      .nav-link--next {
+        right: 0;
+        border-radius: .5rem 0 0 .5rem;
+      }
+
+      .start {
+        display: inline-block;
+        padding: 1rem 5rem;
+        margin: auto;
+        border: .125rem solid black;
+        text-decoration: none;
       }
     </style>
   </head>
@@ -135,7 +162,9 @@
       %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
 
 
-    <p><a href="#1">¡Iniciar!</a></p>
+    <div>
+      <a href="#1" class="start">¡Iniciar!</a>
+    </div>
 
 
     <ul class="slide-list">
@@ -143,11 +172,6 @@
           id="1"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg/2880px-Map_of_the_Viceroyalty_of_New_Spain.svg.png');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Virreinato de la Nueva España, 1535</h3>
-          <p>Cénit: 1795</p>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small nav-link--target">
@@ -231,24 +255,23 @@
             </li>
           </ul>
 
-          <a href="#1" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#2" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Virreinato de la Nueva España, 1535</h3>
+          <p>Cénit: 1795</p>
         </div>
+
+        <a href="#1" class="nav-link nav-link--previous">
+          ←
+        </a>
+
+        <a href="#2" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="2"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/First_Mexican_Empire_%28orthographic_projection%29.svg/1280px-First_Mexican_Empire_%28orthographic_projection%29.svg.png');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Primer Imperio Mexicano, 1821</h3>
-          <p>Área: 4,925,283 km²</p>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -332,23 +355,22 @@
             </li>
           </ul>
 
-          <a href="#1" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#3" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Primer Imperio Mexicano, 1821</h3>
+          <p>Área: 4,925,283 km²</p>
         </div>
+
+        <a href="#1" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#3" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="3"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg/1280px-Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg.png');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Gobierno Provisional de México, 1823</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -432,23 +454,21 @@
             </li>
           </ul>
 
-          <a href="#2" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#4" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Gobierno Provisional de México, 1823</h3>
         </div>
+
+        <a href="#2" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#4" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="4"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b6/Mexico_1824.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Primera República Mexicana, 1824</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -532,23 +552,21 @@
             </li>
           </ul>
 
-          <a href="#3" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#5" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Primera República Mexicana, 1824</h3>
         </div>
+
+        <a href="#3" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#5" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="5"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Mapa_Mexico_1836.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">República de Texas, 1836</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -632,23 +650,21 @@
             </li>
           </ul>
 
-          <a href="#4" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#6" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">República de Texas, 1836</h3>
         </div>
+
+        <a href="#4" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#6" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="6"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Mapa_Mexico_1840_1.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">República de Río Grande, 1840</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -732,23 +748,21 @@
             </li>
           </ul>
 
-          <a href="#5" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#7" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">República de Río Grande, 1840</h3>
         </div>
+
+        <a href="#5" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#7" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="7"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/06/Mapa_de_Mexico_1840_2.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Fin de la República de Río Grande, 1840</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -832,23 +846,21 @@
             </li>
           </ul>
 
-          <a href="#6" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#8" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Fin de la República de Río Grande, 1840</h3>
         </div>
+
+        <a href="#6" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#8" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="8"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/25/Mapa_de_Mexico_1841.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Segunda República de Yucatán, 1841</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -932,23 +944,21 @@
             </li>
           </ul>
 
-          <a href="#7" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#9" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Segunda República de Yucatán, 1841</h3>
         </div>
+
+        <a href="#7" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#9" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="9"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/84/Mapa_Mexico_1842.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Anexión del Soconusco, 1842</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -1032,23 +1042,21 @@
             </li>
           </ul>
 
-          <a href="#8" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#10" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Anexión del Soconusco, 1842</h3>
         </div>
+
+        <a href="#8" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#10" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="10"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6a/Mapa_Mexico_1848_1.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Tratado de Guadalupe Hidalgo, 1848</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -1132,23 +1140,21 @@
             </li>
           </ul>
 
-          <a href="#9" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#11" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Tratado de Guadalupe Hidalgo, 1848</h3>
         </div>
+
+        <a href="#9" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#11" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="11"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a4/Mapa_Mexico_1848_2.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Regreso de Yucatán a la federación, 1848</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -1232,23 +1238,21 @@
             </li>
           </ul>
 
-          <a href="#10" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#12" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Regreso de Yucatán a la federación, 1848</h3>
         </div>
+
+        <a href="#10" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#12" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="12"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4f/Mapa_Mexico_1853_1.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Venta de la Mesilla (Gadsden purchase), 1853</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -1332,12 +1336,15 @@
             </li>
           </ul>
 
-          <a href="#11" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#13" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Venta de la Mesilla (Gadsden purchase), 1853</h3>
+        </div>
+
+        <a href="#11" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#13" class="nav-link nav-link--next">
+          →
+        </a>
         </div>
       </li>
 
@@ -1345,10 +1352,6 @@
           id="13"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/29/Mapa_de_Mexico_1865.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Segundo Imperio Mexicano, 1865</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -1432,23 +1435,21 @@
             </li>
           </ul>
 
-          <a href="#12" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#14" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Segundo Imperio Mexicano, 1865</h3>
         </div>
+
+        <a href="#12" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#14" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="14"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/29/Mapa_de_Mexico_1865.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Segunda República Mexicana, 1867</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -1532,23 +1533,21 @@
             </li>
           </ul>
 
-          <a href="#13" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#15" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Segunda República Mexicana, 1867</h3>
         </div>
+
+        <a href="#13" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#15" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="15"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Mapa_de_Mexico_1902.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Definición de la frontera con Honduras Británica (hoy Belize), 1897</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -1632,23 +1631,21 @@
             </li>
           </ul>
 
-          <a href="#14" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#16" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Definición de la frontera con Honduras Británica (hoy Belize), 1897</h3>
         </div>
+
+        <a href="#14" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#16" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
 
       <li class="slide"
           id="16"
           style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e6/Mapa_de_Mexico_1931_1.PNG');">
         <div class="slide__overlay">
-          <h3 class="slide__title">Resolución sobre la soberanía de la Isla de la Pasión (Clipperton Island), 1931</h3>
-        </div>
-
-        <div class="slide__overlay slide__overlay--bottom">
           <ul class="nav">
             <li class="nav__item">
               <a href="#1" class="nav-link nav-link--small">
@@ -1732,13 +1729,15 @@
             </li>
           </ul>
 
-          <a href="#15" class="nav-link nav-link--previous">
-            <span class="nav-link__inner">← Anterior</span>
-          </a>
-          <a href="#16" class="nav-link nav-link--next">
-            <span class="nav-link__inner">Siguiente →</span>
-          </a>
+          <h3 class="slide__title">Resolución sobre la soberanía de la Isla de la Pasión (Clipperton Island), 1931</h3>
         </div>
+
+        <a href="#15" class="nav-link nav-link--previous">
+          ←
+        </a>
+        <a href="#16" class="nav-link nav-link--next">
+          →
+        </a>
       </li>
     </ul>
 
