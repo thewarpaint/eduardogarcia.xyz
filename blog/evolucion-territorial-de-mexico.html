@@ -31,30 +31,40 @@
       }
 
       .body {
-        background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/00/Map_of_Mexico_1847.jpg');
-        background-size: 125%;
+        background-image: url('images/map-of-mexico-1847.jpg');
+        background-size: cover;
         background-position: center center;
         background-attachment: fixed;
       }
 
       .intro {
-        height: 100vh;
+        min-height: 100vh;
         padding: 1rem;
       }
 
       .title {
-        font-size: 6rem;
+        font-size: 3rem;
       }
 
       .subtitle {
-        font-size: 4rem;
+        font-size: 2rem;
+      }
+
+      @media(min-width: 640px) {
+        .title {
+          font-size: 6rem;
+        }
+
+        .subtitle {
+          font-size: 4rem;
+        }
       }
 
       .title__inner, .subtitle__inner {
         display: inline-block;
-        background-color: rgba(245, 232, 199, .9);
+        background-color: rgba(245, 232, 199, .75);
         color: #7e7678;
-        padding: 1rem 2rem;
+        padding: 1rem 1.5rem;
       }
 
       .map {
