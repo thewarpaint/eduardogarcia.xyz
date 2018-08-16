@@ -40,6 +40,10 @@
         background: url('images/map-of-mexico-1847.jpg') center center / cover no-repeat;
       }
 
+      .title, .subtitle, .call-to-action {
+        text-align: center;
+      }
+
       .title {
         margin-top: 4rem;
         font-size: 3rem;
@@ -48,6 +52,10 @@
       .subtitle {
         margin-top: 2rem;
         font-size: 2rem;
+      }
+
+      .call-to-action {
+        margin-top: 4rem;
       }
 
       @media(min-width: 640px) {
@@ -60,13 +68,29 @@
           margin-top: 4rem;
           font-size: 4rem;
         }
+
+        .call-to-action {
+          margin-top: 8rem;
+        }
       }
 
-      .title__inner, .subtitle__inner {
+      .title__inner, .subtitle__inner, .call-to-action__action {
         display: inline-block;
         background-color: rgba(245, 232, 199, .75);
         color: #605e4d;
+      }
+
+      .title__inner, .subtitle__inner {
         padding: 1rem 1.5rem;
+      }
+
+      .call-to-action__action {
+        padding: 1.5rem 4rem;
+        border: .125rem solid #605e4d;
+        font-size: 2rem;
+        letter-spacing: .125rem;
+        text-decoration: none;
+        text-transform: uppercase;
       }
 
       .map {
@@ -178,14 +202,6 @@
         right: 0;
         border-radius: .5rem 0 0 .5rem;
       }
-
-      .start {
-        display: inline-block;
-        padding: 1rem 5rem;
-        margin: auto;
-        border: .125rem solid black;
-        text-decoration: none;
-      }
     </style>
   </head>
 
@@ -204,12 +220,13 @@
       <h1 class="title">
         <span class="title__inner">Evolución territorial de México</span>
       </h1>
+
       <h2 class="subtitle">
         <span class="subtitle__inner">Las transformaciones que ha sufrido desde 1521 hasta hoy</span>
       </h2>
 
-      <div>
-        <a href="#1" class="start">¡Iniciar!</a>
+      <div class="call-to-action">
+        <a href="#1" class="call-to-action__action">Iniciar</a>
       </div>
     </div>
 
