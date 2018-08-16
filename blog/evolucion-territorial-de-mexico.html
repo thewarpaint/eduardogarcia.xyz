@@ -31,6 +31,10 @@
         margin: 0;
       }
 
+      .link {
+        color: black;
+      }
+
       .body {
         background-color: #f5e8c7;
       }
@@ -92,6 +96,10 @@
         letter-spacing: .125rem;
         text-decoration: none;
         text-transform: uppercase;
+      }
+
+      .last-updated {
+        margin-top: .5rem;
       }
 
       .map {
@@ -209,12 +217,14 @@
   <body class="body">
     <div class="intro">
       <nav>
-        <a href="http://eduardogarcia.xyz/">← Home</a>
+        <a class="link"
+           href="http://eduardogarcia.xyz/">← Home</a>
       </nav>
 
-      <p>
+      <p class="last-updated">
         Last updated:
-        <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
+        <a class="link"
+           href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
           %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
       </p>
 
