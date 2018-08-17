@@ -22,6 +22,7 @@
     <meta property="og:image" content="https://eduardogarcia.xyz/blog/images/map-of-mexico-1847.jpg">
 
     <link href="css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700" rel="stylesheet">
     <style type="text/css">
       * {
         box-sizing: border-box;
@@ -49,34 +50,23 @@
         text-align: center;
       }
 
+      .title, .subtitle {
+        font-family: "Noto Serif";
+      }
+
       .title {
         margin-top: 4rem;
-        font-size: 3rem;
+        font-size: 2.5rem;
+        font-weight: bold;
       }
 
       .subtitle {
         margin-top: 2rem;
-        font-size: 2rem;
+        font-size: 1.25rem;
       }
 
       .call-to-action {
         margin-top: 4rem;
-      }
-
-      @media(min-width: 640px) {
-        .title {
-          margin-top: 8rem;
-          font-size: 6rem;
-        }
-
-        .subtitle {
-          margin-top: 4rem;
-          font-size: 4rem;
-        }
-
-        .call-to-action {
-          margin-top: 8rem;
-        }
       }
 
       .title__inner, .subtitle__inner, .call-to-action__action {
@@ -159,12 +149,6 @@
         text-decoration: none;
         color: #000000;
         opacity: .5;
-      }
-
-      @media(min-width: 640px) {
-        .nav-link {
-          padding: .5rem;
-        }
       }
 
       .nav-link--small {
