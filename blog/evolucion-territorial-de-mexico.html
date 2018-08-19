@@ -205,7 +205,11 @@
 
       .description {
         cursor: pointer;
+        padding: 1.25rem 1rem 3.75rem;
         text-align: left;
+        font-size: 1.25rem;
+        max-height: calc(100vh - 7.5rem);
+        overflow-y: auto;
       }
 
       .description__checkbox {
@@ -215,6 +219,16 @@
       .description__checkbox ~ .description__label > .description__extended,
       .description__checkbox:checked ~ .description__label > .description__see-more {
         display: none;
+      }
+
+      .description__label {
+        display: block;
+        max-width: 75rem;
+        margin: auto;
+      }
+
+      .description__checkbox:checked ~ .description__label {
+        padding: 0 4rem;
       }
 
       .description__checkbox:checked ~ .description__label > .description__extended {
@@ -353,10 +367,10 @@
           <label for="description-1"
                  class="description__label">
             El predecesor colonial del estado mexicano fue establecido en 1535 y alcanz&oacute; su c&eacute;nit en 1795.
-            <span class="link description__see-more">Ver m&aacute;s</span><br><br>
+            <span class="link description__see-more">Ver m&aacute;s</span><br>
 
             <div class="description__extended">
-              Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
+              <br>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
               The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of
               Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:<br><br>
 
@@ -368,7 +382,6 @@
 
               <span class="link">Ocultar</span>
             </div>
-
           </label>
         </div>
 
