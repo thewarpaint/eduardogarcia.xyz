@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for filename in blog/*.html; do
+for filename in _posts/*.html; do
   LATEST_SHA="$(git log --pretty=format:'%H' -n 1 -- $filename)"
   LATEST_SHA_SHORT="$(git log --pretty=format:'%h' -n 1 -- $filename)"
   DATE_READABLE="$(git log --pretty=format:'%cd' --date=format:'%B %d, %Y' -n 1 -- $filename)"
