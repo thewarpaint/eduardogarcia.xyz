@@ -1,6 +1,29 @@
-- year: 1795
-  mapUrl: bogus.jpg
-  title: Virreinato de la Nueva España
-  description: >
-    Lorem ipsum
-  
+slides:
+  - year: 1795
+    mapUrl: bogus.jpg
+    title: Virreinato de la Nueva España
+    description: >
+      Lorem ipsum
+
+references:
+  - title: >
+      Wikipedia: Territorial evolution of Mexico
+    url: https://en.wikipedia.org/wiki/Territorial_evolution_of_Mexico
+  - title: >
+      Wikipedia: New Spain
+    url: https://en.wikipedia.org/wiki/New_Spain
+  - title: >
+      Wikipedia: Mexico, First Empire and First Republic (1821 - 1846)
+    url: https://en.wikipedia.org/wiki/Mexico#First_Empire_and_First_Republic_(1821%E2%80%931846)
+  - title: >
+      Wikipedia: Evolución territorial del estado de México
+    url: https://es.wikipedia.org/wiki/Evoluci%C3%B3n_territorial_del_estado_de_M%C3%A9xico
+  - title: >
+      Wikipedia: Federal Republic of Central America
+    url: https://en.wikipedia.org/wiki/Federal_Republic_of_Central_America
+  - title: >
+      Wikipedia: Gran Colombia
+    url: https://en.wikipedia.org/wiki/Gran_Colombia
+  - title: >
+      Wikipedia: First Mexican Empire
+    url: https://en.wikipedia.org/wiki/First_Mexican_Empire
