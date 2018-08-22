@@ -1,9 +1,41 @@
 slides:
   - year: 1795
-    mapUrl: bogus.jpg
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg
+    # https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg/2880px-Map_of_the_Viceroyalty_of_New_Spain.svg.png
     title: Virreinato de la Nueva España
-    description: >
-      Lorem ipsum
+    description:
+      - >
+        El predecesor colonial del estado mexicano fue establecido en 1535 y alcanz&oacute; su c&eacute;nit en 1795.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
+        The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of
+        Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:<br><br>
+
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."<br><br>
+
+        The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract
+        from the layout. A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus
+        is meant to be on design, not content.
+
+# Temporary
+navEntries:
+  - 1795
+  - 1821
+  - 1823
+  - 1824
+  - 1836
+  - 1840
+  - 1840
+  - 1841
+  - 1842
+  - 1848
+  - 1848
+  - 1853
+  - 1865
+  - 1867
+  - 1897
+  - 1931
+  - 1974
 
 references:
   - title: >

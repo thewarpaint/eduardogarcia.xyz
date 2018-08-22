@@ -1,0 +1,9 @@
+<ul class="nav">
+  {%- for entry in site.data.evolucionTerritorialDeMexico.navEntries -%}
+  <li class="nav__item">
+    <a href="#{{ forloop.index }}" class="nav-link nav-link--small nav-link--target">
+      <span class="nav-link__inner">{{ entry }}</span>
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>
