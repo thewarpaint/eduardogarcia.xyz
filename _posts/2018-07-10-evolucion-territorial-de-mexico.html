@@ -268,48 +268,43 @@ permalink: /blog/evolucion-territorial-de-mexico
     </div>
 
     <ul class="slide-list">
+      {%- for slide in site.data.evolucionTerritorialDeMexico.slides -%}
       <li class="slide"
-          id="1"
-          style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg/2880px-Map_of_the_Viceroyalty_of_New_Spain.svg.png');">
+          id="{{ forloop.index }}"
+          style="background-image: url('{{ slide.mapUrl }}');">
         <div class="slide__overlay">
-          {%- include blog-territorial-evolution-nav.html slide=1 -%}
+          {%- include blog-territorial-evolution-nav.html slide=forloop.index -%}
 
-          <h3 class="slide__title">Virreinato de la Nueva España, 1795</h3>
+          <h3 class="slide__title">{{ slide.title }}, {{ slide.year }}</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom description">
           <input type="checkbox"
-                 id="description-1"
+                 id="description-{{ forloop.index }}"
                  class="description__checkbox">
-          <label for="description-1"
+          <label for="description-{{ forloop.index }}"
                  class="description__label">
-            El predecesor colonial del estado mexicano fue establecido en 1535 y alcanz&oacute; su c&eacute;nit en 1795.
+            {{ slide.description[0] }}
             <span class="link description__see-more">Ver m&aacute;s</span><br>
 
             <div class="description__extended">
-              <br>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-              The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of
-              Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:<br><br>
-
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."<br><br>
-
-              The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract
-              from the layout. A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus
-              is meant to be on design, not content.
-
+              {{ slide.description[1] }}
               <span class="link">Ocultar</span>
             </div>
           </label>
         </div>
 
-        <a href="#0" class="nav-link nav-link--previous">
+        <a href="#{{ forloop.index | minus:1 }}"
+           class="nav-link nav-link--previous">
           ←
         </a>
 
-        <a href="#2" class="nav-link nav-link--next">
+        <a href="#{{ forloop.index | plus:1 }}"
+           class="nav-link nav-link--next">
           →
         </a>
       </li>
+      {%- endfor -%}
 
       <li class="slide"
           id="2"
