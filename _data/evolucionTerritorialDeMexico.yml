@@ -17,6 +17,16 @@ slides:
         from the layout. A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus
         is meant to be on design, not content.
 
+  - year: 1821
+    title: Primer Imperio Mexicano
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/First_Mexican_Empire_%28orthographic_projection%29.svg/1280px-First_Mexican_Empire_%28orthographic_projection%29.svg.png
+    description:
+      - >
+        El primer estado considerado el M&eacute;xico moderno alcanz&oacute; su mayor extensi&oacute;n como un pa&iacute;s
+        independiente en 1821.
+      - >
+        Área: 4,925,283 km². Lorem ipsum, or lipsum as it is sometimes known.
+
 # Temporary
 navEntries:
   - 1795
