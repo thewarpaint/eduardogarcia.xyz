@@ -27,6 +27,24 @@ slides:
       - >
         Área: 4,925,283 km². Lorem ipsum, or lipsum as it is sometimes known.
 
+  - year: 1823
+    title: Gobierno Provisional de México
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg/1280px-Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg.png
+    description:
+      - >
+        Tras el fin del imperio, las provincias de Centroam&eacute;rica decidieron no formar parte de M&eacute;xico.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1824
+    title: Primera República Mexicana
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/b/b6/Mexico_1824.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
 # Temporary
 navEntries:
   - 1795
