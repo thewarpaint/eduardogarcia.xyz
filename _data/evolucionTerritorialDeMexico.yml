@@ -45,6 +45,78 @@ slides:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
 
+  - year: 1836
+    title: República de Texas
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/5/56/Mapa_Mexico_1836.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1840
+    title: República de Río Grande
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/b/b1/Mapa_Mexico_1840_1.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1840
+    title: Fin de la República de Río Grande
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/0/06/Mapa_de_Mexico_1840_2.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1841
+    title: Segunda República de Yucatán
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/2/25/Mapa_de_Mexico_1841.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1842
+    title: Anexión del Soconusco
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/8/84/Mapa_Mexico_1842.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1848
+    title: Tratado de Guadalupe Hidalgo
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/6/6a/Mapa_Mexico_1848_1.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1848
+    title: Regreso de Yucatán a la federación
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/a/a4/Mapa_Mexico_1848_2.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1853
+    title: Venta de la Mesilla ("Gadsden purchase")
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/4/4f/Mapa_Mexico_1853_1.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
 # Temporary
 navEntries:
   - 1795
