@@ -117,6 +117,51 @@ slides:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
 
+  - year: 1865
+    title: Segundo Imperio Mexicano
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/2/29/Mapa_de_Mexico_1865.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1867
+    title: Segunda República Mexicana
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/e/e4/Mapa_de_Mexico_1864.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1897
+    title: Definición de la frontera con Honduras Británica (hoy Belize)
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/0/0f/Mapa_de_Mexico_1902.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1931
+    title: Resolución sobre la soberanía de la Isla de la Pasión (Clipperton Island)
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/e/e6/Mapa_de_Mexico_1931_1.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
+  - year: 1974
+    title: México actual
+    mapUrl: https://upload.wikimedia.org/wikipedia/commons/4/42/Mapa_Mexico_1974.PNG
+    description:
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+      - >
+        Lorem ipsum, or lipsum as it is sometimes known.
+
 # Temporary
 navEntries:
   - 1795
