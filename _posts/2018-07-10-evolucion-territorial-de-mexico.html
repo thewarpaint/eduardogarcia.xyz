@@ -269,20 +269,30 @@ permalink: /blog/evolucion-territorial-de-mexico
 
     <ul class="slide-list">
       {%- for slide in site.data.evolucionTerritorialDeMexico.slides -%}
+      {%- assign slideIndex = forloop.index -%}
       <li class="slide"
-          id="{{ forloop.index }}"
+          id="{{ slideIndex }}"
           style="background-image: url('{{ slide.mapUrl }}');">
         <div class="slide__overlay">
-          {%- include blog-territorial-evolution-nav.html slide=forloop.index -%}
+          <ul class="nav">
+            {%- for entry in site.data.evolucionTerritorialDeMexico.navEntries -%}
+            <li class="nav__item">
+              <a href="#{{ forloop.index }}"
+                 class="nav-link nav-link--small {% if slideIndex == forloop.index %}nav-link--target{% endif %}">
+                <span class="nav-link__inner">{{ entry }}</span>
+              </a>
+            </li>
+            {%- endfor -%}
+          </ul>
 
           <h3 class="slide__title">{{ slide.title }}, {{ slide.year }}</h3>
         </div>
 
         <div class="slide__overlay slide__overlay--bottom description">
           <input type="checkbox"
-                 id="description-{{ forloop.index }}"
+                 id="description-{{ slideIndex }}"
                  class="description__checkbox">
-          <label for="description-{{ forloop.index }}"
+          <label for="description-{{ slideIndex }}"
                  class="description__label">
             {{ slide.description[0] }}
             <span class="link description__see-more">Ver m&aacute;s</span><br>
@@ -294,12 +304,12 @@ permalink: /blog/evolucion-territorial-de-mexico
           </label>
         </div>
 
-        <a href="#{{ forloop.index | minus:1 }}"
+        <a href="#{{ slideIndex | minus:1 }}"
            class="nav-link nav-link--previous">
           ←
         </a>
 
-        <a href="#{{ forloop.index | plus:1 }}"
+        <a href="#{{ slideIndex | plus:1 }}"
            class="nav-link nav-link--next">
           →
         </a>
