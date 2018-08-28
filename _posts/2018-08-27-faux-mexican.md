@@ -5,6 +5,8 @@ costumbres que frecuentemente es errónea. Claramente no es un fenómeno exclusi
 con las costumbres de otros lugares, pero me resulta interesante porque puedo comparar su versión con mi versión y percibir
 su reacción, ya sea sorpresa, incredulidad, etc.
 
+Faux Mexican es mi intento de contrastar ambas versiones.
+
 ## Cerveza Desperados
 
 Desperados es una cerveza con sabor y aroma a tequila originalmente creada en Francia. Muchas personas la asocian con México
@@ -17,3 +19,5 @@ https://es.m.wikipedia.org/wiki/Desperados_(cerveza)
 ## Tequila Sierra
 
 ## Mexikaner
+
+http://www.u-strasse.com/how-to-make-mexikaner-germanys-popular-party-shot/
