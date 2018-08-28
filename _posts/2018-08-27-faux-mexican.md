@@ -1,5 +1,10 @@
 # Faux Mexican
 
+Después de vivir dos años fuera de México, he notado que los extranjeros, naturalmente, tienen una percepción muy particular de nuestro país y sus
+costumbres que frecuentemente es errónea. Claramente no es un fenómeno exclusivo de nuestro país, y nosotros hacemos lo propio
+con las costumbres de otros lugares, pero me resulta interesante porque puedo comparar su versión con mi versión y percibir
+su reacción, ya sea sorpresa, incredulidad, etc.
+
 ## Cerveza Desperados
 
 Desperados es una cerveza con sabor y aroma a tequila originalmente creada en Francia. Muchas personas la asocian con México
