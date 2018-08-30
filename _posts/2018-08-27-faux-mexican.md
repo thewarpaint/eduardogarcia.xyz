@@ -25,4 +25,8 @@ https://www.sierratequila.com/es/index
 
 ## Mexikaner
 
+8 de cada 10 mexicanos NO prefieren Mexikaner. El trago originario de Hamburgo es muy popular en St. Pauli, el barrio rojo de la ciudad, aunque su popularidad se ha extendido por todo el pais.
+
+La receta varia dependiendo del lugar donde lo pidas, pero los ingredientes mas comunes son jugo de tomate, vodka, salsa inglesa, salsa Tabasco, sal y pimienta.
+
 http://www.u-strasse.com/how-to-make-mexikaner-germanys-popular-party-shot/
