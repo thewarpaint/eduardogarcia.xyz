@@ -18,6 +18,11 @@ https://es.m.wikipedia.org/wiki/Desperados_(cerveza)
 
 ## Tequila Sierra
 
+Sierra es probablemente la marca de tequila más común en los bares, curioso considerando que nunca antes había
+escuchado de ella.
+
+https://www.sierratequila.com/es/index
+
 ## Mexikaner
 
 http://www.u-strasse.com/how-to-make-mexikaner-germanys-popular-party-shot/
