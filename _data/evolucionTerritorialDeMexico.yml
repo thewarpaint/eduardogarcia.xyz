@@ -1,8 +1,9 @@
 slides:
   - year: 1795
     title: Virreinato de la Nueva España
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg
-    # https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg/2880px-Map_of_the_Viceroyalty_of_New_Spain.svg.png
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg/2880px-Map_of_the_Viceroyalty_of_New_Spain.svg.png
+      - https://upload.wikimedia.org/wikipedia/commons/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg
     description:
       - >
         El predecesor colonial del estado mexicano fue establecido en 1535 y alcanz&oacute; su c&eacute;nit en 1795.
@@ -19,7 +20,10 @@ slides:
 
   - year: 1821
     title: Primer Imperio Mexicano
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/First_Mexican_Empire_%28orthographic_projection%29.svg/1280px-First_Mexican_Empire_%28orthographic_projection%29.svg.png
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/c/c3/Mexico_1821.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/8/84/Political_divisions_of_Mexico_1821_%28location_map_scheme%29.svg
+      # https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/First_Mexican_Empire_%28orthographic_projection%29.svg/1280px-First_Mexican_Empire_%28orthographic_projection%29.svg.png
     description:
       - >
         El primer estado considerado el M&eacute;xico moderno alcanz&oacute; su mayor extensi&oacute;n como un pa&iacute;s
@@ -29,7 +33,10 @@ slides:
 
   - year: 1823
     title: Gobierno Provisional de México
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg/1280px-Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg.png
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/9/94/Mapa_Mexico_1823.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/4/45/Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg
+      # https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg/1280px-Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg.png
     description:
       - >
         Tras el fin del imperio, las provincias de Centroam&eacute;rica decidieron no formar parte de M&eacute;xico.
@@ -38,7 +45,9 @@ slides:
 
   - year: 1824
     title: Primera República Mexicana
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/b/b6/Mexico_1824.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/b/b6/Mexico_1824.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/b/b6/Mexico_1824.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -47,7 +56,9 @@ slides:
 
   - year: 1836
     title: República de Texas
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/5/56/Mapa_Mexico_1836.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/5/56/Mapa_Mexico_1836.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/5/56/Mapa_Mexico_1836.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -56,7 +67,9 @@ slides:
 
   - year: 1840
     title: República de Río Grande
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/b/b1/Mapa_Mexico_1840_1.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/b/b1/Mapa_Mexico_1840_1.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/b/b1/Mapa_Mexico_1840_1.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -65,7 +78,9 @@ slides:
 
   - year: 1840
     title: Fin de la República de Río Grande
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/0/06/Mapa_de_Mexico_1840_2.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/0/06/Mapa_de_Mexico_1840_2.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/0/06/Mapa_de_Mexico_1840_2.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -74,7 +89,9 @@ slides:
 
   - year: 1841
     title: Segunda República de Yucatán
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/2/25/Mapa_de_Mexico_1841.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/2/25/Mapa_de_Mexico_1841.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/2/25/Mapa_de_Mexico_1841.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -83,7 +100,9 @@ slides:
 
   - year: 1842
     title: Anexión del Soconusco
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/8/84/Mapa_Mexico_1842.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/8/84/Mapa_Mexico_1842.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/8/84/Mapa_Mexico_1842.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -92,7 +111,9 @@ slides:
 
   - year: 1848
     title: Tratado de Guadalupe Hidalgo
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/6/6a/Mapa_Mexico_1848_1.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/6/6a/Mapa_Mexico_1848_1.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/6/6a/Mapa_Mexico_1848_1.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -101,7 +122,9 @@ slides:
 
   - year: 1848
     title: Regreso de Yucatán a la federación
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/a/a4/Mapa_Mexico_1848_2.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/a/a4/Mapa_Mexico_1848_2.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/a/a4/Mapa_Mexico_1848_2.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -110,7 +133,9 @@ slides:
 
   - year: 1853
     title: Venta de la Mesilla ("Gadsden purchase")
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/4/4f/Mapa_Mexico_1853_1.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/4/4f/Mapa_Mexico_1853_1.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/4/4f/Mapa_Mexico_1853_1.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -119,7 +144,9 @@ slides:
 
   - year: 1865
     title: Segundo Imperio Mexicano
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/2/29/Mapa_de_Mexico_1865.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/2/29/Mapa_de_Mexico_1865.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/2/29/Mapa_de_Mexico_1865.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -128,7 +155,9 @@ slides:
 
   - year: 1867
     title: Segunda República Mexicana
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/e/e4/Mapa_de_Mexico_1864.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/e/e4/Mapa_de_Mexico_1864.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/e/e4/Mapa_de_Mexico_1864.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -146,7 +175,9 @@ slides:
 
   - year: 1931
     title: Resolución sobre la soberanía de la Isla de la Pasión (Clipperton Island)
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/e/e6/Mapa_de_Mexico_1931_1.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/e/e6/Mapa_de_Mexico_1931_1.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/e/e6/Mapa_de_Mexico_1931_1.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
@@ -155,7 +186,9 @@ slides:
 
   - year: 1974
     title: México actual
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/4/42/Mapa_Mexico_1974.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/4/42/Mapa_Mexico_1974.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/4/42/Mapa_Mexico_1974.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.

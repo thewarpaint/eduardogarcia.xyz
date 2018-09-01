@@ -241,7 +241,13 @@ permalink: /blog/evolucion-territorial-de-mexico
       /* Generated styles */
       {%- for slide in site.data.evolucionTerritorialDeMexico.slides -%}
       .slide--{{ forloop.index }} {
-        background-image: url('{{ slide.mapUrl }}');
+        background-image: url('{{ slide.mapUrls[0] }}');
+      }
+
+      @media(min-width: 960px) {
+        .slide--{{ forloop.index }} {
+          background-image: url('{{ slide.mapUrls[1] }}');
+        }
       }
       {%- endfor -%}
     </style>
