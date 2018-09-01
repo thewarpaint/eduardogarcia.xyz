@@ -166,7 +166,9 @@ slides:
 
   - year: 1897
     title: Definición de la frontera con Honduras Británica (hoy Belize)
-    mapUrl: https://upload.wikimedia.org/wikipedia/commons/0/0f/Mapa_de_Mexico_1902.PNG
+    mapUrls:
+      - https://upload.wikimedia.org/wikipedia/commons/0/0f/Mapa_de_Mexico_1902.PNG
+      - https://upload.wikimedia.org/wikipedia/commons/0/0f/Mapa_de_Mexico_1902.PNG
     description:
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
