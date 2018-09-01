@@ -6,17 +6,9 @@ slides:
       - https://upload.wikimedia.org/wikipedia/commons/5/57/Map_of_the_Viceroyalty_of_New_Spain.svg
     description:
       - >
-        El predecesor colonial del estado mexicano fue establecido en 1535 y alcanz&oacute; su c&eacute;nit en 1795.
+        El predecesor colonial del estado mexicano fue establecido en 1535 y alcanzó su cénit en 1795.
       - >
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.
-        The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of
-        Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:<br><br>
-
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."<br><br>
-
-        The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract
-        from the layout. A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus
-        is meant to be on design, not content.
+        Lorem ipsum, or lipsum as it is sometimes known.
 
   - year: 1821
     title: Primer Imperio Mexicano
@@ -26,10 +18,9 @@ slides:
       # https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/First_Mexican_Empire_%28orthographic_projection%29.svg/1280px-First_Mexican_Empire_%28orthographic_projection%29.svg.png
     description:
       - >
-        El primer estado considerado el M&eacute;xico moderno alcanz&oacute; su mayor extensi&oacute;n como un pa&iacute;s
-        independiente en 1821.
+        El primer estado considerado el México moderno alcanzó su mayor extensión como un país independiente en 1821.
       - >
-        Área: 4,925,283 km². Lorem ipsum, or lipsum as it is sometimes known.
+        Área: 4,925,283 km².
 
   - year: 1823
     title: Gobierno Provisional de México
@@ -39,9 +30,10 @@ slides:
       # https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg/1280px-Political_divisions_of_Mexico_1823_%28location_map_scheme%29.svg.png
     description:
       - >
-        Tras el fin del imperio, las provincias de Centroam&eacute;rica decidieron no formar parte de M&eacute;xico.
+        Tras el fin del imperio, las provincias de Centroamérica deciden no formar parte de México.
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Chiapas aún no forma parte de México, y la región del Soconusco declara su independencia para unirse a la recién
+        formada República Federal de Centroamérica.
 
   - year: 1824
     title: Primera República Mexicana
@@ -50,7 +42,7 @@ slides:
       - https://upload.wikimedia.org/wikipedia/commons/b/b6/Mexico_1824.PNG
     description:
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Chiapas se une a la federación como estado fundador. El Soconusco continúa siendo parte de la República Federal de Centroamérica.
       - >
         Lorem ipsum, or lipsum as it is sometimes known.
 
@@ -61,9 +53,10 @@ slides:
       - https://upload.wikimedia.org/wikipedia/commons/5/56/Mapa_Mexico_1836.PNG
     description:
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        La región de Texas declara su independencia.
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Santa Anna es derrotado en la Batalla de San Jacinto. Firma los Tratados de Velasco, que terminan con la insurgencia y
+        formalizan la creación de la República de Texas.
 
   - year: 1840
     title: República de Río Grande
@@ -72,9 +65,10 @@ slides:
       - https://upload.wikimedia.org/wikipedia/commons/b/b1/Mapa_Mexico_1840_1.PNG
     description:
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Los estados de Coahuila, Nuevo León y Tamaulipas declaran su independencia de México.
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Forman la República del Río Grande y se anexan la parte este de Chihuahua. La frontera de la nueva república con Texas
+        no es determinada.
 
   - year: 1840
     title: Fin de la República de Río Grande
@@ -83,12 +77,12 @@ slides:
       - https://upload.wikimedia.org/wikipedia/commons/0/06/Mapa_de_Mexico_1840_2.PNG
     description:
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Tan solo 10 meses después, los estados de Coahuila, Nuevo León y Tamaulipas regresan a formar parte de México.
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Libran una breve guerra de independencia, misma que resulta fallida a pesar del apoyo no oficial de parte de la República de Texas.
 
   - year: 1841
-    title: Segunda República de Yucatán
+    title: República de Yucatán
     mapUrls:
       - https://upload.wikimedia.org/wikipedia/commons/2/25/Mapa_de_Mexico_1841.PNG
       - https://upload.wikimedia.org/wikipedia/commons/2/25/Mapa_de_Mexico_1841.PNG
@@ -105,9 +99,10 @@ slides:
       - https://upload.wikimedia.org/wikipedia/commons/8/84/Mapa_Mexico_1842.PNG
     description:
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        En 1842 tropas oaxaqueñas al mando del General Antonio López de Santa Anna ocupan el área del Soconusco.
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Tras la invasión declaran el área reincorporada a México. Guatemala no reconocerá la anexión hasta 1882, año en que se define
+        el río Suchiate como frontera entre la parte mexicana del Soconusco y la guatemalteca.
 
   - year: 1848
     title: Tratado de Guadalupe Hidalgo
@@ -182,9 +177,9 @@ slides:
       - https://upload.wikimedia.org/wikipedia/commons/e/e6/Mapa_de_Mexico_1931_1.PNG
     description:
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Francia y México resuelven su disputa sobre la soberanía de la isla en 1931.
       - >
-        Lorem ipsum, or lipsum as it is sometimes known.
+        Mediante el arbitraje del rey italiano Vittorio Emanuele III, se resuelve la disputa a favor de Francia.
 
   - year: 1974
     title: México actual
