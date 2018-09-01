@@ -237,6 +237,13 @@ permalink: /blog/evolucion-territorial-de-mexico
       .description__checkbox:checked ~ .description__label > .description__extended {
         display: block;
       }
+
+      /* Generated styles */
+      {%- for slide in site.data.evolucionTerritorialDeMexico.slides -%}
+      .slide--{{ forloop.index }} {
+        background-image: url('{{ slide.mapUrl }}');
+      }
+      {%- endfor -%}
     </style>
   </head>
 
@@ -270,9 +277,8 @@ permalink: /blog/evolucion-territorial-de-mexico
     <ul class="slide-list">
       {%- for slide in site.data.evolucionTerritorialDeMexico.slides -%}
       {%- assign slideIndex = forloop.index -%}
-      <li class="slide"
-          id="{{ slideIndex }}"
-          style="background-image: url('{{ slide.mapUrl }}');">
+      <li class="slide slide--{{ slideIndex }}"
+          id="{{ slideIndex }}">
         <div class="slide__overlay">
           <ul class="nav">
             {%- for entry in site.data.evolucionTerritorialDeMexico.navEntries -%}
