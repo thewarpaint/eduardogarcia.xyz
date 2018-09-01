@@ -1,6 +1,7 @@
 ---
 permalink: /blog/evolucion-territorial-de-mexico
 ---
+{%- assign slides = site.data.evolucionTerritorialDeMexico.slides -%}
 <!DOCTYPE html>
 <html lang="es"
       id="0">
@@ -239,7 +240,7 @@ permalink: /blog/evolucion-territorial-de-mexico
       }
 
       /* Generated styles */
-      {%- for slide in site.data.evolucionTerritorialDeMexico.slides -%}
+      {% for slide in slides %}
       .slide--{{ forloop.index }} {
         background-image: url('{{ slide.mapUrls[0] }}');
       }
@@ -249,7 +250,7 @@ permalink: /blog/evolucion-territorial-de-mexico
           background-image: url('{{ slide.mapUrls[1] }}');
         }
       }
-      {%- endfor -%}
+      {% endfor %}
     </style>
   </head>
 
@@ -281,17 +282,17 @@ permalink: /blog/evolucion-territorial-de-mexico
     </div>
 
     <ul class="slide-list">
-      {%- for slide in site.data.evolucionTerritorialDeMexico.slides -%}
+      {%- for slide in slides -%}
       {%- assign slideIndex = forloop.index -%}
       <li class="slide slide--{{ slideIndex }}"
           id="{{ slideIndex }}">
         <div class="slide__overlay">
           <ul class="nav">
-            {%- for entry in site.data.evolucionTerritorialDeMexico.navEntries -%}
+            {%- for slideInner in slides -%}
             <li class="nav__item">
               <a href="#{{ forloop.index }}"
                  class="nav-link nav-link--small {% if slideIndex == forloop.index %}nav-link--target{% endif %}">
-                <span class="nav-link__inner">{{ entry }}</span>
+                <span class="nav-link__inner">{{ slideInner.year }}</span>
               </a>
             </li>
             {%- endfor -%}
