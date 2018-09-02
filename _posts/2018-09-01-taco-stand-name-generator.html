@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Taco Stand Name Generator">
+
+    <title>Taco Stand Name Generator - eduardogarcia.xyz</title>
+
+    <script type="text/javascript">
+      var options = [
+        {
+          article: 'El',
+          first: [
+            'Borrego',
+            'Paisa',
+            'Cuñado',
+            'Chanchito',
+            'Güero',
+            'Cabrito',
+            'Huequito',
+            'Chupacabras',
+            'Rincón',
+            'Rey',
+            'Venado'
+          ],
+          second: [
+            'Viudo',
+            'Feliz',
+            'Especial',
+            'Chilango',
+            'Tapatío',
+            'Yucateco',
+            'Pocho',
+            'Mexicano',
+            'Nacional',
+            'Jarocho',
+            'al Carbón',
+            'Loco',
+            'Mestizo',
+            'del Pastor',
+            'VIP',
+            'Ranchero',
+            'Norteño'
+          ]
+        },
+        {
+          article: 'La',
+          first: [
+            'Oveja',
+            'Res',
+            'Esquina'
+          ],
+          second: [
+            'Negra',
+            'Viuda',
+            'Feliz',
+            'Pública',
+            'Chilanga',
+            'Tapatía',
+            'Yucateca',
+            'Pocha',
+            'Mexicana',
+            'Nacional',
+            'Jarocha',
+            'de Oro'
+          ]
+        }
+      ];
+
+      var getNewName = function () {
+        // Get a random 0 or 1
+        var genderIndex = Math.round(Math.random());
+
+        var first = options[genderIndex].first;
+        var second = options[genderIndex].second;
+
+        return [
+          options[genderIndex].article,
+          first[Math.floor(Math.random() * first.length)],
+          second[Math.floor(Math.random() * second.length)]
+        ].join(' ');
+      };
+
+      var renderNewName = function () {
+        document.getElementById('taco-place-name').innerText = getNewName();
+      };
+    </script>
+  </head>
+  <body onload="renderNewName()">
+    <h1>Taco Stand Name Generator</h1>
+
+    <h2 id="taco-place-name"></h2>
+
+    <button type="button"
+            onclick="renderNewName()">Generar nombre</button>
+  </body>
+</html>
