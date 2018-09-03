@@ -13,6 +13,25 @@ permalink: /blog/generador-de-taquerias
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:900"
           rel="stylesheet">
 
+    <style>
+      html {
+        font-size: 16px;
+        background-color: #f4dd5d;
+        color: black;
+      }
+
+      .taqueria__name {
+        font-family: "Alegreya Sans";
+        font-weight: 900;
+        font-size: 3rem;
+        text-align: center;
+      }
+
+      .taqueria__slogan {
+        text-align: center;
+      }
+    </style>
+
     <script type="text/javascript">
       var options = [
         {
@@ -78,7 +97,7 @@ permalink: /blog/generador-de-taquerias
           ]
         }
       ];
-      
+
       var slogans = [
         'Desde 2018',
         'Atención personal de la familia Martínez',
@@ -100,19 +119,17 @@ permalink: /blog/generador-de-taquerias
         ].join(' ');
       };
 
-      var renderNewName = function () {
-        document.getElementById('taco-place-name').innerText = getNewName();
+      var getNewSlogan = function () {
+        return slogans[Math.floor(Math.random() * slogans.length)];
+      };
+
+      var renderNewTaqueria = function () {
+        document.getElementById('taqueria-name').innerText = getNewName();
+        document.getElementById('taqueria-slogan').innerText = getNewSlogan();
       };
     </script>
-
-    <style>
-      h2 {
-        font-family: "Alegreya Sans";
-        font-weight: 900;
-      }
-    </style>
   </head>
-  <body onload="renderNewName()">
+  <body onload="renderNewTaqueria()">
     <h1>Generador de Taquerías</h1>
 
     <nav>
@@ -125,9 +142,14 @@ permalink: /blog/generador-de-taquerias
         %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
     </p>
 
-    <h2 id="taco-place-name"></h2>
+    <h2 id="taqueria-name"
+        class="taqueria__name"></h2>
+
+    <p id="taqueria-slogan"
+       class="taqueria__slogan"></p>
 
     <button type="button"
-            onclick="renderNewName()">Generar nombre</button>
+            class="taqueria__button"
+            onclick="renderNewTaqueria()">Generar nombre</button>
   </body>
 </html>
