@@ -10,12 +10,13 @@ permalink: /blog/generador-de-taquerias
 
     <title>Generador de Taquerías - eduardogarcia.xyz</title>
 
+    <link href="{{ site.url }}/assets/css/main.css"
+          rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:900"
           rel="stylesheet">
 
     <style>
       html {
-        font-size: 16px;
         background-color: #f4dd5d;
         color: black;
       }
@@ -29,6 +30,13 @@ permalink: /blog/generador-de-taquerias
 
       .taqueria__slogan {
         text-align: center;
+      }
+
+      .taqueria__button {
+        border: .0625rem solid black;
+        background-color: #f4dd5d;
+        font-size: 2rem;
+        padding: 1rem 2rem;
       }
     </style>
 
@@ -150,6 +158,6 @@ permalink: /blog/generador-de-taquerias
 
     <button type="button"
             class="taqueria__button"
-            onclick="renderNewTaqueria()">Generar nombre</button>
+            onclick="renderNewTaqueria()">Generar</button>
   </body>
 </html>
