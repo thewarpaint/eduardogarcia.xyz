@@ -21,6 +21,10 @@ permalink: /blog/generador-de-taquerias
         color: black;
       }
 
+      .container {
+        text-align: center;
+      }
+
       .taqueria__name {
         font-family: "Alegreya Sans";
         font-weight: 900;
@@ -150,14 +154,17 @@ permalink: /blog/generador-de-taquerias
         %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
     </p>
 
-    <h2 id="taqueria-name"
-        class="taqueria__name"></h2>
+    <div class="container">
+      <h2 id="taqueria-name"
+          class="taqueria__name"></h2>
 
-    <p id="taqueria-slogan"
-       class="taqueria__slogan"></p>
+      <p id="taqueria-slogan"
+         class="taqueria__slogan"></p>
 
-    <button type="button"
-            class="taqueria__button"
-            onclick="renderNewTaqueria()">Generar</button>
+      <button type="button"
+              class="taqueria__button"
+              onclick="renderNewTaqueria()">Generar</button>
+
+    </div>
   </body>
 </html>
