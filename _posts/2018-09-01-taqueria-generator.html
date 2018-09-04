@@ -131,7 +131,7 @@ permalink: /blog/generador-de-taquerias
           options[genderIndex].article,
           first[Math.floor(Math.random() * first.length)],
           second[Math.floor(Math.random() * second.length)]
-        ].join(' ');
+        ];
       };
 
       var getNewSlogan = function () {
@@ -139,7 +139,12 @@ permalink: /blog/generador-de-taquerias
       };
 
       var renderNewTaqueria = function () {
-        document.getElementById('taqueria-name').innerText = getNewName();
+        var newName = getNewName();
+
+        document.getElementById('taqueria-name-article').innerText = newName[0];
+        document.getElementById('taqueria-name-first').innerText = newName[1];
+        document.getElementById('taqueria-name-second').innerText = newName[2];
+
         document.getElementById('taqueria-slogan').innerText = getNewSlogan();
       };
     </script>
@@ -158,8 +163,13 @@ permalink: /blog/generador-de-taquerias
     </p>
 
     <div class="container">
-      <h2 id="taqueria-name"
-          class="taqueria__name"></h2>
+      <h2 class="taqueria__name">
+        <div id="taqueria-name-article"></div>
+
+        <div id="taqueria-name-first"></div>
+
+        <div id="taqueria-name-second"></div>
+      </h2>
 
       <p id="taqueria-slogan"
          class="taqueria__slogan"></p>
