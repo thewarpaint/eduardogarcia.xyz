@@ -147,6 +147,12 @@ permalink: /blog/generador-de-taquerias
         return slogans[Math.floor(Math.random() * slogans.length)];
       };
 
+      var getGoogleUrl = function(nameArray) {
+        return 'https://www.google.com/search?q=' +
+          nameArray.map(function (word) { return word.replace(' ', '+');
+          }).join('+');
+      }
+
       var renderNewTaqueria = function () {
         var newName = getNewName();
 
