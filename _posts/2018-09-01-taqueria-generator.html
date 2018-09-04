@@ -38,6 +38,15 @@ permalink: /blog/generador-de-taquerias
         text-decoration: none;
       }
 
+      .taqueria__band {
+        padding: .5rem 0;
+        border-top: 1px solid black;
+      }
+
+      .taqueria__band:last-child {
+        border-bottom: 1px solid black;
+      }
+
       .taqueria__slogan {
         font-size: 1.5rem;
         text-align: center;
@@ -45,10 +54,11 @@ permalink: /blog/generador-de-taquerias
       }
 
       .taqueria__button {
+        cursor: pointer;
         border: .0625rem solid black;
         background-color: #f4dd5d;
-        font-size: 2rem;
-        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        padding: 1.5rem 2rem;
       }
     </style>
 
@@ -191,11 +201,14 @@ permalink: /blog/generador-de-taquerias
            class="taqueria__link"
            id="taqueria-name-link"
            target="_blank">
-          <div id="taqueria-name-article"></div>
+          <div class="taqueria__band"
+               id="taqueria-name-article"></div>
 
-          <div id="taqueria-name-first"></div>
+          <div class="taqueria__band"
+               id="taqueria-name-first"></div>
 
-          <div id="taqueria-name-second"></div>
+          <div class="taqueria__band"
+               id="taqueria-name-second"></div>
         </a>
       </h2>
 
@@ -205,7 +218,6 @@ permalink: /blog/generador-de-taquerias
       <button type="button"
               class="taqueria__button"
               onclick="renderNewTaqueria()">Generar</button>
-
     </div>
   </body>
 </html>
