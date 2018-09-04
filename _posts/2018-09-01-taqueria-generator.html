@@ -33,6 +33,11 @@ permalink: /blog/generador-de-taquerias
         margin: 6rem 0 1rem;
       }
 
+      .taqueria__link {
+        color: black;
+        text-decoration: none;
+      }
+
       .taqueria__slogan {
         font-size: 1.5rem;
         text-align: center;
@@ -147,9 +152,10 @@ permalink: /blog/generador-de-taquerias
         return slogans[Math.floor(Math.random() * slogans.length)];
       };
 
-      var getGoogleUrl = function(nameArray) {
+      var getGoogleUrl = function (nameArray) {
         return 'https://www.google.com/search?q=' +
-          nameArray.map(function (word) { return word.replace(' ', '+');
+          nameArray.map(function (word) {
+            return word.replace(/\s/g, '+');
           }).join('+');
       }
 
@@ -159,6 +165,8 @@ permalink: /blog/generador-de-taquerias
         document.getElementById('taqueria-name-article').innerText = newName[0];
         document.getElementById('taqueria-name-first').innerText = newName[1];
         document.getElementById('taqueria-name-second').innerText = newName[2];
+
+        document.getElementById('taqueria-name-link').href = getGoogleUrl(newName);
 
         document.getElementById('taqueria-slogan').innerText = getNewSlogan();
       };
@@ -179,7 +187,10 @@ permalink: /blog/generador-de-taquerias
 
     <div class="container">
       <h2 class="taqueria__name">
-        <a href="#">
+        <a href="#"
+           class="taqueria__link"
+           id="taqueria-name-link"
+           target="_blank">
           <div id="taqueria-name-article"></div>
 
           <div id="taqueria-name-first"></div>
