@@ -1,6 +1,7 @@
 ---
 permalink: /blog/generador-de-taquerias
 ---
+{%- assign options = site.data.taqueriaGenerator.options -%}
 <!DOCTYPE html>
 <html>
   <head>
@@ -63,73 +64,7 @@ permalink: /blog/generador-de-taquerias
     </style>
 
     <script type="text/javascript">
-      var options = [
-        {
-          article: 'El',
-          first: [
-            'Borrego',
-            'Chanchito',
-            'Güero',
-            'Cabrito',
-            'Huequito',
-            'Chupacabras',
-            'Rincón',
-            'Rey',
-            'Venado',
-            'Taco',
-            // 'Cuñado',
-            // 'Paisa',
-          ],
-          second: [
-            'Viudo',
-            'Feliz',
-            'Especial',
-            'Chilango',
-            'Tapatío',
-            'Yucateco',
-            'Mexicano',
-            'Nacional',
-            'Jarocho',
-            'al Carbón',
-            'Loco',
-            'Mestizo',
-            'del Pastor',
-            'VIP',
-            'Ranchero',
-            'Norteño',
-            'Mixteco',
-            'Poblano',
-            'Azteca',
-            'Paceño',
-            // 'Pocho',
-          ]
-        },
-        {
-          article: 'La',
-          first: [
-            'Oveja',
-            'Res',
-            'Esquina',
-            'Vaca',
-          ],
-          second: [
-            'Negra',
-            'Viuda',
-            'Feliz',
-            'Chilanga',
-            'Tapatía',
-            'Yucateca',
-            'Mexicana',
-            'Nacional',
-            'Jarocha',
-            'de Oro',
-            'Mixteca',
-            'Poblana',
-            // 'Pública',
-            // 'Pocha',
-          ]
-        }
-      ];
+      var options = {{ options | jsonify }};
 
       var slogans = [
         'Desde 2018',

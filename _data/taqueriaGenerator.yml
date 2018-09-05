@@ -1,0 +1,59 @@
+options:
+  - article: El
+    first:
+      - Borrego
+      - Chanchito
+      - Güero
+      - Cabrito
+      - Huequito
+      - Chupacabras
+      - Rincón
+      - Rey
+      - Venado
+      - Taco
+      # - Cuñado
+      # - Paisa
+    second:
+      - Viudo
+      - Feliz
+      - Especial
+      - Chilango
+      - Tapatío
+      - Yucateco
+      - Mexicano
+      - Nacional
+      - Jarocho
+      - al Carbón
+      - Loco
+      - Mestizo
+      - del Pastor
+      - VIP
+      - Ranchero
+      - Norteño
+      - Mixteco
+      - Poblano
+      - Azteca
+      - Paceño
+      # - Pocho
+
+  - article: La
+    first:
+      - Oveja
+      - Res
+      - Esquina
+      - Vaca
+    second:
+      - Negra
+      - Viuda
+      - Feliz
+      - Chilanga
+      - Tapatía
+      - Yucateca
+      - Mexicana
+      - Nacional
+      - Jarocha
+      - de Oro
+      - Mixteca
+      - Poblana
+      # - Pública
+      # - Pocha
