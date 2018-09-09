@@ -5,4 +5,3 @@
 git checkout -B gh-pages
 git add . && git commit -m "Release `git log --pretty=format:'%h' -n 1` (`date '+%Y-%m-%d %H:%M'`) [ci skip]"
 git push -f origin gh-pages
-git co master
