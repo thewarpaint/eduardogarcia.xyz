@@ -9,6 +9,10 @@ jobs:
     steps:
       - checkout
 
+      - add_ssh_keys:
+          fingerprints:
+            - "33:1d:c9:c1:cc:0a:fd:bf:d7:51:a7:bc:4f:cd:d9:e3"
+
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -23,3 +27,16 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+        name: Configure git user info
+        command: |
+          git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
+          git config --global user.name "$GH_NAME" > /dev/null 2>&1
+
+      - deploy:
+        name: Publish static website
+        command: |
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            ./scripts/publish.sh
+          fi
