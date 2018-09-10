@@ -42,10 +42,19 @@ permalink: /blog/generador-de-taquerias
       .taqueria__band {
         padding: .5rem 0;
         border-top: 1px solid black;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
       }
 
       .taqueria__band:last-child {
         border-bottom: 1px solid black;
+      }
+
+      .taqueria__band-inner {
+        display: inline-block;
+        width: calc(100vw - 2rem);
+        position: relative;
       }
 
       .taqueria__slogan {
@@ -105,13 +114,13 @@ permalink: /blog/generador-de-taquerias
       }
 
       var renderNewTaqueria = function () {
-        var newName = getNewName();
+        // var newName = getNewName();
 
-        document.getElementById('taqueria-name-article').innerText = newName[0];
-        document.getElementById('taqueria-name-first').innerText = newName[1];
-        document.getElementById('taqueria-name-second').innerText = newName[2];
-
-        document.getElementById('taqueria-name-link').href = getGoogleUrl(newName);
+        // document.getElementById('taqueria-name-article').innerText = newName[0];
+        // document.getElementById('taqueria-name-first').innerText = newName[1];
+        // document.getElementById('taqueria-name-second').innerText = newName[2];
+        //
+        // document.getElementById('taqueria-name-link').href = getGoogleUrl(newName);
 
         document.getElementById('taqueria-slogan').innerText = getNewSlogan();
       };
@@ -137,13 +146,35 @@ permalink: /blog/generador-de-taquerias
            id="taqueria-name-link"
            target="_blank">
           <div class="taqueria__band"
-               id="taqueria-name-article">La</div>
+               id="taqueria-name-article">
+            {%- for option in options -%}
+            <div class="taqueria__band-inner">
+              {{ option.article }}
+            </div>
+            {%- endfor -%}
+          </div>
 
           <div class="taqueria__band"
-               id="taqueria-name-first">Esquina</div>
+               id="taqueria-name-first">
+            {%- for option in options -%}
+            {%- for firstWord in option.first -%}
+            <div class="taqueria__band-inner">
+              {{ firstWord }}
+            </div>
+            {%- endfor -%}
+            {%- endfor -%}
+          </div>
 
           <div class="taqueria__band"
-               id="taqueria-name-second">Chilanga</div>
+               id="taqueria-name-second">
+            {%- for option in options -%}
+            {%- for secondWord in option.second -%}
+            <div class="taqueria__band-inner">
+              {{ secondWord }}
+            </div>
+            {%- endfor -%}
+            {%- endfor -%}
+          </div>
         </a>
       </h2>
 
