@@ -52,9 +52,14 @@ permalink: /blog/generador-de-taquerias
       }
 
       .taqueria__band-inner {
-        display: inline-block;
-        width: calc(100vw - 2rem);
         position: relative;
+        left: 0;
+        transition: left .75s ease-in-out;
+      }
+
+      .taqueria__band-word {
+        width: calc(100vw - 2rem);
+        display: inline-block;
       }
 
       .taqueria__slogan {
@@ -89,16 +94,10 @@ permalink: /blog/generador-de-taquerias
       ];
 
       var getNewName = function () {
-        // Get a random 0 or 1
-        var genderIndex = Math.round(Math.random());
-
-        var first = options[genderIndex].first;
-        var second = options[genderIndex].second;
-
         return [
-          options[genderIndex].article,
-          first[Math.floor(Math.random() * first.length)],
-          second[Math.floor(Math.random() * second.length)]
+          Math.floor(Math.random() * options.length),
+          Math.floor(Math.random() * options[0].first.length + options[1].first.length),
+          Math.floor(Math.random() * options[0].second.length + options[1].second.length)
         ];
       };
 
@@ -114,13 +113,11 @@ permalink: /blog/generador-de-taquerias
       }
 
       var renderNewTaqueria = function () {
-        // var newName = getNewName();
+        var newName = getNewName();
 
-        // document.getElementById('taqueria-name-article').innerText = newName[0];
-        // document.getElementById('taqueria-name-first').innerText = newName[1];
-        // document.getElementById('taqueria-name-second').innerText = newName[2];
-        //
-        // document.getElementById('taqueria-name-link').href = getGoogleUrl(newName);
+        document.getElementById('taqueria-name-article').style = 'left: calc(' + (newName[0] * -100) + 'vw + ' + (newName[0] * 2) + 'rem);';
+        document.getElementById('taqueria-name-first').style = 'left: calc(' + (newName[1] * -100) + 'vw + ' + (newName[1] * 2) + 'rem);';
+        document.getElementById('taqueria-name-second').style = 'left: calc(' + (newName[2] * -100) + 'vw + ' + (newName[2] * 2) + 'rem);';
 
         document.getElementById('taqueria-slogan').innerText = getNewSlogan();
       };
@@ -146,35 +143,41 @@ permalink: /blog/generador-de-taquerias
            class="taqueria__link"
            id="taqueria-name-link"
            target="_blank">
-          <div class="taqueria__band"
-               id="taqueria-name-article">
-            {%- for option in options -%}
-            <div class="taqueria__band-inner">
-              {{ option.article }}
+          <div class="taqueria__band">
+            <div class="taqueria__band-inner"
+                 id="taqueria-name-article">
+              {%- for option in options -%}
+              <div class="taqueria__band-word">
+                {{ option.article }}
+              </div>
+              {%- endfor -%}
             </div>
-            {%- endfor -%}
           </div>
 
-          <div class="taqueria__band"
-               id="taqueria-name-first">
-            {%- for option in options -%}
-            {%- for firstWord in option.first -%}
-            <div class="taqueria__band-inner">
-              {{ firstWord }}
+          <div class="taqueria__band">
+            <div class="taqueria__band-inner"
+                 id="taqueria-name-first">
+              {%- for option in options -%}
+              {%- for firstWord in option.first -%}
+              <div class="taqueria__band-word">
+                {{ firstWord }}
+              </div>
+              {%- endfor -%}
+              {%- endfor -%}
             </div>
-            {%- endfor -%}
-            {%- endfor -%}
           </div>
 
-          <div class="taqueria__band"
-               id="taqueria-name-second">
-            {%- for option in options -%}
-            {%- for secondWord in option.second -%}
-            <div class="taqueria__band-inner">
-              {{ secondWord }}
+          <div class="taqueria__band">
+            <div class="taqueria__band-inner"
+                 id="taqueria-name-second">
+              {%- for option in options -%}
+              {%- for secondWord in option.second -%}
+              <div class="taqueria__band-word">
+                {{ secondWord }}
+              </div>
+              {%- endfor -%}
+              {%- endfor -%}
             </div>
-            {%- endfor -%}
-            {%- endfor -%}
           </div>
         </a>
       </h2>
