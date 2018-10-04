@@ -2,6 +2,7 @@
 permalink: /blog/generador-de-taquerias
 ---
 {%- assign options = site.data.taqueriaGenerator.options -%}
+{%- assign slogans = site.data.taqueriaGenerator.slogans -%}
 <!DOCTYPE html>
 <html>
   <head>
@@ -79,19 +80,7 @@ permalink: /blog/generador-de-taquerias
 
     <script type="text/javascript">
       var options = {{ options | jsonify }};
-
-      var slogans = [
-        'Desde 2018',
-        'Atención personal de la familia Martínez',
-        'Simplemente lo mejor...',
-        'Tacos y algo más...',
-        '¡No tenemos sucursales!',
-        '24 horas',
-        '¡Buen provecho!',
-        'Tortilla hecha a mano',
-        'Servicio para eventos',
-        'No somos los mejores del mundo, pero sí los mejores del rumbo',
-      ];
+      var slogans = {{ slogans | jsonify }};
 
       var getNewNameIndexes = function () {
         var prefixIndex = Math.floor(Math.random() * options.length);
