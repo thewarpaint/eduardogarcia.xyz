@@ -1,5 +1,5 @@
 options:
-  - article: El
+  - prefix: El
     first:
       - Borrego
       - Chanchito
@@ -36,7 +36,7 @@ options:
       - Paceño
       # - Pocho
 
-  - article: La
+  - prefix: La
     first:
       - Oveja
       - Res
