@@ -94,7 +94,7 @@ permalink: /blog/generador-de-taquerias
       ];
 
       var getNewNameIndexes = function () {
-        var optionIndex = Math.floor(Math.random() * options.length);
+        var prefixIndex = Math.floor(Math.random() * options.length);
         var offsets = {
           first: 0,
           second: 0
@@ -106,9 +106,9 @@ permalink: /blog/generador-de-taquerias
         }
 
         return [
-          optionIndex,
-          offsets.first + Math.floor(Math.random() * options[optionIndex].first.length),
-          offsets.second + Math.floor(Math.random() * options[optionIndex].second.length),
+          prefixIndex,
+          offsets.first + Math.floor(Math.random() * options[prefixIndex].first.length),
+          offsets.second + Math.floor(Math.random() * options[prefixIndex].second.length),
         ];
       };
 
