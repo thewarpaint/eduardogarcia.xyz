@@ -126,7 +126,7 @@ permalink: /blog/generador-de-taquerias
       var renderNewTaqueria = function () {
         var newName = getNewNameIndexes();
 
-        document.getElementById('taqueria-name-article').style = 'left: calc(' + (newName[0] * -100) + 'vw + ' + (newName[0] * 2) + 'rem);';
+        document.getElementById('taqueria-name-prefix').style = 'left: calc(' + (newName[0] * -100) + 'vw + ' + (newName[0] * 2) + 'rem);';
         document.getElementById('taqueria-name-first').style = 'left: calc(' + (newName[1] * -100) + 'vw + ' + (newName[1] * 2) + 'rem);';
         document.getElementById('taqueria-name-second').style = 'left: calc(' + (newName[2] * -100) + 'vw + ' + (newName[2] * 2) + 'rem);';
 
@@ -156,10 +156,10 @@ permalink: /blog/generador-de-taquerias
            target="_blank">
           <div class="taqueria__band">
             <div class="taqueria__band-inner"
-                 id="taqueria-name-article">
+                 id="taqueria-name-prefix">
               {%- for option in options -%}
               <div class="taqueria__band-word">
-                {{ option.article }}
+                {{ option.prefix }}
               </div>
               {%- endfor -%}
             </div>
