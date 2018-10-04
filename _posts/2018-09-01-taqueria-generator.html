@@ -93,11 +93,22 @@ permalink: /blog/generador-de-taquerias
         'No somos los mejores del mundo, pero sí los mejores del rumbo',
       ];
 
-      var getNewName = function () {
+      var getNewNameIndexes = function () {
+        var optionIndex = Math.floor(Math.random() * options.length);
+        var offsets = {
+          first: 0,
+          second: 0
+        };
+
+        for (var i = 0; i < optionIndex; i++) {
+          offsets.first += options[i].first.length;
+          offsets.second += options[i].second.length;
+        }
+
         return [
-          Math.floor(Math.random() * options.length),
-          Math.floor(Math.random() * options[0].first.length + options[1].first.length),
-          Math.floor(Math.random() * options[0].second.length + options[1].second.length)
+          optionIndex,
+          offsets.first + Math.floor(Math.random() * options[optionIndex].first.length),
+          offsets.second + Math.floor(Math.random() * options[optionIndex].second.length),
         ];
       };
 
@@ -113,7 +124,7 @@ permalink: /blog/generador-de-taquerias
       }
 
       var renderNewTaqueria = function () {
-        var newName = getNewName();
+        var newName = getNewNameIndexes();
 
         document.getElementById('taqueria-name-article').style = 'left: calc(' + (newName[0] * -100) + 'vw + ' + (newName[0] * 2) + 'rem);';
         document.getElementById('taqueria-name-first').style = 'left: calc(' + (newName[1] * -100) + 'vw + ' + (newName[1] * 2) + 'rem);';
