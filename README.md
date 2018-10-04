@@ -21,3 +21,7 @@ Then serve the site:
 # Available at http://127.0.0.1:4000/
 bundle exec jekyll serve
 ```
+
+## CI + CD
+
+[CircleCI master build](https://circleci.com/gh/thewarpaint/eduardogarcia.xyz)
