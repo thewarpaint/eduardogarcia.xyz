@@ -1,62 +1,113 @@
 options:
+  # Animals (masculine)
   - prefix: El
     first:
       - Borrego
       - Chanchito
-      - Güero
       - Cabrito
-      - Huequito
       - Chupacabras
-      - Rincón
-      - Rey
       - Venado
-      - Taco
-      # - Cuñado
-      # - Paisa
+      - Puerquito
     second:
+      # Misc
       - Viudo
       - Feliz
-      - Especial
+      - Loco
+      - al Carbón
+      - VIP
+      - Nacional
+      - Mestizo
+      - Ranchero
+      - Norteño
+      - Sureño
+      - de Oro
+      # Colours
+      - Negro
+      - Colorado
+      # Demonyms and similar
+      - Mexicano
       - Chilango
       - Tapatío
       - Yucateco
-      - Mexicano
-      - Nacional
       - Jarocho
-      - al Carbón
-      - Loco
-      - Mestizo
-      - del Pastor
-      - VIP
-      - Ranchero
-      - Norteño
       - Mixteco
       - Poblano
       - Azteca
       - Paceño
-      # - Pocho
 
+  # Animals (feminine)
   - prefix: La
     first:
       - Oveja
       - Res
-      - Esquina
       - Vaca
     second:
-      - Negra
+      # Misc
       - Viuda
       - Feliz
+      - al Carbón
+      - Nacional
+      - Mestiza
+      - Norteña
+      - Sureña
+      - de Oro
+      # Colours
+      - Negra
+      - Colorada
+      # Demonyms and similar
+      - Mexicana
       - Chilanga
       - Tapatía
       - Yucateca
-      - Mexicana
-      - Nacional
       - Jarocha
-      - de Oro
       - Mixteca
       - Poblana
-      # - Pública
-      # - Pocha
+      - Azteca
+      - Paceña
+
+  # Places and similar (masculine)
+  - prefix: El
+    first:
+      - Rincón
+      - Sazón
+    second:
+      # Misc
+      - Nacional
+      - Mestizo
+      - Norteño
+      - Sureño
+      # Demonyms and similar
+      - Mexicano
+      - Chilango
+      - Tapatío
+      - Yucateco
+      - Jarocho
+      - Mixteco
+      - Poblano
+      - Azteca
+      - Paceño
+
+  # Places (feminine)
+  - prefix: La
+    first:
+      - Esquina
+      - Cocina
+    second:
+      # Misc
+      - Mestiza
+      - Norteña
+      - Sureña
+      - del Pastor
+      # Demonyms and similar
+      - Mexicana
+      - Chilanga
+      - Tapatía
+      - Yucateca
+      - Jarocha
+      - Mixteca
+      - Poblana
+      - Azteca
+      - Paceña
 
 slogans:
   - Desde 2018
@@ -70,3 +121,14 @@ slogans:
   - Servicio para eventos
   - No somos los mejores del mundo, pero sí los mejores del rumbo
   - Con jardín y con llorona saben mejor
+
+# Leftovers:
+# - Güero
+# - Huequito
+# - Rey
+# - Taco
+# - Cuñado
+# - Paisa
+# - Pocho
+# - Pública
+# - Pocha
