@@ -1,0 +1,10 @@
+{
+  "short_name": "Generador de Taquerías",
+  "name": "Generador de Taquerías",
+  "icons": [],
+  "start_url": "blog/generador-de-taquerias.html",
+  "display": "browser",
+  "orientation": "portrait-primary",
+  "background_color": "#ffc72c",
+  "theme_color": "#ffc72c"
+}
