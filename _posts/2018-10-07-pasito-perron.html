@@ -9,19 +9,60 @@ permalink: /blog/pasito-perron
     <meta name="title" content="Pasito Perrón Portátil">
 
     <title>Pasito Perrón Portátil</title>
+
+    <link href="{{ site.url }}/assets/css/main.css"
+          rel="stylesheet">
+
+    <style>
+      .iframe {
+        display: block;
+      }
+
+      @keyframes horizontalflip {
+        0% {
+          transform: scale(1, 1);
+        }
+
+        45% {
+          transform: scale(1, 1);
+        }
+
+        50% {
+          transform: scale(-1, 1);
+        }
+
+        95% {
+          transform: scale(-1, 1);
+        }
+
+        100% {
+          transform: scale(1, 1);
+        }
+      }
+
+      .baby-jesus {
+        animation-duration: 1.6s;
+        animation-name: horizontalflip;
+        animation-iteration-count: infinite;
+      }
+    </style>
   </head>
   <body>
-    <p>
-      <img src="{{ site.url }}/assets/images/ninio-jesus.gif" alt="Nino Jesus">
-    </p>
+    <div>
+      <img src="{{ site.url }}/assets/images/ninio-jesus.gif"
+           class="baby-jesus"
+           alt="Niño Jesús">
+    </div>
 
-    <iframe width="300"
+    <iframe src="https://www.youtube.com/embed/yVUUSXwjeDs?rel=0&amp;start=17"
+            class="iframe"
+            width="300"
             height="150"
-            src="https://www.youtube.com/embed/yVUUSXwjeDs?rel=0&amp;start=17"
             frameborder="0"
             allow="autoplay; encrypted-media"></iframe>
 
     <iframe src="https://open.spotify.com/embed/album/5aiLSgtlZ3Q7lM5rOxNOZE"
+            class="iframe"
             width="300"
             height="80"
             frameborder="0"
