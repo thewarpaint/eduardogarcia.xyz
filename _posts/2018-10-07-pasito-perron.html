@@ -18,31 +18,47 @@ permalink: /blog/pasito-perron
         display: block;
       }
 
-      @keyframes horizontalflip {
+      @keyframes pasitoperron {
         0% {
-          transform: scale(1, 1);
+          transform: rotate(-6deg) rotateY(0);
+        }
+
+        20% {
+          transform: rotate(-6deg) rotateY(0);
+        }
+
+        25% {
+          transform: rotate(6deg) rotateY(0);
         }
 
         45% {
-          transform: scale(1, 1);
+          transform: rotate(6deg) rotateY(0);
         }
 
         50% {
-          transform: scale(-1, 1);
+          transform: rotate(-6deg) rotateY(180deg);
+        }
+
+        70% {
+          transform: rotate(-6deg) rotateY(180deg);
+        }
+
+        75% {
+          transform: rotate(6deg) rotateY(180deg);
         }
 
         95% {
-          transform: scale(-1, 1);
+          transform: rotate(6deg) rotateY(180deg);
         }
 
         100% {
-          transform: scale(1, 1);
+          transform: rotate(6deg) rotateY(0);
         }
       }
 
       .baby-jesus {
         animation-duration: 1.6s;
-        animation-name: horizontalflip;
+        animation-name: pasitoperron;
         animation-iteration-count: infinite;
       }
     </style>
