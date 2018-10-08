@@ -18,48 +18,90 @@ permalink: /blog/pasito-perron
         display: block;
       }
 
-      @keyframes pasitoperron {
+      @keyframes rotation {
         0% {
-          transform: rotate(-6deg) rotateY(0);
+          transform: rotate(-9deg);
         }
 
-        24% {
-          transform: rotate(-6deg) rotateY(0);
+        20% {
+          transform: rotate(-9deg);
         }
 
         25% {
-          transform: rotate(6deg) rotateY(0);
+          transform: rotate(9deg);
         }
 
-        49% {
-          transform: rotate(6deg) rotateY(0);
+        45% {
+          transform: rotate(9deg);
         }
 
         50% {
-          transform: rotate(-6deg) rotateY(180deg);
+          transform: rotate(-9deg);
         }
 
-        74% {
-          transform: rotate(-6deg) rotateY(180deg);
+        70% {
+          transform: rotate(-9deg);
         }
 
         75% {
-          transform: rotate(6deg) rotateY(180deg);
+          transform: rotate(9deg);
         }
 
-        99% {
-          transform: rotate(6deg) rotateY(180deg);
+        95% {
+          transform: rotate(9deg);
         }
 
         100% {
-          transform: rotate(6deg) rotateY(0);
+          transform: rotate(-9deg);
         }
       }
 
+      @keyframes walktoright {
+        0% {
+          left: 0;
+        }
+
+        20% {
+          left: 0;
+        }
+
+        25% {
+          left: 25%;
+        }
+
+        45% {
+          left: 25%;
+        }
+
+        50% {
+          left: 50%;
+        }
+
+        70% {
+          left: 50%;
+        }
+
+        75% {
+          left: 75%;
+        }
+
+        95% {
+          left: 75%;
+        }
+
+        100% {
+          left: 100%;
+        }
+      }
+
+      .baby-jesus-wrapper {
+        position: relative;
+        animation: 1.6s linear walktoright forwards;
+      }
+
       .baby-jesus {
-        animation-duration: 1.6s;
-        animation-name: pasitoperron;
-        animation-iteration-count: infinite;
+        width: 175px;
+        animation: 1.6s linear rotation infinite normal;
       }
     </style>
   </head>
@@ -76,11 +118,13 @@ permalink: /blog/pasito-perron
       <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
         %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
     </p>
-    
+
     <div>
-      <img src="{{ site.url }}/assets/images/ninio-jesus.gif"
-           class="baby-jesus"
-           alt="Niño Jesús">
+      <span class="baby-jesus-wrapper">
+        <img src="{{ site.url }}/assets/images/ninio-jesus.gif"
+             class="baby-jesus"
+             alt="Niño Jesús">
+      </span>
     </div>
 
     <iframe src="https://www.youtube.com/embed/yVUUSXwjeDs?rel=0&amp;start=17"
