@@ -94,6 +94,8 @@ permalink: /blog/pasito-perron
         %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
     </p>
 
+    <pre id="output"></pre>
+
     <div>
       <span class="baby-jesus-wrapper">
         <img src="{{ site.url }}/assets/images/ninio-jesus.gif"
@@ -116,5 +118,14 @@ permalink: /blog/pasito-perron
             frameborder="0"
             allowtransparency="true"
             allow="encrypted-media"></iframe>
+
+    <script type="text/javascript">
+      var $log = document.getElementById('output');
+
+      window.addEventListener('deviceorientation', function (event) {
+        // https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/gamma
+        $log.innerHTML = 'gamma: ' + event.gamma;
+      });
+    </script>
   </body>
 </html>
