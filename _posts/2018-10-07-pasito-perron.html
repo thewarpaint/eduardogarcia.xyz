@@ -56,6 +56,16 @@ permalink: /blog/pasito-perron
         }
       }
 
+      @keyframes walkleft {
+        0% {
+          left: calc(100% - 175px);
+        }
+
+        100% {
+          left: 0;
+        }
+      }
+
       @keyframes walkright {
         0% {
           left: 0;
@@ -68,6 +78,10 @@ permalink: /blog/pasito-perron
 
       .baby-jesus-wrapper {
         position: relative;
+      }
+
+      .baby-jesus-wrapper.walk-left {
+        animation: 1.6s linear walkleft forwards;
       }
 
       .baby-jesus-wrapper.walk-right {
@@ -97,7 +111,8 @@ permalink: /blog/pasito-perron
     <pre id="output"></pre>
 
     <div>
-      <span class="baby-jesus-wrapper">
+      <span class="baby-jesus-wrapper"
+            id="baby-jesus-wrapper">
         <img src="{{ site.url }}/assets/images/ninio-jesus.gif"
              class="baby-jesus"
              alt="Niño Jesús">
@@ -120,9 +135,20 @@ permalink: /blog/pasito-perron
             allow="encrypted-media"></iframe>
 
     <script type="text/javascript">
-      var $log = document.getElementById('output');
+      var $log = document.getElementById('output'),
+          $babyJesusWrapper = document.getElementById('baby-jesus-wrapper'),
+          WALK_LEFT_THRESHOLD = -33,
+          WALK_RIGHT_THRESHOLD = 33;
 
       window.addEventListener('deviceorientation', function (event) {
+        if (event.gamma < WALK_LEFT_THRESHOLD) {
+          $babyJesusWrapper.classList.remove('walk-right');
+          $babyJesusWrapper.classList.add('walk-left');
+        } else if (event.gamma > WALK_RIGHT_THRESHOLD) {
+          $babyJesusWrapper.classList.remove('walk-left');
+          $babyJesusWrapper.classList.add('walk-right');
+        }
+
         // https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/gamma
         $log.innerHTML = 'gamma: ' + event.gamma;
       });
