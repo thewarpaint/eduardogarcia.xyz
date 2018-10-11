@@ -18,7 +18,7 @@ permalink: /blog/pasito-perron
         display: block;
       }
 
-      @keyframes rotation {
+      @keyframes dancing {
         0% {
           transform: rotate(-9deg);
         }
@@ -90,7 +90,10 @@ permalink: /blog/pasito-perron
 
       .baby-jesus {
         width: 175px;
-        animation: 1.6s linear rotation infinite normal;
+      }
+
+      .baby-jesus.dancing {
+        animation: 1.6s linear dancing infinite normal;
       }
     </style>
   </head>
@@ -136,6 +139,7 @@ permalink: /blog/pasito-perron
             id="baby-jesus-wrapper">
         <img src="{{ site.url }}/assets/images/ninio-jesus.gif"
              class="baby-jesus"
+             id="baby-jesus"
              alt="Niño Jesús">
       </span>
     </div>
@@ -144,17 +148,22 @@ permalink: /blog/pasito-perron
 
     <script type="text/javascript">
       var $log = document.getElementById('output'),
+          $babyJesus = document.getElementById('baby-jesus'),
           $babyJesusWrapper = document.getElementById('baby-jesus-wrapper'),
           WALK_LEFT_THRESHOLD = -33,
           WALK_RIGHT_THRESHOLD = 33;
 
       window.addEventListener('deviceorientation', function (event) {
         if (event.gamma < WALK_LEFT_THRESHOLD) {
+          $babyJesus.classList.add('dancing');
           $babyJesusWrapper.classList.remove('walk-right');
           $babyJesusWrapper.classList.add('walk-left');
         } else if (event.gamma > WALK_RIGHT_THRESHOLD) {
+          $babyJesus.classList.add('dancing');
           $babyJesusWrapper.classList.remove('walk-left');
           $babyJesusWrapper.classList.add('walk-right');
+        } else {
+          $babyJesus.classList.remove('dancing');
         }
 
         // https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent/gamma
