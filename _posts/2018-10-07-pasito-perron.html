@@ -57,9 +57,10 @@ permalink: /blog/pasito-perron
       }
 
       .baby-jesus-wrapper {
+        display: inline-block;
         position: relative;
         left: calc(50% - (175px/2));
-        transition: left 1.6s;
+        transition: left 1.6s ease-in-out;
       }
 
       .baby-jesus-wrapper.walk-left {
@@ -68,6 +69,7 @@ permalink: /blog/pasito-perron
 
       .baby-jesus-wrapper.walk-right {
         left: calc(100% - 175px);
+        transform: scale(-1, 1);
       }
 
       .baby-jesus {
@@ -117,13 +119,13 @@ permalink: /blog/pasito-perron
     </p>
 
     <div>
-      <span class="baby-jesus-wrapper"
+      <div class="baby-jesus-wrapper"
             id="baby-jesus-wrapper">
         <img src="{{ site.url }}/assets/images/ninio-jesus.gif"
              class="baby-jesus"
              id="baby-jesus"
              alt="Niño Jesús">
-      </span>
+      </div>
     </div>
 
     <pre id="output"></pre>
