@@ -1,14 +1,29 @@
 ---
 permalink: /blog/pasito-perron
 ---
+{%- assign postTitle = "Pasito Perrón Portátil" -%}
+{%- assign postDescription = "¡Ideal para las fiestas navideñas en familia!" -%}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="title" content="Pasito Perrón Portátil">
+    <meta name="title" content="{{ postTitle }}">
+    <meta name="description" content="{{ postDescription }}">
 
     <title>Pasito Perrón Portátil</title>
+
+    <!-- Twitter meta tags, missing: `twitter:site` -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ postTitle }}">
+    <meta name="twitter:description" content="{{ postDescription }}">
+    <meta name="twitter:image" content="{{ site.url }}/assets/images/ninio-jesus.gif">
+
+    <!-- Open Graph (Facebook) meta tags -->
+    <meta property="og:title" content="{{ postTitle }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://eduardogarcia.xyz/blog/a-year-in-the-life.html">
+    <meta property="og:image" content="{{ site.url }}/assets/images/ninio-jesus.gif">
 
     <link href="{{ site.url }}/assets/css/main.css"
           rel="stylesheet">
@@ -87,8 +102,8 @@ permalink: /blog/pasito-perron
       <a href="http://eduardogarcia.xyz/">← Inicio</a>
     </nav>
 
-    <h1 class="title">Pasito Perrón Portátil</h1>
-    <h2 class="subtitle">¡Ideal para las fiestas navideñas en familia!</h2>
+    <h1 class="title">{{ postTitle }}</h1>
+    <h2 class="subtitle">{{ postDescription }}</h2>
 
     <p class="last-updated">
       Última actualización:
