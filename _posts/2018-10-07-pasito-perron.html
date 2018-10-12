@@ -56,36 +56,18 @@ permalink: /blog/pasito-perron
         }
       }
 
-      @keyframes walkleft {
-        0% {
-          left: calc(100% - 175px);
-        }
-
-        100% {
-          left: 0;
-        }
-      }
-
-      @keyframes walkright {
-        0% {
-          left: 0;
-        }
-
-        100% {
-          left: calc(100% - 175px);
-        }
-      }
-
       .baby-jesus-wrapper {
         position: relative;
+        left: calc(50% - (175px/2));
+        transition: left 1.6s;
       }
 
       .baby-jesus-wrapper.walk-left {
-        animation: 1.6s linear walkleft forwards;
+        left: 0;
       }
 
       .baby-jesus-wrapper.walk-right {
-        animation: 1.6s linear walkright forwards;
+        left: calc(100% - 175px);
       }
 
       .baby-jesus {
