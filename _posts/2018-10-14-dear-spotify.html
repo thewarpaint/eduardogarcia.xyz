@@ -1,0 +1,72 @@
+---
+permalink: /blog/dear-spotify
+---
+{%- assign postTitle = "Dear Spotify" -%}
+{%- assign postDescription = "Please let me unlink my Facebook account" -%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="{{ postTitle }}">
+    <meta name="description" content="{{ postDescription }}">
+
+    <title>{{ postTitle }}</title>
+
+    <!-- Twitter meta tags, missing: `twitter:site` -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ postTitle }}">
+    <meta name="twitter:description" content="{{ postDescription }}">
+    <!-- <meta name="twitter:image" content=""> -->
+
+    <!-- Open Graph (Facebook) meta tags -->
+    <meta property="og:title" content="{{ postTitle }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://eduardogarcia.xyz/blog/dear-spotify.html">
+    <!-- <meta property="og:image" content=""> -->
+
+    <link href="{{ site.url }}/assets/css/main.css"
+          rel="stylesheet">
+  </head>
+
+  <body>
+    <nav>
+      <a href="http://eduardogarcia.xyz/">← Home</a>
+    </nav>
+
+    <h1 class="title">{{ postTitle }}</h1>
+    <h2 class="subtitle">{{ postDescription }}</h2>
+
+    <p class="last-updated">
+      Last updated:
+      <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
+        %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
+    </p>
+
+    <p>
+      It was 2014. I was young and reckless. When I saw the big blue button that read "Sign up with Facebook"
+      I just couldn't resist. Now, four years later, I want out.
+    </p>
+
+    <p>
+      In the light of the recent
+      <a href="https://www.vox.com/2018/10/13/17973190/facebook-data-breach-29-million-users">Facebook data breach</a>
+      I have decided I no longer want to use my Facebook identity to log in to your service. I am aware that the official
+      recommendation is to
+      <a href="https://support.spotify.com/us/article/i-want-to-use-spotify-without-facebook/">cancel your current
+      account, create a new one and manually move your playlists or contact support to do it for you,</a>
+      but I believe it would be better if you offered a straightforward way to do it.
+    </p>
+
+    <p>
+      As a
+      <a href="https://community.spotify.com/t5/forums/searchpage/tab/message?q=unlink%20facebook&collapse_discussion=true">
+      quick search on your Community site</a> reveals, I am far from the only person who would like to fix this. I can assure
+      you all of us will be very grateful if this is implemented soon.
+    </p>
+
+    <p>
+      Sincerely, a Spotify user.
+    </p>
+  </body>
+</html>
