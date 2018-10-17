@@ -1,0 +1,68 @@
+---
+permalink: /blog/frequently-asked-questions-mexico
+---
+{%- assign postTitle = "Frequently Asked Questions: Mexico" -%}
+{%- assign postDescription = "???" -%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="{{ postTitle }}">
+    <meta name="description" content="{{ postDescription }}">
+
+    <title>{{ postTitle }}</title>
+
+    <!-- Twitter meta tags, missing: `twitter:site` -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ postTitle }}">
+    <meta name="twitter:description" content="{{ postDescription }}">
+    <!-- <meta name="twitter:image" content=""> -->
+
+    <!-- Open Graph (Facebook) meta tags -->
+    <meta property="og:title" content="{{ postTitle }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://eduardogarcia.xyz/blog/dear-spotify.html">
+    <!-- <meta property="og:image" content=""> -->
+
+    <link href="{{ site.url }}/assets/css/main.css"
+          rel="stylesheet">
+  </head>
+
+  <body>
+    <nav>
+      <a href="http://eduardogarcia.xyz/">← Home</a>
+    </nav>
+
+    <h1 class="title">{{ postTitle }}</h1>
+    <h2 class="subtitle">{{ postDescription }}</h2>
+
+    <p class="last-updated">
+      Last updated:
+      <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
+        %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
+    </p>
+
+    <dl>
+      <dt>How is "Mexico" pronounced?</dt>
+      <dd>"Me-hee-co"</dd>
+
+      <dt>Is Mexico in South America?</dt>
+      <dd>No, it's part of North America.
+        Depending on who you ask to, it might or might not be included in Central America.
+        But not for Mexican people.</dd>
+
+      <dt>Are hard-shell "tacos" Mexican food?</dt>
+      <dd>No. Tacos usually have soft tortilla made of corn flour. And Taco Bell is a Tex-Mex restaurant.</dd>
+
+      <dt>What language is spoken in Mexico?</dt>
+      <dd>Mostly Spanish, but also dozens of indigenous languages, such as Mayan and Nahuatl.</dd>
+
+      <dt>Can a Mexican person understand Spanish from Spain, and the other way around?</dt>
+      <dd>Yes. As with any other language, there are regional variations, words and expressions, etc.
+        that you would need help with. But it's not an obstacle for communication at all.</dd>
+    </dl>
+
+    {%- include google-analytics.html -%}
+  </body>
+</html>
