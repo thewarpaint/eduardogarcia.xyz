@@ -3,6 +3,7 @@ permalink: /blog/pasito-perron
 ---
 {%- assign postTitle = "Pasito Perrón Portátil" -%}
 {%- assign postDescription = "¡Ideal para las fiestas navideñas en familia!" -%}
+{%- assign data = site.data.pasitoPerron -%}
 <!DOCTYPE html>
 <html>
   <head>
@@ -151,7 +152,8 @@ permalink: /blog/pasito-perron
           $babyJesus = document.getElementById('baby-jesus'),
           $babyJesusWrapper = document.getElementById('baby-jesus-wrapper'),
           WALK_LEFT_THRESHOLD = -33,
-          WALK_RIGHT_THRESHOLD = 33;
+          WALK_RIGHT_THRESHOLD = 33,
+          data = {{ data | jsonify }};
 
       window.addEventListener('deviceorientation', function (event) {
         if (event.gamma < WALK_LEFT_THRESHOLD) {
