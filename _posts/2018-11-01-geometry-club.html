@@ -1,0 +1,49 @@
+---
+permalink: /blog/geometry-club
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Geometry Club web app</title>
+
+    <link href="{{ site.url }}/assets/css/main.css"
+          rel="stylesheet">
+  </head>
+  <body>
+    <div class="video-wrapper">
+      <video autoplay></video>
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           viewBox="0 0 400 400"
+           class="video--overlay">
+        <!-- Horizontal line -->
+        <line class="video--overlay-guide" x1="0" y1="200" x2="400" y2="200" />
+        <!-- Vertical line -->
+        <line class="video--overlay-guide" x1="200" y1="0" x2="200" y2="400" />
+        <!-- Bottom left corner line -->
+        <line class="video--overlay-guide" x1="0" y1="400" x2="260" y2="140" />
+        <!-- Bottom right corner line -->
+        <line class="video--overlay-guide" x1="400" y1="400" x2="140" y2="140" />
+      </svg>
+    </div>
+
+    <div>
+      <button id="toggle-camera-button">Toggle camera</button>
+      <button id="capture-snapshot-button" class="action-capture-snapshot action-capture-snapshot--enabled">
+        <span class="action-capture-snapshot__enabled-legend">Capture snapshot</span>
+        <span class="action-capture-snapshot__disabled-legend">Wait...</span>
+      </button>
+    </div>
+
+    <canvas></canvas>
+
+    <img src="">
+
+    <pre>Log:</pre>
+
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="{{ site.url }}/assets/js/geometry-club.js"></script>
+  </body>
+</html>
