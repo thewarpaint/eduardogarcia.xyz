@@ -15,9 +15,7 @@ function handleSuccess(stream) {
   window.stream = stream;
   video.srcObject = stream;
 
-  mediaStreamTrack = stream.getVideoTracks().find(function (videoTrack) {
-    return videoTrack.label.indexOf('back') !== -1;
-  }) || stream.getVideoTracks()[0];
+  mediaStreamTrack = stream.getVideoTracks()[0];
 
   imageCapture = new ImageCapture(mediaStreamTrack);
 
@@ -75,6 +73,10 @@ navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
   videoDevices = deviceInfos.filter(function (deviceInfo) {
     return deviceInfo.kind === 'videoinput';
   });
+
+  videoIndex = videoDevices.findIndex(function (deviceInfo) {
+    return deviceInfo.label.indexOf('back') !== -1;
+  }) || 0;
 
   startStream();
 });
