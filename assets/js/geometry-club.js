@@ -1,5 +1,6 @@
 var videoDevices = [];
 var video = document.querySelector('video');
+var switchCameraButton = document.getElementById('switch-camera-button');
 var toggleCameraButton = document.querySelector('#toggle-camera-button');
 var captureSnapshotButton = document.querySelector('#capture-snapshot-button');
 var canvas = window.canvas = document.querySelector('canvas');
@@ -46,12 +47,16 @@ function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
 
-function startStream() {
+function stopStream() {
   if (window.stream) {
     window.stream.getTracks().forEach(function (track) {
       track.stop();
     });
   }
+}
+
+function startStream() {
+  stopStream();
 
   var constraints = {
     audio: false,
@@ -75,6 +80,10 @@ navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
 });
 
 toggleCameraButton.onclick = function () {
+  stopStream();
+}
+
+switchCameraButton.onclick = function () {
   videoIndex = (videoIndex + 1) % videoDevices.length;
   startStream();
 };
