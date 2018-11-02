@@ -1,17 +1,50 @@
 ---
 permalink: /blog/geometry-club
 ---
+{%- assign postTitle = "Geometry Club web app" -%}
+{%- assign postDescription = "A web alternative" -%}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Geometry Club web app</title>
+    <meta name="title" content="{{ postTitle }}">
+    <meta name="description" content="{{ postDescription }}">
 
+    <title>{{ postTitle }}</title>
+
+    <!-- Twitter meta tags, missing: `twitter:site` -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ postTitle }}">
+    <meta name="twitter:description" content="{{ postDescription }}">
+    <!-- <meta name="twitter:image" content=""> -->
+
+    <!-- Open Graph (Facebook) meta tags -->
+    <meta property="og:title" content="{{ postTitle }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://eduardogarcia.xyz/blog/dear-spotify.html">
+    <!-- <meta property="og:image" content=""> -->
+
+    <link href="{{ site.url }}/assets/css/main.css"
+          rel="stylesheet">
     <link href="{{ site.url }}/assets/css/geometry-club.css"
           rel="stylesheet">
   </head>
+
   <body>
+    <nav>
+      <a href="http://eduardogarcia.xyz/">← Home</a>
+    </nav>
+
+    <h1 class="title">{{ postTitle }}</h1>
+    <h2 class="subtitle">{{ postDescription }}</h2>
+
+    <p class="last-updated">
+      Last updated:
+      <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
+        %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
+    </p>
+
     <div class="video-wrapper">
       <video autoplay></video>
       <svg xmlns="http://www.w3.org/2000/svg"

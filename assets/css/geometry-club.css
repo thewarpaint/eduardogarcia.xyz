@@ -4,7 +4,6 @@ html {
 
 body {
   margin: 0;
-  background-color: #000000;
   text-align: center;
 }
 
@@ -21,8 +20,6 @@ button {
 }
 
 pre {
-  background-color: #000000;
-  color: #eeeeee;
   text-align: left;
   font-size: .75rem;
   white-space: pre-wrap;
@@ -50,6 +47,7 @@ img {
 }
 
 .video-wrapper {
+  background-color: #000000;
   position: relative;
   margin: auto;
   width: 100vmin;
