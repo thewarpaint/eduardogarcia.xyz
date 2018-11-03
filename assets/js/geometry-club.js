@@ -74,9 +74,13 @@ navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
     return deviceInfo.kind === 'videoinput';
   });
 
-  videoIndex = videoDevices.findIndex(function (deviceInfo) {
+  var backCameraIndex = videoDevices.findIndex(function (deviceInfo) {
     return deviceInfo.label.indexOf('back') !== -1;
-  }) || 0;
+  });
+
+  if (backCameraIndex !== -1) {
+    videoIndex = backCameraIndex;
+  }
 
   startStream();
 });
