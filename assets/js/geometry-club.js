@@ -152,7 +152,7 @@ function revokePhotoURL() {
 
 function addThumbnail(url) {
   $thumbnailList.innerHTML +=
-    '<li>' +
+    '<li class="thumbnail-item">' +
       '<img class="thumbnail" ' +
         'alt="Captured image thumbnail" ' +
         'src="' + url + '">' +

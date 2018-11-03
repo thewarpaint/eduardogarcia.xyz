@@ -74,6 +74,10 @@ img {
   padding-left: 0;
 }
 
+.thumbnail-item {
+  display: inline;
+}
+
 .thumbnail {
   width: 20vw;
   max-width: 15rem;
