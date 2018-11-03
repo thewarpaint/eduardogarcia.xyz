@@ -9,6 +9,7 @@ var logger = document.getElementById('logger');
 var videoIndex = 0;
 var mediaStreamTrack;
 var imageCapture;
+var imageCaptureMode = false;
 var photoSettings;
 
 function handleSuccess(stream) {
@@ -16,8 +17,9 @@ function handleSuccess(stream) {
   video.srcObject = stream;
   mediaStreamTrack = stream.getVideoTracks()[0];
   imageCapture = new ImageCapture(mediaStreamTrack);
+  imageCaptureMode = typeof imageCapture.getPhotoCapabilities === 'function';
 
-  if (imageCapture) {
+  if (imageCaptureMode) {
     log('Mode: image capture');
 
     imageCapture.getPhotoCapabilities()
@@ -98,7 +100,7 @@ switchCameraButton.onclick = function () {
 };
 
 captureSnapshotButton.onclick = function () {
-  if (imageCapture) {
+  if (imageCaptureMode) {
     toggleCaptureSnapshotButton(false);
     revokePhotoURL();
 
