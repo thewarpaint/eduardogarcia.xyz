@@ -4,7 +4,6 @@ html {
 
 body {
   margin: 0;
-  text-align: center;
 }
 
 video {
@@ -66,6 +65,16 @@ img {
   display: none;
 }
 
+.capture-image-wrapper {
+  text-align: center;
+}
+
+.thumbnail-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 .thumbnail {
   width: 20vw;
+  max-width: 15rem;
 }

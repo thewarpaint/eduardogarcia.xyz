@@ -104,7 +104,6 @@ switchCameraButton.onclick = function () {
 captureSnapshotButton.onclick = function () {
   if (imageCaptureMode) {
     toggleCaptureSnapshotButton(false);
-    revokePhotoURL();
 
     imageCapture.takePhoto(photoSettings)
       .then(function (blob) {
@@ -113,6 +112,7 @@ captureSnapshotButton.onclick = function () {
         addThumbnail(imageBlobUrl);
 
         $capturedImageWrapper.classList.remove('hide');
+        location.href = '#captured-image';
 
         log('Photo captured successfully, size: ' + blob.size);
       })
