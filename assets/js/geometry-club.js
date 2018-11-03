@@ -4,6 +4,7 @@ var switchCameraButton = document.getElementById('switch-camera-button');
 var toggleCameraButton = document.getElementById('toggle-camera-button');
 var captureSnapshotButton = document.getElementById('capture-snapshot-button');
 var canvas = window.canvas = document.getElementById('canvas');
+var $capturedImageWrapper = document.getElementById('captured-image-wrapper');
 var capturedImage = document.getElementById('captured-image');
 var $thumbnailList = document.getElementById('thumbnail-list');
 var logger = document.getElementById('logger');
@@ -110,6 +111,8 @@ captureSnapshotButton.onclick = function () {
         var imageBlobUrl = URL.createObjectURL(blob);
         capturedImage.src = imageBlobUrl;
         addThumbnail(imageBlobUrl);
+
+        $capturedImageWrapper.classList.remove('hide');
 
         log('Photo captured successfully, size: ' + blob.size);
       })
