@@ -63,22 +63,33 @@ permalink: /blog/geometry-club
     </div>
 
     <div>
-      <button id="switch-camera-button">Switch camera</button>
-      <button id="capture-snapshot-button" class="action-capture-snapshot action-capture-snapshot--enabled">
-        <span class="action-capture-snapshot__enabled-legend">Capture snapshot</span>
-        <span class="action-capture-snapshot__disabled-legend">Wait...</span>
+      <button id="switch-camera-button">
+        Switch camera
       </button>
+
+      <button id="capture-snapshot-button"
+              class="action-capture-snapshot action-capture-snapshot--enabled">
+        <span class="action-capture-snapshot__enabled-legend">
+          Capture snapshot
+        </span>
+
+        <span class="action-capture-snapshot__disabled-legend">
+          Wait...
+        </span>
+      </button>
+
       <button id="toggle-camera-button"
               class="action-toggle-camera action-toggle-camera--on">
         Stop camera
       </button>
     </div>
 
-    <canvas></canvas>
+    <canvas id="canvas"></canvas>
 
-    <img src="">
+    <img id="captured-image"
+         src="">
 
-    <pre>Log:</pre>
+    <pre id="logger">Log:</pre>
 
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script src="{{ site.url }}/assets/js/geometry-club.js"></script>
