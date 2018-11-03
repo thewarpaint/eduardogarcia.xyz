@@ -65,3 +65,7 @@ img {
 .action-capture-snapshot--disabled .action-capture-snapshot__enabled-legend {
   display: none;
 }
+
+.thumbnail {
+  width: 20vw;
+}

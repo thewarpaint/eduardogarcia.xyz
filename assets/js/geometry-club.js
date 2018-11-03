@@ -5,6 +5,7 @@ var toggleCameraButton = document.getElementById('toggle-camera-button');
 var captureSnapshotButton = document.getElementById('capture-snapshot-button');
 var canvas = window.canvas = document.getElementById('canvas');
 var capturedImage = document.getElementById('captured-image');
+var $thumbnailList = document.getElementById('thumbnail-list');
 var logger = document.getElementById('logger');
 var videoIndex = 0;
 var mediaStreamTrack;
@@ -106,7 +107,9 @@ captureSnapshotButton.onclick = function () {
 
     imageCapture.takePhoto(photoSettings)
       .then(function (blob) {
-        capturedImage.src = URL.createObjectURL(blob);
+        var imageBlobUrl = URL.createObjectURL(blob);
+        capturedImage.src = imageBlobUrl;
+        addThumbnail(imageBlobUrl);
 
         log('Photo captured successfully, size: ' + blob.size);
       })
@@ -142,4 +145,13 @@ function revokePhotoURL() {
     URL.revokeObjectURL(capturedImage.src);
     log('Revoking URL: ' + capturedImage.src);
   }
+}
+
+function addThumbnail(url) {
+  $thumbnailList.innerHTML +=
+    '<li>' +
+      '<img class="thumbnail" ' +
+        'alt="Captured image thumbnail" ' +
+        'src="' + url + '">' +
+    '</li>';
 }
