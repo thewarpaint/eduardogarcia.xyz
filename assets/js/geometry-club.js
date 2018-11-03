@@ -108,7 +108,7 @@ captureSnapshotButton.onclick = function () {
     imageCapture.takePhoto(photoSettings)
       .then(function (blob) {
         var imageBlobUrl = URL.createObjectURL(blob);
-        capturedImage.src = imageBlobUrl;
+        setCapturedImage(imageBlobUrl);
         addThumbnail(imageBlobUrl);
 
         $capturedImageWrapper.classList.remove('hide');
@@ -152,9 +152,14 @@ function revokePhotoURL() {
 
 function addThumbnail(url) {
   $thumbnailList.innerHTML +=
-    '<li class="thumbnail-item">' +
+    '<li class="thumbnail-item" ' +
+        'onclick="setCapturedImage(\'' + url + '\')">' +
       '<img class="thumbnail" ' +
         'alt="Captured image thumbnail" ' +
         'src="' + url + '">' +
     '</li>';
+}
+
+function setCapturedImage(url) {
+  capturedImage.src = url;
 }
