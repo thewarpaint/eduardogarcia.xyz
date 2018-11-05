@@ -6,7 +6,6 @@ var captureSnapshotButton = document.getElementById('capture-snapshot-button');
 var canvas = window.canvas = document.getElementById('canvas');
 var $capturedImageWrapper = document.getElementById('captured-image-wrapper');
 var capturedImage = document.getElementById('captured-image');
-var $thumbnailList = document.getElementById('thumbnail-list');
 var logger = document.getElementById('logger');
 var videoIndex = 0;
 var mediaStreamTrack;
@@ -92,45 +91,49 @@ navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
   startStream();
 });
 
-toggleCameraButton.onclick = function () {
-  stopStream();
-}
-
-switchCameraButton.onclick = function () {
-  videoIndex = (videoIndex + 1) % videoDevices.length;
-  startStream();
-};
-
-captureSnapshotButton.onclick = function () {
-  if (imageCaptureMode) {
-    toggleCaptureSnapshotButton(false);
-
-    imageCapture.takePhoto(photoSettings)
-      .then(function (blob) {
-        var imageBlobUrl = URL.createObjectURL(blob);
-        setCapturedImage(imageBlobUrl);
-        addThumbnail(imageBlobUrl);
-
-        $capturedImageWrapper.classList.remove('hide');
-        location.href = '#captured-image';
-
-        log('Photo captured successfully, size: ' + blob.size);
-      })
-      .catch(function (error) {
-        console.error('takePhoto() error:', error)
-      })
-      .finally(function () {
-        toggleCaptureSnapshotButton(true);
-      });
-  } else {
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d')
-      .drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    window.open(canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'), 'image');
+function init() {
+  toggleCameraButton.onclick = function () {
+    stopStream();
   }
-};
+
+  switchCameraButton.onclick = function () {
+    videoIndex = (videoIndex + 1) % videoDevices.length;
+    startStream();
+  };
+
+  captureSnapshotButton.onclick = function () {
+    if (imageCaptureMode) {
+      toggleCaptureSnapshotButton(false);
+
+      imageCapture.takePhoto(photoSettings)
+        .then(function (blob) {
+          var imageBlobUrl = URL.createObjectURL(blob);
+          setCapturedImage(imageBlobUrl);
+          Thumbnails.addThumbnail(imageBlobUrl);
+
+          $capturedImageWrapper.classList.remove('hide');
+          location.href = '#captured-image';
+
+          log('Photo captured successfully, size: ' + blob.size);
+        })
+        .catch(function (error) {
+          console.error('takePhoto() error:', error)
+        })
+        .finally(function () {
+          toggleCaptureSnapshotButton(true);
+        });
+    } else {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d')
+        .drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      window.open(canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'), 'image');
+    }
+  };
+
+  Thumbnails.init();
+}
 
 function log(string) {
   console.log(string);
@@ -150,16 +153,30 @@ function revokePhotoURL() {
   }
 }
 
-function addThumbnail(url) {
-  $thumbnailList.innerHTML +=
-    '<li class="thumbnail-item" ' +
-        'onclick="setCapturedImage(\'' + url + '\')">' +
-      '<img class="thumbnail" ' +
-        'alt="Captured image thumbnail" ' +
-        'src="' + url + '">' +
-    '</li>';
-}
-
 function setCapturedImage(url) {
   capturedImage.src = url;
 }
+
+var Thumbnails = (function () {
+  function Thumbnails() {
+    this.$thumbnailList = null;
+  }
+
+  Thumbnails.prototype.init = function () {
+    this.$thumbnailList = document.getElementById('thumbnail-list');
+  }
+
+  Thumbnails.prototype.addThumbnail = function (url) {
+    this.$thumbnailList.innerHTML +=
+      '<li class="thumbnail-item" ' +
+          'onclick="setCapturedImage(\'' + url + '\')">' +
+        '<img class="thumbnail" ' +
+          'alt="Captured image thumbnail" ' +
+          'src="' + url + '">' +
+      '</li>';
+  }
+
+  return new Thumbnails();
+})();
+
+init();
