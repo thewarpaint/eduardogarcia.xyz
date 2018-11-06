@@ -169,10 +169,8 @@ var Thumbnails = (function () {
   Thumbnails.prototype.addThumbnail = function (url) {
     this.$thumbnailList.innerHTML +=
       '<li class="thumbnail-item" ' +
-          'onclick="setCapturedImage(\'' + url + '\')">' +
-        '<img class="thumbnail" ' +
-          'alt="Captured image thumbnail" ' +
-          'src="' + url + '">' +
+          'onclick="setCapturedImage(\'' + url + '\')" ' +
+          'style="background-image: url(\'' + url + '\');">' +
       '</li>';
   }
 
