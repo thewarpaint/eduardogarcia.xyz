@@ -69,10 +69,7 @@ img {
 }
 
 .thumbnail-item {
-  display: inline;
-}
-
-.thumbnail {
+  display: inline-block;
   width: 25vw;
   height: 25vw;
   max-width: 15rem;
