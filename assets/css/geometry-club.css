@@ -74,5 +74,7 @@ img {
 
 .thumbnail {
   width: 25vw;
+  height: 25vw;
   max-width: 15rem;
+  max-height: 15rem;
 }
