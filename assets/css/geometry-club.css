@@ -58,11 +58,12 @@ img {
 
 .capture-image-wrapper {
   text-align: center;
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: -1rem;
+  margin-right: -1rem;
 }
 
 .thumbnail-list {
+  margin: 0 -1rem;
   list-style-type: none;
   padding-left: 0;
 }
@@ -72,6 +73,6 @@ img {
 }
 
 .thumbnail {
-  width: 20vw;
+  width: 25vw;
   max-width: 15rem;
 }
