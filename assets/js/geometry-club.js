@@ -6,7 +6,6 @@ var captureSnapshotButton = document.getElementById('capture-snapshot-button');
 var canvas = window.canvas = document.getElementById('canvas');
 var $capturedImageWrapper = document.getElementById('captured-image-wrapper');
 var capturedImage = document.getElementById('captured-image');
-var logger = document.getElementById('logger');
 var videoIndex = 0;
 var mediaStreamTrack;
 var imageCapture;
@@ -22,7 +21,7 @@ function handleSuccess(stream) {
   imageCaptureMode = typeof imageCapture.getPhotoCapabilities === 'function';
 
   if (imageCaptureMode) {
-    log('Mode: image capture');
+    Logger.log('Mode: image capture');
 
     imageCapture.getPhotoCapabilities()
       .then(function (photoCapabilities) {
@@ -31,14 +30,14 @@ function handleSuccess(stream) {
           imageHeight: photoCapabilities.imageHeight.max,
         };
 
-        log('Photo quality: ' + photoCapabilities.imageWidth.max + 'px × ' +
+        Logger.log('Photo quality: ' + photoCapabilities.imageWidth.max + 'px × ' +
           photoCapabilities.imageHeight.max + 'px');
       });
 
     canvas.classList.add('hide');
     capturedImage.classList.remove('hide');
   } else {
-    log('Mode: canvas fallback');
+    Logger.log('Mode: canvas fallback');
 
     canvas.classList.remove('hide');
     capturedImage.classList.add('hide');
@@ -77,7 +76,7 @@ function startStream() {
     }
   };
 
-  log('Switching to device: ' + videoDevices[videoIndex].label);
+  Logger.log('Switching to device: ' + videoDevices[videoIndex].label);
   navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
 
   isStreamActive = true;
@@ -128,7 +127,7 @@ function init() {
           $capturedImageWrapper.classList.remove('hide');
           location.href = '#captured-image';
 
-          log('Photo captured successfully, size: ' + blob.size);
+          Logger.log('Photo captured successfully, size: ' + blob.size);
         })
         .catch(function (error) {
           console.error('takePhoto() error:', error)
@@ -146,13 +145,26 @@ function init() {
     }
   };
 
+  Logger.init();
   Thumbnails.init();
 }
 
-function log(string) {
-  console.log(string);
-  logger.innerHTML += '\n⇒ ' + string;
-}
+var Logger = (function () {
+  function Logger() {
+    this.$log = null;
+  }
+  
+  Logger.prototype.init = function() {
+    this.$log = document.getElementById('logger');
+  };
+  
+  Logger.prototype.log = function(string) {
+    console.log(string);
+    logger.innerHTML += '\n⇒ ' + string;
+  };
+
+  return new Logger();
+})();
 
 function toggleCaptureSnapshotButton(enabled) {
   captureSnapshotButton.disabled = !enabled;
@@ -163,7 +175,7 @@ function toggleCaptureSnapshotButton(enabled) {
 function revokePhotoURL() {
   if (capturedImage.src.indexOf('blob') !== -1) {
     URL.revokeObjectURL(capturedImage.src);
-    log('Revoking URL: ' + capturedImage.src);
+    Logger.log('Revoking URL: ' + capturedImage.src);
   }
 }
 
