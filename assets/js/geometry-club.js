@@ -12,6 +12,7 @@ var mediaStreamTrack;
 var imageCapture;
 var imageCaptureMode = false;
 var photoSettings;
+var isStreamActive = false;
 
 function handleSuccess(stream) {
   window.stream = stream;
@@ -62,6 +63,8 @@ function stopStream() {
       track.stop();
     });
   }
+
+  isStreamActive = false;
 }
 
 function startStream() {
@@ -76,6 +79,8 @@ function startStream() {
 
   log('Switching to device: ' + videoDevices[videoIndex].label);
   navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+
+  isStreamActive = true;
 }
 
 navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
@@ -96,7 +101,11 @@ navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
 
 function init() {
   toggleCameraButton.onclick = function () {
-    stopStream();
+    if (isStreamActive) {
+      stopStream();
+    } else {
+      startStream();
+    }
   }
 
   switchCameraButton.onclick = function () {
