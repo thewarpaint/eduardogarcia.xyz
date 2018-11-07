@@ -167,6 +167,12 @@ var Thumbnails = (function () {
   }
 
   Thumbnails.prototype.addThumbnail = function (url) {
+    var oldThumbnail = document.querySelector('thumbnail-item--selected');
+    
+    if (oldThumbnail) {
+      oldThumbnail.classList.remove('thumbnail-item--selected');
+    }
+
     this.$thumbnailList.innerHTML +=
       '<li class="thumbnail-item thumbnail-item--selected" ' +
           'id="thumbnail-' + url + '" ' +
