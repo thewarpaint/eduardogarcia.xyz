@@ -113,8 +113,6 @@ function init() {
   };
 
   captureSnapshotButton.onclick = function () {
-    stopStream();
-
     if (imageCaptureMode) {
       toggleCaptureSnapshotButton(false);
 
@@ -126,6 +124,7 @@ function init() {
 
           $capturedImageWrapper.classList.remove('hide');
           location.href = '#captured-image';
+          stopStream();
 
           Logger.log('Photo captured successfully, size: ' + blob.size);
         })
@@ -153,11 +152,11 @@ var Logger = (function () {
   function Logger() {
     this.$log = null;
   }
-  
+
   Logger.prototype.init = function() {
     this.$log = document.getElementById('logger');
   };
-  
+
   Logger.prototype.log = function(string) {
     console.log(string);
     logger.innerHTML += '\n⇒ ' + string;
