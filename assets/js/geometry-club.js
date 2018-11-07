@@ -51,6 +51,11 @@ function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
 
+function restartStream() {
+  stopStream();
+  startStream();
+}
+
 function stopStream() {
   if (window.stream) {
     window.stream.getTracks().forEach(function (track) {
@@ -60,8 +65,6 @@ function stopStream() {
 }
 
 function startStream() {
-  stopStream();
-
   var constraints = {
     audio: false,
     video: {
@@ -98,7 +101,7 @@ function init() {
 
   switchCameraButton.onclick = function () {
     videoIndex = (videoIndex + 1) % videoDevices.length;
-    startStream();
+    restartStream();
   };
 
   captureSnapshotButton.onclick = function () {
@@ -168,7 +171,7 @@ var Thumbnails = (function () {
 
   Thumbnails.prototype.addThumbnail = function (url) {
     var oldThumbnail = document.querySelector('.thumbnail-item--selected');
-    
+
     if (oldThumbnail) {
       oldThumbnail.classList.remove('thumbnail-item--selected');
     }
