@@ -114,6 +114,8 @@ function init() {
   };
 
   captureSnapshotButton.onclick = function () {
+    stopStream();
+
     if (imageCaptureMode) {
       toggleCaptureSnapshotButton(false);
 
