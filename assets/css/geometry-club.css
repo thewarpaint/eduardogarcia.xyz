@@ -78,3 +78,7 @@ img {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.thumbnail-item--selected {
+  border: 2px solid blue;
+}
