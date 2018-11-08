@@ -191,11 +191,11 @@ var Thumbnails = (function () {
 
   Thumbnails.prototype.init = function () {
     this.$thumbnailList = document.getElementById('thumbnail-list');
-  }
+  };
 
   Thumbnails.prototype.setSelectedItem = function (url) {
     document.getElementById('thumbnail-' + url).classList.add('thumbnail-item--selected');
-  }
+  };
 
   Thumbnails.prototype.clearSelectedItem = function () {
     var oldThumbnail = document.querySelector('.thumbnail-item--selected');
@@ -203,7 +203,7 @@ var Thumbnails = (function () {
     if (oldThumbnail) {
       oldThumbnail.classList.remove('thumbnail-item--selected');
     }
-  }
+  };
 
   Thumbnails.prototype.addThumbnail = function (url) {
     this.clearSelectedItem();
@@ -214,7 +214,7 @@ var Thumbnails = (function () {
           'onclick="setCapturedImage(\'' + url + '\')" ' +
           'style="background-image: url(\'' + url + '\');">' +
       '</li>';
-  }
+  };
 
   return new Thumbnails();
 })();
