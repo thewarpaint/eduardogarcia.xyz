@@ -206,7 +206,7 @@ var Thumbnails = (function () {
   }
 
   Thumbnails.prototype.addThumbnail = function (url) {
-    Thumbnails.clearSelectedItem();
+    this.clearSelectedItem();
 
     this.$thumbnailList.innerHTML +=
       '<li class="thumbnail-item thumbnail-item--selected" ' +
