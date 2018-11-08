@@ -179,7 +179,9 @@ function revokePhotoURL() {
 }
 
 function setCapturedImage(url) {
+  Thumbnails.clearSelectedItem();
   capturedImage.src = url;
+  Thumbnails.setSelectedItem(url);
 }
 
 var Thumbnails = (function () {
@@ -191,12 +193,20 @@ var Thumbnails = (function () {
     this.$thumbnailList = document.getElementById('thumbnail-list');
   }
 
-  Thumbnails.prototype.addThumbnail = function (url) {
+  Thumbnails.prototype.setSelectedItem = function (url) {
+    document.getElementById('thumbnail-' + url).classList.add('thumbnail-item--selected');
+  }
+
+  Thumbnails.prototype.clearSelectedItem = function () {
     var oldThumbnail = document.querySelector('.thumbnail-item--selected');
 
     if (oldThumbnail) {
       oldThumbnail.classList.remove('thumbnail-item--selected');
     }
+  }
+
+  Thumbnails.prototype.addThumbnail = function (url) {
+    Thumbnails.clearSelectedItem();
 
     this.$thumbnailList.innerHTML +=
       '<li class="thumbnail-item thumbnail-item--selected" ' +
