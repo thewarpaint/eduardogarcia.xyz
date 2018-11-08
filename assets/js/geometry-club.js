@@ -5,7 +5,6 @@ var toggleCameraButton = document.getElementById('toggle-camera-button');
 var captureSnapshotButton = document.getElementById('capture-snapshot-button');
 var canvas = window.canvas = document.getElementById('canvas');
 var $capturedImageWrapper = document.getElementById('captured-image-wrapper');
-var capturedImage = document.getElementById('captured-image');
 var videoIndex = 0;
 var mediaStreamTrack;
 var imageCapture;
@@ -35,12 +34,12 @@ function handleSuccess(stream) {
       });
 
     canvas.classList.add('hide');
-    capturedImage.classList.remove('hide');
+    Preview.show();
   } else {
     Logger.log('Mode: canvas fallback');
 
     canvas.classList.remove('hide');
-    capturedImage.classList.add('hide');
+    Preview.hide();
 
     canvas.width = 480;
     canvas.height = 360;
@@ -119,8 +118,9 @@ function init() {
       imageCapture.takePhoto(photoSettings)
         .then(function (blob) {
           var imageBlobUrl = URL.createObjectURL(blob);
-          setCapturedImage(imageBlobUrl);
+
           Thumbnails.addThumbnail(imageBlobUrl);
+          Preview.setActiveImage(imageBlobUrl);
 
           $capturedImageWrapper.classList.remove('hide');
           location.href = '#captured-image';
@@ -145,6 +145,7 @@ function init() {
   };
 
   Logger.init();
+  Preview.init();
   Thumbnails.init();
 }
 
@@ -178,11 +179,34 @@ function revokePhotoURL() {
   }
 }
 
-function setCapturedImage(url) {
-  Thumbnails.clearSelectedItem();
-  capturedImage.src = url;
-  Thumbnails.setSelectedItem(url);
-}
+var Preview = (function () {
+  function Preview() {
+    this.$previewImage = null;
+  }
+
+  Preview.prototype.init = function () {
+    this.$previewImage = document.getElementById('preview-image');
+  };
+
+  Preview.prototype.show = function () {
+    this.$previewImage.classList.remove('hide');
+  };
+
+  Preview.prototype.hide = function () {
+    this.$previewImage.classList.add('hide');
+  };
+
+  Preview.prototype.setPreviewImage = function (url) {
+    this.$previewImage.src = url;
+  };
+
+  Preview.prototype.setActiveImage = function (url) {
+    this.setPreviewImage(url);
+    Thumbnails.setSelectedItem(url);
+  };
+
+  return new Preview();
+})();
 
 var Thumbnails = (function () {
   function Thumbnails() {
@@ -194,7 +218,14 @@ var Thumbnails = (function () {
   };
 
   Thumbnails.prototype.setSelectedItem = function (url) {
-    document.getElementById('thumbnail-' + url).classList.add('thumbnail-item--selected');
+    var $thumbnail = document.getElementById('thumbnail-' + url);
+
+    if (!$thumbnail) {
+      Logger.log('Element #thumbnail-' + url + ' doesn\'t exist.');
+      return;
+    }
+
+    $thumbnail.classList.add('thumbnail-item--selected');
   };
 
   Thumbnails.prototype.clearSelectedItem = function () {
@@ -211,7 +242,7 @@ var Thumbnails = (function () {
     this.$thumbnailList.innerHTML +=
       '<li class="thumbnail-item thumbnail-item--selected" ' +
           'id="thumbnail-' + url + '" ' +
-          'onclick="setCapturedImage(\'' + url + '\')" ' +
+          'onclick="Preview.setActiveImage(\'' + url + '\')" ' +
           'style="background-image: url(\'' + url + '\');">' +
       '</li>';
   };
