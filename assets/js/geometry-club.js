@@ -225,6 +225,7 @@ var Thumbnails = (function () {
       return;
     }
 
+    this.clearSelectedItem();
     $thumbnail.classList.add('thumbnail-item--selected');
   };
 
