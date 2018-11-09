@@ -13,13 +13,15 @@ done
 
 # Custom Geometry Club fingerprinting
 GEOMETRY_CLUB_HTML="_posts/2018-11-01-geometry-club.html"
-GEOMETRY_CLUB_JS="assets/js/geometry-club.js"
-GEOMETRY_CLUB_JS_SHA="$(git log --pretty=format:'%H' -n 1 -- $GEOMETRY_CLUB_JS)"
-GEOMETRY_CLUB_CSS="assets/css/geometry-club.css"
-GEOMETRY_CLUB_CSS_SHA="$(git log --pretty=format:'%H' -n 1 -- $GEOMETRY_CLUB_CSS)"
+GEOMETRY_CLUB_JS="geometry-club.js"
+GEOMETRY_CLUB_JS_PATH="assets/js/$GEOMETRY_CLUB_JS"
+GEOMETRY_CLUB_JS_SHA="$(git log --pretty=format:'%H' -n 1 -- $GEOMETRY_CLUB_JS_PATH)"
+GEOMETRY_CLUB_CSS="geometry-club.css"
+GEOMETRY_CLUB_CSS_PATH="assets/css/$GEOMETRY_CLUB_CSS"
+GEOMETRY_CLUB_CSS_SHA="$(git log --pretty=format:'%H' -n 1 -- $GEOMETRY_CLUB_CSS_PATH)"
 
-mv $GEOMETRY_CLUB_JS "$GEOMETRY_CLUB_JS.$GEOMETRY_CLUB_JS_SHA.js"
-sed -i -e "s/geometry-club.js/geometry-club.js.$GEOMETRY_CLUB_JS_SHA.js/g" $GEOMETRY_CLUB_HTML
+mv $GEOMETRY_CLUB_JS_PATH "$GEOMETRY_CLUB_JS_PATH.$GEOMETRY_CLUB_JS_SHA.js"
+sed -i -e "s/$GEOMETRY_CLUB_JS/$GEOMETRY_CLUB_JS.$GEOMETRY_CLUB_JS_SHA.js/g" $GEOMETRY_CLUB_HTML
 
-mv $GEOMETRY_CLUB_CSS "$GEOMETRY_CLUB_CSS.$GEOMETRY_CLUB_CSS_SHA.css"
-sed -i -e "s/geometry-club.css/geometry-club.css.$GEOMETRY_CLUB_CSS_SHA.css/g" $GEOMETRY_CLUB_HTML
+mv $GEOMETRY_CLUB_CSS_PATH "$GEOMETRY_CLUB_CSS_PATH.$GEOMETRY_CLUB_CSS_SHA.css"
+sed -i -e "s/$GEOMETRY_CLUB_CSS/$GEOMETRY_CLUB_CSS.$GEOMETRY_CLUB_CSS_SHA.css/g" $GEOMETRY_CLUB_HTML
