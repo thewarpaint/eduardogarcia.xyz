@@ -86,24 +86,30 @@ permalink: /blog/geometry-club
 
     <canvas id="canvas"></canvas>
 
-    <figure id="captured-image-wrapper"
-            class="capture-image-wrapper hide">
-      <img id="preview-image"
-           src=""
-           alt="Preview image">
+    <section id="selection-area"
+             class="selection-area hide">
+      <figure class="capture-image-wrapper">
+        <img id="preview-image"
+             src=""
+             alt="Preview image">
 
-      <figcaption>Press and hold, then select "Download"</figcaption>
-    </figure>
+        <figcaption>Press and hold, then select "Download"</figcaption>
+      </figure>
 
-    <div>
-      <button id="remove-image">
-        Remove image
-      </button>
-    </div>
+      <div>
+        <button id="remove-image">
+          Remove image
+        </button>
 
-    <ul id="thumbnail-list"
-        class="thumbnail-list">
-    </ul>
+        <button id="return-capture-area">
+          Capture again
+        </button>
+      </div>
+
+      <ul id="thumbnail-list"
+          class="thumbnail-list">
+      </ul>
+    </section>
 
     <pre id="logger">Log:</pre>
 

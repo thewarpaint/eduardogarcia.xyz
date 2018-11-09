@@ -4,7 +4,6 @@ var switchCameraButton = document.getElementById('switch-camera-button');
 var toggleCameraButton = document.getElementById('toggle-camera-button');
 var captureSnapshotButton = document.getElementById('capture-snapshot-button');
 var canvas = window.canvas = document.getElementById('canvas');
-var $capturedImageWrapper = document.getElementById('captured-image-wrapper');
 var videoIndex = 0;
 var mediaStreamTrack;
 var imageCapture;
@@ -122,8 +121,8 @@ function init() {
           Thumbnails.addThumbnail(imageBlobUrl);
           Preview.setActiveImage(imageBlobUrl);
 
-          $capturedImageWrapper.classList.remove('hide');
-          location.href = '#captured-image';
+          App.showSelectionArea();
+          location.href = '#selection-area';
           stopStream();
 
           Logger.log('Photo captured successfully, size: ' + blob.size);
@@ -144,10 +143,31 @@ function init() {
     }
   };
 
+  App.init();
   Logger.init();
   Preview.init();
   Thumbnails.init();
 }
+
+var App = (function () {
+  function App() {
+    this.$selectionArea = null;
+  }
+
+  App.prototype.init = function () {
+    this.$selectionArea = document.getElementById('selection-area');
+  };
+
+  App.prototype.showSelectionArea = function () {
+    this.$selectionArea.classList.remove('hide');
+  };
+
+  App.prototype.hideSelectionArea = function () {
+    this.$selectionArea.classList.add('hide');
+  };
+
+  return new App();
+})();
 
 var Logger = (function () {
   function Logger() {
@@ -184,13 +204,16 @@ var Preview = (function () {
     this.activeImage = null;
     this.$previewImage = null;
     this.$removeImage = null;
+    this.$returnCaptureArea = null;
   }
 
   Preview.prototype.init = function () {
     this.$previewImage = document.getElementById('preview-image');
     this.$removeImage = document.getElementById('remove-image');
+    this.$returnCaptureArea = document.getElementById('return-capture-area');
 
     this.$removeImage.onclick = this.removeActiveImage.bind(this);
+    this.$returnCaptureArea.onclick = this.returnToCaptureArea.bind(this);
   };
 
   Preview.prototype.show = function () {
@@ -216,6 +239,10 @@ var Preview = (function () {
     Thumbnails.remove(this.activeImage);
     this.hide();
     revokeBlobURL(this.activeImage);
+  };
+
+  Preview.prototype.returnToCaptureArea = function () {
+    App.hideSelectionArea();
   };
 
   return new Preview();
