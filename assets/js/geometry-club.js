@@ -181,11 +181,16 @@ function revokePhotoURL() {
 
 var Preview = (function () {
   function Preview() {
+    this.activeImage = null;
     this.$previewImage = null;
+    this.$removeImage = null;
   }
 
   Preview.prototype.init = function () {
     this.$previewImage = document.getElementById('preview-image');
+    this.$removeImage = document.getElementById('remove-image');
+
+    this.$removeImage.onclick = this.removeActiveImage.bind(this);
   };
 
   Preview.prototype.show = function () {
@@ -201,8 +206,13 @@ var Preview = (function () {
   };
 
   Preview.prototype.setActiveImage = function (url) {
+    this.activeImage = url;
     this.setPreviewImage(url);
     Thumbnails.setSelectedItem(url);
+  };
+
+  Preview.prototype.removeActiveImage = function () {
+    Logger.log('[wip] Trying to remove active image ' + this.activeImage);
   };
 
   return new Preview();
