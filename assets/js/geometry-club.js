@@ -119,6 +119,7 @@ function init() {
           Thumbnails.addThumbnail(imageBlobUrl);
           Preview.setActiveImage(imageBlobUrl);
 
+          App.hideCaptureArea();
           App.showSelectionArea();
           location.href = '#selection-area';
           stopStream();
@@ -149,11 +150,21 @@ function init() {
 
 var App = (function () {
   function App() {
+    this.$captureArea = null;
     this.$selectionArea = null;
   }
 
   App.prototype.init = function () {
+    this.$captureArea = document.getElementById('capture-area');
     this.$selectionArea = document.getElementById('selection-area');
+  };
+
+  App.prototype.showCaptureArea = function () {
+    this.$captureArea.classList.remove('hide');
+  };
+
+  App.prototype.hideCaptureArea = function () {
+    this.$captureArea.classList.add('hide');
   };
 
   App.prototype.showSelectionArea = function () {
@@ -240,6 +251,7 @@ var Preview = (function () {
 
   Preview.prototype.returnToCaptureArea = function () {
     App.hideSelectionArea();
+    App.showCaptureArea();
   };
 
   return new Preview();
