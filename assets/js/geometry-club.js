@@ -172,10 +172,10 @@ function toggleCaptureSnapshotButton(enabled) {
   captureSnapshotButton.classList.toggle('action-capture-snapshot--disabled', !enabled);
 }
 
-function revokePhotoURL() {
-  if (capturedImage.src.indexOf('blob') !== -1) {
-    URL.revokeObjectURL(capturedImage.src);
-    Logger.log('Revoking URL: ' + capturedImage.src);
+function revokeBlobURL(url) {
+  if (url.indexOf('blob') !== -1) {
+    URL.revokeObjectURL(url);
+    Logger.log('Revoking URL: ' + url);
   }
 }
 
@@ -213,6 +213,7 @@ var Preview = (function () {
 
   Preview.prototype.removeActiveImage = function () {
     Logger.log('[wip] Trying to remove active image ' + this.activeImage);
+    revokeBlobURL(this.activeImage);
   };
 
   return new Preview();
