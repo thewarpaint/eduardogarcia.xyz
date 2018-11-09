@@ -33,12 +33,10 @@ function handleSuccess(stream) {
       });
 
     canvas.classList.add('hide');
-    Preview.show();
   } else {
     Logger.log('Mode: canvas fallback');
 
     canvas.classList.remove('hide');
-    Preview.hide();
 
     canvas.width = 480;
     canvas.height = 360;
@@ -237,7 +235,6 @@ var Preview = (function () {
   Preview.prototype.removeActiveImage = function () {
     Logger.log('[wip] Trying to remove active image ' + this.activeImage);
     Thumbnails.remove(this.activeImage);
-    this.hide();
     revokeBlobURL(this.activeImage);
   };
 
