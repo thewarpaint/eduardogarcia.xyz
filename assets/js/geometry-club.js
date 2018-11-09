@@ -213,6 +213,8 @@ var Preview = (function () {
 
   Preview.prototype.removeActiveImage = function () {
     Logger.log('[wip] Trying to remove active image ' + this.activeImage);
+    Thumbnails.remove(this.activeImage);
+    this.hide();
     revokeBlobURL(this.activeImage);
   };
 
@@ -257,6 +259,14 @@ var Thumbnails = (function () {
           'onclick="Preview.setActiveImage(\'' + url + '\')" ' +
           'style="background-image: url(\'' + url + '\');">' +
       '</li>';
+  };
+
+  Thumbnails.prototype.remove = function (url) {
+    var $thumbnail = document.getElementById('thumbnail-' + url);
+
+    if ($thumbnail) {
+      $thumbnail.remove();
+    }
   };
 
   return new Thumbnails();
