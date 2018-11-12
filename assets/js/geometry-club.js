@@ -160,6 +160,24 @@ var App = (function () {
     this.$captureArea = document.getElementById('capture-area');
     this.$selectionArea = document.getElementById('selection-area');
     this.$startApp.onclick = this.goFullscreen.bind(this);
+
+    // Global error handler
+    window.onerror = function(message, sourceUrl, lineNumber, columnNumber, error) {
+      if (message.toLowerCase().indexOf('script error') !== -1) {
+        Logger.log('Script error: see browser console for detail');
+      } else {
+        Logger.log([
+          'An error has occurred',
+          'message: ' + message,
+          'URL: ' + sourceUrl,
+          'line: ' + lineNumber,
+          'column: ' + columnNumber,
+          'error object: ' + JSON.stringify(error)
+        ].join(', '));
+      }
+
+      return false;
+    }
   };
 
   App.prototype.showCaptureArea = function () {
