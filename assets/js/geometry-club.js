@@ -205,13 +205,17 @@ var App = (function () {
       element.webkitRequestFullscreen;
 
     if (element.requestFullscreen) {
-      element.requestFullscreen()
-        .then(function () {
+      var promise = element.requestFullscreen();
+
+      // Some browsers don't support the promise (yet?)
+      if (promise && promise.then) {
+        promise.then(function () {
           Logger.log('Entering fullscreen mode');
         })
         .catch(function (error) {
           Logger.log('Couldn\'t enter fullscreen mode because of ' + error.name + ': ' + error.message);
         });
+      }
     } else {
       Logger.log('Fullscreen mode not supported');
     }
