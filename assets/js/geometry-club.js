@@ -298,6 +298,7 @@ var Preview = (function () {
   Preview.prototype.returnToCaptureArea = function () {
     App.hideSelectionArea();
     App.showCaptureArea();
+    startStream();
   };
 
   return new Preview();
