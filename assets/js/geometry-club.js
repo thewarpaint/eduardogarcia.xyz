@@ -150,13 +150,16 @@ function init() {
 
 var App = (function () {
   function App() {
+    this.$startApp = null;
     this.$captureArea = null;
     this.$selectionArea = null;
   }
 
   App.prototype.init = function () {
+    this.$startApp = document.getElementById('start-app');
     this.$captureArea = document.getElementById('capture-area');
     this.$selectionArea = document.getElementById('selection-area');
+    this.$startApp.onclick = this.goFullscreen.bind(this);
   };
 
   App.prototype.showCaptureArea = function () {
@@ -173,6 +176,10 @@ var App = (function () {
 
   App.prototype.hideSelectionArea = function () {
     this.$selectionArea.classList.add('hide');
+  };
+
+  App.prototype.goFullscreen = function () {
+    document.body.requestFullscreen();
   };
 
   return new App();
