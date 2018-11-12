@@ -47,24 +47,26 @@ permalink: /blog/geometry-club
 
     <button id="start-app">Start</button>
 
-    <div class="video-wrapper">
-      <video autoplay></video>
-      <svg xmlns="http://www.w3.org/2000/svg"
-           xmlns:xlink="http://www.w3.org/1999/xlink"
-           viewBox="0 0 400 400"
-           class="video--overlay">
-        <!-- Horizontal line -->
-        <line class="video--overlay-guide" x1="0" y1="200" x2="400" y2="200" />
-        <!-- Vertical line -->
-        <line class="video--overlay-guide" x1="200" y1="0" x2="200" y2="400" />
-        <!-- Bottom left corner line -->
-        <line class="video--overlay-guide" x1="0" y1="400" x2="260" y2="140" />
-        <!-- Bottom right corner line -->
-        <line class="video--overlay-guide" x1="400" y1="400" x2="140" y2="140" />
-      </svg>
-    </div>
-
     <section id="capture-area">
+      <div class="video-wrapper">
+        <video autoplay></video>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 0 400 400"
+             class="video--overlay">
+          <!-- Horizontal line -->
+          <line class="video--overlay-guide" x1="0" y1="200" x2="400" y2="200" />
+          <!-- Vertical line -->
+          <line class="video--overlay-guide" x1="200" y1="0" x2="200" y2="400" />
+          <!-- Bottom left corner line -->
+          <line class="video--overlay-guide" x1="0" y1="400" x2="260" y2="140" />
+          <!-- Bottom right corner line -->
+          <line class="video--overlay-guide" x1="400" y1="400" x2="140" y2="140" />
+        </svg>
+      </div>
+
+      <canvas id="canvas"></canvas>
+
       <button id="switch-camera-button">
         Switch camera 🔄
       </button>
@@ -84,8 +86,6 @@ permalink: /blog/geometry-club
               class="action-toggle-camera action-toggle-camera--on">
         Toggle camera ⏹️
       </button>
-
-      <canvas id="canvas"></canvas>
     </section>
 
     <section id="selection-area"
