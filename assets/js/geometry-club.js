@@ -9,7 +9,6 @@ var mediaStreamTrack;
 var imageCapture;
 var imageCaptureMode = false;
 var photoSettings;
-var isStreamActive = false;
 
 function handleSuccess(stream) {
   window.stream = stream;
@@ -47,37 +46,6 @@ function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
 
-function restartStream() {
-  stopStream();
-  startStream();
-}
-
-function stopStream() {
-  if (window.stream) {
-    window.stream.getTracks().forEach(function (track) {
-      track.stop();
-    });
-  }
-
-  isStreamActive = false;
-}
-
-function startStream() {
-  var constraints = {
-    audio: false,
-    video: {
-      deviceId: {
-        exact: videoDevices[videoIndex].deviceId
-      }
-    }
-  };
-
-  Logger.log('Switching to device: ' + videoDevices[videoIndex].label);
-  navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
-
-  isStreamActive = true;
-}
-
 navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
   videoDevices = deviceInfos.filter(function (deviceInfo) {
     return deviceInfo.kind === 'videoinput';
@@ -91,21 +59,21 @@ navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
     videoIndex = backCameraIndex;
   }
 
-  startStream();
+  Stream.start();
 });
 
 function init() {
   toggleCameraButton.onclick = function () {
-    if (isStreamActive) {
-      stopStream();
+    if (Stream.isActive()) {
+      Stream.stop();
     } else {
-      startStream();
+      Stream.start();
     }
-  }
+  };
 
   switchCameraButton.onclick = function () {
     videoIndex = (videoIndex + 1) % videoDevices.length;
-    restartStream();
+    Stream.restart();
   };
 
   captureSnapshotButton.onclick = function () {
@@ -122,7 +90,7 @@ function init() {
           App.hideCaptureArea();
           App.showSelectionArea();
           location.href = '#selection-area';
-          stopStream();
+          Stream.stop();
 
           Logger.log('Photo captured successfully, size: ' + blob.size);
         })
@@ -254,6 +222,51 @@ function revokeBlobURL(url) {
   }
 }
 
+var Stream = (function () {
+  function Stream() {
+    this._isStreamActive = false;
+  }
+
+  Stream.prototype.isActive = function () {
+    return this._isStreamActive;
+  };
+
+  Stream.prototype.start = function () {
+    var constraints = {
+      audio: false,
+      video: {
+        deviceId: {
+          exact: videoDevices[videoIndex].deviceId
+        }
+      }
+    };
+
+    Logger.log('Switching to device: ' + videoDevices[videoIndex].label);
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(handleSuccess)
+      .catch(handleError);
+
+    this._isStreamActive = true;
+  };
+
+  Stream.prototype.stop = function () {
+    if (window.stream) {
+      window.stream.getTracks().forEach(function (track) {
+        track.stop();
+      });
+    }
+
+    this._isStreamActive = false;
+  }
+
+  Stream.prototype.restart = function () {
+    this.stop();
+    this.start();
+  };
+
+  return new Stream();
+})();
+
 var Preview = (function () {
   function Preview() {
     this.activeImage = null;
@@ -298,7 +311,7 @@ var Preview = (function () {
   Preview.prototype.returnToCaptureArea = function () {
     App.hideSelectionArea();
     App.showCaptureArea();
-    startStream();
+    Stream.start();
   };
 
   return new Preview();
