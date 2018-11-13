@@ -351,9 +351,11 @@ var Thumbnails = (function () {
 
     this.$thumbnailList.innerHTML +=
       '<li class="thumbnail-item thumbnail-item--selected" ' +
-          'id="thumbnail-' + url + '" ' +
-          'onclick="Preview.setActiveImage(\'' + url + '\')" ' +
-          'style="background-image: url(\'' + url + '\');">' +
+        'id="thumbnail-' + url + '" ' +
+        'onclick="Preview.setActiveImage(\'' + url + '\')">' +
+        '<img class="thumbnail" ' +
+          'alt="Captured image thumbnail" ' +
+          'src="' + url + '">' +
       '</li>';
   };
 
