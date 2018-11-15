@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Main JS fingerprinting
+MAIN_JS="main.js"
+MAIN_JS_PATH="assets/js/$MAIN_JS"
+MAIN_JS_SHA="$(git log --pretty=format:'%H' -n 1 -- $MAIN_JS_PATH)"
+
+mv $MAIN_JS_PATH "$MAIN_JS_PATH.$MAIN_JS_SHA.js"
+
 for filename in _posts/*.html; do
   LATEST_SHA="$(git log --pretty=format:'%H' -n 1 -- $filename)"
   LATEST_SHA_SHORT="$(git log --pretty=format:'%h' -n 1 -- $filename)"
@@ -9,6 +16,7 @@ for filename in _posts/*.html; do
   sed -i -e "s/%LATEST_SHA%/$LATEST_SHA/g" $filename
   sed -i -e "s/%LATEST_SHA_SHORT%/$LATEST_SHA_SHORT/g" $filename
   sed -i -e "s/%DATE_READABLE%/$DATE_READABLE/g" $filename
+  sed -i -e "s/$MAIN_JS/$MAIN_JS.$MAIN_JS_SHA.js/g" $filename
 done
 
 # Custom Geometry Club fingerprinting
