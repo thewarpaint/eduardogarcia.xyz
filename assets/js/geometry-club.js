@@ -86,10 +86,7 @@ function init() {
 
           Thumbnails.addThumbnail(imageBlobUrl);
           Preview.setActiveImage(imageBlobUrl);
-
-          App.hideCaptureArea();
-          App.showSelectionArea();
-          location.href = '#selection-area';
+          App.showOnlySelectionArea();
           Stream.stop();
 
           Logger.log('Photo captured successfully, size: ' + blob.size);
@@ -120,14 +117,16 @@ var App = (function () {
   function App() {
     this.$startApp = null;
     this.$captureArea = null;
+    this.$introArea = null;
     this.$selectionArea = null;
   }
 
   App.prototype.init = function () {
     this.$startApp = document.getElementById('start-app');
     this.$captureArea = document.getElementById('capture-area');
+    this.$introArea = document.getElementById('intro-area');
     this.$selectionArea = document.getElementById('selection-area');
-    this.$startApp.onclick = this.goFullscreen.bind(this);
+    this.$startApp.onclick = this.start.bind(this);
 
     // Global error handler
     window.onerror = function(message, sourceUrl, lineNumber, columnNumber, error) {
@@ -148,6 +147,18 @@ var App = (function () {
     }
   };
 
+  App.prototype.showOnlyCaptureArea = function () {
+    this.showCaptureArea();
+    this.hideIntroArea();
+    this.hideSelectionArea();
+  };
+
+  App.prototype.showOnlySelectionArea = function () {
+    this.showSelectionArea();
+    this.hideIntroArea();
+    this.hideCaptureArea();
+  };
+
   App.prototype.showCaptureArea = function () {
     this.$captureArea.classList.remove('hide');
   };
@@ -156,12 +167,25 @@ var App = (function () {
     this.$captureArea.classList.add('hide');
   };
 
+  App.prototype.showIntroArea = function () {
+    this.$introArea.classList.remove('hide');
+  };
+
+  App.prototype.hideIntroArea = function () {
+    this.$introArea.classList.add('hide');
+  };
+
   App.prototype.showSelectionArea = function () {
     this.$selectionArea.classList.remove('hide');
   };
 
   App.prototype.hideSelectionArea = function () {
     this.$selectionArea.classList.add('hide');
+  };
+
+  App.prototype.start = function () {
+    this.showOnlyCaptureArea();
+    this.goFullscreen();
   };
 
   App.prototype.goFullscreen = function () {
@@ -309,8 +333,7 @@ var Preview = (function () {
   };
 
   Preview.prototype.returnToCaptureArea = function () {
-    App.hideSelectionArea();
-    App.showCaptureArea();
+    App.showOnlyCaptureArea();
     Stream.start();
   };
 
