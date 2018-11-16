@@ -73,26 +73,28 @@ permalink: /blog/geometry-club
 
       <canvas id="canvas"></canvas>
 
-      <button id="switch-camera-button"
-              class="btn">
-        🔄 camera
-      </button>
+      <div class="actions">
+        <button id="switch-camera-button"
+                class="btn">
+          🔄 camera
+        </button>
 
-      <button id="capture-snapshot-button"
-              class="btn action-capture-snapshot action-capture-snapshot--enabled">
-        <span class="action-capture-snapshot__enabled-legend">
-          📸 capture
-        </span>
+        <button id="capture-snapshot-button"
+                class="btn action-capture-snapshot action-capture-snapshot--enabled">
+          <span class="action-capture-snapshot__enabled-legend">
+            📸 capture
+          </span>
 
-        <span class="action-capture-snapshot__disabled-legend">
-          ⏳ wait...
-        </span>
-      </button>
+          <span class="action-capture-snapshot__disabled-legend">
+            ⏳ wait...
+          </span>
+        </button>
 
-      <button id="toggle-camera-button"
-              class="btn action-toggle-camera action-toggle-camera--on">
-        ⏹️ camera
-      </button>
+        <button id="toggle-camera-button"
+                class="btn action-toggle-camera action-toggle-camera--on">
+          ⏹️ camera
+        </button>
+      </div>
     </section>
 
     <section id="selection-area"
@@ -105,7 +107,7 @@ permalink: /blog/geometry-club
         <figcaption>Press and hold, then select "Download"</figcaption>
       </figure>
 
-      <div>
+      <div class="actions">
         <button id="remove-image"
                 class="btn">
           Remove image

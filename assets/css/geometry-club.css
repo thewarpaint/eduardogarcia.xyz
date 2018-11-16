@@ -91,6 +91,10 @@ img {
   border: 2px solid blue;
 }
 
+.actions {
+  text-align: center;
+}
+
 .btn {
   color: #ffffff;
   background-color: #000000;
