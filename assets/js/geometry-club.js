@@ -82,7 +82,7 @@ function init() {
 
       imageCapture.takePhoto(photoSettings)
         .then(function (blob) {
-          var imageBlobUrl = URL.createObjectURL(blob);
+          var imageBlobUrl = BlobHelper.createURL(blob);
 
           Thumbnails.addThumbnail(imageBlobUrl);
           Preview.setActiveImage(imageBlobUrl);
@@ -239,12 +239,27 @@ function toggleCaptureSnapshotButton(enabled) {
   captureSnapshotButton.classList.toggle('action-capture-snapshot--disabled', !enabled);
 }
 
-function revokeBlobURL(url) {
-  if (url.indexOf('blob') !== -1) {
-    URL.revokeObjectURL(url);
-    Logger.log('Revoking URL: ' + url);
+var BlobHelper = (function () {
+  function BlobHelper() {
   }
-}
+
+  BlobHelper.prototype.createURL = function (blob) {
+    var blobUrl = URL.createObjectURL(blob);
+
+    Logger.log('Creating URL: ' + blobUrl);
+
+    return blobUrl;
+  };
+
+  BlobHelper.prototype.revokeURL = function (url) {
+    if (url.indexOf('blob:') !== -1) {
+      URL.revokeObjectURL(url);
+      Logger.log('Revoking URL: ' + url);
+    }
+  };
+
+  return new BlobHelper();
+})();
 
 var Stream = (function () {
   function Stream() {
@@ -327,9 +342,9 @@ var Preview = (function () {
   };
 
   Preview.prototype.removeActiveImage = function () {
-    Logger.log('[wip] Trying to remove active image ' + this.activeImage);
+    Logger.log('Removing active image ' + this.activeImage);
     Thumbnails.remove(this.activeImage);
-    revokeBlobURL(this.activeImage);
+    BlobHelper.revokeURL(this.activeImage);
   };
 
   Preview.prototype.returnToCaptureArea = function () {
