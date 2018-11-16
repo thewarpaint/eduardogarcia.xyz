@@ -1,5 +1,6 @@
 body {
-  background-color: white;
+  color: #ffffff;
+  background-color: #000000;
 }
 
 video {
@@ -93,4 +94,11 @@ img {
 
 .thumbnail-item--selected {
   border: 2px solid blue;
+}
+
+.btn {
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
 }
