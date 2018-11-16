@@ -1,9 +1,9 @@
 {
-  "short_name": "Geometry Club",
+  "short_name": "GeoClub",
   "name": "Geometry Club",
   "icons": [],
   "start_url": "blog/geometry-club.html",
-  "display": "browser",
+  "display": "fullscreen",
   "orientation": "portrait-primary",
   "background_color": "#000000",
   "theme_color": "#000000"
