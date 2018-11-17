@@ -81,8 +81,8 @@ img {
   height: 25vw;
   max-width: 15rem;
   max-height: 15rem;
-  object-fit: cover;
-  contain: strict;
+  /*object-fit: cover;
+  contain: strict;*/
   box-sizing: border-box;
 }
 
