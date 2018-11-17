@@ -235,8 +235,6 @@ var Logger = (function () {
 
 function toggleCaptureSnapshotButton(enabled) {
   captureSnapshotButton.disabled = !enabled;
-  captureSnapshotButton.classList.toggle('action-capture-snapshot--enabled', enabled);
-  captureSnapshotButton.classList.toggle('action-capture-snapshot--disabled', !enabled);
 }
 
 var BlobHelper = (function () {
