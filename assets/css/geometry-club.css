@@ -74,10 +74,6 @@ img {
   height: 25vw;
   max-width: 15rem;
   max-height: 15rem;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-sizing: border-box;
 }
 
 .thumbnail {
@@ -85,10 +81,12 @@ img {
   height: 25vw;
   max-width: 15rem;
   max-height: 15rem;
+  object-fit: cover;
+  box-sizing: border-box;
 }
 
-.thumbnail-item--selected {
-  border: 2px solid blue;
+.thumbnail-item--selected .thumbnail {
+  border: 2px solid white;
 }
 
 .actions {
