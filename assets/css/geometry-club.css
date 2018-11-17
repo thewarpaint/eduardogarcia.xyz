@@ -1,4 +1,5 @@
 body {
+  margin: 0;
   color: #ffffff;
   background-color: #000000;
 }
@@ -21,7 +22,7 @@ img {
 }
 
 .intro-area {
-  margin-bottom: 2rem;
+  margin: 1rem;
 }
 
 .video--overlay {
@@ -44,7 +45,6 @@ img {
 .video-wrapper {
   background-color: #000000;
   position: relative;
-  margin: -1rem -1rem 0;
   height: 100vmin;
   overflow: hidden;
   text-align: center;
@@ -62,12 +62,11 @@ img {
 
 .capture-image-wrapper {
   text-align: center;
-  margin-left: -1rem;
-  margin-right: -1rem;
+  margin: 0 0 1rem;
 }
 
 .thumbnail-list {
-  margin: 0 -1rem;
+  margin: 0;
   list-style-type: none;
   padding-left: 0;
 }
