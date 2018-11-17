@@ -20,6 +20,10 @@ img {
   max-width: 100vw;
 }
 
+.intro-area {
+  margin-bottom: 2rem;
+}
+
 .video--overlay {
   position: absolute;
   z-index: 2;
