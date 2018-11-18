@@ -101,18 +101,24 @@ img {
   background-color: rgba(255, 255, 255, .5);
 }
 
-@keyframes rotation {
+@keyframes rotation-cw {
 	0%   { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
+}
+
+@keyframes rotation-ccw {
+	0%   { transform: rotate(360deg); }
+	100% { transform: rotate(0deg); }
 }
 
 .capture-snapshot-btn:disabled {
   border-top-color: transparent;
   border-right-color: transparent;
-  animation: rotation 1.5s linear infinite;
+  animation: rotation-cw 1.5s linear infinite;
 }
 
-.capture-snapshot-btn__inner {
+.capture-snapshot-btn::before {
+  content: "";
   position: absolute;
   top: calc(.5rem + 1px);
   left: calc(.5rem + 1px);
@@ -125,10 +131,10 @@ img {
   box-sizing: border-box;
 }
 
-.capture-snapshot-btn:disabled .capture-snapshot-btn__inner {
+.capture-snapshot-btn:disabled::before {
   border-bottom-color: transparent;
   border-left-color: transparent;
-  animation: rotation 1.5s linear infinite;
+  animation: rotation-ccw .75s linear infinite;
 }
 
 .btn {
