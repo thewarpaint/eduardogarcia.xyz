@@ -37,7 +37,7 @@ img {
 }
 
 .video-wrapper {
-  background-color: #000000;
+  background: url('../../assets/images/geometry-club-preview.jpg') center/cover #000000 no-repeat;
   position: relative;
   height: 100vmin;
   overflow: hidden;
