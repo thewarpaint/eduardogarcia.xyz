@@ -101,6 +101,17 @@ img {
   background-color: rgba(255, 255, 255, .5);
 }
 
+@keyframes rotation {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.capture-snapshot-btn:disabled {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  animation: rotation 1.5s linear infinite;
+}
+
 .capture-snapshot-btn__inner {
   position: absolute;
   top: calc(.5rem + 1px);
@@ -112,6 +123,12 @@ img {
   border: 1px solid #ffffff;
   border-radius: 50%;
   box-sizing: border-box;
+}
+
+.capture-snapshot-btn:disabled .capture-snapshot-btn__inner {
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  animation: rotation 1.5s linear infinite;
 }
 
 .btn {
