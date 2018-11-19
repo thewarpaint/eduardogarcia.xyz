@@ -15,6 +15,33 @@ img {
   max-width: 100vw;
 }
 
+.btn {
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  font-size: 1rem;
+  padding: .75rem 1rem;
+}
+
+.btn-round {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+}
+
+.link,
+.link:hover,
+.link:active,
+.link:visited {
+  color: #ffffff;
+}
+
 .intro-area {
   margin: 1rem;
 }
@@ -133,30 +160,6 @@ img {
   border-bottom-color: transparent;
   border-left-color: transparent;
   animation: rotation-ccw .75s linear infinite;
-}
-
-.btn {
-  color: #ffffff;
-  background-color: #000000;
-  border: 1px solid #ffffff;
-  border-radius: 2px;
-  font-size: 1rem;
-  padding: .75rem 1rem;
-}
-
-.btn-round {
-  display: inline-block;
-  background-color: transparent;
-  border: 1px solid #ffffff;
-  border-radius: 50%;
-  box-sizing: border-box;
-}
-
-.link,
-.link:hover,
-.link:active,
-.link:visited {
-  color: #ffffff;
 }
 
 .logger {
