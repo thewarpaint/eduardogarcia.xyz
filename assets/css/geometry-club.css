@@ -30,9 +30,9 @@ img {
   border: 1px solid #ffffff;
   border-radius: 50%;
   box-sizing: border-box;
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
 }
 
 .link,
@@ -108,8 +108,13 @@ img {
   text-align: center;
 }
 
-.actions-capture-snapshot {
+.actions-capture-area {
   margin: 2rem 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around; /* fallback */
+  justify-content: space-evenly;
 }
 
 .capture-snapshot-btn {
