@@ -87,14 +87,10 @@ img {
 
 .capture-snapshot-btn {
   position: relative;
-  display: inline-block;
   width: 5rem;
   height: 5rem;
   line-height: 5rem;
-  background-color: transparent;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  box-sizing: border-box;
+  border-width: 2px;
 }
 
 .capture-snapshot-btn:active {
@@ -122,10 +118,12 @@ img {
   position: absolute;
   top: calc(.5rem + 1px);
   left: calc(.5rem + 1px);
-  display: inline-block;
   width: 3.5rem;
   height: 3.5rem;
   line-height: 3.5rem;
+
+  /* .btn-round */
+  display: inline-block;
   border: 1px solid #ffffff;
   border-radius: 50%;
   box-sizing: border-box;
@@ -144,6 +142,14 @@ img {
   border-radius: 2px;
   font-size: 1rem;
   padding: .75rem 1rem;
+}
+
+.btn-round {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  box-sizing: border-box;
 }
 
 .link,
