@@ -1,10 +1,17 @@
 {
   "short_name": "GeoClub",
   "name": "Geometry Club",
-  "icons": [],
+  "icons": [
+    {
+      "src": "https://eduardogarcia.xyz/assets/images/geometry-club-preview.jpg",
+      "sizes": "640x640",
+      "type": "image/png"
+    }
+  ],
   "start_url": "blog/geometry-club.html",
   "display": "fullscreen",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
   "background_color": "#000000",
-  "theme_color": "#000000"
+  "theme_color": "#000000",
+  "lang": "en-UK"
 }
