@@ -309,12 +309,14 @@ var Preview = (function () {
     this.activeImage = null;
     this.$previewImage = null;
     this.$removeImage = null;
+    this.$downloadImage = null;
     this.$returnCaptureArea = null;
   }
 
   Preview.prototype.init = function () {
     this.$previewImage = document.getElementById('preview-image');
     this.$removeImage = document.getElementById('remove-image');
+    this.$downloadImage = document.getElementById('download-image');
     this.$returnCaptureArea = document.getElementById('return-capture-area');
 
     this.$removeImage.onclick = this.removeActiveImage.bind(this);
@@ -336,6 +338,7 @@ var Preview = (function () {
   Preview.prototype.setActiveImage = function (url) {
     this.activeImage = url;
     this.setPreviewImage(url);
+    this.$downloadImage.href = url;
     Thumbnails.setSelectedItem(url);
   };
 
