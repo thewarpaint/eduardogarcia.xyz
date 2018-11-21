@@ -33,6 +33,9 @@ img {
   width: 3rem;
   height: 3rem;
   line-height: 3rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 
 .link,
