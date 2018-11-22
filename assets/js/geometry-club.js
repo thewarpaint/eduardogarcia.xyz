@@ -225,7 +225,7 @@ var App = (function () {
       return;
     }
 
-    navigator.serviceWorker.register('/assets/js/geometry-club-service-worker.js', { scope: '/geometry-club' })
+    navigator.serviceWorker.register('/geometry-club-service-worker.js', { scope: '/' })
       .then(function (registration) {
         Logger.log('Service Worker registration succeeded, scope is ' + registration.scope);
       }).catch(function (error) {
