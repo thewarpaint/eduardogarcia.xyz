@@ -3,9 +3,14 @@
   "name": "Geometry Club",
   "icons": [
     {
+      "src": "https://eduardogarcia.xyz/assets/images/geometry-club-preview--128-128.jpg",
+      "sizes": "128x128",
+      "type": "image/jpg"
+    },
+    {
       "src": "https://eduardogarcia.xyz/assets/images/geometry-club-preview.jpg",
       "sizes": "640x640",
-      "type": "image/png"
+      "type": "image/jpg"
     }
   ],
   "start_url": "../../geometry-club",
