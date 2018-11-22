@@ -46,23 +46,32 @@ function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
 
-navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
-  videoDevices = deviceInfos.filter(function (deviceInfo) {
-    return deviceInfo.kind === 'videoinput';
-  });
+function init() {
+  App.init();
+  Logger.init();
+  Preview.init();
+  Thumbnails.init();
 
-  var backCameraIndex = videoDevices.findIndex(function (deviceInfo) {
-    return deviceInfo.label.indexOf('back') !== -1;
-  });
+  if (navigator.mediaDevices) {
+    navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
+      videoDevices = deviceInfos.filter(function (deviceInfo) {
+        return deviceInfo.kind === 'videoinput';
+      });
 
-  if (backCameraIndex !== -1) {
-    videoIndex = backCameraIndex;
+      var backCameraIndex = videoDevices.findIndex(function (deviceInfo) {
+        return deviceInfo.label.indexOf('back') !== -1;
+      });
+
+      if (backCameraIndex !== -1) {
+        videoIndex = backCameraIndex;
+      }
+
+      Stream.start();
+    });
+  } else {
+    Logger.log('navigator.mediaDevices not supported by the browser');
   }
 
-  Stream.start();
-});
-
-function init() {
   toggleCameraButton.onclick = function () {
     if (Stream.isActive()) {
       Stream.stop();
@@ -106,11 +115,6 @@ function init() {
       window.open(canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'), 'image');
     }
   };
-
-  App.init();
-  Logger.init();
-  Preview.init();
-  Thumbnails.init();
 }
 
 var App = (function () {
