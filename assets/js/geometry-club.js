@@ -148,7 +148,9 @@ var App = (function () {
       }
 
       return false;
-    }
+    };
+
+    this.initServiceWorker();
   };
 
   App.prototype.showOnlyCaptureArea = function () {
@@ -215,6 +217,20 @@ var App = (function () {
     } else {
       Logger.log('Fullscreen mode not supported');
     }
+  };
+
+  App.prototype.initServiceWorker = function () {
+    if (!'serviceWorker' in navigator) {
+      Logger.log('Service Workers not supported');
+      return;
+    }
+
+    navigator.serviceWorker.register('/assets/js/geometry-club-service-worker.js', { scope: '/geometry-club' })
+      .then(function (registration) {
+        Logger.log('Service Worker registration succeeded, scope is ' + registration.scope);
+      }).catch(function (error) {
+        Logger.log('Service Worker registration failed with ' + error);
+      });
   };
 
   return new App();
