@@ -1,4 +1,4 @@
-var CACHE_VERSION = 'cache-v%CACHE_VERSION%';
+var CACHE_VERSION = 'cache-v1';
 
 self.addEventListener('install', function (event) {
   addAssetsToCache(event);
@@ -16,6 +16,9 @@ self.addEventListener('fetch', function (event) {
     caches.match(event.request)
       .then(function (response) {
         return response || fetch(event.request);
+      })
+      .catch(function (error) {
+        console.error('Error matching request ' + event.request + ' in cache ' + CACHE_VERSION + ': ' + error);
       })
   );
 });
@@ -46,6 +49,7 @@ function removeOldCaches(cacheKeys) {
         return cacheKey !== CACHE_VERSION;
       })
       .map(function (cacheKey) {
+        console.log('Deleting cache ' + cacheKey);
         return caches.delete(cacheKey);
       })
   );
