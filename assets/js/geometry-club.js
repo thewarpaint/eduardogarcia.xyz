@@ -1,10 +1,5 @@
-var videoDevices = [];
 var video = document.querySelector('video');
-var switchCameraButton = document.getElementById('switch-camera-button');
-var toggleCameraButton = document.getElementById('toggle-camera-button');
-var captureSnapshotButton = document.getElementById('capture-snapshot-button');
 var canvas = window.canvas = document.getElementById('canvas');
-var videoIndex = 0;
 var mediaStreamTrack;
 var imageCapture;
 var imageCaptureMode = false;
@@ -49,45 +44,21 @@ function handleError(error) {
 function init() {
   App.init();
   Logger.init();
+  MainActions.init();
   Preview.init();
   Thumbnails.init();
 
   if (navigator.mediaDevices) {
     navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
-      videoDevices = deviceInfos.filter(function (deviceInfo) {
-        return deviceInfo.kind === 'videoinput';
-      });
-
-      var backCameraIndex = videoDevices.findIndex(function (deviceInfo) {
-        return deviceInfo.label.indexOf('back') !== -1;
-      });
-
-      if (backCameraIndex !== -1) {
-        videoIndex = backCameraIndex;
-      }
-
-      Stream.start();
+      Camera.initDevices(deviceInfos);
     });
   } else {
     Logger.log('navigator.mediaDevices not supported by the browser');
   }
 
-  toggleCameraButton.onclick = function () {
-    if (Stream.isActive()) {
-      Stream.stop();
-    } else {
-      Stream.start();
-    }
-  };
-
-  switchCameraButton.onclick = function () {
-    videoIndex = (videoIndex + 1) % videoDevices.length;
-    Stream.restart();
-  };
-
   captureSnapshotButton.onclick = function () {
     if (imageCaptureMode) {
-      toggleCaptureSnapshotButton(false);
+      MainActions.toggleCaptureSnapshotButton(false);
 
       imageCapture.takePhoto(photoSettings)
         .then(function (blob) {
@@ -104,7 +75,7 @@ function init() {
           console.error('takePhoto() error:', error)
         })
         .finally(function () {
-          toggleCaptureSnapshotButton(true);
+          MainActions.toggleCaptureSnapshotButton(true);
         });
     } else {
       canvas.width = video.videoWidth;
@@ -283,10 +254,6 @@ var Logger = (function () {
   return new Logger();
 })();
 
-function toggleCaptureSnapshotButton(enabled) {
-  captureSnapshotButton.disabled = !enabled;
-}
-
 var BlobHelper = (function () {
   function BlobHelper() {
   }
@@ -309,6 +276,68 @@ var BlobHelper = (function () {
   return new BlobHelper();
 })();
 
+var MainActions = (function () {
+  function MainActions() {
+    this.$switchCameraButton = null;
+    this.$toggleCameraButton = null;
+    this.$captureSnapshotButton = null;
+  }
+
+  MainActions.prototype.init = function () {
+    this.$switchCameraButton = document.getElementById('switch-camera-button');
+    this.$toggleCameraButton = document.getElementById('toggle-camera-button');
+    this.$captureSnapshotButton = document.getElementById('capture-snapshot-button');
+
+    this.$toggleCameraButton.onclick = function () {
+      Stream.toggle();
+    };
+
+    this.$switchCameraButton.onclick = function () {
+      Camera.switch();
+    };
+  };
+
+  MainActions.prototype.toggleCaptureSnapshotButton = function (enabled) {
+    this.$captureSnapshotButton.disabled = !enabled;
+  };
+
+  return new MainActions();
+})();
+
+var Camera = (function () {
+  function Camera() {
+    this._videoIndex = 0;
+    this._videoDevices = [];
+  }
+
+  Camera.prototype.initDevices = function (deviceInfos) {
+    this._videoDevices = deviceInfos.filter(function (deviceInfo) {
+      return deviceInfo.kind === 'videoinput';
+    });
+
+    var backCameraIndex = this._videoDevices.findIndex(function (deviceInfo) {
+      return deviceInfo.label.indexOf('back') !== -1;
+    });
+
+    if (backCameraIndex !== -1) {
+      this._videoIndex = backCameraIndex;
+    }
+
+    Stream.start();
+  };
+
+  Camera.prototype.switch = function () {
+    this._videoIndex = (this._videoIndex + 1) % this._videoDevices.length;
+    Stream.restart();
+  };
+
+  Camera.prototype.getActiveVideoDevice = function () {
+    return this._videoDevices[this._videoIndex];
+  };
+
+  return new Camera();
+})();
+
 var Stream = (function () {
   function Stream() {
     this._isStreamActive = false;
@@ -319,16 +348,18 @@ var Stream = (function () {
   };
 
   Stream.prototype.start = function () {
+    var videoDevice = Camera.getActiveVideoDevice();
     var constraints = {
       audio: false,
       video: {
         deviceId: {
-          exact: videoDevices[videoIndex].deviceId
+          exact: videoDevice.deviceId
         }
       }
     };
 
-    Logger.log('Switching to device: ' + videoDevices[videoIndex].label);
+    Logger.log('Switching to device: ' + videoDevice.label);
+
     navigator.mediaDevices.getUserMedia(constraints)
       .then(handleSuccess)
       .catch(handleError);
@@ -349,6 +380,14 @@ var Stream = (function () {
   Stream.prototype.restart = function () {
     this.stop();
     this.start();
+  };
+
+  Stream.prototype.toggle = function () {
+    if (Stream.isActive()) {
+      Stream.stop();
+    } else {
+      Stream.start();
+    }
   };
 
   return new Stream();
