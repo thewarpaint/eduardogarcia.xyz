@@ -120,17 +120,22 @@ function init() {
 var App = (function () {
   function App() {
     this.$startApp = null;
+    this.$addToHomeScreen = null;
     this.$captureArea = null;
     this.$introArea = null;
     this.$selectionArea = null;
+    this.deferredPrompt = null;
   }
 
   App.prototype.init = function () {
     this.$startApp = document.getElementById('start-app');
+    this.$addToHomeScreen = document.getElementById('add-to-home-screen');
     this.$captureArea = document.getElementById('capture-area');
     this.$introArea = document.getElementById('intro-area');
     this.$selectionArea = document.getElementById('selection-area');
+
     this.$startApp.onclick = this.start.bind(this);
+    this.$addToHomeScreen.addEventListener('click', this.onAddToHomeScreenClick.bind(this));
 
     // Global error handler
     window.onerror = function(message, sourceUrl, lineNumber, columnNumber, error) {
@@ -151,6 +156,7 @@ var App = (function () {
     };
 
     this.initServiceWorker();
+    this.addInstallPromptListener();
   };
 
   App.prototype.showOnlyCaptureArea = function () {
@@ -231,6 +237,30 @@ var App = (function () {
       }).catch(function (error) {
         Logger.log('Service Worker registration failed with ' + error);
       });
+  };
+
+  App.prototype.addInstallPromptListener = function () {
+    window.addEventListener('beforeinstallprompt', function (event) {
+      event.preventDefault();
+      this.deferredPrompt = event;
+      this.$addToHomeScreen.classList.remove('hide');
+    }.bind(this));
+  };
+
+  App.prototype.onAddToHomeScreenClick = function (event) {
+    this.$addToHomeScreen.classList.add('hide');
+    this.deferredPrompt.prompt();
+
+    this.deferredPrompt.userChoice
+      .then(function (choiceResult) {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the add to home screen prompt');
+        } else {
+          console.log('User dismissed the add to home screen prompt');
+        }
+
+        this.deferredPrompt = null;
+      }.bind(this));
   };
 
   return new App();
