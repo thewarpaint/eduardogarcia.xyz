@@ -1,21 +1,19 @@
 var video = document.querySelector('video');
 var canvas = window.canvas = document.getElementById('canvas');
 var mediaStreamTrack;
-var imageCapture;
-var imageCaptureMode = false;
 var photoSettings;
 
 function handleSuccess(stream) {
   window.stream = stream;
   video.srcObject = stream;
   mediaStreamTrack = stream.getVideoTracks()[0];
-  imageCapture = new ImageCapture(mediaStreamTrack);
-  imageCaptureMode = typeof imageCapture.getPhotoCapabilities === 'function';
+  Camera.imageCapture = new ImageCapture(mediaStreamTrack);
+  Camera.imageCaptureMode = typeof Camera.imageCapture.getPhotoCapabilities === 'function';
 
-  if (imageCaptureMode) {
+  if (Camera.imageCaptureMode) {
     Logger.log('Mode: image capture');
 
-    imageCapture.getPhotoCapabilities()
+    Camera.imageCapture.getPhotoCapabilities()
       .then(function (photoCapabilities) {
         photoSettings = {
           imageWidth: photoCapabilities.imageWidth.max,
@@ -55,37 +53,6 @@ function init() {
   } else {
     Logger.log('navigator.mediaDevices not supported by the browser');
   }
-
-  captureSnapshotButton.onclick = function () {
-    if (imageCaptureMode) {
-      MainActions.toggleCaptureSnapshotButton(false);
-
-      imageCapture.takePhoto(photoSettings)
-        .then(function (blob) {
-          var imageBlobUrl = BlobHelper.createURL(blob);
-
-          Thumbnails.addThumbnail(imageBlobUrl);
-          Preview.setActiveImage(imageBlobUrl);
-          App.showOnlySelectionArea();
-          Stream.stop();
-
-          Logger.log('Photo captured successfully, size: ' + blob.size);
-        })
-        .catch(function (error) {
-          console.error('takePhoto() error:', error)
-        })
-        .finally(function () {
-          MainActions.toggleCaptureSnapshotButton(true);
-        });
-    } else {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      canvas.getContext('2d')
-        .drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      window.open(canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'), 'image');
-    }
-  };
 }
 
 var App = (function () {
@@ -295,6 +262,10 @@ var MainActions = (function () {
     this.$switchCameraButton.onclick = function () {
       Camera.switch();
     };
+
+    this.$captureSnapshotButton.onclick = function () {
+      Camera.captureSnapshot();
+    };
   };
 
   MainActions.prototype.toggleCaptureSnapshotButton = function (enabled) {
@@ -308,6 +279,8 @@ var Camera = (function () {
   function Camera() {
     this._videoIndex = 0;
     this._videoDevices = [];
+    this.imageCapture = null;
+    this.imageCaptureMode = false;
   }
 
   Camera.prototype.initDevices = function (deviceInfos) {
@@ -333,6 +306,37 @@ var Camera = (function () {
 
   Camera.prototype.getActiveVideoDevice = function () {
     return this._videoDevices[this._videoIndex];
+  };
+
+  Camera.prototype.captureSnapshot = function () {
+    if (this.imageCaptureMode) {
+      MainActions.toggleCaptureSnapshotButton(false);
+
+      this.imageCapture.takePhoto(photoSettings)
+        .then(function (blob) {
+          var imageBlobUrl = BlobHelper.createURL(blob);
+
+          Thumbnails.addThumbnail(imageBlobUrl);
+          Preview.setActiveImage(imageBlobUrl);
+          App.showOnlySelectionArea();
+          Stream.stop();
+
+          Logger.log('Photo captured successfully, size: ' + blob.size);
+        })
+        .catch(function (error) {
+          console.error('takePhoto() error:', error)
+        })
+        .finally(function () {
+          MainActions.toggleCaptureSnapshotButton(true);
+        });
+    } else {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d')
+        .drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      window.open(canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'), 'image');
+    }
   };
 
   return new Camera();
