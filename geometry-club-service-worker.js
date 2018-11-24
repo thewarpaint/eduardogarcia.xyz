@@ -15,10 +15,11 @@ self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.match(event.request)
       .then(function (response) {
-        return response || fetch(event.request);
-      })
-      .catch(function (error) {
-        console.error('Error matching request ' + event.request + ' in cache ' + CACHE_VERSION + ': ' + error);
+        return response ||
+          fetch(event.request)
+            .catch(function (error) {
+              console.error('Error fetching request ' + event.request + ': ' + error);
+            });
       })
   );
 });
