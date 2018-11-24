@@ -387,10 +387,10 @@ var Stream = (function () {
   };
 
   Stream.prototype.toggle = function () {
-    if (Stream.isActive()) {
-      Stream.stop();
+    if (this.isActive()) {
+      this.stop();
     } else {
-      Stream.start();
+      this.start();
     }
   };
 
