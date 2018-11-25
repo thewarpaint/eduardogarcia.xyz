@@ -248,12 +248,14 @@ var MainActions = (function () {
     this.$switchCameraButton = null;
     this.$toggleCameraButton = null;
     this.$captureSnapshotButton = null;
+    this.$goToGalleryButton = null;
   }
 
   MainActions.prototype.init = function () {
     this.$switchCameraButton = document.getElementById('switch-camera-button');
     this.$toggleCameraButton = document.getElementById('toggle-camera-button');
     this.$captureSnapshotButton = document.getElementById('capture-snapshot-button');
+    this.$goToGalleryButton = document.getElementById('go-to-gallery-button');
 
     this.$toggleCameraButton.onclick = function () {
       Stream.toggle();
@@ -265,6 +267,11 @@ var MainActions = (function () {
 
     this.$captureSnapshotButton.onclick = function () {
       Camera.captureSnapshot();
+    };
+
+    this.$goToGalleryButton.onclick = function () {
+      App.showOnlySelectionArea();
+      Stream.stop();
     };
   };
 
@@ -318,8 +325,6 @@ var Camera = (function () {
 
           Thumbnails.addThumbnail(imageBlobUrl);
           Preview.setActiveImage(imageBlobUrl);
-          App.showOnlySelectionArea();
-          Stream.stop();
 
           Logger.log('Photo captured successfully, size: ' + blob.size);
         })
