@@ -1,48 +1,8 @@
-var video = document.querySelector('video');
-var canvas = window.canvas = document.getElementById('canvas');
-var mediaStreamTrack;
-var photoSettings;
-
-function handleSuccess(stream) {
-  window.stream = stream;
-  video.srcObject = stream;
-  mediaStreamTrack = stream.getVideoTracks()[0];
-  Camera.imageCapture = new ImageCapture(mediaStreamTrack);
-  Camera.imageCaptureMode = typeof Camera.imageCapture.getPhotoCapabilities === 'function';
-
-  if (Camera.imageCaptureMode) {
-    Logger.log('Mode: image capture');
-
-    Camera.imageCapture.getPhotoCapabilities()
-      .then(function (photoCapabilities) {
-        photoSettings = {
-          imageWidth: photoCapabilities.imageWidth.max,
-          imageHeight: photoCapabilities.imageHeight.max,
-        };
-
-        Logger.log('Photo quality: ' + photoCapabilities.imageWidth.max + 'px × ' +
-          photoCapabilities.imageHeight.max + 'px');
-      });
-
-    canvas.classList.add('hide');
-  } else {
-    Logger.log('Mode: canvas fallback');
-
-    canvas.classList.remove('hide');
-
-    canvas.width = 480;
-    canvas.height = 360;
-  }
-}
-
-function handleError(error) {
-  console.log('navigator.getUserMedia error: ', error);
-}
-
 function init() {
   App.init();
   Logger.init();
   MainActions.init();
+  Stream.init();
   Preview.init();
   Thumbnails.init();
 
@@ -288,6 +248,7 @@ var Camera = (function () {
     this._videoDevices = [];
     this.imageCapture = null;
     this.imageCaptureMode = false;
+    this.photoSettings = {};
   }
 
   Camera.prototype.initDevices = function (deviceInfos) {
@@ -315,11 +276,42 @@ var Camera = (function () {
     return this._videoDevices[this._videoIndex];
   };
 
+  Camera.prototype.setMediaStreamTrack = function (mediaStreamTrack) {
+    this.imageCapture = new ImageCapture(mediaStreamTrack);
+    this.imageCaptureMode = typeof this.imageCapture.getPhotoCapabilities === 'function';
+
+    if (this.imageCaptureMode) {
+      Logger.log('Mode: image capture');
+
+      this.imageCapture.getPhotoCapabilities()
+        .then(this.updatePhotoSettings.bind(this));
+
+      Stream.$canvas.classList.add('hide');
+    } else {
+      Logger.log('Mode: canvas fallback');
+
+      Stream.$canvas.classList.remove('hide');
+
+      Stream.$canvas.width = 480;
+      Stream.$canvas.height = 360;
+    }
+  };
+
+  Camera.prototype.updatePhotoSettings = function (photoCapabilities) {
+    this.photoSettings = {
+      imageWidth: photoCapabilities.imageWidth.max,
+      imageHeight: photoCapabilities.imageHeight.max,
+    };
+
+    Logger.log('Photo quality: ' + this.photoSettings.imageWidth + 'px × ' +
+      this.photoSettings.imageHeight + 'px');
+  };
+
   Camera.prototype.captureSnapshot = function () {
     if (this.imageCaptureMode) {
       MainActions.toggleCaptureSnapshotButton(false);
 
-      this.imageCapture.takePhoto(photoSettings)
+      this.imageCapture.takePhoto(this.photoSettings)
         .then(function (blob) {
           var imageBlobUrl = BlobHelper.createURL(blob);
 
@@ -335,12 +327,12 @@ var Camera = (function () {
           MainActions.toggleCaptureSnapshotButton(true);
         });
     } else {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      canvas.getContext('2d')
-        .drawImage(video, 0, 0, canvas.width, canvas.height);
+      Stream.$canvas.width = video.videoWidth;
+      Stream.$canvas.height = video.videoHeight;
+      Stream.$canvas.getContext('2d')
+        .drawImage(video, 0, 0, Stream.$canvas.width, Stream.$canvas.height);
 
-      window.open(canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'), 'image');
+      window.open(Stream.$canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'), 'image');
     }
   };
 
@@ -350,7 +342,15 @@ var Camera = (function () {
 var Stream = (function () {
   function Stream() {
     this._isStreamActive = false;
+    this.$video = null;
+    this.$canvas = null;
+    this.mediaStreamTrack = null;
   }
+
+  Stream.prototype.init = function () {
+    this.$video = document.getElementById('video');
+    this.$canvas = document.getElementById('canvas');
+  };
 
   Stream.prototype.isActive = function () {
     return this._isStreamActive;
@@ -370,8 +370,8 @@ var Stream = (function () {
     Logger.log('Switching to device: ' + videoDevice.label);
 
     navigator.mediaDevices.getUserMedia(constraints)
-      .then(handleSuccess)
-      .catch(handleError);
+      .then(this.onGetUserMediaSuccess.bind(this))
+      .catch(this.onGetUserMediaError.bind(this));
 
     this._isStreamActive = true;
   };
@@ -397,6 +397,17 @@ var Stream = (function () {
     } else {
       this.start();
     }
+  };
+
+  Stream.prototype.onGetUserMediaSuccess = function (stream) {
+    window.stream = stream;
+    this.$video.srcObject = stream;
+    this.mediaStreamTrack = stream.getVideoTracks()[0];
+    Camera.setMediaStreamTrack(this.mediaStreamTrack);
+  };
+
+  Stream.prototype.onGetUserMediaError = function (error) {
+    console.log('navigator.getUserMedia error: ', error);
   };
 
   return new Stream();
