@@ -1,4 +1,4 @@
-var CACHE_VERSION = 'cache-v1';
+var CACHE_VERSION = 'cache-v%COMMIT_SHA%';
 
 self.addEventListener('install', function (event) {
   addAssetsToCache(event);

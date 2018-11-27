@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+LATEST_REPO_SHA_SHORT=$(git log --pretty=format:'%h' -n 1)
+
 # Main JS fingerprinting
 MAIN_JS="main.js"
 MAIN_JS_PATH="assets/js/$MAIN_JS"
@@ -41,3 +43,4 @@ GEOMETRY_CLUB_SERVICE_WORKER="geometry-club-service-worker.js"
 sed -i -e "s/$MAIN_JS/$MAIN_JS.$MAIN_JS_SHA.js/g" $GEOMETRY_CLUB_SERVICE_WORKER
 sed -i -e "s/$GEOMETRY_CLUB_JS/$GEOMETRY_CLUB_JS.$GEOMETRY_CLUB_JS_SHA.js/g" $GEOMETRY_CLUB_SERVICE_WORKER
 sed -i -e "s/$GEOMETRY_CLUB_CSS/$GEOMETRY_CLUB_CSS.$GEOMETRY_CLUB_CSS_SHA.css/g" $GEOMETRY_CLUB_SERVICE_WORKER
+sed -i -e "s/%COMMIT_SHA%/$LATEST_REPO_SHA_SHORT/g" $GEOMETRY_CLUB_SERVICE_WORKER
