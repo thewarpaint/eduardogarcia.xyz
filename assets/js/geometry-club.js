@@ -23,6 +23,7 @@ var App = (function () {
     this.$introArea = null;
     this.$selectionArea = null;
     this.deferredPrompt = null;
+    this.worker = null;
   }
 
   App.prototype.init = function () {
@@ -55,6 +56,13 @@ var App = (function () {
 
     this.initServiceWorker();
     this.addInstallPromptListener();
+
+    if (window.Worker) {
+      this.worker = new Worker('geometry-club-worker.js');
+      this.worker.onmessage = function (event) {
+        Logger.log('URL created: ' + event.data.objectUrl);
+      };
+    }
   };
 
   App.prototype.showOnlyCaptureArea = function () {
@@ -186,9 +194,13 @@ var BlobHelper = (function () {
   }
 
   BlobHelper.prototype.createURL = function (blob) {
-    var blobUrl = URL.createObjectURL(blob);
+    // var blobUrl = URL.createObjectURL(blob);
 
-    Logger.log('Creating URL: ' + blobUrl);
+    // Logger.log('Creating URL: ' + blobUrl);
+
+    if (this.worker) {
+      this.worker.postMessage({ blob: blob });
+    }
 
     return blobUrl;
   };
