@@ -58,7 +58,7 @@ var App = (function () {
     this.addInstallPromptListener();
 
     if (window.Worker) {
-      this.worker = new Worker('geometry-club-worker.js');
+      this.worker = new Worker('assets/js/geometry-club-worker.js');
       this.worker.onmessage = function (event) {
         Logger.log('URL created: ' + event.data.objectUrl);
 
