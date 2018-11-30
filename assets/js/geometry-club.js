@@ -442,10 +442,12 @@ var Preview = (function () {
     this.$previewImage = document.getElementById('preview-image');
     this.$removeImage = document.getElementById('remove-image');
     this.$downloadImage = document.getElementById('download-image');
+    this.$shareImage = document.getElementById('share-image');
     this.$returnCaptureArea = document.getElementById('return-capture-area');
 
     this.$removeImage.onclick = this.removeActiveImage.bind(this);
     this.$returnCaptureArea.onclick = this.returnToCaptureArea.bind(this);
+    this.$shareImage.onclick = this.shareActiveImage.bind(this);
   };
 
   Preview.prototype.show = function () {
@@ -471,6 +473,17 @@ var Preview = (function () {
     Logger.log('Removing active image ' + this.activeImage);
     Thumbnails.remove(this.activeImage);
     BlobHelper.revokeURL(this.activeImage);
+  };
+
+  Preview.prototype.shareActiveImage = function () {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Geometry Club image',
+        url: this.activeImage,
+      })
+      .then(() => Logger.log('URL ' + this.activeImage + ' successfully shared'))
+      .catch((error) => Logger.log('Error sharing: ' + error));
+    }
   };
 
   Preview.prototype.returnToCaptureArea = function () {
