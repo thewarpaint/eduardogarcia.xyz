@@ -61,6 +61,9 @@ var App = (function () {
       this.worker = new Worker('geometry-club-worker.js');
       this.worker.onmessage = function (event) {
         Logger.log('URL created: ' + event.data.objectUrl);
+
+        Thumbnails.addThumbnail(event.data.objectUrl);
+        Preview.setActiveImage(event.data.objectUrl);
       };
     }
   };
@@ -198,11 +201,11 @@ var BlobHelper = (function () {
 
     // Logger.log('Creating URL: ' + blobUrl);
 
-    if (this.worker) {
-      this.worker.postMessage({ blob: blob });
+    if (App.worker) {
+      App.worker.postMessage({ blob: blob });
     }
 
-    return blobUrl;
+    // return blobUrl;
   };
 
   BlobHelper.prototype.revokeURL = function (url) {
@@ -325,10 +328,11 @@ var Camera = (function () {
 
       this.imageCapture.takePhoto(this.photoSettings)
         .then(function (blob) {
-          var imageBlobUrl = BlobHelper.createURL(blob);
+          // var imageBlobUrl =
+          BlobHelper.createURL(blob);
 
-          Thumbnails.addThumbnail(imageBlobUrl);
-          Preview.setActiveImage(imageBlobUrl);
+          // Thumbnails.addThumbnail(imageBlobUrl);
+          // Preview.setActiveImage(imageBlobUrl);
 
           Logger.log('Photo captured successfully, size: ' + blob.size);
         })
