@@ -358,6 +358,7 @@ var Camera = (function () {
 var Stream = (function () {
   function Stream() {
     this._isStreamActive = false;
+    this.stream = null;
     this.$video = null;
     this.$canvas = null;
     this.mediaStreamTrack = null;
@@ -393,8 +394,8 @@ var Stream = (function () {
   };
 
   Stream.prototype.stop = function () {
-    if (window.stream) {
-      window.stream.getTracks().forEach(function (track) {
+    if (this.stream) {
+      this.stream.getTracks().forEach(function (track) {
         track.stop();
       });
     }
@@ -416,14 +417,14 @@ var Stream = (function () {
   };
 
   Stream.prototype.onGetUserMediaSuccess = function (stream) {
-    window.stream = stream;
+    this.stream = stream;
     this.$video.srcObject = stream;
     this.mediaStreamTrack = stream.getVideoTracks()[0];
     Camera.setMediaStreamTrack(this.mediaStreamTrack);
   };
 
   Stream.prototype.onGetUserMediaError = function (error) {
-    console.log('navigator.getUserMedia error: ', error);
+    Logger.log('navigator.getUserMedia error: ', error);
   };
 
   return new Stream();
