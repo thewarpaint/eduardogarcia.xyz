@@ -232,6 +232,8 @@ var MainActions = (function () {
     this.$toggleCameraButton = document.getElementById('toggle-camera-button');
     this.$captureSnapshotButton = document.getElementById('capture-snapshot-button');
     this.$goToGalleryButton = document.getElementById('go-to-gallery-button');
+    this.$goToGalleryDefault = document.getElementById('go-to-gallery-default');
+    this.$goToGalleryThumbnail = document.getElementById('go-to-gallery-thumbnail');
 
     this.$toggleCameraButton.onclick = function () {
       Stream.toggle();
@@ -253,6 +255,12 @@ var MainActions = (function () {
 
   MainActions.prototype.toggleCaptureSnapshotButton = function (enabled) {
     this.$captureSnapshotButton.disabled = !enabled;
+  };
+
+  MainActions.prototype.setGoToGalleryThumbnail = function (url) {
+    this.$goToGalleryDefault.classList.add('hide');
+    this.$goToGalleryThumbnail.classList.remove('hide');
+    this.$goToGalleryThumbnail.style.backgroundImage = 'url("' + url + '")';
   };
 
   return new MainActions();
@@ -588,6 +596,7 @@ var ImageHelper = (function () {
 
         Thumbnails.addThumbnail(objectUrl);
         Preview.setActiveImage(objectUrl);
+        MainActions.setGoToGalleryThumbnail(objectUrl);
 
         canvas = null;
       });

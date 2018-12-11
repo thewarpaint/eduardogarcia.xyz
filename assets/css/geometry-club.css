@@ -38,6 +38,11 @@ img {
   text-decoration: none;
 }
 
+.btn-unstyled {
+  border: 0;
+  background-color: transparent;
+}
+
 .link,
 .link:hover,
 .link:active,
@@ -171,4 +176,14 @@ img {
   text-align: left;
   font-size: .75rem;
   white-space: pre-wrap;
+}
+
+.go-to-gallery-thumbnail {
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: .5rem;
 }
