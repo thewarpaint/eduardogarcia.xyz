@@ -62,8 +62,7 @@ var App = (function () {
       this.worker.onmessage = function (event) {
         Logger.log('URL created: ' + event.data.objectUrl);
 
-        Thumbnails.addThumbnail(event.data.objectUrl);
-        Preview.setActiveImage(event.data.objectUrl);
+        ImageHelper.generateThumbnail(event.data.objectUrl);
       };
     }
   };
@@ -196,16 +195,18 @@ var BlobHelper = (function () {
   function BlobHelper() {
   }
 
-  BlobHelper.prototype.createURL = function (blob) {
-    // var blobUrl = URL.createObjectURL(blob);
+  BlobHelper.prototype.createURL = function (blob, doAsync) {
+    if (doAsync) {
+      if (App.worker) {
+        App.worker.postMessage({ blob: blob });
+      }
+    } else {
+      var blobUrl = URL.createObjectURL(blob);
 
-    // Logger.log('Creating URL: ' + blobUrl);
+      Logger.log('Creating URL: ' + blobUrl);
 
-    if (App.worker) {
-      App.worker.postMessage({ blob: blob });
+      return blobUrl;
     }
-
-    // return blobUrl;
   };
 
   BlobHelper.prototype.revokeURL = function (url) {
@@ -328,12 +329,7 @@ var Camera = (function () {
 
       this.imageCapture.takePhoto(this.photoSettings)
         .then(function (blob) {
-          // var imageBlobUrl =
-          BlobHelper.createURL(blob);
-
-          // Thumbnails.addThumbnail(imageBlobUrl);
-          // Preview.setActiveImage(imageBlobUrl);
-
+          BlobHelper.createURL(blob, true);
           Logger.log('Photo captured successfully, size: ' + blob.size);
         })
         .catch(function (error) {
@@ -350,6 +346,15 @@ var Camera = (function () {
 
       window.open(Stream.$canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'), 'image');
     }
+  };
+
+  Camera.prototype.getDimensions = function () {
+    // Maybe instead of isPortrait, we could have orientation: 'portrait' or 'landscape'
+    return {
+      min: Math.min(this.photoSettings.imageWidth, this.photoSettings.imageHeight),
+      max: Math.max(this.photoSettings.imageWidth, this.photoSettings.imageHeight),
+      isPortrait: this.photoSettings.imageHeight > this.photoSettings.imageWidth,
+    };
   };
 
   return new Camera();
@@ -546,6 +551,62 @@ var Thumbnails = (function () {
   };
 
   return new Thumbnails();
+})();
+
+var ImageHelper = (function () {
+  function ImageHelper() {
+    this.thumbnailSizes = {
+      small: 256,
+      large: 1024,
+    };
+  }
+
+  // TODO: Try to move to worker thread
+  ImageHelper.prototype.generateThumbnail = function (imageUrl) {
+    var canvas = document.createElement('canvas');
+    canvas.width = this.thumbnailSizes.small;
+    canvas.height = this.thumbnailSizes.small;
+
+    var canvasContext = canvas.getContext('2d');
+    var image = new Image();
+
+    image.onload = function () {
+      var dimensions = window.ImageHelper.getDimensions(this);
+
+      // We basically need a square area centered on the rectangular camera, so:
+      var offset = (dimensions.max - dimensions.min) / 2;
+      var source = {
+        x: dimensions.isPortrait ? 0 : offset,
+        y: dimensions.isPortrait ? offset : 0,
+      };
+
+      canvasContext.drawImage(image, source.x, source.y, dimensions.min, dimensions.min,
+                              0, 0, window.ImageHelper.thumbnailSizes.small, window.ImageHelper.thumbnailSizes.small);
+
+      canvas.toBlob(function (blob) {
+        var objectUrl = BlobHelper.createURL(blob, false);
+
+        Thumbnails.addThumbnail(objectUrl);
+        Preview.setActiveImage(objectUrl);
+
+        canvas = null;
+      });
+
+      image = null;
+    };
+
+    image.src = imageUrl;
+  };
+
+  ImageHelper.prototype.getDimensions = function ($imageElement) {
+    return {
+      min: Math.min($imageElement.width, $imageElement.height),
+      max: Math.max($imageElement.width, $imageElement.height),
+      isPortrait: $imageElement.height > $imageElement.width,
+    };
+  };
+
+  return new ImageHelper();
 })();
 
 init();
