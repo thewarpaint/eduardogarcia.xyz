@@ -189,3 +189,7 @@ img {
   background-repeat: no-repeat;
   border-radius: .5rem;
 }
+
+.capture-area-action {
+  flex: 0 0 5rem;
+}
