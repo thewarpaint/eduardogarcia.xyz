@@ -40,7 +40,9 @@ img {
 
 .btn-unstyled {
   border: 0;
+  padding: 0;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .link,
@@ -192,4 +194,5 @@ img {
 
 .capture-area-action {
   flex: 0 0 5rem;
+  height: 5rem;
 }
