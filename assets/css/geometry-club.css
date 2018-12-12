@@ -84,6 +84,8 @@ img {
   margin: 0 0 1rem;
 }
 
+.capture-image-wrapper img { width: 100%; }
+
 .thumbnail-list {
   margin: 0;
   list-style-type: none;
