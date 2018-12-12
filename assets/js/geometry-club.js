@@ -203,7 +203,7 @@ var BlobHelper = (function () {
     } else {
       var blobUrl = URL.createObjectURL(blob);
 
-      Logger.log('Creating URL: ' + blobUrl);
+      Logger.log('URL created: ' + blobUrl);
 
       return blobUrl;
     }
