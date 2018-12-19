@@ -45,6 +45,10 @@ img {
   cursor: pointer;
 }
 
+.btn--opaque {
+  background-color: rgba(255, 255, 255, .25);
+}
+
 .link,
 .link:hover,
 .link:active,
@@ -195,4 +199,13 @@ img {
 .capture-area-action {
   flex: 0 0 5rem;
   height: 5rem;
+}
+
+.selection-area__actions {
+  width: 100%;
+  position: fixed;
+  justify-content: flex-start;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
 }
