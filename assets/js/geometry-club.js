@@ -174,23 +174,6 @@ var App = (function () {
   return new App();
 })();
 
-var Logger = (function () {
-  function Logger() {
-    this.$log = null;
-  }
-
-  Logger.prototype.init = function() {
-    this.$log = document.getElementById('logger');
-  };
-
-  Logger.prototype.log = function(string) {
-    console.log(string);
-    logger.innerHTML += '\n⇒ ' + string;
-  };
-
-  return new Logger();
-})();
-
 var BlobHelper = (function () {
   function BlobHelper() {
   }

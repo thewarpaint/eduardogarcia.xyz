@@ -2,6 +2,8 @@
 
 LATEST_REPO_SHA_SHORT=$(git log --pretty=format:'%h' -n 1)
 
+# Build Typescript
+
 # Main JS fingerprinting
 MAIN_JS="main.js"
 MAIN_JS_PATH="assets/js/$MAIN_JS"
