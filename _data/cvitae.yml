@@ -1,0 +1,21 @@
+jobs:
+  - companyName: eSailors
+    companyWebsite: https://www.esailors.de/
+    title: Software Engineer
+    city: Hamburg
+    startYear: 2016
+    endYear: now
+
+  - companyName: Ooyala
+    companyWebsite: https://ooyala.com/
+    title: Frontend Team Lead + Senior Frontend Engineer
+    city: Guadalajara
+    startYear: 2014
+    endYear: 2016
+
+  - companyName: Vinco Orbis
+    companyWebsite: https://www.esailors.de/
+    title: Project Manager + Full Stack Developer
+    city: Mexico City
+    startYear: 2010
+    endYear: 2014

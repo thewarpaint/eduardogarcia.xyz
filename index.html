@@ -1,3 +1,6 @@
+---
+---
+{%- assign cvitae = site.data.cvitae -%}
 <HEAD>
   <TITLE>Eduardo Garc&iacute;a</TITLE>
 </HEAD>
@@ -12,12 +15,10 @@
   </UL>
   <H3>Professional experience</H3>
   <DL>
-    <DT><A HREF="https://www.esailors.de/">eSailors</A></DT>
-    <DD>2016 - now, Software Engineer, Hamburg</DD>
-    <DT><A HREF="http://ooyala.com/">Ooyala</A></DT>
-    <DD>2014 - 2016, Senior Frontend Engineer, Guadalajara</DD>
-    <DT><A HREF="http://vincoorbis.com/">Vinco Orbis Proyectos</A></DT>
-    <DD>2010 - 2014, Project Manager, Full Stack Developer, Mexico City</DD>
+    {% for job in cvitae.jobs %}
+    <DT><A HREF="{{ job.companyWebsite }}">{{ job.companyName }}</A></DT>
+    <DD>{{ job.startYear }} - {{ job.endYear }}, {{ job.title }}, {{ job.city }}</DD>
+    {% endfor %}
   </DL>
   <H3>Academic background</H3>
   <DL>
