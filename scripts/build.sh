@@ -3,6 +3,7 @@
 LATEST_REPO_SHA_SHORT=$(git log --pretty=format:'%h' -n 1)
 
 # Build Typescript
+./node_modules/typescript/bin/tsc --build assets/ts/tsconfig.json
 
 # Main JS fingerprinting
 MAIN_JS="main.js"
