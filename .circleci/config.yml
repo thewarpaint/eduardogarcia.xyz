@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5.1
+      - image: circleci/ruby:2.5.3-node
 
     working_directory: ~/eduardogarcia-xyz
 
