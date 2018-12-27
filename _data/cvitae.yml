@@ -1,3 +1,16 @@
+links:
+  - title: GitHub
+    url: https://github.com/thewarpaint/
+
+  - title: LinkedIn
+    url: https://www.linkedin.com/in/eduardogarciaesp/
+
+  - title: E-Mail
+    url: mailto:eduardogarcia.xyz@gmail.com
+
+  - title: Source code of this page
+    url: https://github.com/thewarpaint/eduardogarcia.xyz/blob/master/index.html
+
 jobs:
   - companyName: eSailors
     companyWebsite: https://www.esailors.de/

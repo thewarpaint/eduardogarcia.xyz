@@ -8,10 +8,9 @@
   <H1>Eduardo Garc&iacute;a</H1>
   <H2>Software Engineer at <A HREF="https://www.esailors.de/">eSailors</A></H2>
   <UL>
-    <LI><A HREF="http://github.com/thewarpaint">GitHub</A></LI>
-    <LI><A HREF="https://www.linkedin.com/profile/view?id=352389770">LinkedIn</A></LI>
-    <LI><A HREF="mailto:emumaniacx@gmail.com">E-Mail</A></LI>
-    <LI><A HREF="http://github.com/thewarpaint/eduardogarcia.xyz/blob/master/1992">Source code</A></LI>
+    {% for link in cvitae.links %}
+    <LI><A HREF="{{ link.url }}">{{ link.title }}</A></LI>
+    {% endfor %}
   </UL>
   Psst, psst. There are no errors with this page. It's meant as an homage to
   <A HREF="http://info.cern.ch/hypertext/WWW/TheProject.html">The World Wide Web project</A>, one of the
