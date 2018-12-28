@@ -32,3 +32,32 @@ jobs:
     city: Mexico City
     startYear: 2010
     endYear: 2014
+
+projects:
+  - name: Caracteres
+    url: https://caracteres.io/
+    description: >
+      A collection of interesting letters, symbols, ligatures, etc. present in languages that share the
+      Roman alphabet.
+
+  - name: Trumpmit
+    url: https://thewarpaint.github.io/trumpmit/
+    description: >
+      Make Git Commit Messages Great Again!
+
+  - name: Geometry Club web app
+    url: https://eduardogarcia.xyz/geometry-club
+    description: >
+      A proof-of-concept web app for <A HREF="https://geometryclub.org/">the Geometry Club project.
+
+  - name: Hyperlogout
+    url: http://hyperlogout.co/
+    description: >
+      A website that will log you out from popular internet services that <EM>probably</EM> implement logout
+      in an unsafe way.
+
+  - name: Days without a new Adam Sandler movie dot com
+    url: http://dayswithoutanewadamsandlermovie.com/
+    description: >
+      We all wish the counter would just keep going, but sadly, time and time again it breaks our hearts and
+      goes back to zero.
