@@ -1,12 +1,13 @@
 ---
 ---
 {%- assign cvitae = site.data.cvitae -%}
+{%- assign currentJob = cvitae.jobs[0] -%}
 <HEAD>
   <TITLE>Eduardo Garc&iacute;a</TITLE>
 </HEAD>
 <BODY>
   <H1>Eduardo Garc&iacute;a</H1>
-  <H2>Software Engineer at <A HREF="https://www.esailors.de/">eSailors</A></H2>
+  <H2>{{ currentJob.title }} at <A HREF="{{ currentJob.companyWebsite }}">{{ currentJob.companyName }}</A></H2>
   <UL>
     {% for link in cvitae.links %}
     <LI><A HREF="{{ link.url }}">{{ link.title }}</A></LI>
