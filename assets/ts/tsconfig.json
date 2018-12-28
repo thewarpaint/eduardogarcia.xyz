@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "../js/",
+    "outDir": "../js/transpiled/",
     "sourceMap": true,
     "strictNullChecks": true,
     "module": "es6",
