@@ -24,10 +24,10 @@
   </DL>
   <H3>Academic background</H3>
   <DL>
-    <DT><A HREF="http://www.escom.ipn.mx/">Superior School of Computer Sciences (ESCOM)</A></DT>
-    <DD>BS in Computer Science, Engineer, Undergraduate (degree in progress)</DD>
-    <DT><A HREF="http://www.fundacionazteca.org/contenido.aspx?p=planteles">Instituto Fundaci&oacute;n Azteca</A></DT>
-    <DD>Computer Technician</DD>
+    {% for school in cvitae.schools %}
+    <DT><A HREF="{{ school.website }}">{{ school.name }}</A></DT>
+    <DD>{{ school.degree }}</DD>
+    {% endfor %}
   </DL>
   <H3>Blog</H3>
   <DL>

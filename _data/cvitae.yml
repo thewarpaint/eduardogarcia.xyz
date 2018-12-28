@@ -33,6 +33,14 @@ jobs:
     startYear: 2010
     endYear: 2014
 
+schools:
+  - name: Superior School of Computer Sciences (ESCOM)
+    website: http://www.escom.ipn.mx/
+    degree: BS in Computer Science, Engineer (undergraduate)
+  - name: Instituto Fundaci&oacute;n Azteca
+    website: http://www.fundacionazteca.org/Plantel-Azteca
+    degree: Computer Technician
+
 projects:
   - name: Caracteres
     url: https://caracteres.io/
