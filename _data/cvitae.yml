@@ -37,6 +37,7 @@ schools:
   - name: Superior School of Computer Sciences (ESCOM)
     website: http://www.escom.ipn.mx/
     degree: BS in Computer Science, Engineer (undergraduate)
+
   - name: Instituto Fundaci&oacute;n Azteca
     website: http://www.fundacionazteca.org/Plantel-Azteca
     degree: Computer Technician
@@ -69,3 +70,16 @@ projects:
     description: >
       We all wish the counter would just keep going, but sadly, time and time again it breaks our hearts and
       goes back to zero.
+
+languages:
+  - name: Spanish
+    level: native
+
+  - name: English
+    level: intermediate
+
+  - name: Italian
+    level: basic
+
+  - name: German
+    level: I can order food and most of the times I get what I wanted
