@@ -1,6 +1,3 @@
-// Quick and dirty hotfix to get a singleton working, only God can judge me
-Logger = new Logger();
-
 function init() {
   App.init();
   Logger.init();
