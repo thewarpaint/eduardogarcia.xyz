@@ -1,8 +1,8 @@
----
+<!-- ---
 permalink: /bandersnatch
 ---
 {%- assign postTitle = "Bandersnatch" -%}
-{%- assign postDescription = "TOY" -%}
+{%- assign postDescription = "TOY" -%} -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,6 +27,10 @@ permalink: /bandersnatch
     <meta property="og:image" content="{{ site.url }}/assets/images/geometry-club-preview.jpg">
 
     <style type="text/css">
+      html {
+        font-size: 16px;
+      }
+
       body {
         display: flex;
         flex-direction: column;
@@ -51,12 +55,24 @@ permalink: /bandersnatch
         text-align: center;
         text-shadow: 1px 1px 1px black;
         font-family: "Helvetica Neue", Helvetica, sans-serif;
-        font-weight: bold;
         color: white;
       }
 
       .question__text {
-        font-size: 3rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      @media (min-width: 720px) {
+        .question__text {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .question__text {
+          font-size: 3.75rem;
+        }
       }
 
       .answer {
@@ -69,13 +85,31 @@ permalink: /bandersnatch
 
       .answer__option {
         cursor: pointer;
-        font-size: 2rem;
+        font-size: 1rem;
+        font-weight: normal;
         text-transform: uppercase;
+        letter-spacing: .0625rem;
         opacity: .666;
+        border-bottom: 2px solid black;
+        transition-property: opacity, border;
+        transition-duration: .5s;
+      }
+
+      @media (min-width: 720px) {
+        .answer__option {
+          font-size: 2rem;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .answer__option {
+          font-size: 3rem;
+        }
       }
 
       .answer__option:hover {
         opacity: 1;
+        border-bottom-color: white;
       }
     </style>
   </head>
