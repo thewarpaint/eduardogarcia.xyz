@@ -1,8 +1,8 @@
-<!-- ---
+---
 permalink: /bandersnatch
 ---
 {%- assign postTitle = "Bandersnatch" -%}
-{%- assign postDescription = "TOY" -%} -->
+{%- assign postDescription = "TOY" -%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -111,12 +111,36 @@ permalink: /bandersnatch
         opacity: 1;
         border-bottom-color: white;
       }
+
+      .countdown__bar {
+        margin: 0 auto;
+        background-color: white;
+        height: .375rem;
+        width: 100%;
+        transition: width 10s linear;
+      }
+
+      .countdown__bar--running {
+        width: 0;
+      }
     </style>
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function (event) {
+        setTimeout(function () {
+          document.querySelector('.countdown__bar').classList.add('countdown__bar--running');
+        }, 1000);
+      });
+    </script>
   </head>
 
   <body>
     <section class="question">
       <h1 class="question__text">Do you want to watch it?</h1>
+    </section>
+
+    <section class="countdown">
+      <div class="countdown__bar"></div>
     </section>
 
     <section class="answer">
