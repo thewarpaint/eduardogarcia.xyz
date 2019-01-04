@@ -40,7 +40,8 @@ permalink: /bandersnatch
       }
 
       .question {
-        flex: 1 1 auto;
+        /* Adding an empty space on the bottom for mobile browsers */
+        flex: 0 0 calc(80vh - 3rem);
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -48,6 +49,12 @@ permalink: /bandersnatch
         background-repeat: no-repeat;
         background-size: cover;
         background-image: url("assets/images/bandersnatch.jpg");
+      }
+
+      @media (min-width: 720px) {
+        .question {
+          flex: 0 0 calc(80vh - .3125rem);
+        }
       }
 
       .question__text,
@@ -112,10 +119,14 @@ permalink: /bandersnatch
         border-bottom-color: white;
       }
 
+      .countdown {
+        flex: 0 0 .3125rem;
+      }
+
       .countdown__bar {
         margin: 0 auto;
         background-color: white;
-        height: .375rem;
+        height: .3125rem;
         width: 100%;
         transition: width 10s linear;
       }
