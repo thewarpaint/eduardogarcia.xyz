@@ -140,7 +140,39 @@ permalink: /bandersnatch
     </style>
 
     <script type="text/javascript">
+      // https://stackoverflow.com/a/901144
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+
       document.addEventListener('DOMContentLoaded', function (event) {
+        var imageUrl = getParameterByName('image-url');
+        var subtitle = getParameterByName('subtitle');
+        var optionLeft = getParameterByName('option-left');
+        var optionRight = getParameterByName('option-right');
+
+        if (imageUrl) {
+          document.querySelector('.question').style.backgroundImage = 'url("' + imageUrl + '")';
+        }
+
+        if (subtitle) {
+          document.querySelector('.question__text').innerText = subtitle;
+        }
+
+        if (optionLeft) {
+          document.querySelector('.answer__option--left').innerText = optionLeft;
+        }
+
+        if (optionRight) {
+          document.querySelector('.answer__option--right').innerText = optionRight;
+        }
+
         setTimeout(function () {
           document.querySelector('.countdown__bar').classList.add('countdown__bar--running');
         }, 1000);
