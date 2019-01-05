@@ -118,8 +118,20 @@ permalink: /bandersnatch
       }
 
       .answer__option:hover {
-        opacity: 1;
         border-bottom-color: white;
+      }
+
+      .answer__option:hover,
+      .answer__option--selected {
+        opacity: 1;
+      }
+
+      .answer__option--selected {
+        border-bottom-color: transparent !important;
+      }
+
+      .answer__option--hidden {
+        opacity: 0;
       }
 
       .countdown {
@@ -156,6 +168,8 @@ permalink: /bandersnatch
         var subtitle = getParameterByName('subtitle');
         var optionLeft = getParameterByName('option-left');
         var optionRight = getParameterByName('option-right');
+        var $optionLeftBtn = document.querySelector('.answer__option--left');
+        var $optionRightBtn = document.querySelector('.answer__option--right');
 
         if (imageUrl) {
           document.querySelector('.question').style.backgroundImage = 'url("' + imageUrl + '")';
@@ -166,12 +180,22 @@ permalink: /bandersnatch
         }
 
         if (optionLeft) {
-          document.querySelector('.answer__option--left').innerText = optionLeft;
+          $optionLeftBtn.innerText = optionLeft;
         }
 
         if (optionRight) {
-          document.querySelector('.answer__option--right').innerText = optionRight;
+          $optionRightBtn.innerText = optionRight;
         }
+
+        $optionLeftBtn.addEventListener('click', function () {
+          this.classList.add('answer__option--selected');
+          $optionRightBtn.classList.add('answer__option--hidden');
+        });
+
+        $optionRightBtn.addEventListener('click', function () {
+          this.classList.add('answer__option--selected');
+          $optionLeftBtn.classList.add('answer__option--hidden');
+        });
 
         setTimeout(function () {
           document.querySelector('.countdown__bar').classList.add('countdown__bar--running');
