@@ -184,6 +184,7 @@ permalink: /bandersnatch
       }
 
       document.addEventListener('DOMContentLoaded', function (event) {
+        var isPristine = true;
         var imageUrl = getParameterByName('image-url');
         var subtitle = getParameterByName('subtitle');
         var optionLeft = getParameterByName('option-left');
@@ -191,6 +192,10 @@ permalink: /bandersnatch
         var $optionLeftBtn = document.querySelector('.answer__option--left');
         var $optionRightBtn = document.querySelector('.answer__option--right');
         var $form = document.querySelector('form');
+
+        if (imageUrl || subtitle || optionLeft || optionRight) {
+          isPristine = false;
+        }
 
         if (imageUrl) {
           document.querySelector('.question').style.backgroundImage = 'url("' + imageUrl + '")';
@@ -230,6 +235,26 @@ permalink: /bandersnatch
 
         setTimeout(function () {
           document.querySelector('.countdown__bar').classList.add('countdown__bar--running');
+
+          setTimeout(function () {
+            var $optionSelected = document.querySelector('.answer__option--selected');
+
+            if (!$optionSelected) {
+              // Always select the left option if the user doesn't select any
+              $optionLeftBtn.classList.add('answer__option--selected');
+              $optionRightBtn.classList.add('answer__option--hidden');
+              $optionSelected = $optionLeftBtn;
+            }
+
+            if (isPristine) {
+              if ($optionSelected === $optionLeftBtn) {
+                showGenerator();
+              } else {
+                // Go to Black Mirror: Bandersnatch on Netflix
+                window.location.href = 'https://www.netflix.com/title/80988062';
+              }
+            }
+          }, 10500); // Give it some extra 500ms
         }, 1000);
 
         if (getParameterByName('generator') === 'true') {
@@ -241,7 +266,7 @@ permalink: /bandersnatch
 
   <body>
     <section class="question">
-      <h1 class="question__text">Do you want to watch it?</h1>
+      <h1 class="question__text">Do you want to generate a new one?</h1>
     </section>
 
     <section class="countdown">
@@ -249,8 +274,8 @@ permalink: /bandersnatch
     </section>
 
     <section class="answer">
-      <h2 class="answer__option answer__option--left">Fuck yeah</h2>
-      <h2 class="answer__option answer__option--right">Fuck nope</h2>
+      <h2 class="answer__option answer__option--left">Hell yeah</h2>
+      <h2 class="answer__option answer__option--right">Nah thanks</h2>
     </section>
 
     <section class="generator generator--hidden">
