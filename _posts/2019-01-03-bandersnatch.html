@@ -192,6 +192,10 @@ permalink: /bandersnatch
         var optionRight = getParameterByName('option-right');
         var $optionLeftBtn = document.querySelector('.answer__option--left');
         var $optionRightBtn = document.querySelector('.answer__option--right');
+        var $imageUrlInput = document.querySelector('input[name=imageUrl]');
+        var $subtitleInput = document.querySelector('input[name=subtitle]');
+        var $optionLeftInput = document.querySelector('input[name=optionLeft]');
+        var $optionRightInput = document.querySelector('input[name=optionRight]');
         var $form = document.querySelector('form');
 
         if (imageUrl || subtitle || optionLeft || optionRight) {
@@ -200,18 +204,22 @@ permalink: /bandersnatch
 
         if (imageUrl) {
           document.querySelector('.question').style.backgroundImage = 'url("' + imageUrl + '")';
+          $imageUrlInput.value = imageUrl;
         }
 
         if (subtitle) {
           document.querySelector('.question__text').innerText = subtitle;
+          $subtitleInput.value = subtitle;
         }
 
         if (optionLeft) {
           $optionLeftBtn.innerText = optionLeft;
+          $optionLeftInput.value = optionLeft;
         }
 
         if (optionRight) {
           $optionRightBtn.innerText = optionRight;
+          $optionRightInput.value = optionRight;
         }
 
         $optionLeftBtn.addEventListener('click', function () {
