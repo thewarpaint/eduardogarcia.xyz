@@ -17,10 +17,12 @@ img {
   max-width: 100%;
 }
 
-.body--narrow {
-  max-width: 50rem;
-  margin-left: auto;
-  margin-right: auto;
+@media(min-width: 720px) {
+  .body--narrow {
+    max-width: 688px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .title {
