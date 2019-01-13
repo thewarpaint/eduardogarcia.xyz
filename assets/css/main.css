@@ -13,6 +13,16 @@ body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
+img {
+  max-width: 100%;
+}
+
+.body--narrow {
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .title {
   margin-bottom: .5rem;
 }
