@@ -17,6 +17,10 @@ img {
   max-width: 100%;
 }
 
+figcaption {
+  text-align: center;
+}
+
 @media(min-width: 720px) {
   .body--narrow {
     max-width: 688px;
