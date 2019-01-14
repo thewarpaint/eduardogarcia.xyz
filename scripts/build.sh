@@ -5,6 +5,9 @@ LATEST_REPO_SHA_SHORT=$(git log --pretty=format:'%h' -n 1)
 # Build Typescript
 ./node_modules/typescript/bin/tsc --build assets/ts/tsconfig.json
 
+# Concatenate all files in transpiled into geometry-club-transpiled.js, then do some finger-printing magic
+for file in assets/js/transpiled/*.js; do (cat "${file}"; echo "") >> geometry-club-transpiled.js; done
+
 # Main JS fingerprinting
 MAIN_JS="main.js"
 MAIN_JS_PATH="assets/js/$MAIN_JS"
