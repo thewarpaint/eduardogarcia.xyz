@@ -4,6 +4,11 @@ options:
     forms:
       singular: campechano
       plural: campechanos
+  - key: LON
+    name: longaniza
+    forms:
+      singular: de longaniza
+      plural: de longaniza
   - key: PAS
     name: pastor
     forms:
@@ -14,3 +19,8 @@ options:
     forms:
       singular: de suadero
       plural: de suadero
+  - key: TRI
+    name: tripa
+    forms:
+      singular: de tripa
+      plural: de tripa
