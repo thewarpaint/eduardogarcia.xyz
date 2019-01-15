@@ -2,10 +2,17 @@
 permalink: /tacokeeper
 ---
 {%- assign options = site.data.tacokeeper.options -%}
+{%- assign postTitle = "TacoKeeper" -%}
+{%- assign postDescription = "Monitorea tus actividades gastronómicas" -%}
 <!DOCTYPE html>
-<html>
+<html lang="es-MX">
   <head>
-    <title>TacoKeeper</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="{{ postTitle }}">
+    <meta name="description" content="{{ postDescription }}">
+
+    <title>{{ postTitle }}</title>
 
     <style type="text/css">
       h2 {
