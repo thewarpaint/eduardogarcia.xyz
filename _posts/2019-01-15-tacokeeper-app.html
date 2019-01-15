@@ -12,6 +12,36 @@ permalink: /tacokeeper
         display: inline;
       }
     </style>
+
+    <script type="text/javascript">
+      var $tweetLink;
+      var model = {};
+      var twitterIntentUrl = 'https://twitter.com/intent/tweet?';
+
+      document.addEventListener('DOMContentLoaded', function (event) {
+        $tweetLink = document.getElementById('tweet');
+
+        var inputs = document.querySelectorAll('input');
+
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', function (event) {
+            model[this.name] = this.value;
+            updateHref();
+          });
+        }
+      });
+
+      function updateHref() {
+        var data = Object.keys(model)
+          .map(function (key) {
+            return key.replace('input-', '') + model[key];
+          })
+          .join('');
+
+        $tweetLink.href = twitterIntentUrl +
+          'text=' + data;
+      }
+    </script>
   </head>
 
   <body>
@@ -25,5 +55,8 @@ permalink: /tacokeeper
       <h2>{{ option.name | capitalize }}</h2>
     </div>
     {%- endfor -%}
+
+    <a href="https://twitter.com/intent/tweet"
+       id="tweet">Tweet</a>
   </body>
 </html>
