@@ -1,0 +1,16 @@
+options:
+  - key: CAM
+    name: campechano
+    forms:
+      singular: campechano
+      plural: campechanos
+  - key: PAS
+    name: pastor
+    forms:
+      singular: de al pastor
+      plural: de al pastor
+  - key: SUA
+    name: suadero
+    forms:
+      singular: de suadero
+      plural: de suadero

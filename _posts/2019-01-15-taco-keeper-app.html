@@ -1,0 +1,29 @@
+---
+permalink: /taco-keeper
+---
+{%- assign options = site.data.tacoKeeper.options -%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TacoKeeper</title>
+
+    <style type="text/css">
+      h2 {
+        display: inline;
+      }
+    </style>
+  </head>
+
+  <body>
+    {%- for option in options -%}
+    <div>
+      <input type="number"
+             name="input-{{ option.key }}"
+             value="0"
+             min="0"
+             max="99">
+      <h2>{{ option.name | capitalize }}</h2>
+    </div>
+    {%- endfor -%}
+  </body>
+</html>
