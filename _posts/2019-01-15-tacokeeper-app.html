@@ -15,8 +15,17 @@ permalink: /tacokeeper
     <title>{{ postTitle }}</title>
 
     <style type="text/css">
+      html {
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+      }
+
       h2 {
         display: inline;
+      }
+
+      .tweet-link {
+        color: white;
+        background-color: #1da1f2; /* Twitter blue */
       }
     </style>
 
@@ -118,6 +127,7 @@ permalink: /tacokeeper
     <div id="text"></div>
 
     <a href="https://twitter.com/intent/tweet"
+       class="tweet-link"
        id="tweet"
        target="_blank">Comparte en Twitter</a>
   </body>
