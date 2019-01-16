@@ -34,7 +34,7 @@ permalink: /tacokeeper
 
         for (var i = 0; i < inputs.length; i++) {
           inputs[i].addEventListener('input', function (event) {
-            model[this.name] = this.value;
+            model[this.name.replace('input-', '')] = this.value;
             updateHref();
           });
         }
@@ -43,7 +43,7 @@ permalink: /tacokeeper
       function updateHref() {
         var data = Object.keys(model)
           .map(function (key) {
-            return key.replace('input-', '') + model[key];
+            return key + model[key];
           })
           .join('');
 
