@@ -45,10 +45,13 @@ permalink: /tacokeeper
 
       function updateTweet() {
         var modelKeys = Object.keys(model);
-        var tweetText = 'Hoy me comí ';
+        var tweetText = 'Hoy comí ';
         var tweetHref = '';
 
         tweetText += modelKeys
+          .filter(function (key) {
+            return model[key] && parseInt(model[key], 10) > 0;
+          })
           .map(function (key) {
             return model[key] +
               (model[key] === '1'
