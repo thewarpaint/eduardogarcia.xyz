@@ -55,8 +55,8 @@ permalink: /tacokeeper
         var optionsMap = {};
 
         optionsArray
-          .forEach(function (key, value) {
-            optionsMap[key] = value;
+          .forEach(function (option) {
+            optionsMap[option.key] = option;
           });
 
         return optionsMap;
