@@ -47,9 +47,9 @@ permalink: /tacokeeper
         tweetText += modelKeys
           .map(function (key) {
             return model[key] +
-              model[key] === 1
+              (model[key] === '1'
                 ? ' taco ' + optionsMap[key].forms.singular
-                : ' tacos ' + optionsMap[key].forms.plural;
+                : ' tacos ' + optionsMap[key].forms.plural);
           })
           .join(', ');
 
