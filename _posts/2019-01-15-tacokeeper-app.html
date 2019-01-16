@@ -63,8 +63,11 @@ permalink: /tacokeeper
         tweetHref = tweetText + ' #tacokeeper ' +
           targetUrl + '?t=' +
           modelKeys
+            .filter(function (key) {
+              return model[key] && parseInt(model[key], 10) > 0;
+            })
             .map(function (key) {
-              return key + model[key];
+              return key + zeroPad(model[key]);
             })
             .join('');
 
@@ -82,6 +85,14 @@ permalink: /tacokeeper
           });
 
         return optionsMap;
+      }
+
+      function zeroPad(string) {
+        if (string.length === 1) {
+          return '0' + string;
+        }
+
+        return string;
       }
     </script>
   </head>
