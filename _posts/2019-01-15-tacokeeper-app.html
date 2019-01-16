@@ -41,14 +41,26 @@ permalink: /tacokeeper
       });
 
       function updateHref() {
-        var data = Object.keys(model)
+        var modelKeys = Object.keys(model);
+        var tweetText = 'Hoy me comí ';
+
+        tweetText += modelKeys
+          .map(function (key) {
+            return model[key] +
+              model[key] === 1
+                ? ' taco ' + optionsMap[key].forms.singular
+                : ' tacos ' + optionsMap[key].forms.plural;
+          })
+          .join(', ');
+
+        tweetText += modelKeys
           .map(function (key) {
             return key + model[key];
           })
           .join('');
 
         $tweetLink.href = twitterIntentUrl +
-          'text=' + data;
+          'text=' + encodeURIComponent(tweetText);
       }
 
       function getOptionsMap(optionsArray) {
