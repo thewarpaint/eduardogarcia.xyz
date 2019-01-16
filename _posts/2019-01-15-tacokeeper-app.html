@@ -22,6 +22,8 @@ permalink: /tacokeeper
 
     <script type="text/javascript">
       var $tweetLink;
+      var optionsArray = {{ options | jsonify }};
+      var optionsMap = getOptionsMap(optionsArray);
       var model = {};
       var twitterIntentUrl = 'https://twitter.com/intent/tweet?';
 
@@ -47,6 +49,17 @@ permalink: /tacokeeper
 
         $tweetLink.href = twitterIntentUrl +
           'text=' + data;
+      }
+
+      function getOptionsMap(optionsArray) {
+        var optionsMap = {};
+
+        optionsArray
+          .forEach(function (key, value) {
+            optionsMap[key] = value;
+          });
+
+        return optionsMap;
       }
     </script>
   </head>
