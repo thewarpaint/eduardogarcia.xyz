@@ -22,27 +22,31 @@ permalink: /tacokeeper
 
     <script type="text/javascript">
       var $tweetLink;
+      var $tweetText;
       var optionsArray = {{ options | jsonify }};
       var optionsMap = getOptionsMap(optionsArray);
       var model = {};
       var twitterIntentUrl = 'https://twitter.com/intent/tweet?';
+      var targetUrl = 'https://eduardogarcia.xyz/tacokeeper';
 
       document.addEventListener('DOMContentLoaded', function (event) {
         $tweetLink = document.getElementById('tweet');
+        $tweetText = document.getElementById('text');
 
         var inputs = document.querySelectorAll('input');
 
         for (var i = 0; i < inputs.length; i++) {
           inputs[i].addEventListener('input', function (event) {
             model[this.name.replace('input-', '')] = this.value;
-            updateHref();
+            updateTweet();
           });
         }
       });
 
-      function updateHref() {
+      function updateTweet() {
         var modelKeys = Object.keys(model);
         var tweetText = 'Hoy me comí ';
+        var tweetHref = '';
 
         tweetText += modelKeys
           .map(function (key) {
@@ -53,14 +57,17 @@ permalink: /tacokeeper
           })
           .join(', ');
 
-        tweetText += modelKeys
-          .map(function (key) {
-            return key + model[key];
-          })
-          .join('');
+        tweetHref = tweetText + ' #tacokeeper ' +
+          targetUrl + '?t=' +
+          modelKeys
+            .map(function (key) {
+              return key + model[key];
+            })
+            .join('');
 
+        $tweetText.innerText = tweetText;
         $tweetLink.href = twitterIntentUrl +
-          'text=' + encodeURIComponent(tweetText);
+          'text=' + encodeURIComponent(tweetHref);
       }
 
       function getOptionsMap(optionsArray) {
@@ -87,6 +94,8 @@ permalink: /tacokeeper
       <h2>{{ option.name | capitalize }}</h2>
     </div>
     {%- endfor -%}
+
+    <div id="text"></div>
 
     <a href="https://twitter.com/intent/tweet"
        id="tweet"
