@@ -37,7 +37,13 @@ permalink: /tacokeeper
 
         for (var i = 0; i < inputs.length; i++) {
           inputs[i].addEventListener('input', function (event) {
-            model[this.name.replace('input-', '')] = this.value;
+            var value = parseInt(this.value, 10);
+
+            if (isNaN(value)) {
+              value = 0;
+            }
+
+            model[this.name.replace('input-', '')] = value;
             updateTweet();
           });
         }
@@ -50,11 +56,11 @@ permalink: /tacokeeper
 
         tweetText += modelKeys
           .filter(function (key) {
-            return model[key] && parseInt(model[key], 10) > 0;
+            return model[key] > 0;
           })
           .map(function (key) {
-            return model[key] +
-              (model[key] === '1'
+            return model[key].toString() +
+              (model[key] === 1
                 ? ' taco ' + optionsMap[key].forms.singular
                 : ' tacos ' + optionsMap[key].forms.plural);
           })
@@ -64,7 +70,7 @@ permalink: /tacokeeper
           targetUrl + '?t=' +
           modelKeys
             .filter(function (key) {
-              return model[key] && parseInt(model[key], 10) > 0;
+              return model[key] > 0;
             })
             .map(function (key) {
               return key + zeroPad(model[key]);
@@ -87,12 +93,12 @@ permalink: /tacokeeper
         return optionsMap;
       }
 
-      function zeroPad(string) {
-        if (string.length === 1) {
-          return '0' + string;
+      function zeroPad(number) {
+        if (number <= 9) {
+          return '0' + number.toString();
         }
 
-        return string;
+        return number.toString();
       }
     </script>
   </head>
