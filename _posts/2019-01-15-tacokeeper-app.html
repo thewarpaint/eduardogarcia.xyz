@@ -17,10 +17,40 @@ permalink: /tacokeeper
     <style type="text/css">
       html {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 16px;
       }
 
       h2 {
         display: inline;
+      }
+
+      .input {
+        border: none;
+        border-bottom: .125rem solid grey;
+        color: grey;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      .input:focus {
+        border-bottom-color: red;
+        color: red;
+      }
+
+      .input::-webkit-inner-spin-button,
+      .input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+        margin: 0;
+      }
+
+      .option__name {
+        font-size: 1.5rem;
+        color: grey;
+      }
+
+      .input:focus + .option__name {
+        color: red;
       }
 
       .tweet-link {
@@ -116,11 +146,12 @@ permalink: /tacokeeper
     {%- for option in options -%}
     <div>
       <input type="number"
+             class="input"
              name="input-{{ option.key }}"
              value="0"
              min="0"
              max="99">
-      <h2>{{ option.name | capitalize }}</h2>
+      <h2 class="option__name">{{ option.name | capitalize }}</h2>
     </div>
     {%- endfor -%}
 
