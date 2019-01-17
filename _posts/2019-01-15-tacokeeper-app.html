@@ -89,14 +89,10 @@ permalink: /tacokeeper
       });
 
       function updateTweet() {
-        var modelKeys = Object.keys(model);
         var tweetText = 'Hoy comí ';
         var tweetHref = '';
 
-        tweetText += modelKeys
-          .filter(function (key) {
-            return model[key] > 0;
-          })
+        tweetText += getActiveModelKeys()
           .map(function (key) {
             return model[key].toString() +
               (model[key] === 1
@@ -107,10 +103,7 @@ permalink: /tacokeeper
 
         tweetHref = tweetText + ' #tacokeeper ' +
           targetUrl + '?t=' +
-          modelKeys
-            .filter(function (key) {
-              return model[key] > 0;
-            })
+          getActiveModelKeys()
             .map(function (key) {
               return key + zeroPad(model[key]);
             })
@@ -130,6 +123,13 @@ permalink: /tacokeeper
           });
 
         return optionsMap;
+      }
+
+      function getActiveModelKeys() {
+        return Object.keys(model)
+          .filter(function (key) {
+            return model[key] > 0;
+          });
       }
 
       function zeroPad(number) {
