@@ -4,31 +4,55 @@ options:
     forms:
       singular: campechano
       plural: campechanos
+
+  - key: COS
+    name: costilla
+    forms:
+      singular: de costilla
+      plural: de costilla
+
   - key: LEN
     name: lengua
     forms:
       singular: de lengua
       plural: de lengua
+
   - key: LON
     name: longaniza
     forms:
       singular: de longaniza
       plural: de longaniza
+
+  - key: MAC
+    name: maciza
+    forms:
+      singular: de maciza
+      plural: de maciza
+
   - key: PAS
     name: pastor
     forms:
       singular: al pastor
       plural: al pastor
+
   - key: SES
     name: sesos
     forms:
       singular: de sesos
       plural: de sesos
+
   - key: SUA
     name: suadero
     forms:
       singular: de suadero
       plural: de suadero
+
+  - key: SUR
+    name: surtida
+    forms:
+      singular: de surtida
+      plural: de surtida
+
   - key: TRI
     name: tripa
     forms:
