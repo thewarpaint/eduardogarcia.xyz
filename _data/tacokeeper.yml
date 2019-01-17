@@ -1,4 +1,16 @@
 options:
+  - key: ASA
+    name: asada
+    forms:
+      singular: de asada
+      plural: de asada
+
+  - key: ADO
+    name: adobada
+    forms:
+      singular: de adobada
+      plural: de adobada
+
   - key: CAM
     name: campechano
     forms:
