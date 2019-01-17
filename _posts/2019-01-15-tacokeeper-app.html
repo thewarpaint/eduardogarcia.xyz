@@ -32,7 +32,8 @@ permalink: /tacokeeper
         text-align: center;
       }
 
-      .input:focus {
+      .input:focus,
+      .option--active .input:focus {
         border-bottom-color: red;
         color: red;
       }
@@ -44,9 +45,18 @@ permalink: /tacokeeper
         margin: 0;
       }
 
+      .option--active .input {
+        border-bottom-color: maroon;
+        color: maroon;
+      }
+
       .option__name {
         font-size: 1.5rem;
         color: grey;
+      }
+
+      .option--active .option__name {
+        color: maroon;
       }
 
       .input:focus + .option__name {
@@ -84,6 +94,7 @@ permalink: /tacokeeper
 
             model[this.name.replace('input-', '')] = value;
             updateTweet();
+            updateActiveOptions();
           });
         }
       });
@@ -112,6 +123,20 @@ permalink: /tacokeeper
         $tweetText.innerText = tweetText;
         $tweetLink.href = twitterIntentUrl +
           'text=' + encodeURIComponent(tweetHref);
+      }
+
+      // TODO: Update one option at a time
+      function updateActiveOptions() {
+        Object.keys(model)
+          .forEach(function (key) {
+            var $option = document.getElementById('option-' + key);
+
+            if (model[key] > 0) {
+              $option.classList.add('option--active');
+            } else {
+              $option.classList.remove('option--active');
+            }
+          });
       }
 
       function getOptionsMap(optionsArray) {
@@ -144,7 +169,8 @@ permalink: /tacokeeper
 
   <body>
     {%- for option in options -%}
-    <div>
+    <div class="option"
+         id="option-{{ option.key }}">
       <input type="number"
              class="input"
              name="input-{{ option.key }}"
