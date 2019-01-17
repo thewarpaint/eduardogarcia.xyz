@@ -26,16 +26,16 @@ permalink: /tacokeeper
 
       .input {
         border: none;
-        border-bottom: .125rem solid grey;
-        color: grey;
+        border-bottom: .125rem solid #b0bec5; /* Blue Gray 200 */
+        color: #b0bec5; /* Blue Gray 200 */
         font-size: 1.5rem;
         text-align: center;
       }
 
       .input:focus,
       .option--active .input:focus {
-        border-bottom-color: red;
-        color: red;
+        border-bottom-color: #78909c; /* Blue Gray 400 */
+        color: #78909c; /* Blue Gray 400 */
       }
 
       .input::-webkit-inner-spin-button,
@@ -46,21 +46,21 @@ permalink: /tacokeeper
       }
 
       .option--active .input {
-        border-bottom-color: maroon;
-        color: maroon;
+        border-bottom-color: #e53935; /* Red 600 */
+        color: #e53935; /* Red 600 */
       }
 
       .option__name {
         font-size: 1.5rem;
-        color: grey;
-      }
-
-      .option--active .option__name {
-        color: maroon;
+        color: #b0bec5; /* Blue Gray 200 */
       }
 
       .input:focus + .option__name {
-        color: red;
+        color: #78909c; /* Blue Gray 400 */
+      }
+
+      .option--active .option__name {
+        color: #e53935; /* Red 600 */
       }
 
       .tweet-link {
