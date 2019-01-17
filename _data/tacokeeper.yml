@@ -17,8 +17,8 @@ options:
   - key: PAS
     name: pastor
     forms:
-      singular: de al pastor
-      plural: de al pastor
+      singular: al pastor
+      plural: al pastor
   - key: SES
     name: sesos
     forms:
