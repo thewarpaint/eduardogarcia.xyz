@@ -1,15 +1,27 @@
 options:
+  - key: ADO
+    name: adobada
+    forms:
+      singular: de adobada
+      plural: de adobada
+
   - key: ASA
     name: asada
     forms:
       singular: de asada
       plural: de asada
 
-  - key: ADO
-    name: adobada
+  - key: BAR
+    name: barbacoa
     forms:
-      singular: de adobada
-      plural: de adobada
+      singular: de barbacoa
+      plural: de barbacoa
+
+  - key: BIS
+    name: bistec
+    forms:
+      singular: de bistec
+      plural: de bistec
 
   - key: CAM
     name: campechano
@@ -40,6 +52,12 @@ options:
     forms:
       singular: de maciza
       plural: de maciza
+
+  - key: ORE
+    name: oreja
+    forms:
+      singular: de oreja
+      plural: de oreja
 
   - key: PAS
     name: pastor
