@@ -5,6 +5,12 @@ options:
       singular: de adobada
       plural: de adobada
 
+  - key: ARR
+    name: arrachera
+    forms:
+      singular: de arrachera
+      plural: de arrachera
+
   - key: ASA
     name: asada
     forms:
@@ -23,11 +29,23 @@ options:
       singular: de bistec
       plural: de bistec
 
+  - key: CAB
+    name: cabeza
+    forms:
+      singular: de cabeza
+      plural: de cabeza
+
   - key: CAM
     name: campechano
     forms:
       singular: campechano
       plural: campechanos
+
+  - key: CEC
+    name: cecina
+    forms:
+      singular: de cecina
+      plural: de cecina
 
   - key: COS
     name: costilla
