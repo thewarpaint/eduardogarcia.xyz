@@ -20,6 +20,11 @@ permalink: /tacokeeper
         font-size: 16px;
       }
 
+      body {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
       @media(min-width: 480px) {
         body {
           max-width: 448px; /* 480px - (2 * 16px) */
@@ -33,7 +38,7 @@ permalink: /tacokeeper
       }
 
       .input {
-        width: 2.5rem;
+        width: 2rem;
         border: none;
         border-bottom: 1px solid #b0bec5; /* Blue Gray 200 */
         color: #b0bec5; /* Blue Gray 200 */
@@ -85,12 +90,16 @@ permalink: /tacokeeper
 
       .tweet-link {
         display: block;
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
         margin-top: 2rem;
         padding: .75rem;
         color: white;
         background-color: #1da1f2; /* Twitter blue */
         font-size: 1.5rem;
         text-align: center;
+        text-decoration: none;
       }
     </style>
 
