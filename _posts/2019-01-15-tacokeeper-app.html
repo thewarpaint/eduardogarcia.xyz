@@ -215,7 +215,8 @@ permalink: /tacokeeper
                min="0"
                max="99"
                placeholder="?">
-        <h2 class="option__name">× {{ option.name }}</h2>
+        <label for="input-{{ option.key }}"
+               class="option__name">× {{ option.name }}</label>
       </li>
       {%- endfor -%}
     </ul>
