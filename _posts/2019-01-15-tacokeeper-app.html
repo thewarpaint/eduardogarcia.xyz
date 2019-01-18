@@ -77,6 +77,12 @@ permalink: /tacokeeper
         color: #e53935; /* Red 600 */
       }
 
+      .options {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+
       .tweet-link {
         display: block;
         margin-top: 2rem;
@@ -187,18 +193,20 @@ permalink: /tacokeeper
   </head>
 
   <body>
-    {%- for option in options -%}
-    <div class="option"
-         id="option-{{ option.key }}">
-      <input type="number"
-             class="input"
-             name="input-{{ option.key }}"
-             value="0"
-             min="0"
-             max="99">
-      <h2 class="option__name">{{ option.name | capitalize }}</h2>
-    </div>
-    {%- endfor -%}
+    <ul class="options">
+      {%- for option in options -%}
+      <li class="option"
+          id="option-{{ option.key }}">
+        <input type="number"
+               class="input"
+               name="input-{{ option.key }}"
+               value="0"
+               min="0"
+               max="99">
+        <h2 class="option__name">{{ option.name | capitalize }}</h2>
+      </li>
+      {%- endfor -%}
+    </ul>
 
     <div id="text"></div>
 
