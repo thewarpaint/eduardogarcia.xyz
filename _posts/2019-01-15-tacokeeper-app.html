@@ -209,9 +209,10 @@ permalink: /tacokeeper
         <input type="number"
                class="input"
                name="input-{{ option.key }}"
-               value="0"
+               value=""
                min="0"
-               max="99">
+               max="99"
+               placeholder="?">
         <h2 class="option__name">{{ option.name | capitalize }}</h2>
       </li>
       {%- endfor -%}
