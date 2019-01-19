@@ -47,11 +47,29 @@ options:
       singular: de cecina
       plural: de cecina
 
+  - key: CHA
+    name: chamorro
+    forms:
+      singular: de chamorro
+      plural: de chamorro
+
   - key: COS
     name: costilla
     forms:
       singular: de costilla
       plural: de costilla
+
+  - key: CUE
+    name: cuerito
+    forms:
+      singular: de cuerito
+      plural: de cuerito
+
+  - key: LAB
+    name: labio
+    forms:
+      singular: de labio
+      plural: de labio
 
   - key: LEN
     name: lengua
@@ -70,6 +88,12 @@ options:
     forms:
       singular: de maciza
       plural: de maciza
+
+  - key: OJO
+    name: ojo
+    forms:
+      singular: de ojo
+      plural: de ojo
 
   - key: ORE
     name: oreja
