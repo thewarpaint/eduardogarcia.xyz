@@ -23,6 +23,12 @@ options:
       singular: de barbacoa
       plural: de barbacoa
 
+  - key: BIR
+    name: birria
+    forms:
+      singular: de birria
+      plural: de birria
+
   - key: BIS
     name: bistec
     forms:
@@ -40,6 +46,12 @@ options:
     forms:
       singular: campechano
       plural: campechanos
+
+  - key: CAR
+    name: carnaza
+    forms:
+      singular: de carnaza
+      plural: de carnaza
 
   - key: CEC
     name: cecina
