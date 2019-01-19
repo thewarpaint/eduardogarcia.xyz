@@ -42,6 +42,9 @@ permalink: /tacokeeper
         background-color: transparent;
         font-size: 1.5rem;
         text-align: center;
+        transition-duration: .25s;
+        transition-timing-function: linear;
+        transition-property: color, border;
       }
 
       .input::-webkit-input-placeholder {
@@ -56,10 +59,14 @@ permalink: /tacokeeper
         color: #b0bec5; /* Blue Gray 200 */
       }
 
-      .input:focus,
-      .option--active .input:focus {
+      .input:focus {
         border-bottom-color: #78909c; /* Blue Gray 400 */
         color: #78909c; /* Blue Gray 400 */
+      }
+
+      .option--active .input {
+        border-bottom-color: #f57f17; /* Yellow 900 */
+        color: #f57f17; /* Yellow 900 */
       }
 
       .input::-webkit-inner-spin-button,
@@ -78,28 +85,26 @@ permalink: /tacokeeper
       .option {
         margin: 0;
         padding: 1rem;
+        transition: .25s linear background;
       }
 
       .option--active {
         background-color: #fff9c4; /* Yellow 100 */
       }
 
-      .option--active .input {
-        border-bottom-color: #f57f17; /* Yellow 900 */
-        color: #f57f17; /* Yellow 900 */
-      }
-
       .option__name {
         margin-left: .25rem;
         font-size: 1.5rem;
         color: #b0bec5; /* Blue Gray 200 */
+        transition: .25s linear color;
       }
 
       .input:focus + .option__name {
         color: #78909c; /* Blue Gray 400 */
       }
 
-      .option--active .option__name {
+      .option--active .option__name,
+      .option--active .input:focus + .option__name {
         color: #f57f17; /* Yellow 900 */
       }
 
