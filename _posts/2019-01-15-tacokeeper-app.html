@@ -21,8 +21,7 @@ permalink: /tacokeeper
       }
 
       body {
-        margin-top: 0;
-        margin-bottom: 0;
+        margin: 0;
       }
 
       @media(min-width: 480px) {
@@ -59,6 +58,12 @@ permalink: /tacokeeper
         margin: 0;
       }
 
+      .options {
+        list-style: none;
+        padding-left: 0;
+        margin: 0 1rem;
+      }
+
       .option {
         margin: .75rem 0;
       }
@@ -74,18 +79,18 @@ permalink: /tacokeeper
         color: #b0bec5; /* Blue Gray 200 */
       }
 
+      .option__name::-webkit-input-placeholder,
+      .option__name::-moz-placeholder,
+      .option__name::placeholder, {
+        color: #b0bec5; /* Blue Gray 200 */
+      }
+
       .input:focus + .option__name {
         color: #78909c; /* Blue Gray 400 */
       }
 
       .option--active .option__name {
         color: #e53935; /* Red 600 */
-      }
-
-      .options {
-        list-style: none;
-        padding-left: 0;
-        margin: 0;
       }
 
       .tweet-link {
