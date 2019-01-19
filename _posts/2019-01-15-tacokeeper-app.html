@@ -129,6 +129,57 @@ permalink: /tacokeeper
         text-transform: uppercase;
         letter-spacing: .0625rem;
       }
+
+      .top-option {
+        color: white;
+        background-color: black;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 2rem;
+      }
+
+      .top-option--CAM {
+        background-image: url('https://i.imgur.com/Z1uQfGT.jpg');
+      }
+
+      .top-option--PAS {
+        background-image: url('https://i.imgur.com/nRPSadi.jpg');
+      }
+
+      .top-option--SUR {
+        background-image: url('https://i.imgur.com/IuVSoqh.jpg');
+      }
+
+      .top-option__place {
+        margin: 1rem 0;
+        font-weight: bold;
+      }
+
+      .top-option--1 .top-option__place {
+        font-size: 4rem;
+      }
+
+      .top-option--2 .top-option__place {
+        font-size: 3.5rem;
+      }
+
+      .top-option--3 .top-option__place {
+        font-size: 3rem;
+      }
+
+      .top-option__place,
+      .top-option__record {
+        text-shadow: 1px 1px 0 black;
+      }
+
+      .top-option__record {
+        font-size: 2rem;
+      }
+
+      .top-option__quantity {
+        font-weight: bold;
+      }
     </style>
 
     <script type="text/javascript">
@@ -256,6 +307,40 @@ permalink: /tacokeeper
          class="tweet-link"
          id="tweet-link"
          target="_blank">Comparte en Twitter</a>
+   </div>
+
+   <h1>Top Tacos 2019</h1>
+
+   <div class="top">
+     <div class="top-option top-option--1 top-option--CAM">
+       <div class="top-option__place">
+         #1
+       </div>
+
+       <div class="top-option__record">
+         <span class="top-option__quantity">321</span> tacos campechanos
+       </div>
+     </div>
+
+     <div class="top-option top-option--2 top-option--PAS">
+       <div class="top-option__place">
+         #2
+       </div>
+
+       <div class="top-option__record">
+         <span class="top-option__quantity">234</span> tacos al pastor
+       </div>
+     </div>
+
+     <div class="top-option top-option--3 top-option--SUR">
+       <div class="top-option__place">
+         #3
+       </div>
+
+       <div class="top-option__record">
+         <span class="top-option__quantity">198</span> tacos de surtida
+       </div>
+     </div>
    </div>
   </body>
 </html>
