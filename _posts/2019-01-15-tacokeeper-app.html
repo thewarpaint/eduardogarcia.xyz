@@ -230,30 +230,32 @@ permalink: /tacokeeper
   </head>
 
   <body>
-    <ul class="options">
-      {%- for option in options -%}
-      <li class="option"
-          id="option-{{ option.key }}">
-        <input type="number"
-               class="input"
-               id="input-{{ option.key }}"
-               name="input-{{ option.key }}"
-               value=""
-               min="0"
-               max="99"
-               placeholder="?">
-        <label for="input-{{ option.key }}"
-               class="option__name">× {{ option.name }}</label>
-      </li>
-      {%- endfor -%}
-    </ul>
+    <div>
+      <ul class="options">
+        {%- for option in options -%}
+        <li class="option"
+            id="option-{{ option.key }}">
+          <input type="number"
+                 class="input"
+                 id="input-{{ option.key }}"
+                 name="input-{{ option.key }}"
+                 value=""
+                 min="0"
+                 max="99"
+                 placeholder="?">
+          <label for="input-{{ option.key }}"
+                 class="option__name">× {{ option.name }}</label>
+        </li>
+        {%- endfor -%}
+      </ul>
 
-    <div id="tweet-text"
-         class="tweet-text"></div>
+      <div id="tweet-text"
+           class="tweet-text"></div>
 
-    <a href="https://twitter.com/intent/tweet"
-       class="tweet-link"
-       id="tweet-link"
-       target="_blank">Comparte en Twitter</a>
+      <a href="https://twitter.com/intent/tweet"
+         class="tweet-link"
+         id="tweet-link"
+         target="_blank">Comparte en Twitter</a>
+   </div>
   </body>
 </html>
