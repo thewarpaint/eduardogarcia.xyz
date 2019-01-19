@@ -15,6 +15,8 @@ permalink: /tacokeeper
     <title>{{ postTitle }}</title>
 
     <style type="text/css">
+      /* Material UI palettes: https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
+
       html {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-size: 16px;
@@ -37,6 +39,7 @@ permalink: /tacokeeper
         border: none;
         border-bottom: 1px solid #b0bec5; /* Blue Gray 200 */
         color: #b0bec5; /* Blue Gray 200 */
+        background-color: transparent;
         font-size: 1.5rem;
         text-align: center;
       }
@@ -69,16 +72,21 @@ permalink: /tacokeeper
       .options {
         list-style: none;
         padding-left: 0;
-        margin: 0 1rem;
+        margin: 0;
       }
 
       .option {
-        margin: .75rem 0;
+        margin: 0;
+        padding: 1rem;
+      }
+
+      .option--active {
+        background-color: #fff9c4; /* Yellow 100 */
       }
 
       .option--active .input {
-        border-bottom-color: #e53935; /* Red 600 */
-        color: #e53935; /* Red 600 */
+        border-bottom-color: #f57f17; /* Yellow 900 */
+        color: #f57f17; /* Yellow 900 */
       }
 
       .option__name {
@@ -92,7 +100,7 @@ permalink: /tacokeeper
       }
 
       .option--active .option__name {
-        color: #e53935; /* Red 600 */
+        color: #f57f17; /* Yellow 900 */
       }
 
       .tweet-text {
