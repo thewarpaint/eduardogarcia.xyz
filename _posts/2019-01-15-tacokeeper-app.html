@@ -180,6 +180,20 @@ permalink: /tacokeeper
       .top-option__quantity {
         font-weight: bold;
       }
+
+      /* Statistics */
+      .statistics__paragraph {
+        font-size: 1.5rem;
+      }
+
+      .statistics__user {
+        color: #1da1f2; /* Twitter blue */
+        font-weight: bold;
+      }
+
+      .statistics__number {
+        font-weight: bold;
+      }
     </style>
 
     <script type="text/javascript">
@@ -307,42 +321,61 @@ permalink: /tacokeeper
          class="tweet-link"
          id="tweet-link"
          target="_blank">Comparte en Twitter</a>
-   </div>
+    </div>
 
-   <section>
-     <h1>2019 en tacos</h1>
+    <section class="statistics">
+      <h1 class="statistics__header">
+        2019 en tacos
+      </h1>
 
-     <div class="top">
-       <div class="top-option top-option--1 top-option--CAM">
-         <div class="top-option__place">
-           #1
-         </div>
+      <p class="statistics__paragraph">
+        ¡Felicidades <span class="statistics__user">@tacokeeper</span>,
+        en 2019 comiste <span class="statistics__number">432</span> tacos!
+      </p>
 
-         <div class="top-option__record">
-           <span class="top-option__quantity">321</span> tacos campechanos
-         </div>
-       </div>
+      <div class="top">
+        <div class="top-option top-option--1 top-option--CAM">
+          <div class="top-option__place">
+            #1
+          </div>
 
-       <div class="top-option top-option--2 top-option--PAS">
-         <div class="top-option__place">
-           #2
-         </div>
+          <div class="top-option__record">
+            <span class="top-option__quantity">321</span> tacos campechanos
+          </div>
+        </div>
 
-         <div class="top-option__record">
-           <span class="top-option__quantity">234</span> tacos al pastor
-         </div>
-       </div>
+        <div class="top-option top-option--2 top-option--PAS">
+          <div class="top-option__place">
+            #2
+          </div>
 
-       <div class="top-option top-option--3 top-option--SUR">
-         <div class="top-option__place">
-           #3
-         </div>
+          <div class="top-option__record">
+            <span class="top-option__quantity">234</span> tacos al pastor
+          </div>
+        </div>
 
-         <div class="top-option__record">
-           <span class="top-option__quantity">198</span> tacos de surtida
-         </div>
-       </div>
-     </div>
-   </section>
+        <div class="top-option top-option--3 top-option--SUR">
+          <div class="top-option__place">
+            #3
+          </div>
+
+          <div class="top-option__record">
+            <span class="top-option__quantity">198</span> tacos de surtida
+          </div>
+        </div>
+      </div>
+
+      <p class="statistics__paragraph">
+        Comiste tacos en <span class="statistics__number">123 días</span> de 365 en el año.
+      </p>
+
+      <p class="statistics__paragraph">
+        Tu récord fue de <span class="statistics__number">25 tacos</span> el 21 de marzo.
+      </p>
+
+      <p class="statistics__paragraph">
+        Tu racha más larga fue de <span class="statistics__number">5 días consecutivos</span> comiendo tacos.
+      </p>
+    </section>
   </body>
 </html>
