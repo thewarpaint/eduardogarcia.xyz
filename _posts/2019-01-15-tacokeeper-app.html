@@ -32,10 +32,6 @@ permalink: /tacokeeper
         }
       }
 
-      h2 {
-        display: inline;
-      }
-
       .input {
         width: 2rem;
         border: none;
@@ -81,7 +77,7 @@ permalink: /tacokeeper
 
       .option__name::-webkit-input-placeholder,
       .option__name::-moz-placeholder,
-      .option__name::placeholder, {
+      .option__name::placeholder {
         color: #b0bec5; /* Blue Gray 200 */
       }
 
@@ -93,20 +89,26 @@ permalink: /tacokeeper
         color: #e53935; /* Red 600 */
       }
 
+      .tweet-text {
+        margin: 2rem 1rem 1rem;
+        font-size: 1.5rem;
+      }
+
       .tweet-link {
         display: block;
         position: -webkit-sticky;
         position: sticky;
         bottom: 0;
-        margin-top: 2rem;
-        padding: .75rem;
+        margin-top: 1.5rem;
+        padding: 1rem .75rem;
         color: white;
         background-color: #1da1f2; /* Twitter blue */
-        font-size: 1.5rem;
+        font-size: 1.375rem;
         font-weight: bold;
         text-align: center;
         text-decoration: none;
         text-transform: uppercase;
+        letter-spacing: .0625rem;
       }
     </style>
 
@@ -120,8 +122,8 @@ permalink: /tacokeeper
       var targetUrl = 'https://eduardogarcia.xyz/tacokeeper';
 
       document.addEventListener('DOMContentLoaded', function (event) {
-        $tweetLink = document.getElementById('tweet');
-        $tweetText = document.getElementById('text');
+        $tweetLink = document.getElementById('tweet-link');
+        $tweetText = document.getElementById('tweet-text');
 
         var inputs = document.querySelectorAll('input');
 
@@ -227,11 +229,12 @@ permalink: /tacokeeper
       {%- endfor -%}
     </ul>
 
-    <div id="text"></div>
+    <div id="tweet-text"
+         class="tweet-text"></div>
 
     <a href="https://twitter.com/intent/tweet"
        class="tweet-link"
-       id="tweet"
+       id="tweet-link"
        target="_blank">Comparte en Twitter</a>
   </body>
 </html>
