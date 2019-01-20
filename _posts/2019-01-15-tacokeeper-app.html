@@ -293,7 +293,7 @@ permalink: /tacokeeper
       function updateActiveOptions() {
         Object.keys(model)
           .forEach(function (key) {
-            model[key].$element.classList.toggle('option--active', model[key] > 0);
+            optionsMap[key].$element.classList.toggle('option--active', model[key] > 0);
           });
       }
 
