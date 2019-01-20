@@ -14,6 +14,8 @@ permalink: /tacokeeper
 
     <title>{{ postTitle }}</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,900"
+          rel="stylesheet">
     <style type="text/css">
       /* Material UI palettes: https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
 
@@ -151,11 +153,11 @@ permalink: /tacokeeper
         color: white;
         background-color: #1da1f2; /* Twitter blue */
         font-size: 1.375rem;
-        font-weight: bold;
+        font-family: Montserrat, Helvetica, sans-serif;
+        font-weight: 700;
         text-align: center;
         text-decoration: none;
         text-transform: uppercase;
-        letter-spacing: .0625rem;
       }
 
       /* Statistics */
@@ -192,22 +194,35 @@ permalink: /tacokeeper
         margin: 1rem 0;
         padding: 0 2.5rem;
         text-align: right;
+        font-family: Montserrat, Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 2.25rem;
+      }
+
+      .top-option__digit {
         font-size: 2.5rem;
-        font-weight: bold;
       }
 
       .top-option__record {
         padding-right: 1.5rem;
+        font-family: Montserrat, Helvetica, sans-serif;
+        font-weight: 700;
         font-size: 1.75rem;
       }
 
       .top-option__quantity {
-        font-weight: bold;
+        font-weight: 900;
       }
 
       .statistics__header,
       .statistics__paragraph {
         margin: 1rem;
+      }
+
+      .statistics__header {
+        font-family: Montserrat, Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 1.75rem;
       }
 
       .statistics__paragraph {
@@ -376,7 +391,7 @@ permalink: /tacokeeper
 
     <section class="statistics">
       <h1 class="statistics__header">
-        2019 en tacos
+        Tu 2019 en tacos
       </h1>
 
       <p class="statistics__paragraph">
@@ -387,7 +402,7 @@ permalink: /tacokeeper
       <div class="top">
         <div class="top-option top-option--1 top-option--CAM">
           <div class="top-option__place">
-            #1
+            #<span class="top-option__digit">1</span>
           </div>
 
           <div class="top-option__record">
@@ -398,7 +413,7 @@ permalink: /tacokeeper
 
         <div class="top-option top-option--2 top-option--PAS">
           <div class="top-option__place">
-            #2
+            #<span class="top-option__digit">2</span>
           </div>
 
           <div class="top-option__record">
@@ -409,7 +424,7 @@ permalink: /tacokeeper
 
         <div class="top-option top-option--3 top-option--SUR">
           <div class="top-option__place">
-            #3
+            #<span class="top-option__digit">3</span>
           </div>
 
           <div class="top-option__record">
