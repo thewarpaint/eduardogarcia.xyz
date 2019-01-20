@@ -243,7 +243,7 @@ permalink: /tacokeeper
         addElementsToOptions();
 
         $searchInput.addEventListener('input', function () {
-          updateOptionsFromSearch(this.value);
+          updateOptionsFromSearch(this.value.toLowerCase());
         });
       });
 
