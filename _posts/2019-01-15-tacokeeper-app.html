@@ -34,6 +34,30 @@ permalink: /tacokeeper
         }
       }
 
+      /* Search */
+      .search {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        border-bottom: 1px solid #b0bec5; /* Blue Gray 200 */
+        margin-bottom: 1rem;
+      }
+
+      .search__input {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        color: #78909c; /* Blue Gray 400 */
+        background-color: transparent;
+        font-size: 1.5rem;
+      }
+
+      .search__input::placeholder {
+        color: #b0bec5; /* Blue Gray 200 */
+      }
+
+      /* Capture area */
       .input {
         width: 2rem;
         border: none;
@@ -295,7 +319,14 @@ permalink: /tacokeeper
   </head>
 
   <body>
-    <div>
+    <section>
+      <div class="search">
+        <input type="search"
+               class="search__input"
+               name="search"
+               placeholder="Busca tu taco">
+      </div>
+
       <ul class="options">
         {%- for option in options -%}
         <li class="option"
@@ -321,7 +352,7 @@ permalink: /tacokeeper
          class="tweet-link"
          id="tweet-link"
          target="_blank">Comparte en Twitter</a>
-    </div>
+    </section>
 
     <section class="statistics">
       <h1 class="statistics__header">
