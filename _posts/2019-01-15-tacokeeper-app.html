@@ -293,13 +293,7 @@ permalink: /tacokeeper
       function updateActiveOptions() {
         Object.keys(model)
           .forEach(function (key) {
-            var $option = document.getElementById('option-' + key);
-
-            if (model[key] > 0) {
-              $option.classList.add('option--active');
-            } else {
-              $option.classList.remove('option--active');
-            }
+            model[key].$element.classList.toggle('option--active', model[key] > 0);
           });
       }
 
