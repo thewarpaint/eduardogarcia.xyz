@@ -41,11 +41,35 @@ options:
       singular: de bistec
       plural: de bistec
 
+  - key: BUC
+    name: buche
+    forms:
+      singular: de buche
+      plural: de buche
+
   - key: CAB
     name: cabeza
     forms:
       singular: de cabeza
       plural: de cabeza
+
+  - key: CAC
+    name: cachete
+    forms:
+      singular: de cachete
+      plural: de cachete
+
+  - key: CAL
+    name: calamar
+    forms:
+      singular: de calamar
+      plural: de calamar
+
+  - key: CMR
+    name: camarón
+    forms:
+      singular: de camarón
+      plural: de camarón
 
   - key: CAM
     name: campechano
@@ -131,6 +155,18 @@ options:
       singular: al pastor
       plural: al pastor
 
+  - key: PES
+    name: pescado
+    forms:
+      singular: de pescado
+      plural: de pescado
+
+  - key: PUL
+    name: pulpo
+    forms:
+      singular: de pulpo
+      plural: de pulpo
+
   - key: SES
     name: sesos
     forms:
@@ -154,3 +190,9 @@ options:
     forms:
       singular: de tripa
       plural: de tripa
+
+  - key: TRO
+    name: trompa
+    forms:
+      singular: de trompa
+      plural: de trompa
