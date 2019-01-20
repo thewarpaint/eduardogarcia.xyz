@@ -130,13 +130,16 @@ permalink: /tacokeeper
         letter-spacing: .0625rem;
       }
 
+      /* Statistics */
       .top-option {
+        display: flex;
+        align-items: center;
         color: white;
         background-color: black;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        padding: 2rem;
+        padding: 2rem 0;
       }
 
       .top-option--CAM {
@@ -151,37 +154,34 @@ permalink: /tacokeeper
         background-image: url('https://i.imgur.com/IuVSoqh.jpg');
       }
 
-      .top-option__place {
-        margin: 1rem 0;
-        font-weight: bold;
-      }
-
-      .top-option--1 .top-option__place {
-        font-size: 4rem;
-      }
-
-      .top-option--2 .top-option__place {
-        font-size: 3.5rem;
-      }
-
-      .top-option--3 .top-option__place {
-        font-size: 3rem;
-      }
-
       .top-option__place,
       .top-option__record {
         text-shadow: 1px 1px 0 black;
       }
 
+      .top-option__place {
+        flex: 0 0 auto;
+        margin: 1rem 0;
+        padding: 0 2.5rem;
+        text-align: right;
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
       .top-option__record {
-        font-size: 2rem;
+        padding-right: 1.5rem;
+        font-size: 1.75rem;
       }
 
       .top-option__quantity {
         font-weight: bold;
       }
 
-      /* Statistics */
+      .statistics__header,
+      .statistics__paragraph {
+        margin: 1rem;
+      }
+
       .statistics__paragraph {
         font-size: 1.25rem;
       }
@@ -340,7 +340,8 @@ permalink: /tacokeeper
           </div>
 
           <div class="top-option__record">
-            <span class="top-option__quantity">321</span> tacos campechanos
+            <span class="top-option__quantity">321</span> tacos<br>
+            campechanos
           </div>
         </div>
 
@@ -350,7 +351,8 @@ permalink: /tacokeeper
           </div>
 
           <div class="top-option__record">
-            <span class="top-option__quantity">234</span> tacos al pastor
+            <span class="top-option__quantity">234</span> tacos<br>
+            al pastor
           </div>
         </div>
 
@@ -360,7 +362,8 @@ permalink: /tacokeeper
           </div>
 
           <div class="top-option__record">
-            <span class="top-option__quantity">198</span> tacos de surtida
+            <span class="top-option__quantity">198</span> tacos<br>
+            de surtida
           </div>
         </div>
       </div>
