@@ -116,6 +116,10 @@ permalink: /tacokeeper
         background-color: #fff9c4; /* Yellow 100 */
       }
 
+      .option--hidden {
+        display: none;
+      }
+
       .option__name {
         margin-left: .25rem;
         font-size: 1.5rem;
@@ -223,6 +227,7 @@ permalink: /tacokeeper
     <script type="text/javascript">
       var $tweetLink;
       var $tweetText;
+      var $searchInput;
       var optionsArray = {{ options | jsonify }};
       var optionsMap = getOptionsMap(optionsArray);
       var model = {};
@@ -232,8 +237,14 @@ permalink: /tacokeeper
       document.addEventListener('DOMContentLoaded', function (event) {
         $tweetLink = document.getElementById('tweet-link');
         $tweetText = document.getElementById('tweet-text');
+        $searchInput = document.getElementById('search-input');
 
-        addInputListeners(document.querySelectorAll('input'));
+        addInputListeners(document.querySelectorAll('.option__input'));
+        addElementsToOptions();
+
+        $searchInput.addEventListener('input', function () {
+          updateOptionsFromSearch(this.value);
+        });
       });
 
       function addInputListeners(inputs) {
@@ -292,6 +303,18 @@ permalink: /tacokeeper
           });
       }
 
+      function addElementsToOptions() {
+        optionsArray.forEach(function (option) {
+          option.$element = document.getElementById('option-' + option.key);
+        });
+      }
+
+      function updateOptionsFromSearch(search) {
+        optionsArray.forEach(function (option) {
+          option.$element.classList.toggle('option--hidden', option.name.indexOf(search) === -1);
+        });
+      }
+
       function getOptionsMap(optionsArray) {
         var optionsMap = {};
 
@@ -324,6 +347,7 @@ permalink: /tacokeeper
     <section>
       <div class="search">
         <input type="search"
+               id="search-input"
                class="search__input"
                name="search"
                placeholder="Busca tu taco">
@@ -334,7 +358,7 @@ permalink: /tacokeeper
         <li class="option"
             id="option-{{ option.key }}">
           <input type="number"
-                 class="input"
+                 class="input option__input"
                  id="input-{{ option.key }}"
                  name="input-{{ option.key }}"
                  value=""
