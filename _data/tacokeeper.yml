@@ -5,6 +5,12 @@ options:
       singular: de adobada
       plural: de adobada
 
+  - key: ALA
+    name: alambre
+    forms:
+      singular: de alambre
+      plural: de alambre
+
   - key: ARR
     name: arrachera
     forms:
@@ -64,6 +70,12 @@ options:
     forms:
       singular: de chamorro
       plural: de chamorro
+
+  - key: CHO
+    name: chorizo
+    forms:
+      singular: de chorizo
+      plural: de chorizo
 
   - key: COS
     name: costilla
