@@ -95,6 +95,18 @@ options:
       singular: de chamorro
       plural: de chamorro
 
+  - key: CHS
+    name: chicharrón en salsa
+    forms:
+      singular: de chicharrón en salsa
+      plural: de chicharrón en salsa
+
+  - key: CHP
+    name: chicharrón prensado
+    forms:
+      singular: de chicharrón prensado
+      plural: de chicharrón prensado
+
   - key: CHO
     name: chorizo
     forms:
