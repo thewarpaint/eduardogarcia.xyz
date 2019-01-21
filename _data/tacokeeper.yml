@@ -149,6 +149,12 @@ options:
       singular: de maciza
       plural: de maciza
 
+  - key: MOR
+    name: moronga
+    forms:
+      singular: de moronga
+      plural: de moronga
+
   - key: OJO
     name: ojo
     forms:
@@ -160,6 +166,12 @@ options:
     forms:
       singular: de oreja
       plural: de oreja
+
+  - key: PAP
+    name: papas con chorizo
+    forms:
+      singular: de papas con chorizo
+      plural: de papas con chorizo
 
   - key: PAS
     name: pastor
@@ -178,6 +190,12 @@ options:
     forms:
       singular: de pulpo
       plural: de pulpo
+
+  - key: RAJ
+    name: rajas con crema
+    forms:
+      singular: de rajas con crema
+      plural: de rajas con crema
 
   - key: SES
     name: sesos
