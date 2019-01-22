@@ -36,6 +36,11 @@ permalink: /tacokeeper
         }
       }
 
+      .capture--hidden,
+      .statistics--hidden {
+        display: none;
+      }
+
       /* Search */
       .search {
         position: -webkit-sticky;
@@ -246,6 +251,8 @@ permalink: /tacokeeper
     </style>
 
     <script type="text/javascript">
+      var $captureSection;
+      var $statisticsSection;
       var $tweetLink;
       var $tweetText;
       var $searchInput;
@@ -256,6 +263,9 @@ permalink: /tacokeeper
       var targetUrl = 'https://eduardogarcia.xyz/tacokeeper';
 
       document.addEventListener('DOMContentLoaded', function (event) {
+        $captureSection = document.getElementById('capture-section');
+        $statisticsSection = document.getElementById('statistics-section');
+
         $tweetLink = document.getElementById('tweet-link');
         $tweetText = document.getElementById('tweet-text');
         $searchInput = document.getElementById('search-input');
@@ -265,6 +275,11 @@ permalink: /tacokeeper
 
         $searchInput.addEventListener('input', function () {
           updateOptionsFromSearch(this.value.toLowerCase());
+        });
+
+        $tweetLink.addEventListener('click', function () {
+          $captureSection.classList.add('capture--hidden');
+          $statisticsSection.classList.remove('statistics--hidden');
         });
       });
 
@@ -359,7 +374,8 @@ permalink: /tacokeeper
   </head>
 
   <body>
-    <section>
+    <section id="capture-section"
+             class="capture">
       <div class="search">
         <input type="search"
                id="search-input"
@@ -395,7 +411,8 @@ permalink: /tacokeeper
          target="_blank">Comparte en Twitter</a>
     </section>
 
-    <section class="statistics">
+    <section id="statistics-section"
+             class="statistics statistics--hidden">
       <p class="statistics__paragraph">
         ¡Gracias por participar! En diciembre te enviaremos un resumen de tu actividad como el siguiente:
       </p>
