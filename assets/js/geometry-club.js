@@ -1,3 +1,6 @@
+// Quick and dirty fix
+Logger = new Logger();
+
 function init() {
   App.init();
   Logger.init();
