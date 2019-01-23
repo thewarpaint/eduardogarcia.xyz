@@ -11,6 +11,8 @@ permalink: /tacokeeper
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="title" content="{{ postTitle }}">
     <meta name="description" content="{{ postDescription }}">
+    <!-- Yellow 900 -->
+    <meta name="theme-color" content="#f57f17">
 
     <title>{{ postTitle }}</title>
 
@@ -18,7 +20,6 @@ permalink: /tacokeeper
           rel="stylesheet">
     <style type="text/css">
       /* Material UI palettes: https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
-
       html {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-size: 16px;
@@ -37,17 +38,21 @@ permalink: /tacokeeper
       }
 
       .brand {
-        padding: .25rem 1rem;
-        background-color: #b71c1c;
+        padding: .75rem 1rem;
+        background-color: #f57f17; /* Yellow 900 */
         color: white;
       }
 
-      .brand h1 {
+      .brand__name {
         margin: 0;
         font-family: Montserrat;
         font-weight: 900;
         font-size: 1.5rem;
         letter-spacing: -1px;
+      }
+
+      .brand__slogan {
+        font-size: .875rem;
       }
 
       .capture--hidden,
@@ -389,8 +394,12 @@ permalink: /tacokeeper
 
   <body>
     <div class="brand">
-      <h1>TacoKeeper</h1>
-      <span>Running is boring. Tacos are fun.</span>
+      <h1 class="brand__name">
+        TacoKeeper
+      </h1>
+      <span class="brand__slogan">
+        Running is boring. Tacos are fun.
+      </span>
     </div>
 
     <section id="capture-section"
