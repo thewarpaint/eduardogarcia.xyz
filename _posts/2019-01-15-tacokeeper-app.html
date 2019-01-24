@@ -146,11 +146,26 @@ permalink: /tacokeeper
         display: none;
       }
 
-      .option__name {
+      .option__label {
+        display: flex;
+        align-items: baseline;
+      }
+
+      .option__text {
         margin-left: .25rem;
-        font-size: 1.5rem;
         color: #b0bec5; /* Blue Gray 200 */
         transition: .25s linear color;
+      }
+
+      .option__name {
+        font-size: 1.5rem;
+      }
+
+      .option__category {
+        margin-left: 1.5rem;
+        font-size: .75rem;
+        font-weight: light;
+        text-transform: uppercase;
       }
 
       .input:focus + .option__name {
@@ -420,16 +435,27 @@ permalink: /tacokeeper
         {%- for option in options -%}
         <li class="option"
             id="option-{{ option.key }}">
-          <input type="number"
-                 class="input option__input"
-                 id="input-{{ option.key }}"
-                 name="input-{{ option.key }}"
-                 value=""
-                 min="0"
-                 max="99"
-                 placeholder="?">
-          <label for="input-{{ option.key }}"
-                 class="option__name">× {{ option.name }}</label>
+          <label class="option__label">
+            <input type="number"
+                   class="input option__input"
+                   id="input-{{ option.key }}"
+                   name="input-{{ option.key }}"
+                   value=""
+                   min="0"
+                   max="99"
+                   placeholder="?">
+
+            <div class="option__text">
+              <div for="input-{{ option.key }}"
+                   class="option__name">
+                × {{ option.name }}
+              </div>
+
+              <div class="option__category">
+                {{ option.category }}
+              </div>
+            </div>
+          </label>
         </li>
         {%- endfor -%}
       </ul>
