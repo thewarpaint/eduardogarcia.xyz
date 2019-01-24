@@ -310,6 +310,7 @@ permalink: /tacokeeper
 
         addInputListeners(document.querySelectorAll('.option__input'));
         addElementsToOptions();
+        addNormalisationsToOptions();
 
         $searchInput.addEventListener('input', function () {
           updateOptionsFromSearch(this.value.toLowerCase());
@@ -377,9 +378,16 @@ permalink: /tacokeeper
         });
       }
 
+      function addNormalisationsToOptions() {
+        optionsArray.forEach(function (option) {
+          option.normalisedName = normaliseString(option.name);
+        });
+      }
+
       function updateOptionsFromSearch(search) {
         optionsArray.forEach(function (option) {
-          option.$element.classList.toggle('option--hidden', option.name.indexOf(search) === -1);
+          option.$element.classList.toggle('option--hidden',
+            option.normalisedName.indexOf(normaliseString(search)) === -1);
         });
       }
 
@@ -399,6 +407,25 @@ permalink: /tacokeeper
           .filter(function (key) {
             return model[key] > 0;
           });
+      }
+
+      function normaliseString(string) {
+        var normalisedString = string;
+        var normalisationMap = {
+          'á': 'a',
+          'é': 'e',
+          'í': 'i',
+          'ó': 'o',
+          'ú': 'u',
+          'ü': 'u',
+          'ñ': 'n',
+        };
+
+        for (var key in normalisationMap) {
+          normalisedString = normalisedString.replace(new RegExp(key, 'g'), normalisationMap[key]);
+        }
+
+        return normalisedString;
       }
 
       function zeroPad(number) {
