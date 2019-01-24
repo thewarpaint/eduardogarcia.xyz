@@ -120,7 +120,7 @@ options:
 
   - key: CHP
     name: chicharrón prensado
-    category: guisado
+    category: canasta, guisado
     forms:
       singular: de chicharrón prensado
       plural: de chicharrón prensado
@@ -145,6 +145,13 @@ options:
     forms:
       singular: de cuerito
       plural: de cuerito
+
+  - key: FRI
+    name: frijol
+    category: canasta
+    forms:
+      singular: de frijol
+      plural: de frijol
 
   - key: LAB
     name: labio
@@ -181,6 +188,13 @@ options:
       singular: de moronga
       plural: de moronga
 
+  - key: OBI
+    name: obispo
+    category: parrilla
+    forms:
+      singular: de obispo
+      plural: de obispo
+
   - key: OJO
     name: ojo
     category: al vapor, carnitas
@@ -197,7 +211,7 @@ options:
 
   - key: PAP
     name: papas con chorizo
-    category: guisado
+    category: canasta, guisado
     forms:
       singular: de papas con chorizo
       plural: de papas con chorizo
@@ -250,6 +264,13 @@ options:
     forms:
       singular: de surtida
       plural: de surtida
+
+  - key: TIN
+    name: tinga
+    category: guisado
+    forms:
+      singular: de tinga
+      plural: de tinga
 
   - key: TRI
     name: tripa
