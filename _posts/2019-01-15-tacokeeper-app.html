@@ -189,8 +189,31 @@ permalink: /tacokeeper
       }
 
       .tweet-text {
-        margin: 2rem 1rem 1rem;
+        position: relative;
+        margin: 2rem;
         font-size: 1.5rem;
+      }
+
+      .tweet-text::before,
+      .tweet-text::after {
+        position: absolute;
+        z-index: -1;
+        font-family: Montserrat, Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 6rem;
+        color: #eceff1; /* Blue Gray 50 */
+      }
+
+      .tweet-text::before {
+        top: -2rem;
+        left: -2rem;
+        content: "“";
+      }
+
+      .tweet-text::after {
+        bottom: -4rem;
+        right: -2rem;
+        content: "”";
       }
 
       .tweet-link {
@@ -218,6 +241,7 @@ permalink: /tacokeeper
       }
 
       .not-found {
+        margin-top: 1rem;
         padding: 2rem 1rem;
         background-color: #eceff1; /* Blue Gray 50 */
         text-align: center;
@@ -507,14 +531,16 @@ permalink: /tacokeeper
         {%- endfor -%}
       </ul>
 
-      <div id="tweet-text"
-           class="tweet-text"></div>
-
       <div class="not-found">
         <div>¿No encontraste tu taco preferido?</div>
         <a href="https://twitter.com/tacokeeper"
            class="link"
            target="_blank">¡Envíanos tus sugerencias en Twitter!</a>
+      </div>
+
+      <div id="tweet-text"
+           class="tweet-text">
+        Hoy comí...
       </div>
 
       <a href="https://twitter.com/intent/tweet"
