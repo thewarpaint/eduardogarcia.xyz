@@ -139,6 +139,13 @@ options:
       singular: de costilla
       plural: de costilla
 
+  - key: CRI
+    name: criadillas
+    category: carnitas
+    forms:
+      singular: de criadillas
+      plural: de criadillas
+
   - key: CUE
     name: cuerito
     category: carnitas
@@ -152,6 +159,20 @@ options:
     forms:
       singular: de frijol
       plural: de frijol
+
+  - key: HIG
+    name: hígado encebollado
+    category: guisado
+    forms:
+      singular: de hígado encebollado
+      plural: de hígado encebollado
+
+  - key: HUE
+    name: huevo en salsa
+    category: guisado
+    forms:
+      singular: de huevo en salsa
+      plural: de huevo en salsa
 
   - key: LAB
     name: labio
@@ -174,6 +195,13 @@ options:
       singular: de longaniza
       plural: de longaniza
 
+  - key: MCH
+    name: machitos
+    category: parrilla
+    forms:
+      singular: de machitos
+      plural: de machitos
+
   - key: MAC
     name: maciza
     category: carnitas
@@ -181,12 +209,40 @@ options:
       singular: de maciza
       plural: de maciza
 
+  - key: MIL
+    name: milanesa
+    category: guisado
+    forms:
+      singular: de milanesa
+      plural: de milanesa
+
   - key: MOR
     name: moronga
     category: guisado
     forms:
       singular: de moronga
       plural: de moronga
+
+  - key: NAN
+    name: nana
+    category: carnitas
+    forms:
+      singular: de nana
+      plural: de nana
+
+  - key: NEN
+    name: nenepil
+    category: parrilla
+    forms:
+      singular: de nenepil
+      plural: de nenepil
+
+  - key: NOP
+    name: nopales con longaniza
+    category: guisado
+    forms:
+      singular: de nopales con longaniza
+      plural: de nopales con longaniza
 
   - key: OBI
     name: obispo
@@ -223,12 +279,26 @@ options:
       singular: al pastor
       plural: al pastor
 
+  - key: PEC
+    name: pechuga
+    category: guisado
+    forms:
+      singular: de pechuga
+      plural: de pechuga
+
   - key: PES
     name: pescado
     category: frutos del mar
     forms:
       singular: de pescado
       plural: de pescado
+
+  - key: PIC
+    name: picadillo
+    category: guisado
+    forms:
+      singular: de picadillo
+      plural: de picadillo
 
   - key: PUL
     name: pulpo
@@ -285,3 +355,10 @@ options:
     forms:
       singular: de trompa
       plural: de trompa
+
+  - key: VIR
+    name: viril
+    category: carnitas
+    forms:
+      singular: de viril
+      plural: de viril
