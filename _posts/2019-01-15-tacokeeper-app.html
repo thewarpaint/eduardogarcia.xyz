@@ -383,6 +383,7 @@ permalink: /tacokeeper
         $tweetLink.addEventListener('click', function () {
           $captureSection.classList.add('capture--hidden');
           $statisticsSection.classList.remove('statistics--hidden');
+          window.location.hash = '#success';
         });
       });
 
@@ -571,7 +572,8 @@ permalink: /tacokeeper
 
     <section id="statistics-section"
              class="statistics statistics--hidden">
-      <div class="notification notification--success">
+      <div id="success"
+           class="notification notification--success">
         <h2 class="notification__header">¡Gracias por participar!</h2>
 
         En diciembre te enviaremos un resumen de tu actividad como el siguiente:
