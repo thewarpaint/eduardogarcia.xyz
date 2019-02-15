@@ -1,3 +1,5 @@
+# Oxford comma
+
 > Who gives a fuck about an Oxford comma?
 >
 > — Vampire Weekend
@@ -8,19 +10,16 @@ Let's define the expected results:
 
 ```js
 oxfordComma(['fire'])
-
 => 'fire'
 
 oxfordComma(['fire', 'fury'])
-
 => 'fire and fury'
 
 oxfordComma(['fire', 'fury', 'frankly power'])
-
 => 'fire, fury, and frankly power'
 ```
 
-First let's do the naive? obvious? solution. I consciously avoided `pop` so `terms` is not modified.
+First let's do the obvious solution. I consciously avoided `pop` so `terms` is not modified.
 
 ```js
 function oxfordComma(terms) {
@@ -36,7 +35,7 @@ function oxfordComma(terms) {
 }
 ```
 
-Pretty straightforward and readable, maybe a little verbose.
+Pretty straightforward and readable, but maybe a bit verbose.
 
 Does it make sense to try to use `reduce`?
 
