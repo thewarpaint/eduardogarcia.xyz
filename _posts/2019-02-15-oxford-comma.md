@@ -23,11 +23,7 @@ First let's do the obvious solution. I consciously avoided `pop` so `terms` is n
 
 ```js
 function oxfordComma(terms) {
-  if (terms.length === 1) {
-    return terms[0];
-  }
-
-  if (terms.length === 2) {
+  if (terms.length < 3) {
     return terms.join(' and ');
   }
 
