@@ -1,0 +1,78 @@
+---
+permalink: /blog/dias-sin-explosion-en-tultepec
+---
+{%- assign postTitle = "Días sin explosión en Tultepec" -%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="{{ postTitle }}">
+
+    <title>{{ postTitle }}</title>
+
+    <!-- Twitter meta tags, missing: twitter:description, twitter:image, twitter:site -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ postTitle }}">
+
+    <!-- Open Graph (Facebook) meta tags, missing: og:image -->
+    <meta property="og:title" content="{{ postTitle }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://eduardogarcia.xyz/blog/dias-sin-explosion-en-tultepec">
+
+    <link href="{{ site.url }}/assets/css/main.css"
+          rel="stylesheet">
+
+    <style type="text/css">
+      .main {
+        margin-top: 2rem;
+        text-align: center;
+      }
+
+      .header {
+        margin: .5rem;
+        font-size: 2rem;
+      }
+
+      .days {
+        margin: 2rem;
+        font-size: 8rem;
+      }
+
+      .timeline-container {
+        margin: auto;
+        max-width: 1200px; /* From iframe content */
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <a href="http://eduardogarcia.xyz/">← Inicio</a>
+    </nav>
+
+    <p class="last-updated">
+      Última actualización:
+      <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
+        %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
+    </p>
+
+    <section class="main">
+      <h1 class="header">{{ postTitle }}:</h1>
+
+      <h2 class="days">4</h2>
+
+      <div class="timeline-container">
+        <!-- From https://publish.twitter.com/ { -->
+        <a class="twitter-timeline" href="https://twitter.com/thewarpaint/timelines/1128739039824138241">
+          #tultepecpueblomágico
+        </a>
+
+        <script async
+                src="https://platform.twitter.com/widgets.js"
+                charset="utf-8"></script>
+        <!-- } -->
+      </div>
+    </section>
+  </body>
+</html>
