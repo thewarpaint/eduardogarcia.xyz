@@ -2,6 +2,7 @@
 permalink: /blog/dias-sin-explosion-en-tultepec
 ---
 {%- assign postTitle = "Días sin explosión en Tultepec" -%}
+{%- assign lastExplosion = "2019-05-11" -%}
 <!DOCTYPE html>
 <html>
   <head>
@@ -44,6 +45,38 @@ permalink: /blog/dias-sin-explosion-en-tultepec
         max-width: 1200px; /* From iframe content */
       }
     </style>
+
+    <script type="text/javascript">
+      var lastExplosion = "{{ lastExplosion }}";
+
+      function getDiffInDaysFromNow(date) {
+        var differenceMs = new Date().getTime() - date.getTime();
+
+        if (differenceMs < 0) {
+          return 0;
+        }
+
+        return Math.floor(differenceMs / (1000 * 60 * 60 * 24));
+      }
+
+      function getDateObjectFromString(dateString) {
+        var dateParts = dateString.split('-');
+
+        return new Date(
+          parseInt(dateParts[0], 10),
+          parseInt(dateParts[1], 10) - 1,
+          parseInt(dateParts[2], 10),
+        );
+      }
+
+      function updateDays(days) {
+        document.getElementById('days').textContent = days;
+      }
+
+      document.addEventListener('DOMContentLoaded', function (event) {
+        updateDays(getDiffInDaysFromNow(getDateObjectFromString(lastExplosion)));
+      });
+    </script>
   </head>
 
   <body>
@@ -53,6 +86,7 @@ permalink: /blog/dias-sin-explosion-en-tultepec
 
     <p class="last-updated">
       Última actualización:
+
       <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
         %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
     </p>
@@ -60,7 +94,8 @@ permalink: /blog/dias-sin-explosion-en-tultepec
     <section class="main">
       <h1 class="header">{{ postTitle }}:</h1>
 
-      <h2 class="days">4</h2>
+      <h2 id="days"
+          class="days">0</h2>
 
       <div class="timeline-container">
         <!-- From https://publish.twitter.com/ { -->
