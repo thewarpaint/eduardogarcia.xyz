@@ -1,10 +1,27 @@
 ---
 permalink: /blog/remote
 ---
+{%- assign postTitle = "Remote" -%}
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="{{ postTitle }}">
+
+    <title>{{ postTitle }}</title>
+
+    <!-- Twitter meta tags, missing: twitter:description, twitter:image, twitter:site -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ postTitle }}">
+
+    <!-- Open Graph (Facebook) meta tags, missing: og:image -->
+    <meta property="og:title" content="{{ postTitle }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://eduardogarcia.xyz/blog/remote">
+
+    <link href="{{ site.url }}/assets/css/main.css"
+          rel="stylesheet">
 
     <style type="text/css">
       .success {
@@ -21,6 +38,17 @@ permalink: /blog/remote
     </style>
   </head>
   <body>
+    <nav>
+      <a href="http://eduardogarcia.xyz/">← Home</a>
+    </nav>
+
+    <p class="last-updated">
+      Last update:
+
+      <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
+        %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
+    </p>
+
     <h1>Remote work</h1>
 
     <table>
