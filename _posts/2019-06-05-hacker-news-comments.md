@@ -49,7 +49,7 @@ This is the structure of the toggle links:
 <a class="togg" onclick="return toggle(event, 20108944)">[-]</a>
 ```
 
-and this is the definition of `toggle`:
+and this is the definition of `toggle` and the rest of the relevant functions:
 
 ```js
 function toggle (ev, id) {
@@ -61,6 +61,14 @@ function toggle (ev, id) {
   }
   ev.stopPropagation();
   return false;
+}
+
+function comments () {
+  return allof('comtr')
+}
+
+function collapsed () {
+  return allof('coll')
 }
 
 function recoll() {
@@ -84,3 +92,5 @@ function squish (tr) {
   vis(byClass(tr, 'votelinks')[0], false);
 }
 ```
+
+So it's expanding all the comments in the page and then collapsing the ones marked.
