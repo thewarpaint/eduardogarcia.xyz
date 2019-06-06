@@ -2,7 +2,7 @@
 
 *Disclaimer: I love HN, it's an awesome forum, not intending to throw shade at anyone, just genuinely curious.*
 
-I own a 2016 Moto g4 plus and every time I collapse a comment in Hacker News it takes a whole second before the UI is responsive again. Why would that be? Let's find out.
+I own a 2016 Moto g4 Plus and use Chrome. Sometimes when I toggle a comment in Hacker News it takes a whole second before the UI is responsive again. Why would that be? Let's find out.
 
 Comments are organised in a flat structure. Let's use this comment tree as an example:
 
@@ -132,7 +132,7 @@ function kidsOf (id) {
     ks = acut(trs, i + 1);
     var n = ind($(id));
     var j = apos(function(tr) {return ind(tr) <= n}, ks);
-  
+
     if (j >= 0) {
       ks = acut(ks, 0, j)
     }
@@ -145,7 +145,7 @@ So here's what's happening:
 
 1. all comments are expanded (first `comments()` call)
 2. all the comments marked as `.coll` and its children are collapsed
-   a. for each `.coll` comment there's a `comments()` call
+   a. for each `.coll` element there's an additional `comments()` call
 
 How would you fix it? Would you render the comments in a hierarchical structure to make
 hiding and showing children easier? Would you add additional classes and use modern DOM selection
