@@ -151,8 +151,11 @@ function kidsOf (id) {
   if (i >= 0) {
     // Same as Array.prototype.slice.call(trs, i + 1)
     ks = acut(trs, i + 1);
+    // Get the level of the comment in the tree
     var n = ind($(id));
-    var j = apos(function(tr) {return ind(tr) <= n}, ks);
+
+    // Get the position of the next comment with a level equal or less than the level of the current comment
+    var j = apos(function (tr) { return ind(tr) <= n }, ks);
 
     if (j >= 0) {
       // Same as Array.prototype.slice.call(ks, 0, j)
@@ -177,7 +180,7 @@ So here's what's happening:
 1. all comments are expanded (first `comments()` call)
 2. all the comments marked as `.coll` and its children are collapsed
    1. for each `.coll` element there's an additional `comments()` call, then that array is traversed to find the children comments
-   2. getting the level of a comment from a DOM element's `style` is slightly expensive
+   2. getting the level of a comment from a DOM element's `width` is expensive, as it forces reflow
 
 
 ## How would you fix it?
@@ -188,13 +191,15 @@ Let's suppose that somehow you got access to the HN repo. What would you do? I c
 
 - After the page is loaded, build a data structure to avoid:
    - Getting the comment tree on every toggle
-   - Getting the comment level from a DOM element's width
+   - Getting the comment level from a DOM element's `width`
 - Changing the algorithm to just deal with the affected subtree instead of expanding everything, then collapsing
    the marked comments
 
 ### With modifications to the server-side HTML
 
 - Render the comments in a hierarchical structure to make hiding and showing children way easier
+- or: adding the comment level as a `data` attribute and changing the algorithm to just deal with the affected subtree
+   instead of expanding everything, then collapsing the marked comments
 
 
 Thanks to Ixai L. for reading a draft of this post and providing feedback.
