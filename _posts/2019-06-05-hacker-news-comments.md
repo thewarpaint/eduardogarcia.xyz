@@ -2,7 +2,8 @@
 
 *Disclaimer: I love HN, it's an awesome forum, not intending to throw shade at anyone, just genuinely curious.*
 
-I own a 2016 Moto g4 Plus and use Chrome. Sometimes when I toggle a comment in Hacker News it takes a whole second before the UI is responsive again. Why would that be? Let's find out.
+I own a 2016 Moto G4 Plus and use Chrome. Sometimes when I toggle a comment thread in Hacker News it takes a whole second
+for the UI to update. Why would that be?
 
 Comments are organised in a flat structure. Let's use this comment tree as an example:
 
@@ -28,7 +29,7 @@ This is the corresponding (simplified) DOM representation:
     </tr>
     ...
   </tbody>
- </table>
+</table>
 ```
 
 Collapsing a comment thread adds the `coll` class to the parent comment and the `noshow`
@@ -51,7 +52,7 @@ class to every child comment:
  </table>
 ```
 
-There is also a `GET` request to https://news.ycombinator.com/collapse?id=1234567 to save the state of the 
+There is also a `GET` request to https://news.ycombinator.com/collapse?id=1234567 to save the state of the
 collapsed/expanded comment if the user is logged in, but it's an async request so it doesn't have an impact.
 
 This is the structure of the toggle links:
@@ -60,7 +61,10 @@ This is the structure of the toggle links:
 <a class="togg" onclick="return toggle(event, 1234567)">[-]</a>
 ```
 
-and this is the definition of `toggle` and the rest of the relevant functions (comments added by me, some indentation changed for readability):
+All following JS snippets extracted from [https://news.ycombinator.com/hn.js](https://news.ycombinator.com/hn.js),
+comments added by me, some indentation changed for readability.
+
+This is the definition of `toggle`:
 
 ```js
 function toggle (ev, id) {
@@ -78,7 +82,11 @@ function toggle (ev, id) {
   ev.stopPropagation();
   return false;
 }
+```
 
+There are helper functions to retrieve the comments and the collapsed comments:
+
+```js
 // Returns all elements of class .comtr in the document
 function comments () {
   return allof('comtr')
@@ -88,7 +96,11 @@ function comments () {
 function collapsed () {
   return allof('coll')
 }
+```
 
+There's a function that "resets the collapsed state" of the comments by expanding them all and then collapse the marked ones:
+
+```js
 function recoll() {
   // Expand all comments
   aeach(expand, comments());
@@ -96,7 +108,11 @@ function recoll() {
   // Collapse the comments marked as `.coll` and all its children
   aeach(squish, collapsed());
 }
+```
 
+These are the functions that expand and collapse (squish) a comment's `<tr>`:
+
+```js
 function expand (tr) {
   elShow(tr);
   elShow(byClass(tr, 'comment')[0]);
@@ -117,8 +133,12 @@ function squish (tr) {
   noshow(byClass(tr, 'comment')[0]);
   vis(byClass(tr, 'votelinks')[0], false);
 }
+```
 
-// Returns an array of the <tr> elements for the children comments from a comment id
+There's a function to retrieve the array of `<tr>` elements for the children comments from the parent comment id
+(this one was a bit tricky to decipher):
+
+```js
 function kidsOf (id) {
   var ks = [];
   var trs = comments();
@@ -127,17 +147,28 @@ function kidsOf (id) {
   var i = apos($(id), trs);
 
   // From the provided id, get the position of the next comment with a level equal or less than the level
-  // of the provided comment, and then return a slice of the comments array with those positions.
+  // of the provided comment, and then return a slice of the comments array from these positions.
   if (i >= 0) {
+    // Same as Array.prototype.slice.call(trs, i + 1)
     ks = acut(trs, i + 1);
     var n = ind($(id));
     var j = apos(function(tr) {return ind(tr) <= n}, ks);
 
     if (j >= 0) {
+      // Same as Array.prototype.slice.call(ks, 0, j)
       ks = acut(ks, 0, j)
     }
   }
+
   return ks;
+}
+```
+
+And finally there's a function to get the "level" of a comment from the padding image's width:
+
+```js
+function ind (el) {
+  return (byTag(el, 'img')[0] || {}).width
 }
 ```
 
@@ -145,9 +176,25 @@ So here's what's happening:
 
 1. all comments are expanded (first `comments()` call)
 2. all the comments marked as `.coll` and its children are collapsed
-   a. for each `.coll` element there's an additional `comments()` call
+   1. for each `.coll` element there's an additional `comments()` call, then that array is traversed to find the children comments
+   2. getting the level of a comment from a DOM element's `style` is slightly expensive
 
-How would you fix it? Would you render the comments in a hierarchical structure to make
-hiding and showing children easier? Would you add additional classes and use modern DOM selection
-methods to improve the performance? Would you mark it as WONTFIX because it probably only affects
-people with an old Moto g4 Plus?
+
+## How would you fix it?
+
+Let's suppose that somehow you got access to the HN repo. What would you do? I can think of two options:
+
+### Without modifying the server-side HTML
+
+- After the page is loaded, build a data structure to avoid:
+   - Getting the comment tree on every toggle
+   - Getting the comment level from a DOM element's width
+- Changing the algorithm to just deal with the affected subtree instead of expanding everything, then collapsing
+   the marked comments
+
+### With modifications to the server-side HTML
+
+- Render the comments in a hierarchical structure to make hiding and showing children way easier
+
+
+Thanks to Ixai L. for reading a draft of this post and providing feedback.
