@@ -2,6 +2,8 @@
 
 *Disclaimer: I love HN, it's an awesome forum, not intending to throw shade at anyone, just genuinely curious.*
 
+[Follow the discussion on Hacker News](https://news.ycombinator.com/item?id=20336238)
+
 I own a 2016 Moto G4 Plus and use Chrome. Sometimes when I toggle a comment thread in Hacker News it takes a whole second
 for the UI to update. Why would that be?
 
