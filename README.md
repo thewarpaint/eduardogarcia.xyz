@@ -8,6 +8,7 @@
 + [Evolución territorial de México](https://eduardogarcia.xyz/blog/evolucion-territorial-de-mexico.html)
 + [Dear Spotify, please let me unlink my Facebook account](https://eduardogarcia.xyz/blog/dear-spotify)
 + [(wip) Geometry Club web app](https://eduardogarcia.xyz/geometry-club)
++ [Why is collapsing a Hacker News comment so slow?](https://github.com/thewarpaint/eduardogarcia.xyz/blob/master/_posts/2019-06-05-hacker-news-comments.md)
 
 ## Development
 
