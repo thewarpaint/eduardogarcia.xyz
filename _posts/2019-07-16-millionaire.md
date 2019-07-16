@@ -1,6 +1,8 @@
 # How much money do you need to be a millionaire in Mexico?
 
-🇺🇸 52,662.00 USD = 1'000,000.00 MXN
+## 1'000,000.00 MXN =
+
+🇺🇸 52,662.00 USD
 
 🇪🇺 46,786.88 EUR
 
