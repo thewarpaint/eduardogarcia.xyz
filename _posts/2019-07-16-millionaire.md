@@ -25,3 +25,15 @@
 🇨🇦 68,350.00 CAD
 
 🇦🇺 74,634.66 AUD
+
+```js
+Array.from(table.querySelectorAll('tbody tr'))
+  .map((row) => {
+    return {
+      countryCode: row.querySelector('.text-left.convert-to .flag span').className,
+      currencyCode: row.querySelector('.text-left.convert-to .code').innerText,
+      currencyName: row.querySelector('.text-left.convert-to .full').innerText,
+      rate: row.querySelector('.text-rate').innerText,
+    };
+  });
+```
