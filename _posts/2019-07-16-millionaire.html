@@ -25,29 +25,47 @@ permalink: /blog/millionaire
         text-align: center;
       }*/
 
-      .million,
+      .currencies {
+        text-align: center;
+      }
+
+      .currency-main,
       .currency {
         font-family: monospace;
       }
 
-      .currency--main {
+      .currency-main {
         margin-bottom: 2rem;
-      }
-
-      .currency-link {
-        text-decoration: none;
+        font-size: 2rem;
+        font-weight: normal;
       }
 
       .currency-list {
+        display: inline-flex;
+        flex-flow: column nowrap;
         list-style-type: none;
         padding-left: 0;
         font-size: 1.5rem;
       }
 
-      .currency-amount {
-        display: inline-block;
-        width: 15rem;
+      .currency {
         text-align: right;
+      }
+
+      .currency-link {
+        display: block;
+        padding: .5rem .75rem;
+        text-decoration: none;
+      }
+
+      .currency-link:hover {
+        background-color: #b3e5fc; /* Light Blue 100 */
+      }
+
+      .currency-link,
+      .currency-link:hover,
+      .currency-link:active {
+        color: black;
       }
     </style>
   </head>
@@ -65,94 +83,96 @@ permalink: /blog/millionaire
     <a href="https://github.com/thewarpaint/eduardogarcia.xyz/commit/%LATEST_SHA%">
       %DATE_READABLE% <code>(%LATEST_SHA_SHORT%)</code></a>
 
-    <ul class="currency-list">
-      <li class="currency currency--main">
-        <span class="currency-amount">1,000,000</span> MXN 🇲🇽 =
-      </li>
+    <section class="currencies">
+      <h2 class="currency-main">
+        1,000,000 MXN 🇲🇽 =
+      </h2>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">52,662.00</span> USD 🇺🇸
-        </a>
-      </li>
+      <ul class="currency-list">
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>52,662.00</span> USD 🇺🇸
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">46,786.88</span> EUR 🇪🇺
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>46,786.88</span> EUR 🇪🇺
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">42,091.50</span> GBP 🇬🇧
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>42,091.50</span> GBP 🇬🇧
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">5,691,500.00</span> JPY 🇯🇵
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>5,691,500.00</span> JPY 🇯🇵
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">3,611,660.90</span> INR 🇮🇳
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>3,611,660.90</span> INR 🇮🇳
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">362,095.72</span> CNY 🇨🇳
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>362,095.72</span> CNY 🇨🇳
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">3,301,940.24</span> RUB 🇷🇺
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>3,301,940.24</span> RUB 🇷🇺
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">2,237,062.46</span> ARS 🇦🇷
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>2,237,062.46</span> ARS 🇦🇷
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">197,020.00</span> BRL 🇧🇷
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>197,020.00</span> BRL 🇧🇷
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">51,814.00</span> CHF 🇨🇭
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>51,814.00</span> CHF 🇨🇭
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">68,350.00</span> CAD 🇨🇦
-        </a>
-      </li>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>68,350.00</span> CAD 🇨🇦
+          </a>
+        </li>
 
-      <li class="currency">
-        <a href="#"
-           class="currency-link">
-          <span class="currency-amount">74,634.66</span> AUD 🇦🇺
-        </a>
-      </li>
-    </ul>
+        <li class="currency">
+          <a href="#"
+            class="currency-link">
+            <span>74,634.66</span> AUD 🇦🇺
+          </a>
+        </li>
+      </ul>
+    </section>
   </body>
 </html>
