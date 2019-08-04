@@ -14,7 +14,7 @@ const Settings = ({handleOnChange, sortBy}) => {
       />
       <label
         className="label"
-        for="input-radio-country-code-asc"
+        htmlFor="input-radio-country-code-asc"
       >
         A → Z
       </label>
@@ -30,7 +30,7 @@ const Settings = ({handleOnChange, sortBy}) => {
       />
       <label
         className="label"
-        for="input-radio-country-code-desc"
+        htmlFor="input-radio-country-code-desc"
       >
         Z → A
       </label>
@@ -46,7 +46,7 @@ const Settings = ({handleOnChange, sortBy}) => {
       />
       <label
         className="label"
-        for="input-radio-rate-asc"
+        htmlFor="input-radio-rate-asc"
       >
         $1 → $9
       </label>
@@ -62,7 +62,7 @@ const Settings = ({handleOnChange, sortBy}) => {
       />
       <label
         className="label"
-        for="input-radio-rate-desc"
+        htmlFor="input-radio-rate-desc"
       >
         $9 → $1
       </label>
