@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CurrencyList from './components/CurrencyList';
+import Settings from './components/Settings';
 import exchangeRates from './exchangeRates.data';
 import './App.css';
 
@@ -10,6 +11,8 @@ function App() {
       <h1 className="title">
         How much money do you need to be a millionaire in 🇲🇽 Mexico?
       </h1>
+
+      <Settings />
 
       <CurrencyList exchangeRates={getSortedExchangeRates()} />
     </section>

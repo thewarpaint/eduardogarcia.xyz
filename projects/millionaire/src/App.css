@@ -1,3 +1,23 @@
+/* Settings */
+.label {
+  margin: 0 .25rem;
+  padding: .5rem .75rem;
+  border: 1px solid #1e88e5; /* Blue 600 */
+  border-radius: .25rem;
+  color: #1e88e5; /* Blue 600 */
+  cursor: pointer;
+  font-size: .75rem;
+}
+
+.input-radio:checked + .label {
+  background-color: #1e88e5; /* Blue 600 */
+  color: white;
+}
+
+.input-radio {
+  display: none;
+}
+
 .currencies {
   text-align: center;
 }
