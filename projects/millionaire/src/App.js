@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import CurrencyList from './components/CurrencyList';
 import Settings from './components/Settings';
 import exchangeRates from './exchangeRates.data';
 import './App.css';
 
-function App() {
-  return (
-    <section className="currencies">
-      <h1 className="title">
-        How much money do you need to be a millionaire in 🇲🇽 Mexico?
-      </h1>
+class App extends Component {
+  render() {
+    return (
+      <section className="currencies">
+        <h1 className="title">
+          How much money do you need to be a millionaire in 🇲🇽 Mexico?
+        </h1>
 
-      <Settings />
+        <Settings />
 
-      <CurrencyList exchangeRates={getSortedExchangeRates()} />
-    </section>
-  );
+        <CurrencyList exchangeRates={getSortedExchangeRates()} />
+      </section>
+    );
+  }
 }
 
 function getSortedExchangeRates() {
