@@ -4,12 +4,17 @@ const million = 1000000;
 
 const CurrencyList = ({exchangeRates}) => {
   return (
-    <ul className="options">
+    <ul className="currency-list">
       {
         exchangeRates.map(exchangeRate => {
           return (
-            <li title={exchangeRate.currencyName}>
-              {getMillionConversion(exchangeRate)} {exchangeRate.currencyCode}
+            <li className="currency"
+                key={exchangeRate.currencyCode}
+                title={exchangeRate.currencyName}>
+              <a href="#"
+                 className="currency-link">
+                {getMillionConversion(exchangeRate)} {exchangeRate.currencyCode} {exchangeRate.emojiFlag}
+              </a>
             </li>
           );
         })

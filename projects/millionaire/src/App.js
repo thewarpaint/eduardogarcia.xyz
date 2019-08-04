@@ -6,13 +6,13 @@ import './App.css';
 
 function App() {
   return (
-    <>
-      <h1 class="title">
+    <section className="currencies">
+      <h1 className="title">
         How much money do you need to be a millionaire in 🇲🇽 Mexico?
       </h1>
 
       <CurrencyList exchangeRates={exchangeRates} />
-    </>
+    </section>
   );
 }
 

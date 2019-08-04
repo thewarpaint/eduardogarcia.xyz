@@ -1,33 +1,42 @@
-.App {
+.currencies {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.currency-main,
+.currency {
+  font-family: monospace;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.currency-main {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: normal;
 }
 
-.App-link {
-  color: #61dafb;
+.currency-list {
+  display: inline-flex;
+  flex-flow: column nowrap;
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 1.5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.currency {
+  text-align: right;
+}
+
+.currency-link {
+  display: block;
+  padding: .5rem .75rem;
+  text-decoration: none;
+}
+
+.currency-link:hover {
+  background-color: #b3e5fc; /* Light Blue 100 */
+}
+
+.currency-link,
+.currency-link:hover,
+.currency-link:active {
+  color: black;
 }
