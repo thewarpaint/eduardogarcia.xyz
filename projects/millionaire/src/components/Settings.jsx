@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Settings = () => {
+const Settings = ({handleOnChange, sortBy}) => {
   return (
     <form>
       <input
@@ -9,6 +9,8 @@ const Settings = () => {
         name="sort"
         className="input-radio"
         value="countryCodeAsc"
+        checked={sortBy === 'countryCodeAsc'}
+        onChange={handleOnChange}
       />
       <label
         className="label"
@@ -23,6 +25,8 @@ const Settings = () => {
         name="sort"
         className="input-radio"
         value="countryCodeDesc"
+        checked={sortBy === 'countryCodeDesc'}
+        onChange={handleOnChange}
       />
       <label
         className="label"
@@ -37,6 +41,8 @@ const Settings = () => {
         name="sort"
         className="input-radio"
         value="rateAsc"
+        checked={sortBy === 'rateAsc'}
+        onChange={handleOnChange}
       />
       <label
         className="label"
@@ -51,6 +57,8 @@ const Settings = () => {
         name="sort"
         className="input-radio"
         value="rateDesc"
+        checked={sortBy === 'rateDesc'}
+        onChange={handleOnChange}
       />
       <label
         className="label"
