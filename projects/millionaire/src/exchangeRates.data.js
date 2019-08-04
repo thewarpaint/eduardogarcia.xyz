@@ -492,7 +492,8 @@ const exchangeRates = [
     rate: 5.90222
   },
   {
-    countryCode: "an",
+    // Originally "an", see: https://emojipedia.org/flag-for-caribbean-netherlands/
+    countryCode: "bq",
     currencyCode: "ANG",
     currencyName: "Netherlands Antillian Guilder",
     rate: 0.09631
