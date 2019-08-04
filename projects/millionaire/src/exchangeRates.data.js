@@ -763,4 +763,17 @@ const exchangeRates = [
   }
 ];
 
-export default exchangeRates;
+// https://twitter.com/aemkei/status/796102135171710977
+function getEmojiFromCountryCode(countryCode) {
+  return countryCode.toLowerCase()
+    .replace(/./g, x => String.fromCharCode(55356, 56709 + x.charCodeAt(0)));
+}
+
+export default exchangeRates
+  .filter(exchangeRate => exchangeRate.countryCode !== 'N-A')
+  .map(exchangeRate => {
+    return {
+      ...exchangeRate,
+      emojiFlag: getEmojiFromCountryCode(exchangeRate.countryCode),
+    };
+  });
