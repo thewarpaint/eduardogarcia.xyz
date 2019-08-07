@@ -9,6 +9,8 @@ hubiera sido complicado.
 
 ## Generar el PDF con Puppeteer
 
+`puppeteer` vs `puppeteer-core`
+
 ## Trabajo a futuro
 
 - Comparación vs otras librerías
