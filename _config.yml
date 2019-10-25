@@ -1,3 +1,9 @@
 # General
-exclude: [.bundle, README.md, scripts, twitter-bot, vendor]
+exclude:
+  - .bundle
+  - projects
+  - README.md
+  - scripts
+  - twitter-bot
+  - vendor
 url: "https://eduardogarcia.xyz"
