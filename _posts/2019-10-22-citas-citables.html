@@ -58,6 +58,10 @@ permalink: /blog/citas-citables
         display: block;
       }
 
+      #{{ quotes[0].id }} {
+        display: block;
+      }
+
       .quote {
         position: relative;
         margin: 0 0 4rem;
@@ -126,6 +130,8 @@ permalink: /blog/citas-citables
 
   <body>
     {% for quote in quotes %}
+    {%- assign prev = forloop.index0 | minus:1 -%}
+    {%- assign next = forloop.index0 | plus:1 -%}
     <section
       class="main"
       id="{{ quote.id }}"
@@ -146,6 +152,22 @@ permalink: /blog/citas-citables
          target="_blank">
         {{ quote.author }}, {{ quote.year }}
       </a>
+
+      {% if forloop.first == false %}
+      <a
+        href="#{{ quotes[prev].id }}"
+      >
+        prev
+      </a>
+      {% endif %}
+
+      {% if forloop.last == false %}
+      <a
+        href="#{{ quotes[next].id }}"
+      >
+        next
+      </a>
+      {% endif %}
     </section>
     {% endfor %}
   </body>
