@@ -62,6 +62,10 @@ permalink: /blog/citas-citables
         display: block;
       }
 
+      #{{ quotes[0].id }}:not(:target) {
+        display: none;
+      }
+
       .quote {
         position: relative;
         margin: 0 0 4rem;
@@ -76,7 +80,7 @@ permalink: /blog/citas-citables
       .quote::after {
         content: "";
         position: absolute;
-        bottom: -2rem;
+        bottom: -1.75rem;
         left: calc(50% - 2rem);
         width: 0;
         height: 0;
