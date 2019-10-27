@@ -49,8 +49,13 @@ permalink: /blog/citas-citables
       }
 
       .main {
+        display: none;
         margin: 0;
         text-align: center;
+      }
+
+      .main:target {
+        display: block;
       }
 
       .quote {
@@ -121,7 +126,10 @@ permalink: /blog/citas-citables
 
   <body>
     {% for quote in quotes %}
-    <section class="main">
+    <section
+      class="main"
+      id="{{ quote.id }}"
+    >
       <h1 class="quote">
         {{ quote.text }}
       </h1>
