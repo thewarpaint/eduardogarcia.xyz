@@ -200,7 +200,9 @@ permalink: /blog/citas-citables
 
     <script>
       // Workaround, the idea is to avoid using JS!
-      window.location.hash = '{{ quotes[0].id }}';
+      if (!window.location.hash) {
+        window.location.hash = '{{ quotes[0].id }}';
+      }
     </script>
   </body>
 </html>
