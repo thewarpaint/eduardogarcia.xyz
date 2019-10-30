@@ -174,5 +174,10 @@ permalink: /blog/citas-citables
       {% endif %}
     </section>
     {% endfor %}
+
+    <script>
+      // Workaround, the idea is to avoid using JS!
+      window.location.hash = '{{ quotes[0].id }}';
+    </script>
   </body>
 </html>
