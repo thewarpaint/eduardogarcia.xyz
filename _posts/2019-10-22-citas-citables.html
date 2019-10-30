@@ -73,6 +73,14 @@ permalink: /blog/citas-citables
         background-color: #b5261e;
         color: white;
         font-weight: 700;
+      }
+
+      .quote--small {
+        font-size: 2.5rem;
+        font-size: 5vmin;
+      }
+
+      .quote--large {
         font-size: 3.75rem;
         font-size: 7.5vmin;
       }
@@ -140,7 +148,7 @@ permalink: /blog/citas-citables
       class="main"
       id="{{ quote.id }}"
     >
-      <h1 class="quote">
+      <h1 class="quote {{ quote.class }}">
         {{ quote.text }}
       </h1>
 
