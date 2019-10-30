@@ -75,16 +75,6 @@ permalink: /blog/citas-citables
         font-weight: 700;
       }
 
-      .quote--small {
-        font-size: 2.5rem;
-        font-size: 5vmin;
-      }
-
-      .quote--large {
-        font-size: 3.75rem;
-        font-size: 7.5vmin;
-      }
-
       .quote::after {
         content: "";
         position: absolute;
@@ -95,6 +85,20 @@ permalink: /blog/citas-citables
         border-left: 2rem solid transparent;
         border-right: 2rem solid transparent;
         border-top: 2rem solid #b5261e;
+      }
+
+      .quote__text {
+        margin: 0;
+      }
+
+      .quote--small .quote__text {
+        font-size: 2.5rem;
+        font-size: 5vmin;
+      }
+
+      .quote--large .quote__text {
+        font-size: 3.75rem;
+        font-size: 7.5vmin;
       }
 
       .source {
@@ -148,9 +152,11 @@ permalink: /blog/citas-citables
       class="main"
       id="{{ quote.id }}"
     >
-      <h1 class="quote {{ quote.class }}">
-        {{ quote.text }}
-      </h1>
+      <div class="quote {{ quote.class }}">
+        <h1 class="quote__text">
+          {{ quote.text }}
+        </h1>
+      </div>
 
       <div class="bobblehead">
         <img src="{{ site.url }}/assets/images/{{ quote.bobbleheadUrl }}"
