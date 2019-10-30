@@ -67,6 +67,8 @@ permalink: /blog/citas-citables
       }
 
       .quote {
+        display: flex;
+        flex-direction: row;
         position: relative;
         margin: 0 0 4rem;
         padding: 5rem;
@@ -99,6 +101,15 @@ permalink: /blog/citas-citables
       .quote--large .quote__text {
         font-size: 3.75rem;
         font-size: 7.5vmin;
+      }
+
+      .nav {
+        color: white;
+        text-decoration: none;
+      }
+
+      .nav--hidden {
+        visibility: hidden;
       }
 
       .source {
@@ -153,9 +164,23 @@ permalink: /blog/citas-citables
       id="{{ quote.id }}"
     >
       <div class="quote {{ quote.class }}">
+        <a
+          href="#{{ quotes[prev].id }}"
+          class="nav {% if forloop.first == true %}nav--hidden{% endif %}"
+        >
+          &lt;
+        </a>
+
         <h1 class="quote__text">
           {{ quote.text }}
         </h1>
+
+        <a
+          href="#{{ quotes[next].id }}"
+          class="nav {% if forloop.last == true %}nav--hidden{% endif %}"
+        >
+          &gt;
+        </a>
       </div>
 
       <div class="bobblehead">
@@ -170,22 +195,6 @@ permalink: /blog/citas-citables
          target="_blank">
         {{ quote.author }}, {{ quote.year }}
       </a>
-
-      {% if forloop.first == false %}
-      <a
-        href="#{{ quotes[prev].id }}"
-      >
-        prev
-      </a>
-      {% endif %}
-
-      {% if forloop.last == false %}
-      <a
-        href="#{{ quotes[next].id }}"
-      >
-        next
-      </a>
-      {% endif %}
     </section>
     {% endfor %}
 
