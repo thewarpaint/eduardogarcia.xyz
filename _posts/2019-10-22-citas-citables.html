@@ -195,7 +195,8 @@ permalink: /blog/citas-citables
          href="{{ quote.sourceUrl }}"
          rel="noopener noreferrer"
          target="_blank">
-        {{ quote.author }}, {{ quote.year }}
+        {{ quote.author }}<br>
+        {{ quote.dateFormatted }}
       </a>
     </section>
     {% endfor %}
