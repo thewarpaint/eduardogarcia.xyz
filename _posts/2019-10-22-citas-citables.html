@@ -69,7 +69,7 @@ permalink: /blog/citas-citables
       .quote {
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: stretch;
         position: relative;
         margin: 0 0 4rem;
         background-color: #b5261e;
@@ -105,13 +105,25 @@ permalink: /blog/citas-citables
       }
 
       .nav {
+        display: flex;
+        align-items: center;
         flex: 1 0 5rem;
         color: white;
         text-decoration: none;
       }
 
+      .nav:hover {
+        background-color: rgba(255, 255, 255, .1666);
+      }
+
       .nav--hidden {
         visibility: hidden;
+      }
+
+      .nav__arrow {
+        display: block;
+        flex: 1 0 auto;
+        text-align: center;
       }
 
       .source {
@@ -176,7 +188,7 @@ permalink: /blog/citas-citables
           href="#{{ quotes[prev].id }}"
           class="nav {% if forloop.first == true %}nav--hidden{% endif %}"
         >
-          &lt;
+          <span class="nav__arrow">&lt;</span>
         </a>
 
         <h1 class="quote__text">
@@ -187,7 +199,7 @@ permalink: /blog/citas-citables
           href="#{{ quotes[next].id }}"
           class="nav {% if forloop.last == true %}nav--hidden{% endif %}"
         >
-          &gt;
+          <span class="nav__arrow">&gt;</span>
         </a>
       </div>
 
