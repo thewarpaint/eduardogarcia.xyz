@@ -1,30 +1,28 @@
-# Courses
+# Course: Version Control Systems (git)
 
-## Version Control Systems (git)
-
-### Prerequisites
+## Prerequisites
 
 - Basic shell usage
 - [GitHub account with SSH keys setup](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
 - [Recent git installed (>2.0)](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-### What is a VCS?
+## What is a VCS?
 
-### Why is it useful?
+## Why is it useful?
 
 - Collaboration: many people working on the same project
 - Accountability and auditing: who did what, when and why?
 - Being able to undo stuff (features, release rollbacks)
 - Pinpointing regressions
 
-### git
+## git
 
 - Distributed
 - Concepts: remote, commits (graph), diff, branch, ...
 - Actions: checkout, commit, rebase, cherry pick, blame, stash, bisect, reflog, stash, ...
 - Conflict resolution
 
-#### Concepts
+### Concepts
 
 **Remote**
 
@@ -139,18 +137,9 @@ git push --force
 
 **Merge vs rebase**
 
-### Branching models
+## Branching models
 
 - CI (`master`, `feature/*`)
 - GitFlow (`master`, `release/*`, `develop`, `feature/*`, `hotfix/*`)
 
-### Code review
-
-## Topics
-
-- REST APIs
-- Testing + CI
-- Deploying + CD
-- How to interview
-- How to do salary negotiation
-- GraphQL
+## Code review
