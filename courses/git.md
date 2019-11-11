@@ -112,7 +112,7 @@ A master
 ```
 
 ```sh
-git push origin feature/add-eduardo-garcia-name
+git push origin feature/add-eduardo-garcia
 ```
 
 Then go to [thewarpaint/git-course](https://github.com/thewarpaint/git-course) to create a Pull Request, and merge it.
@@ -125,7 +125,7 @@ git pull
 **Rebase**
 
 ```sh
-git checkout feature/add-FIRST-LAST-name
+git checkout feature/add-FIRST-LAST
 git rebase master
 ```
 
@@ -139,7 +139,24 @@ git push --force
 
 ## Branching models
 
-- CI (`master`, `feature/*`)
-- GitFlow (`master`, `release/*`, `develop`, `feature/*`, `hotfix/*`)
+### Continuous Development (`master`, `feature/*`)
+
+```sh
+A-----------E master
+ \         /
+  B---C---D feature/add-eduardo-garcia
+```
+
+### GitFlow (`master`, `release/*`, `develop`, `feature/*`, `hotfix/*`)
+
+```sh
+A-------------------G master
+ \                 /
+  \               F release/2019-12-31
+   \             /
+    \           E develop
+     \         /
+      B---C---D feature/add-eduardo-garcia
+```
 
 ## Code review
