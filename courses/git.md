@@ -5,6 +5,8 @@
 ### Prerequisites
 
 - Basic shell usage
+- [GitHub account with SSH keys setup](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
+- [Recent git installed (>2.0)](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ### What is a VCS?
 
