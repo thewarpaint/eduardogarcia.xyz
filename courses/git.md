@@ -37,7 +37,10 @@ Different protocols: SSH and SSH keys, HTTPS and username/password.
 https://help.github.com/en/github/using-git/which-remote-url-should-i-use
 
 ```sh
-git remote -v
+$ git remote -v
+
+origin	git@github.com:thewarpaint/git-course.git (fetch)
+origin	git@github.com:thewarpaint/git-course.git (push)
 ```
 
 In some workflows every collaborator shares the same remote repository. In others you have your own
@@ -60,13 +63,17 @@ Commits are snapshots of the repository at a given point in time.
 Create a feature branch:
 
 ```sh
-git checkout -b feature/add-eduardo-garcia-name
+$ git checkout -b feature/add-eduardo-garcia
+
+Switched to a new branch 'feature/add-eduardo-garcia'
 ```
 
 Add your name to the list of participants:
 
 ```html
 <!-- index.html -->
+<h1>Participants</h1>
+
 <ul>
   <li>Eduardo García</li>
 </ul>
@@ -82,11 +89,43 @@ Add your name to the list of participants:
 git diff
 ```
 
+```diff
+diff --git a/index.html b/index.html
+index 8153e8e..aad3f6f 100644
+--- a/index.html
++++ b/index.html
+@@ -1,4 +1,5 @@
+ <h1>Participants</h1>
+
+ <ul>
++  <li>Eduardo García</li>
+ </ul>
+```
+
+```sh
+$ git status
+
+On branch feature/add-eduardo-garcia
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
 Then add your file to the staging area:
 
 ```sh
-git add index.html
-git status
+$ git add index.html
+$ git status
+
+On branch feature/add-eduardo-garcia
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   index.html
 ```
 
 ... and commit your change:
