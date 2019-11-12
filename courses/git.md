@@ -22,9 +22,7 @@
 - Actions: checkout, commit, rebase, cherry pick, blame, stash, bisect, reflog, stash, ...
 - Conflict resolution
 
-### Concepts
-
-**Remote**
+### Remotes
 
 > Remote repositories are versions of your project that are hosted on the Internet or network somewhere.
 
@@ -49,7 +47,7 @@ personal fork which you commit to and an upstream remote you submit Pull Request
 git remote add personal git@github.com:personal/git-course.git
 ```
 
-**Commits**
+### Commits
 
 > A commit, or "revision", is an individual change to a file (or set of files). [...] Commits usually contain a commit message which is a brief description of what changes were made.
 
@@ -57,7 +55,7 @@ git remote add personal git@github.com:personal/git-course.git
 
 Commits are snapshots of the repository at a given point in time.
 
-**Branches**
+### Branches
 
 Create a feature branch:
 
@@ -74,7 +72,7 @@ Add your name to the list of participants:
 </ul>
 ```
 
-**Diff**
+### Diff
 
 > A diff is the difference in changes between two commits, or saved changes. The diff will visually describe what was added or removed from a file since its last commit.
 
@@ -97,7 +95,7 @@ git status
 git commit -m "Add Eduardo García to participants list"
 ```
 
-**Commit messages**
+### Commit messages
 
 + Start with verb in present tense
 + Clear and concise description of the change
@@ -122,7 +120,7 @@ git checkout master
 git pull
 ```
 
-**Rebase**
+### Rebase
 
 ```sh
 git checkout feature/add-FIRST-LAST
@@ -135,7 +133,9 @@ Resolve conflicts, then push to the remote again:
 git push --force
 ```
 
-**Merge vs rebase**
+### Merge vs rebase
+
+TBD
 
 ## Branching models
 
