@@ -131,7 +131,10 @@ Changes to be committed:
 ... and commit your change:
 
 ```sh
-git commit -m "Add Eduardo García to participants list"
+$ git commit -m "Add Eduardo García to participants list"
+
+[feature/add-eduardo-garcia dce1bc1] Add Eduardo García to participants list
+ 1 file changed, 1 insertion(+)
 ```
 
 ### Commit messages
@@ -149,7 +152,20 @@ A master
 ```
 
 ```sh
-git push origin feature/add-eduardo-garcia
+$ git push origin feature/add-eduardo-garcia
+
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 333 bytes | 333.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'feature/add-eduardo-garcia' on GitHub by visiting:
+remote:      https://github.com/thewarpaint/git-course/pull/new/feature/add-eduardo-garcia
+remote:
+To github.com:thewarpaint/git-course.git
+ * [new branch]      feature/add-eduardo-garcia -> feature/add-eduardo-garcia
 ```
 
 Then go to [thewarpaint/git-course](https://github.com/thewarpaint/git-course) to create a Pull Request, and merge it.
