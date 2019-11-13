@@ -148,7 +148,25 @@ Current state of the repository:
 ```
 A master
  \
-  B feature/add-eduardo-garcia-name
+  B feature/add-eduardo-garcia
+```
+
+### Log
+
+```sh
+$ git log
+
+commit dce1bc117b8781299e1f6aade9564657d5a0061f (HEAD -> feature/add-eduardo-garcia)
+Author: Eduardo Garcia <eduardogarcia.xyz+gh@gmail.com>
+Date:   Mon Nov 11 23:10:22 2019 -0600
+
+    Add Eduardo García to participants list
+
+commit 76230e795fb3fd71bed884d2a022a3fa0b1407e5 (origin/master, origin/HEAD, master)
+Author: Eduardo Garcia <eduardogarcia.xyz+gh@gmail.com>
+Date:   Mon Nov 11 22:57:15 2019 -0600
+
+    Add empty participants list
 ```
 
 ```sh
