@@ -58,7 +58,7 @@ git remote add personal git@github.com:personal/git-course.git
 
 Commits are snapshots of the repository at a given point in time.
 
-### Branches
+### Branches (checkout)
 
 Create a feature branch:
 
@@ -169,6 +169,8 @@ Date:   Mon Nov 11 22:57:15 2019 -0600
     Add empty participants list
 ```
 
+### Push
+
 ```sh
 $ git push origin feature/add-eduardo-garcia
 
@@ -188,16 +190,37 @@ To github.com:thewarpaint/git-course.git
 
 Then go to [thewarpaint/git-course](https://github.com/thewarpaint/git-course) to create a Pull Request, and merge it.
 
+(If you're trying this on your own, create a new branch from master before pulling, add another name to the list,
+commit your changes and create a second PR)
+
+
+### Pull
+
 ```sh
-git checkout master
-git pull
+$ git checkout master
+
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+$ git pull
+
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), done.
+From github.com:thewarpaint/git-course
+   76230e7..83bcc65  master     -> origin/master
+Updating 76230e7..83bcc65
+Fast-forward
+ index.html | 1 +
+ 1 file changed, 1 insertion(+)
 ```
 
 ### Rebase
 
 ```sh
-git checkout feature/add-FIRST-LAST
-git rebase master
+$ git checkout feature/add-childish-gambino
+$ git rebase master
 ```
 
 Resolve conflicts, then push to the remote again:
