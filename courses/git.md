@@ -216,6 +216,29 @@ Fast-forward
  1 file changed, 1 insertion(+)
 ```
 
+### Conflicts
+
+```diff
+$ git merge feature/add-childish-gambino --no-ff --no-commit
+
+diff --cc index.html
+index aad3f6f,6ecdb4a..0000000
+--- a/index.html
++++ b/index.html
+@@@ -1,5 -1,5 +1,9 @@@
+  <h1>Participants</h1>
+
+  <ul>
+++<<<<<<< HEAD
+ +  <li>Eduardo García</li>
+++=======
++   <li>Childish Gambino</li>
+++>>>>>>> feature/add-childish-gambino
+  </ul>
+  
+$ git merge --abort
+```
+
 ### Rebase
 
 ```sh
