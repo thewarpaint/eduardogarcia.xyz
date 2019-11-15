@@ -29,7 +29,17 @@
 [Source](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes)
 
 ```sh
-git clone git@github.com:thewarpaint/git-course.git
+$ git clone git@github.com:thewarpaint/git-course.git
+
+Cloning into 'git-course'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 10 (delta 1), reused 8 (delta 0), pack-reused 0
+Receiving objects: 100% (10/10), done.
+Resolving deltas: 100% (1/1), done.
+
+$ cd git-course
 ```
 
 Different protocols: SSH and SSH keys, HTTPS and username/password.
