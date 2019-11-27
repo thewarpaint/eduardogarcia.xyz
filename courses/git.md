@@ -273,6 +273,17 @@ git push --force
 
 TBD
 
+### Blame
+
+```sh
+$ git blame index.html
+^76230e7 (Eduardo Garcia 2019-11-11 22:57:15 -0600 1) <h1>Participants</h1>
+^76230e7 (Eduardo Garcia 2019-11-11 22:57:15 -0600 2)
+^76230e7 (Eduardo Garcia 2019-11-11 22:57:15 -0600 3) <ul>
+dce1bc11 (Eduardo Garcia 2019-11-11 23:10:22 -0600 4)   <li>Eduardo García</li>
+^76230e7 (Eduardo Garcia 2019-11-11 22:57:15 -0600 5) </ul>
+```
+
 ## Branching models
 
 ### Continuous Development (`master`, `feature/*`)
