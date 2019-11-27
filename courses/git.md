@@ -12,8 +12,11 @@
 
 - Collaboration: many people working on the same project
 - Accountability and auditing: who did what, when and why?
+    - `git blame`
 - Being able to undo stuff (features, release rollbacks)
+    - `git revert`
 - Pinpointing regressions
+    - `git bisect`
 
 ## git
 
