@@ -6,7 +6,11 @@
 - [GitHub account with SSH keys setup](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
 - [Recent git installed (>2.0)](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-## What is a VCS?
+## What is a Version Control System (VCS)?
+
+> Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later.
+
+[source](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
 
 ## Why is it useful?
 
