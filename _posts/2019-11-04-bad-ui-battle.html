@@ -1,6 +1,10 @@
 ---
 permalink: /blog/bad-ui-battle
 ---
+{%- assign cols = 21 -%}
+{%- assign rows = 21 -%}
+{%- assign colsMax = cols | minus:1 -%}
+{%- assign rowsMax = rows | minus:1 -%}
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,13 +18,14 @@ permalink: /blog/bad-ui-battle
       }
 
       .td {
+        margin: 0;
         padding: 0;
       }
 
       .checkbox,
       .checkbox::after {
-        width: 3rem;
-        height: 3rem;
+        width: 1rem;
+        height: 1rem;
       }
 
       .checkbox {
@@ -51,7 +56,7 @@ permalink: /blog/bad-ui-battle
 
         var $debug = document.getElementById('debug');
 
-        $debug.textContent += event.target.getAttribute('data-index');
+        $debug.textContent += event.target.getAttribute('data-index') + ' ';
       }
 
       function init() {
@@ -68,87 +73,24 @@ permalink: /blog/bad-ui-battle
       class="table"
     >
       <tbody>
+
+        {% for row in (0..rowsMax) %}
         <tr>
+          {% for col in (0..colsMax) %}
+          {% assign index = row | times:rows %}
+          {% assign indexB = index | plus:col %}
           <td
             class="td"
           >
             <input
               type="checkbox"
               class="checkbox"
-              data-index="0"
+              data-index="{{ indexB }}"
             >
           </td>
-
-          <td
-            class="td"
-          >
-            <input
-              type="checkbox"
-              class="checkbox"
-              data-index="1"
-            >
-          </td>
-
-          <td
-            class="td"
-          >
-            <input
-              type="checkbox"
-              class="checkbox"
-              data-index="2"
-            >
-          </td>
-
-          <td
-            class="td"
-          >
-            <input
-              type="checkbox"
-              class="checkbox"
-              data-index="3"
-            >
-          </td>
-
-          <td
-            class="td"
-          >
-            <input
-              type="checkbox"
-              class="checkbox"
-              data-index="4"
-            >
-          </td>
-
-          <td
-            class="td"
-          >
-            <input
-              type="checkbox"
-              class="checkbox"
-              data-index="5"
-            >
-          </td>
-
-          <td
-            class="td"
-          >
-            <input
-              type="checkbox"
-              class="checkbox"
-              data-index="6"
-            >
-          </td>
-
-          <td
-            class="td"
-          >
-            <input
-              type="checkbox"
-              class="checkbox"
-              data-index="7"
-            >
-          </td>
+          {% endfor %}
         </tr>
+        {% endfor %}
       </tbody>
     </table>
 
