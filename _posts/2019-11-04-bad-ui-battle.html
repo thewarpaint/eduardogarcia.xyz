@@ -38,10 +38,33 @@ permalink: /blog/bad-ui-battle
         background-color: black;
       }
     </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function (event) {
+        init();
+      });
+
+      function onClick(event) {
+        if (!event.target.matches('input')) {
+          return;
+        }
+
+        var $debug = document.getElementById('debug');
+
+        $debug.textContent += event.target.getAttribute('data-index');
+      }
+
+      function init() {
+        var table = document.getElementById('table');
+
+        table.addEventListener('click', onClick);
+      }
+    </script>
   </head>
 
   <body>
     <table
+      id="table"
       class="table"
     >
       <tbody>
@@ -52,6 +75,7 @@ permalink: /blog/bad-ui-battle
             <input
               type="checkbox"
               class="checkbox"
+              data-index="0"
             >
           </td>
 
@@ -61,6 +85,7 @@ permalink: /blog/bad-ui-battle
             <input
               type="checkbox"
               class="checkbox"
+              data-index="1"
             >
           </td>
 
@@ -70,6 +95,7 @@ permalink: /blog/bad-ui-battle
             <input
               type="checkbox"
               class="checkbox"
+              data-index="2"
             >
           </td>
 
@@ -79,6 +105,7 @@ permalink: /blog/bad-ui-battle
             <input
               type="checkbox"
               class="checkbox"
+              data-index="3"
             >
           </td>
 
@@ -88,6 +115,7 @@ permalink: /blog/bad-ui-battle
             <input
               type="checkbox"
               class="checkbox"
+              data-index="4"
             >
           </td>
 
@@ -97,6 +125,7 @@ permalink: /blog/bad-ui-battle
             <input
               type="checkbox"
               class="checkbox"
+              data-index="5"
             >
           </td>
 
@@ -106,6 +135,7 @@ permalink: /blog/bad-ui-battle
             <input
               type="checkbox"
               class="checkbox"
+              data-index="6"
             >
           </td>
 
@@ -115,10 +145,13 @@ permalink: /blog/bad-ui-battle
             <input
               type="checkbox"
               class="checkbox"
+              data-index="7"
             >
           </td>
         </tr>
       </tbody>
     </table>
+
+    <pre id="debug"></pre>
   </body>
 </html>
