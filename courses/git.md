@@ -308,6 +308,8 @@ A-------------------G master
 
 ## Code review
 
+## GUIs
+
 ## Advanced topics
 
 - Submodules
