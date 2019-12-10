@@ -307,3 +307,7 @@ A-------------------G master
 ```
 
 ## Code review
+
+## Advanced topics
+
+- Submodules
