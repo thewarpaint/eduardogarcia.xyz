@@ -294,7 +294,22 @@ A-----------E master
   B---C---D feature/add-eduardo-garcia
 ```
 
-### GitFlow (`master`, `release/*`, `develop`, `feature/*`, `hotfix/*`)
+- `master` is the stable branch
+- `feature/*` branches
+    - created from master
+    - updated often whenever master changes
+    - contain a set of related changes that achieve a given objective: introduce a new feature,
+      fix a bug (`bugfix/*`), add or improve documentation (`docs/*`), etc.
+- `feature/*` branches are **tested in isolation**
+    - deployed to a test environment
+- when a `feature/*` branch accomplishes its purpose and doesn't break other features it is
+  merged and deployed to the production environment
+
+#### References
+
+- [Continuous delivery workflows with the branch-per-issue model](https://www.atlassian.com/continuous-delivery/principles/workflows-with-feature-branching-and-gitflow)
+
+### GitFlow (`master`, `develop`, `feature/*`, `release/*`, `hotfix/*`)
 
 ```sh
 A-------------------G master
@@ -305,6 +320,11 @@ A-------------------G master
      \         /
       B---C---D feature/add-eduardo-garcia
 ```
+
+#### References
+
+- [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+- [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
 ## Code review
 
