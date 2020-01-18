@@ -8,41 +8,76 @@
       /* https://tbpmx.com/work/rappi */
       /* #f3e5cc, #ffa385, #ff5a34, #ff7079 */
       body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        color: black;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 16px;
-        background-color: #f3e5cc;
+      }
+
+      section {
+        padding: 3rem;
+      }
+
+      @media(min-width: 640px) {
+        section {
+          padding: 6rem;
+        }
+      }
+
+      .main {
+        background-color: #ff5a34; /* Rappi brand */
+        color: white;
       }
 
       h1,
       h2 {
+        margin: 0;
         font-weight: lighter;
-        color: #ff5a34; /* Rappi brand */
       }
 
       h1 {
-        font-size: 10rem;
-        font-size: 10vw;
+        font-size: 4rem;
+        font-size: 16vw;
+      }
+
+      @media(min-width: 640px) {
+        h1 {
+          font-size: 5rem;
+          font-size: 10vw;
+        }
       }
 
       h2 {
-        font-size: 5rem;
-        font-size: 5vw;
+        font-size: 2rem;
+        font-size: 8vw;
+      }
+
+      @media(min-width: 640px) {
+        h2 {
+          font-size: 2.5rem;
+          font-size: 5vw;
+        }
       }
 
       strong {
-        color: #ff5a34; /* Rappi brand */
         font-weight: bold;
       }
     </style>
   </head>
 
   <body>
-    <h1>
-      I'm currently building cool stuff at <strong>Rappi</strong>
-    </h1>
+    <section class="main">
+      <h1>
+        I build cool stuff at <strong>Rappi</strong>
+      </h1>
+    </section>
 
-    <h2>
-      As part of the <strong>RappiPay</strong> team my mission is to improve our products.
-    </h2>
+    <section>
+      <h2>
+        As part of the <strong>RappiPay</strong> team my mission is to improve our products.
+      </h2>
+    </section>
   </body>
 </html>
