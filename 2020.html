@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ff5a34">
+    <meta name="theme-color" content="#000000">
 
     <style type="text/css">
       /* https://tbpmx.com/work/rappi */
@@ -29,7 +29,12 @@
         }
       }
 
-      .main {
+      .main--home {
+        background-color: black;
+        color: white;
+      }
+
+      .main--rappi {
         background-color: #ff5a34; /* Rappi brand */
         color: white;
       }
@@ -69,11 +74,44 @@
       strong {
         font-weight: bold;
       }
+
+      .text--home {
+        background-color: black;
+        color: white;
+      }
     </style>
   </head>
 
   <body>
-    <section class="main">
+    <section class="main main--home">
+      <h1>
+        Hey, I'm <strong>Eduardo</strong> and I build cool stuff for the web!
+      </h1>
+    </section>
+
+    <section class="text text--home">
+      <p>
+        As part of the <strong>RappiPay</strong> team my mission is to improve
+        the payment experience of both people and businesses across Latin America.
+      </p>
+
+      <p>
+        I built the bank statement microservice which lets our customers download
+        their PDF statements from the app and get it monthly in their inboxes.
+      </p>
+
+      <p>
+        I am building internal tooling to make it easier to know what
+        version of a service was deployed to an environment or country and when.
+      </p>
+
+      <p>
+        I also work on the system that lets our allies accept payments with
+        QR codes.
+      </p>
+    </section>
+
+    <section class="main main--rappi">
       <h1>
         Hola, I build cool stuff at <strong>Rappi</strong>!
       </h1>
