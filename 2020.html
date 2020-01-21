@@ -105,11 +105,33 @@
         background-color: white;
         color: black;
       }
+
+      .mode-btn {
+        border: none;
+        padding: 0;
+        background-color: transparent;
+        font-size: 2rem;
+        line-height: 2rem;
+      }
     </style>
   </head>
 
   <body class="night-mode">
     <section class="main main--home">
+      <button
+        class="mode-btn"
+        onclick="body.classList.remove('night-mode'); body.classList.add('day-mode');">
+        🌞
+      </button>
+
+      <button
+        class="mode-btn"
+        onclick="body.classList.remove('day-mode'); body.classList.add('night-mode');">
+        🌚
+      </button
+        class="mode-btn"
+        >
+
       <h1>
         Hey, I'm <strong>Eduardo</strong> and I build cool stuff for the web!
       </h1>
