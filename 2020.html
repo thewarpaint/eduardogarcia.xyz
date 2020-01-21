@@ -8,13 +8,29 @@
     <style type="text/css">
       /* https://tbpmx.com/work/rappi */
       /* #f3e5cc, #ffa385, #ff5a34, #ff7079 */
+      body,
+      .main--home,
+      .text--home {
+        transition-property: background-color color;
+        transition-duration: .666s;
+        transition-timing-function: ease-in-out;
+      }
+
       body {
         margin: 0;
         padding: 0;
-        background-color: white;
-        color: black;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 16px;
+      }
+
+      .night-mode {
+        background-color: black;
+        color: white;
+      }
+
+      .day-mode {
+        background-color: white;
+        color: black;
       }
 
       section {
@@ -29,9 +45,14 @@
         }
       }
 
-      .main--home {
+      .night-mode .main--home {
         background-color: black;
         color: white;
+      }
+
+      .day-mode .main--home {
+        background-color: white;
+        color: black;
       }
 
       .main--rappi {
@@ -75,14 +96,19 @@
         font-weight: bold;
       }
 
-      .text--home {
+      .night-mode .text--home {
         background-color: black;
         color: white;
+      }
+
+      .day-mode .text--home {
+        background-color: white;
+        color: black;
       }
     </style>
   </head>
 
-  <body>
+  <body class="night-mode">
     <section class="main main--home">
       <h1>
         Hey, I'm <strong>Eduardo</strong> and I build cool stuff for the web!
