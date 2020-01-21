@@ -114,19 +114,33 @@
         line-height: 2rem;
       }
     </style>
+
+    <script>
+      function turnDayModeOn() {
+        document.body.classList.remove('night-mode');
+        document.body.classList.add('day-mode');
+        document.querySelector('meta[name=theme-color]').setAttribute('content', '#ffffff');
+      }
+
+      function turnNightModeOn() {
+        document.body.classList.remove('day-mode');
+        document.body.classList.add('night-mode');
+        document.querySelector('meta[name=theme-color]').setAttribute('content', '#000000');
+      }
+    </script>
   </head>
 
   <body class="night-mode">
     <section class="main main--home">
       <button
         class="mode-btn"
-        onclick="body.classList.remove('night-mode'); body.classList.add('day-mode');">
+        onclick="turnDayModeOn()">
         🌞
       </button>
 
       <button
         class="mode-btn"
-        onclick="body.classList.remove('day-mode'); body.classList.add('night-mode');">
+        onclick="turnNightModeOn()">
         🌚
       </button
         class="mode-btn"
