@@ -10,8 +10,9 @@
       /* #f3e5cc, #ffa385, #ff5a34, #ff7079 */
       body,
       .main--home,
-      .text--home {
-        transition-property: background-color color;
+      .text--home,
+      .mode-btn {
+        transition-property: background-color, border, color, opacity;
         transition-duration: .666s;
         transition-timing-function: ease-in-out;
       }
@@ -106,12 +107,34 @@
         color: black;
       }
 
+      .mode-btn-group {
+        display: inline-block;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 2rem;
+        padding: .5rem;
+      }
+
+      .night-mode .mode-btn-group {
+        border-color: white;
+      }
+
+      .day-mode .mode-btn-group {
+        border-color: black;
+      }
+
       .mode-btn {
         border: none;
         padding: 0;
         background-color: transparent;
         font-size: 2rem;
         line-height: 2rem;
+        cursor: pointer;
+      }
+
+      .day-mode .mode-btn--day-mode,
+      .night-mode .mode-btn--night-mode {
+        opacity: 0;
       }
     </style>
 
@@ -132,19 +155,19 @@
 
   <body class="night-mode">
     <section class="main main--home">
-      <button
-        class="mode-btn"
-        onclick="turnDayModeOn()">
-        🌞
-      </button>
+      <span class="mode-btn-group">
+        <button
+          class="mode-btn mode-btn--day-mode"
+          onclick="turnDayModeOn()">
+          🌞
+        </button>
 
-      <button
-        class="mode-btn"
-        onclick="turnNightModeOn()">
-        🌚
-      </button
-        class="mode-btn"
-        >
+        <button
+          class="mode-btn mode-btn--night-mode"
+          onclick="turnNightModeOn()">
+          🌚
+        </button>
+      </span>
 
       <h1>
         Hey, I'm <strong>Eduardo</strong> and I build cool stuff for the web!
