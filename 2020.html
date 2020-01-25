@@ -31,6 +31,10 @@
         font-size: 16px;
       }
 
+      strong {
+        font-weight: bold;
+      }
+
       .night-mode {
         background-color: black;
         color: white;
@@ -41,13 +45,13 @@
         color: black;
       }
 
-      section {
+      .section {
         padding: 2rem;
         padding: 7.5vw;
       }
 
       @media(min-width: 640px) {
-        section {
+        .section {
           padding: 2rem 4rem;
           padding: 5vw 10vw;
         }
@@ -68,25 +72,25 @@
         color: white;
       }
 
-      h1,
-      p {
+      .hero,
+      .text__p {
         margin: 0;
         font-weight: lighter;
       }
 
-      h1 {
+      .hero {
         font-size: 4rem;
         font-size: 16vw;
       }
 
       @media(min-width: 640px) {
-        h1 {
+        .hero {
           font-size: 5rem;
           font-size: 10vw;
         }
       }
 
-      p {
+      .text__p {
         margin-bottom: 1rem;
         margin-bottom: 4vw;
         font-size: 1.6rem;
@@ -94,14 +98,10 @@
       }
 
       @media(min-width: 640px) {
-        p {
+        .text__p {
           font-size: 2rem;
           font-size: 4vw;
         }
-      }
-
-      strong {
-        font-weight: bold;
       }
 
       .nav {
@@ -224,7 +224,7 @@
       </h2>
     </nav>
 
-    <section class="main main--home">
+    <section class="section main main--home">
       <span class="mode-btn-group">
         <button
           class="mode-btn mode-btn--day-mode"
@@ -239,34 +239,34 @@
         </button>
       </span>
 
-      <h1>
+      <h1 class="hero">
         Hey, I'm <strong>Eduardo</strong> and I build cool stuff for the web!
       </h1>
     </section>
 
-    <section class="text text--home">
-      <p>
+    <section class="section text text--home">
+      <p class="text__p">
         As part of the <strong>RappiPay</strong> team my mission is to improve
         the payment experience of both people and businesses across Latin America.
       </p>
 
-      <p>
+      <p class="text__p">
         I built the bank statement microservice which lets our customers download
         their PDF statements from the app and get it monthly in their inboxes.
       </p>
 
-      <p>
+      <p class="text__p">
         I am building internal tooling to make it easier to know what
         version of a service was deployed to an environment or country and when.
       </p>
 
-      <p>
+      <p class="text__p">
         I also work on the system that lets our allies accept payments with
         QR codes.
       </p>
     </section>
 
-    <section class="main main--rappi" style="display: none;">
+    <section class="section main main--rappi" style="display: none;">
       <h1>
         Hola, I build cool stuff at <strong>Rappi</strong>!
       </h1>
