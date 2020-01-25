@@ -198,6 +198,20 @@
     </style>
 
     <script>
+      var nightModeOn = true;
+
+      document.addEventListener('DOMContentLoaded', function (event) {
+        document.querySelector('.mode-btn-group').addEventListener('click', function (event) {
+          if (nightModeOn) {
+            turnDayModeOn();
+          } else {
+            turnNightModeOn();
+          }
+
+          nightModeOn = !nightModeOn;
+        });
+      });
+
       function turnDayModeOn() {
         document.body.classList.remove('night-mode');
         document.body.classList.add('day-mode');
@@ -226,15 +240,11 @@
 
     <section class="section main main--home">
       <span class="mode-btn-group">
-        <button
-          class="mode-btn mode-btn--day-mode"
-          onclick="turnDayModeOn()">
+        <button class="mode-btn mode-btn--day-mode">
           🌞
         </button>
 
-        <button
-          class="mode-btn mode-btn--night-mode"
-          onclick="turnNightModeOn()">
+        <button class="mode-btn mode-btn--night-mode">
           🌚
         </button>
       </span>
