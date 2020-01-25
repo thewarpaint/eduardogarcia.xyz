@@ -207,16 +207,18 @@
       var nightModeOn = true;
 
       document.addEventListener('DOMContentLoaded', function (event) {
-        document.querySelector('.mode-btn-group').addEventListener('click', function (event) {
-          if (nightModeOn) {
-            turnDayModeOn();
-          } else {
-            turnNightModeOn();
-          }
-
-          nightModeOn = !nightModeOn;
-        });
+        document.querySelector('.mode-btn-group').addEventListener('click', toggleMode);
       });
+
+      function toggleMode(event) {
+        if (nightModeOn) {
+          turnDayModeOn();
+        } else {
+          turnNightModeOn();
+        }
+
+        nightModeOn = !nightModeOn;
+      }
 
       function turnDayModeOn() {
         document.body.classList.remove('night-mode');
