@@ -18,17 +18,6 @@
     <title>Eduardo García</title>
 
     <style type="text/css">
-      body,
-      .nav__avatar,
-      .main--home,
-      .text--home,
-      .mode-btn-group,
-      .mode-btn {
-        transition-property: background-color, border-color, color, opacity;
-        transition-duration: .666s;
-        transition-timing-function: ease-in-out;
-      }
-
       body {
         margin: 0;
         padding: 0;
@@ -38,6 +27,12 @@
 
       strong {
         font-weight: bold;
+      }
+      
+      .h-transition {
+        transition-property: background-color, border-color, color, opacity;
+        transition-duration: .666s;
+        transition-timing-function: ease-in-out;
       }
 
       .night-mode {
@@ -234,11 +229,11 @@
     </script>
   </head>
 
-  <body class="night-mode">
+  <body class="night-mode h-transition">
     <nav class="nav">
       <img
         src="{{ site.url }}/assets/images/eduardo-garcia-colour.jpg"
-        class="nav__avatar"
+        class="nav__avatar h-transition"
         alt="Eduardo García's photo">
 
       <h2 class="nav__header">
@@ -246,8 +241,8 @@
       </h2>
     </nav>
 
-    <section class="section main main--home">
-      <span class="mode-btn-group">
+    <section class="section main main--home h-transition">
+      <span class="mode-btn-group h-transition">
         <button class="mode-btn mode-btn--day-mode">
           🌞
         </button>
@@ -262,7 +257,7 @@
       </h1>
     </section>
 
-    <section class="section text text--home">
+    <section class="section text text--home h-transition">
       <p class="text__p">
         As part of the <strong>RappiPay</strong> team my mission is to improve
         the payment experience of both people and businesses across Latin America.
