@@ -114,6 +114,9 @@
       }
 
       .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         padding: 1rem;
       }
 
@@ -179,10 +182,18 @@
         display: inline-block;
         border-width: 1px;
         border-style: solid;
-        border-radius: 2rem;
-        height: 2rem;
-        padding: .5rem;
+        border-radius: 1rem;
+        height: 1rem;
+        padding: .25rem;
         cursor: pointer;
+      }
+
+      @media(min-width: 640px) {
+        .mode-btn-group {
+          border-radius: 2rem;
+          height: 2rem;
+          padding: .5rem;
+        }
       }
 
       .night-mode .mode-btn-group {
@@ -198,8 +209,15 @@
         outline: none;
         padding: 0;
         background-color: transparent;
-        font-size: 2rem;
-        line-height: 2.25rem;
+        font-size: 1rem;
+        line-height: 1.125rem;
+      }
+
+      @media(min-width: 640px) {
+        .mode-btn {
+          font-size: 2rem;
+          line-height: 2.25rem;
+        }
       }
 
       .day-mode .mode-btn--day-mode,
@@ -241,17 +259,17 @@
 
   <body class="night-mode h-transition">
     <nav class="nav">
-      <img
-        src="{{ site.url }}/assets/images/eduardo-garcia-colour.jpg"
-        class="nav__avatar h-transition"
-        alt="Eduardo García's photo">
+      <div>
+        <img
+          src="{{ site.url }}/assets/images/eduardo-garcia-colour.jpg"
+          class="nav__avatar h-transition"
+          alt="Eduardo García's photo">
 
-      <h2 class="nav__header">
-        Eduardo García
-      </h2>
-    </nav>
+        <h2 class="nav__header">
+          Eduardo García
+        </h2>
+      </div>
 
-    <section class="section main main--home h-transition">
       <span class="mode-btn-group h-transition">
         <span class="mode-btn mode-btn--day-mode h-transition">
           🌞
@@ -261,7 +279,9 @@
           🌚
         </span>
       </span>
+    </nav>
 
+    <section class="section main main--home h-transition">
       <h1 class="hero">
         Hey, I'm <strong>Eduardo</strong> and I build cool stuff for the web!
       </h1>
