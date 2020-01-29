@@ -52,6 +52,7 @@
       .section {
         padding: 2rem;
         padding: 7.5vw;
+        font-weight: lighter;
       }
 
       /**
@@ -63,6 +64,18 @@
         .section {
           padding: 2rem 4rem;
           padding: 5vw 10vw;
+        }
+      }
+
+      .section__header {
+        font-size: 2rem;
+        font-size: 8vw;
+      }
+
+      @media(min-width: 640px) {
+        .section__header {
+          font-size: 2.5rem;
+          font-size: 5vw;
         }
       }
 
@@ -102,11 +115,16 @@
       .text__p {
         margin-bottom: 1rem;
         margin-bottom: 4vw;
+      }
+
+      .section,
+      .text__p {
         font-size: 1.6rem;
         font-size: 6.4vw;
       }
 
       @media(min-width: 640px) {
+        .section,
         .text__p {
           font-size: 2rem;
           font-size: 4vw;
@@ -310,7 +328,9 @@
     </section>
 
     <section class="section">
-      <h2>Blog</h2>
+      <h2 class="section__header">
+        Blog
+      </h2>
 
       <ul>
         <li>
