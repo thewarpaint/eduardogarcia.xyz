@@ -67,7 +67,7 @@ projects:
       A proof-of-concept web app for <A HREF="https://geometryclub.org/">the Geometry Club project.
 
   - name: Hyperlogout
-    url: http://thewarpaint.github.io/hyperlogout/
+    url: https://thewarpaint.github.io/hyperlogout/
     description: >
       A website that will log you out from popular internet services that <EM>probably</EM> implement logout
       in an unsafe way.
