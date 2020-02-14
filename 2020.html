@@ -85,6 +85,9 @@
 
       .section {
         padding: 2rem;
+        /**
+         * https://developer.mozilla.org/en-US/docs/Web/CSS/length
+         */
         padding: 7.5vw;
         font-weight: lighter;
       }
@@ -281,7 +284,14 @@
     <script>
       var nightModeOn = true;
 
+      /**
+       * https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+       * https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
+       */
       document.addEventListener('DOMContentLoaded', function (event) {
+        /**
+         * https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+         */
         document.querySelector('.mode-btn-group').addEventListener('click', toggleMode);
       });
 
@@ -296,8 +306,14 @@
       }
 
       function turnDayModeOn() {
+        /**
+         * https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+         */
         document.body.classList.remove('night-mode');
         document.body.classList.add('day-mode');
+        /**
+         * https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
+         */
         document.querySelector('meta[name=theme-color]').setAttribute('content', '#ffffff');
       }
 
