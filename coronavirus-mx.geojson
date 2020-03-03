@@ -1,0 +1,96 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-99.1332",
+          "19.4326"
+        ]
+      },
+      "properties": {
+        "cases": 2,
+        "city": "CDMX",
+        "state": "CDMX",
+        "sourceUrls": [
+          "https://www.eluniversal.com.mx/nacion/sociedad/coronavirus-en-mexico-confirman-primer-caso",
+          "https://www.bbc.com/mundo/noticias-america-latina-51677751"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-107.3940",
+          "24.8091"
+        ]
+      },
+      "properties": {
+        "cases": 1,
+        "city": "Culiacán",
+        "state": "Sinaloa",
+        "sourceUrls": [
+          "https://www.eluniversal.com.mx/estados/coronavirus-en-mexico-ingeniero-contagiado-se-encuentra-estable-en-sinaloa"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-103.4068",
+          "25.5428"
+        ]
+      },
+      "properties": {
+        "cases": 1,
+        "city": "Torreón",
+        "state": "Coahuila",
+        "sourceUrls": [
+          "https://www.milenio.com/estados/coronavirus-torreon-confirma-miguel-riquelme-caso-covid19"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-93.1166",
+          "16.7527"
+        ]
+      },
+      "properties": {
+        "cases": 1,
+        "city": "Tuxtla Gutiérrez",
+        "state": "Chiapas",
+        "sourceUrls": [
+          "https://www.eluniversal.com.mx/estados/coronavirus-confirman-caso-en-chiapas-suman-5-en-mexico"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-99.1907",
+          "19.5345"
+        ]
+      },
+      "properties": {
+        "cases": 1,
+        "city": "Tlalnepantla",
+        "state": "Estado de México",
+        "sourceUrls": [
+          "https://heraldodemexico.com.mx/pais/coronavirus-mexico-sexto-caso-positivo-tlalnepantla-edomex-caso-asintomatico-covid19-enfermedad-wuhan-china/"
+        ]
+      }
+    }
+  ]
+}
