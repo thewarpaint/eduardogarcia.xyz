@@ -1,0 +1,77 @@
+<!-- ---
+permalink: /blog/lambda
+--- -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Lambda">
+    <meta name="description" content="Cálculo Mental">
+
+    <title>Lambda: Cálculo Mental - eduardogarcia.xyz</title>
+
+    <style type="text/css">
+      :root {
+        --yellow-a700: #ffd600;
+        --black: #000000;
+      }
+
+      body {
+        font-family: monospace;
+      }
+
+      .yellow-on-black {
+        background-color: var(--yellow-a700);
+        color: var(--black);
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .operation,
+      .operation__answer {
+        font-size: 10vw;
+      }
+
+      .operation {
+        text-align: center;
+      }
+
+      .operation__answer {
+        background: transparent;
+        border: none;
+        border-bottom: .5vw solid;
+        font-family: monospace;
+        text-align: center;
+        width: 20vw;
+      }
+
+      .yellow-on-black .operation__answer {
+        border-color: var(--black);
+      }
+    </style>
+
+    <script type="text/javascript">
+    </script>
+  </head>
+
+  <body class="yellow-on-black">
+    <h1 class="title">
+      Cálculo Mental
+    </h1>
+
+    <section class="operation">
+      99
+      ×
+      99
+      =
+      <input
+        type="text"
+        class="operation__answer"
+        value="999"
+      >
+    </section>
+  </body>
+</html>
