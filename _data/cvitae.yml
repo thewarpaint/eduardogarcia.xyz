@@ -12,12 +12,19 @@ links:
     url: https://github.com/thewarpaint/eduardogarcia.xyz/blob/master/index.html
 
 jobs:
+  - companyName: Stripe
+    companyWebsite: https://stripe.com/
+    title: Software Engineer
+    city: Mexico City
+    startYear: 2020
+    endYear: current
+
   - companyName: Rappi
     companyWebsite: https://www.rappi.com/
     title: Software Engineer
     city: Mexico City
     startYear: 2019
-    endYear: current
+    endYear: 2020
 
   - companyName: eSailors
     companyWebsite: https://www.esailors.de/
