@@ -19,6 +19,7 @@ permalink: /blog/lambda
 
       body {
         font-family: monospace;
+        font-size: 16px;
       }
 
       .yellow-on-black {
@@ -27,6 +28,7 @@ permalink: /blog/lambda
       }
 
       .title {
+        font-size: 2.5vw;
         text-align: center;
       }
 
@@ -39,8 +41,13 @@ permalink: /blog/lambda
         text-align: center;
       }
 
-      .operation__answer {
+      .operation__answer,
+      .operation__submit {
         background: transparent;
+        font-family: monospace;
+      }
+
+      .operation__answer {
         border: none;
         border-bottom: .5vw solid;
         font-family: monospace;
@@ -48,7 +55,14 @@ permalink: /blog/lambda
         width: 20vw;
       }
 
-      .yellow-on-black .operation__answer {
+      .operation__submit {
+        margin: 5rem;
+        padding: 1.25vw 2.5vw;
+        font-size: 5vw;
+      }
+
+      .yellow-on-black .operation__answer,
+      .yellow-on-black .operation__submit {
         border-color: var(--black);
       }
     </style>
@@ -63,15 +77,26 @@ permalink: /blog/lambda
     </h1>
 
     <section class="operation">
-      99
-      ×
-      99
-      =
-      <input
-        type="text"
-        class="operation__answer"
-        value="999"
-      >
+      <form>
+        <div>
+          99
+          ×
+          99
+          =
+          <input
+            type="text"
+            class="operation__answer"
+            value="999"
+          >
+        </div>
+
+        <button
+          type="submit"
+          class="operation__submit"
+        >
+          Calificar
+        </button>
+      </form>
     </section>
   </body>
 </html>
