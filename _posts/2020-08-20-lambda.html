@@ -67,6 +67,12 @@ permalink: /blog/lambda
         text-align: center;
       }
 
+      .timer {
+        font-size: 5vw;
+        margin: 2.5vw 0;
+        text-align: center;
+      }
+
       .operation,
       .operation__answer {
         font-size: 15vw;
@@ -104,6 +110,7 @@ permalink: /blog/lambda
 
     <script type="text/javascript">
       const $dom = {
+        timer: null,
         form: null,
         operandA: null,
         operandB: null,
@@ -119,6 +126,7 @@ permalink: /blog/lambda
       };
 
       function setup() {
+        $dom.timer = document.getElementById('timer');
         $dom.form = document.getElementById('form');
         $dom.operandA = document.getElementById('operand-a');
         $dom.operandB = document.getElementById('operand-b');
@@ -137,6 +145,35 @@ permalink: /blog/lambda
         });
 
         updateOperation();
+        startTimer();
+      }
+
+      function startTimer() {
+        const durationSeconds = 60;
+        const tickMs = 166;
+        const oneMinuteFromNow = Date.now() + (durationSeconds * 1000);
+
+        const timeout = setInterval(() => {
+          let remainingSeconds = (oneMinuteFromNow - Date.now()) / 1000;
+
+          if (remainingSeconds < 0) {
+            clearInterval(timeout);
+            remainingSeconds = 0;
+          }
+
+          updateTimer(remainingSeconds);
+        }, tickMs);
+      }
+
+      function updateTimer(seconds) {
+        $dom.timer.innerText = formatTime(seconds);
+      }
+
+      function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secondsPart = Math.floor(seconds - (minutes * 60)).toString();
+
+        return `${minutes}:${secondsPart.padStart('0', 2)}`;
       }
 
       function updateOperation() {
@@ -183,6 +220,13 @@ permalink: /blog/lambda
     <h1 class="title">
       λ
     </h1>
+
+    <h2
+      id="timer"
+      class="timer"
+    >
+      1:00
+    </h2>
 
     <section class="operation">
       <form id="form">
