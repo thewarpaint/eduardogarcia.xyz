@@ -73,6 +73,7 @@ permalink: /blog/lambda
         operandA: null,
         operandB: null,
         answer: null,
+        submit: null,
       };
 
       const state = {
@@ -86,6 +87,7 @@ permalink: /blog/lambda
         $dom.operandA = document.getElementById('operand-a');
         $dom.operandB = document.getElementById('operand-b');
         $dom.answer = document.getElementById('answer');
+        $dom.submit = document.getElementById('submit');
 
         $dom.form.addEventListener('submit', (event) => {
           event.preventDefault();
@@ -113,7 +115,8 @@ permalink: /blog/lambda
       function evaluateAnswer() {
         const correct = (state.operandA * state.operandB) === state.answer;
 
-        alert(correct ? 'Correct!' : 'Incorrect...');
+        // TODO: Add a proper error message
+        $dom.submit.innerText = correct ? '¡Correcto!' : 'Incorrecto...';
 
         updateOperation();
       }
@@ -170,6 +173,7 @@ permalink: /blog/lambda
 
         <button
           type="submit"
+          id="submit"
           class="operation__submit"
         >
           calificar
