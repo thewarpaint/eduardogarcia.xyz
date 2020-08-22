@@ -68,6 +68,71 @@ permalink: /blog/lambda
     </style>
 
     <script type="text/javascript">
+      const $dom = {
+        form: null,
+        operandA: null,
+        operandB: null,
+        answer: null,
+      };
+
+      const state = {
+        operandA: null,
+        operandB: null,
+        answer: null,
+      };
+
+      function setup() {
+        $dom.form = document.getElementById('form');
+        $dom.operandA = document.getElementById('operand-a');
+        $dom.operandB = document.getElementById('operand-b');
+        $dom.answer = document.getElementById('answer');
+
+        $dom.form.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          updateState({
+            answer: parseInt($dom.answer.value, 10),
+          });
+
+          evaluateAnswer();
+        });
+
+        updateOperation();
+      }
+
+      function updateOperation() {
+        updateState({
+          operandA: getRandomInt(10),
+          operandB: getRandomInt(10),
+          answer: '',
+        });
+      }
+
+      function evaluateAnswer() {
+        const correct = (state.operandA * state.operandB) === state.answer;
+
+        alert(correct ? 'Correct!' : 'Incorrect...');
+
+        updateOperation();
+      }
+
+      function updateState(newState = {}) {
+        Object.assign(state, newState);
+
+        $dom.operandA.innerText = state.operandA;
+        $dom.operandB.innerText = state.operandB;
+        $dom.answer.value = state.answer;
+
+        console.debug('state', state);
+      }
+
+      function getRandomInt(max) {
+        return Math.ceil(Math.random() * max);
+      }
+
+      document.addEventListener('DOMContentLoaded', (event) => {
+        setup();
+      });
     </script>
   </head>
 
@@ -77,12 +142,16 @@ permalink: /blog/lambda
     </h1>
 
     <section class="operation">
-      <form>
+      <form id="form">
         <div>
           <div>
-            99
+            <span id="operand-a">
+              99
+            </span>
             ×
-            99
+            <span id="operand-b">
+              99
+            </span>
           </div>
 
           <div>
@@ -91,6 +160,7 @@ permalink: /blog/lambda
 
           <input
             type="number"
+            id="answer"
             class="operation__answer"
             value="999"
           >
