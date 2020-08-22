@@ -13,8 +13,11 @@ permalink: /blog/lambda
 
     <style type="text/css">
       :root {
+        --blue-a700: #304ffe;
+        --pink-a400: #f50057;
         --yellow-a700: #ffd600;
         --black: #000000;
+        --white: #ffffff;
       }
 
       body {
@@ -22,8 +25,36 @@ permalink: /blog/lambda
         font-size: 16px;
       }
 
-      .yellow-on-black {
+      .white-on-blue {
+        background-color: var(--blue-a700);
+        color: var(--white);
+      }
+
+      .white-on-blue .operation__answer,
+      .white-on-blue .operation__submit {
+        border-color: var(--white);
+        color: var(--white);
+      }
+
+      .black-on-pink {
+        background-color: var(--pink-a400);
+        color: var(--black);
+      }
+
+      .black-on-pink .operation__answer,
+      .black-on-pink .operation__submit {
+        border-color: var(--black);
+        color: var(--black);
+      }
+
+      .black-on-yellow {
         background-color: var(--yellow-a700);
+        color: var(--black);
+      }
+
+      .black-on-yellow .operation__answer,
+      .black-on-yellow .operation__submit {
+        border-color: var(--black);
         color: var(--black);
       }
 
@@ -61,8 +92,8 @@ permalink: /blog/lambda
         font-size: 10vw;
       }
 
-      .yellow-on-black .operation__answer,
-      .yellow-on-black .operation__submit {
+      .black-on-yellow .operation__answer,
+      .black-on-yellow .operation__submit {
         border-color: var(--black);
       }
     </style>
@@ -141,7 +172,7 @@ permalink: /blog/lambda
     </script>
   </head>
 
-  <body class="yellow-on-black">
+  <body class="black-on-yellow">
     <h1 class="title">
       λ
     </h1>
