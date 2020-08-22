@@ -95,9 +95,9 @@ permalink: /blog/lambda
         font-size: 10vw;
       }
 
-      .black-on-yellow .operation__answer,
-      .black-on-yellow .operation__submit {
-        border-color: var(--black);
+      .results {
+        font-size: 7.5vw;
+        text-align: center;
       }
     </style>
 
@@ -108,6 +108,7 @@ permalink: /blog/lambda
         operandB: null,
         answer: null,
         submit: null,
+        log: null,
       };
 
       const state = {
@@ -122,6 +123,7 @@ permalink: /blog/lambda
         $dom.operandB = document.getElementById('operand-b');
         $dom.answer = document.getElementById('answer');
         $dom.submit = document.getElementById('submit');
+        $dom.log = document.getElementById('log');
 
         $dom.form.addEventListener('submit', (event) => {
           event.preventDefault();
@@ -151,6 +153,7 @@ permalink: /blog/lambda
 
         document.body.classList.remove('white-on-blue', 'black-on-pink', 'black-on-yellow');
         document.body.classList.add(isCorrect ? 'white-on-blue' : 'black-on-pink');
+        $dom.log.innerText += isCorrect ? '👌' : '👎';
 
         updateOperation();
       }
@@ -213,6 +216,12 @@ permalink: /blog/lambda
           calificar
         </button>
       </form>
+    </section>
+
+    <section
+      id="log"
+      class="results"
+    >
     </section>
   </body>
 </html>
