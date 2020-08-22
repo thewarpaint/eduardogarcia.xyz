@@ -173,7 +173,7 @@ permalink: /blog/lambda
         const minutes = Math.floor(seconds / 60);
         const secondsPart = Math.floor(seconds - (minutes * 60)).toString();
 
-        return `${minutes}:${secondsPart.padStart('0', 2)}`;
+        return `${minutes}:${secondsPart.padStart(2, '0')}`;
       }
 
       function updateOperation() {
