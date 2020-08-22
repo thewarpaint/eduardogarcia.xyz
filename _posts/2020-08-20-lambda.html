@@ -144,10 +144,10 @@ permalink: /blog/lambda
       }
 
       function evaluateAnswer() {
-        const correct = (state.operandA * state.operandB) === state.answer;
+        const isCorrect = (state.operandA * state.operandB) === state.answer;
 
-        // TODO: Add a proper error message
-        $dom.submit.innerText = correct ? '¡Correcto!' : 'Incorrecto...';
+        document.body.classList.remove('white-on-blue', 'black-on-pink', 'black-on-yellow');
+        document.body.classList.add(isCorrect ? 'white-on-blue' : 'black-on-pink');
 
         updateOperation();
       }
