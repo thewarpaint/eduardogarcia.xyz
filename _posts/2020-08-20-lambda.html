@@ -67,9 +67,16 @@ permalink: /blog/lambda
         text-align: center;
       }
 
-      .timer {
+      .header {
+        margin-top: 5vw;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
         font-size: 5vw;
-        margin: 2.5vw 0;
+        font-weight: bold;
+      }
+
+      .timer {
         text-align: center;
       }
 
@@ -127,7 +134,8 @@ permalink: /blog/lambda
         operandB: null,
         answer: null,
         submit: null,
-        log: null,
+        correctCount: null,
+        wrongCount: null,
       };
 
       const durationSeconds = 60;
@@ -137,6 +145,8 @@ permalink: /blog/lambda
         operandB: null,
         answer: null,
         remainingSeconds: durationSeconds,
+        correctCount: 0,
+        wrongCount: 0,
       };
 
       function setup() {
@@ -146,7 +156,8 @@ permalink: /blog/lambda
         $dom.operandB = document.getElementById('operand-b');
         $dom.answer = document.getElementById('answer');
         $dom.submit = document.getElementById('submit');
-        $dom.log = document.getElementById('log');
+        $dom.correctCount = document.getElementById('correct-count');
+        $dom.wrongCount = document.getElementById('wrong-count');
 
         $dom.form.addEventListener('submit', (event) => {
           event.preventDefault();
@@ -201,9 +212,21 @@ permalink: /blog/lambda
 
         document.body.classList.remove('white-on-blue', 'black-on-pink', 'black-on-yellow');
         document.body.classList.add(isCorrect ? 'white-on-blue' : 'black-on-pink');
-        $dom.log.innerText += isCorrect ? '👌' : '👎';
 
+        updateResults(isCorrect);
         updateOperation();
+      }
+
+      function updateResults(isCorrect) {
+        if (isCorrect) {
+          updateState({
+            correctCount: state.correctCount + 1,
+          });
+        } else {
+          updateState({
+            wrongCount: state.wrongCount + 1,
+          });
+        }
       }
 
       function updateState(newState = {}) {
@@ -211,6 +234,8 @@ permalink: /blog/lambda
 
         $dom.operandA.innerText = state.operandA;
         $dom.operandB.innerText = state.operandB;
+        $dom.correctCount.innerText = state.correctCount;
+        $dom.wrongCount.innerText = state.wrongCount;
         $dom.timer.innerText = formatTime(state.remainingSeconds);
 
         $dom.submit.disabled = state.remainingSeconds === 0;
@@ -238,12 +263,28 @@ permalink: /blog/lambda
       λ
     </h1>
 
-    <h2
-      id="timer"
-      class="timer"
-    >
-      1:00
-    </h2>
+    <header class="header">
+      <div>
+        👌 ×
+        <span id="correct-count">
+          0
+        </span>
+      </div>
+
+      <div
+        id="timer"
+        class="timer"
+      >
+        1:00
+      </div>
+
+      <div>
+        👎 ×
+        <span id="wrong-count">
+          0
+        </span>
+      </div>
+    </header>
 
     <section class="operation">
       <form
@@ -278,12 +319,6 @@ permalink: /blog/lambda
           calificar
         </button>
       </form>
-    </section>
-
-    <section
-      id="log"
-      class="results"
-    >
     </section>
   </body>
 </html>
