@@ -188,10 +188,9 @@ permalink: /blog/lambda
         updateState({
           operandA: getRandomInt(10),
           operandB: getRandomInt(10),
-          answer: '',
         });
 
-        $dom.answer.focus();
+        clearAnswerAndSetFocus();
       }
 
       function evaluateAnswer() {
@@ -209,12 +208,16 @@ permalink: /blog/lambda
 
         $dom.operandA.innerText = state.operandA;
         $dom.operandB.innerText = state.operandB;
-        $dom.answer.value = state.answer;
         $dom.timer.innerText = formatTime(state.remainingSeconds);
 
         $dom.submit.disabled = state.remainingSeconds === 0;
 
         console.debug('state', state);
+      }
+
+      function clearAnswerAndSetFocus() {
+        $dom.answer.value = '';
+        $dom.answer.focus();
       }
 
       function getRandomInt(max) {
