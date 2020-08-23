@@ -87,7 +87,15 @@ permalink: /lambda
         font-weight: bold;
       }
 
-      .timer {
+      .header--only-results {
+        font-size: 10vw;
+      }
+
+      .header--only-results .header__timer {
+        display: none;
+      }
+
+      .header__timer {
         text-align: center;
       }
 
@@ -138,6 +146,7 @@ permalink: /lambda
 
     <script type="text/javascript">
       const $dom = {
+        header: null,
         timer: null,
         form: null,
         operandA: null,
@@ -160,6 +169,7 @@ permalink: /lambda
       };
 
       function setup() {
+        $dom.header = document.getElementById('header');
         $dom.timer = document.getElementById('timer');
         $dom.form = document.getElementById('form');
         $dom.operandA = document.getElementById('operand-a');
@@ -250,6 +260,10 @@ permalink: /lambda
 
         $dom.submit.disabled = state.remainingSeconds === 0;
 
+        if (state.remainingSeconds === 0) {
+          $dom.header.classList.add('header--only-results');
+        }
+
         console.debug('state', state);
       }
 
@@ -273,7 +287,10 @@ permalink: /lambda
       λ
     </h1>
 
-    <header class="header">
+    <header
+      id="header"
+      class="header"
+    >
       <div>
         👌 ×
         <span id="correct-count">
@@ -283,7 +300,7 @@ permalink: /lambda
 
       <div
         id="timer"
-        class="timer"
+        class="header__timer"
       >
         1:00
       </div>
