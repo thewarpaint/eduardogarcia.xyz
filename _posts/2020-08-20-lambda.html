@@ -106,6 +106,10 @@ permalink: /blog/lambda
         font-size: 10vw;
       }
 
+      .operation__submit[disabled] {
+        opacity: .333;
+      }
+
       .results {
         font-size: 7.5vw;
         text-align: center;
@@ -123,10 +127,13 @@ permalink: /blog/lambda
         log: null,
       };
 
+      const durationSeconds = 60;
+
       const state = {
         operandA: null,
         operandB: null,
         answer: null,
+        remainingSeconds: durationSeconds,
       };
 
       function setup() {
@@ -153,7 +160,6 @@ permalink: /blog/lambda
       }
 
       function startTimer() {
-        const durationSeconds = 60;
         const tickMs = 166;
         const oneMinuteFromNow = Date.now() + (durationSeconds * 1000);
 
@@ -165,12 +171,10 @@ permalink: /blog/lambda
             remainingSeconds = 0;
           }
 
-          updateTimer(remainingSeconds);
+          updateState({
+            remainingSeconds,
+          });
         }, tickMs);
-      }
-
-      function updateTimer(seconds) {
-        $dom.timer.innerText = formatTime(seconds);
       }
 
       function formatTime(seconds) {
@@ -206,6 +210,9 @@ permalink: /blog/lambda
         $dom.operandA.innerText = state.operandA;
         $dom.operandB.innerText = state.operandB;
         $dom.answer.value = state.answer;
+        $dom.timer.innerText = formatTime(state.remainingSeconds);
+
+        $dom.submit.disabled = state.remainingSeconds === 0;
 
         console.debug('state', state);
       }
