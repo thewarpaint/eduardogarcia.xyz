@@ -11,6 +11,11 @@ permalink: /lambda
 
     <title>Lambda: Cálculo Mental - eduardogarcia.xyz</title>
 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    >
+
     <style type="text/css">
       :root {
         --blue-a700: #304ffe;
@@ -21,11 +26,16 @@ permalink: /lambda
       }
 
       body {
-        font-family: monospace;
         font-size: 16px;
         transition-property: background-color, border-color, color;
         transition-duration: .333s;
         transition-timing-function: ease-in-out;
+      }
+
+      body,
+      .operation__answer,
+      .operation__submit {
+        font-family: 'Roboto Mono', monospace;
       }
 
       .white-on-blue {
@@ -100,14 +110,12 @@ permalink: /lambda
       .operation__answer,
       .operation__submit {
         background: transparent;
-        font-family: monospace;
       }
 
       .operation__answer {
         border: none;
         border-bottom: .75vw solid;
         border-radius: 0;
-        font-family: monospace;
         text-align: center;
         width: 33vw;
       }
