@@ -210,6 +210,11 @@ permalink: /lambda
         });
 
         $dom.startButton.addEventListener('click', (event) => {
+          updateState({
+            correctCount: 0,
+            wrongCount: 0,
+          });
+
           startTimer();
           updateOperation();
         });
