@@ -219,19 +219,25 @@ permalink: /lambda
         const tickMs = 166;
         const oneMinuteFromNow = Date.now() + (durationSeconds * 1000);
 
-        const timeout = setInterval(() => {
-          let remainingSeconds = (oneMinuteFromNow - Date.now()) / 1000;
-
-          if (remainingSeconds < 0) {
-            clearInterval(timeout);
-            remainingSeconds = 0;
-          }
-
-          updateState({
-            isTimerRunning: remainingSeconds > 0,
-            remainingSeconds,
-          });
+        const timeoutId = setInterval(() => {
+          doTick(oneMinuteFromNow, timeoutId);
         }, tickMs);
+
+        doTick(oneMinuteFromNow, timeoutId);
+      }
+
+      function doTick(timerEnd, timeoutId) {
+        let remainingSeconds = (timerEnd - Date.now()) / 1000;
+
+        if (remainingSeconds < 0) {
+          clearInterval(timeoutId);
+          remainingSeconds = 0;
+        }
+
+        updateState({
+          isTimerRunning: remainingSeconds > 0,
+          remainingSeconds,
+        });
       }
 
       function formatTime(seconds) {
