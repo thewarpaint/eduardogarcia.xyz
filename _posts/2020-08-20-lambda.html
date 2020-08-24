@@ -18,9 +18,11 @@ permalink: /lambda
 
     <style type="text/css">
       :root {
+        --amber-a700: #ffab00;
         --blue-a700: #304ffe;
         --pink-a400: #f50057;
         --yellow-a700: #ffd600;
+        --yellow-800: #f9a825;
         --black: #000000;
         --white: #ffffff;
       }
@@ -70,6 +72,10 @@ permalink: /lambda
       .black-on-yellow .button {
         border-color: var(--black);
         color: var(--black);
+      }
+
+      .black-on-yellow .operation__answer {
+        border-color: var(--yellow-800);
       }
 
       .title {
@@ -132,12 +138,12 @@ permalink: /lambda
       .operation__answer,
       .button {
         background: transparent;
+        border: .75vw solid;
+        border-radius: 2.5vw;
       }
 
       .operation__answer {
-        border: none;
-        border-bottom: .75vw solid;
-        border-radius: 0;
+        padding: 0;
         text-align: center;
         width: 33vw;
       }
