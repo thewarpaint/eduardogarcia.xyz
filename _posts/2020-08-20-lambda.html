@@ -20,7 +20,15 @@ permalink: /lambda
       :root {
         --amber-a700: #ffab00;
         --blue-a700: #304ffe;
+        --gray-50: #fafafa;
+        --gray-900: #212121;
+        --green-900: #1b5e20;
         --pink-a400: #f50057;
+        --red-a400: #ff1744;
+        --red-a700: #d50000;
+        --red-800: #c62828;
+        --red-900: #b71c1c;
+        --teal-800: #00695c;
         --yellow-a700: #ffd600;
         --yellow-800: #f9a825;
         --black: #000000;
@@ -76,6 +84,39 @@ permalink: /lambda
 
       .black-on-yellow .operation__answer {
         border-color: var(--yellow-800);
+      }
+
+      .light-gray-on-gray {
+        background-color: var(--gray-900);
+        color: var(--gray-50);
+      }
+
+      .light-gray-on-gray .operation__answer,
+      .light-gray-on-gray .button {
+        border-color: var(--gray-50);
+        color: var(--gray-50);
+      }
+
+      .white-on-red {
+        background-color: var(--red-800);
+        color: var(--white);
+      }
+
+      .white-on-red .operation__answer,
+      .white-on-red .button {
+        border-color: var(--white);
+        color: var(--white);
+      }
+
+      .white-on-teal {
+        background-color: var(--teal-800);
+        color: var(--white);
+      }
+
+      .white-on-teal .operation__answer,
+      .white-on-teal .button {
+        border-color: var(--white);
+        color: var(--white);
       }
 
       .title {
@@ -191,6 +232,9 @@ permalink: /lambda
         wrongCount: 0,
       };
 
+      const errorClass = 'white-on-red';
+      const successClass = 'white-on-teal';
+
       function setup() {
         $dom.header = document.getElementById('header');
         $dom.timer = document.getElementById('timer');
@@ -270,8 +314,8 @@ permalink: /lambda
       function evaluateAnswer() {
         const isCorrect = (state.operandA * state.operandB) === state.answer;
 
-        document.body.classList.remove('white-on-blue', 'black-on-pink', 'black-on-yellow');
-        document.body.classList.add(isCorrect ? 'white-on-blue' : 'black-on-pink');
+        document.body.classList.remove(successClass, errorClass, 'light-gray-on-gray');
+        document.body.classList.add(isCorrect ? successClass : errorClass);
 
         updateResults(isCorrect);
         updateOperation();
@@ -322,7 +366,7 @@ permalink: /lambda
     </script>
   </head>
 
-  <body class="black-on-yellow">
+  <body class="light-gray-on-gray">
     <h1 class="title">
       λ
     </h1>
