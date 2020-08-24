@@ -35,7 +35,7 @@ permalink: /lambda
 
       body,
       .operation__answer,
-      .operation__submit {
+      .button {
         font-family: 'Roboto Mono', monospace;
       }
 
@@ -45,7 +45,7 @@ permalink: /lambda
       }
 
       .white-on-blue .operation__answer,
-      .white-on-blue .operation__submit {
+      .white-on-blue .button {
         border-color: var(--white);
         color: var(--white);
       }
@@ -56,7 +56,7 @@ permalink: /lambda
       }
 
       .black-on-pink .operation__answer,
-      .black-on-pink .operation__submit {
+      .black-on-pink .button {
         border-color: var(--black);
         color: var(--black);
       }
@@ -67,7 +67,7 @@ permalink: /lambda
       }
 
       .black-on-yellow .operation__answer,
-      .black-on-yellow .operation__submit {
+      .black-on-yellow .button {
         border-color: var(--black);
         color: var(--black);
       }
@@ -99,6 +99,15 @@ permalink: /lambda
         text-align: center;
       }
 
+      .intro {
+        font-size: 6.25vw;
+        text-align: center;
+      }
+
+      .intro--hidden {
+        display: none;
+      }
+
       .form {
         margin: 0;
       }
@@ -112,12 +121,16 @@ permalink: /lambda
         text-align: center;
       }
 
+      .operation--hidden {
+        display: none;
+      }
+
       .operation__inner {
         margin: 10vw 0;
       }
 
       .operation__answer,
-      .operation__submit {
+      .button {
         background: transparent;
       }
 
@@ -129,12 +142,12 @@ permalink: /lambda
         width: 33vw;
       }
 
-      .operation__submit {
+      .button {
         padding: 2.5vw 5vw;
         font-size: 10vw;
       }
 
-      .operation__submit[disabled] {
+      .button[disabled] {
         opacity: .333;
       }
 
@@ -148,6 +161,9 @@ permalink: /lambda
       const $dom = {
         header: null,
         timer: null,
+        startButton: null,
+        intro: null,
+        operation: null,
         form: null,
         operandA: null,
         operandB: null,
@@ -163,6 +179,7 @@ permalink: /lambda
         operandA: null,
         operandB: null,
         answer: null,
+        isTimerRunning: false,
         remainingSeconds: durationSeconds,
         correctCount: 0,
         wrongCount: 0,
@@ -171,6 +188,9 @@ permalink: /lambda
       function setup() {
         $dom.header = document.getElementById('header');
         $dom.timer = document.getElementById('timer');
+        $dom.startButton = document.getElementById('start-button');
+        $dom.intro = document.getElementById('intro');
+        $dom.operation = document.getElementById('operation');
         $dom.form = document.getElementById('form');
         $dom.operandA = document.getElementById('operand-a');
         $dom.operandB = document.getElementById('operand-b');
@@ -189,8 +209,10 @@ permalink: /lambda
           evaluateAnswer();
         });
 
-        updateOperation();
-        startTimer();
+        $dom.startButton.addEventListener('click', (event) => {
+          startTimer();
+          updateOperation();
+        });
       }
 
       function startTimer() {
@@ -206,6 +228,7 @@ permalink: /lambda
           }
 
           updateState({
+            isTimerRunning: remainingSeconds > 0,
             remainingSeconds,
           });
         }, tickMs);
@@ -260,9 +283,9 @@ permalink: /lambda
 
         $dom.submit.disabled = state.remainingSeconds === 0;
 
-        if (state.remainingSeconds === 0) {
-          $dom.header.classList.add('header--only-results');
-        }
+        $dom.intro.classList.toggle('intro--hidden', state.isTimerRunning);
+        $dom.header.classList.toggle('header--only-results', !state.isTimerRunning);
+        $dom.operation.classList.toggle('operation--hidden', !state.isTimerRunning);
 
         console.debug('state', state);
       }
@@ -313,7 +336,24 @@ permalink: /lambda
       </div>
     </header>
 
-    <section class="operation">
+    <section
+      id="intro"
+      class="intro"
+    >
+      <p>
+        ¿Cuántas operaciones puedes realizar en un minuto?
+      </p>
+
+      <button
+        id="start-button"
+        class="button"
+      >comenzar</button>
+    </section>
+
+    <section
+      id="operation"
+      class="operation operation--hidden"
+    >
       <form
         id="form"
         class="form"
@@ -341,7 +381,7 @@ permalink: /lambda
         <button
           type="submit"
           id="submit"
-          class="operation__submit"
+          class="button operation__submit"
         >
           calificar
         </button>
