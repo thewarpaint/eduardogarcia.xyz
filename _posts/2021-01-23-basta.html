@@ -96,7 +96,50 @@ permalink: /basta
       }
     </style>
 
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+      const $dom = {
+        rouletteLetter: null,
+      };
+
+      const letterFrequencies = {};
+
+      let rouletteIntervalId;
+
+      function setup () {
+        $dom.rouletteLetter = document.getElementById('roulette-letter');
+
+        rouletteIntervalId = startRoulette();
+
+        $dom.rouletteLetter.addEventListener('click', (event) => {
+          stopRoulette();
+        });
+      }
+
+      function startRoulette() {
+        return setInterval(() => {
+          // Get a random number from 0 to 25
+          const random = Math.floor(Math.random() * 26);
+          // Get a letter from a (97) to z (122)
+          const letter = String.fromCharCode(random + 97);
+
+          if (!letterFrequencies[letter]) {
+            letterFrequencies[letter] = 0;
+          }
+
+          letterFrequencies[letter]++;
+
+          $dom.rouletteLetter.textContent = letter;
+        }, 66); // ~15 fps
+      }
+
+      function stopRoulette() {
+        clearInterval(rouletteIntervalId);
+      }
+
+      document.addEventListener('DOMContentLoaded', (event) => {
+        setup();
+      });
+    </script>
   </head>
 
   <body
