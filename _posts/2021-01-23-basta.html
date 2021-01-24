@@ -106,6 +106,10 @@ permalink: /basta
       };
 
       const letterFrequencies = {};
+      const modeClasses = {
+        INPUT: 'body--mode-input',
+        ROULETTE: 'body--mode-roulette',
+      };
 
       let rouletteIntervalId;
 
@@ -137,7 +141,13 @@ permalink: /basta
       }
 
       function stopRoulette() {
+        setMode(modeClasses.INPUT);
         clearInterval(rouletteIntervalId);
+      }
+
+      function setMode(modeClass) {
+        document.body.classList.remove(modeClasses.INPUT, modeClasses.ROULETTE);
+        document.body.classList.add(modeClass);
       }
 
       document.addEventListener('DOMContentLoaded', (event) => {
