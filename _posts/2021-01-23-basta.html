@@ -38,8 +38,23 @@ permalink: /basta
         margin: 5vw 10vw;
         font-size: 16px;
         font-weight: 300;
+      }
+
+      .body--mode-input {
         background-color: var(--background);
         color: var(--foreground);
+      }
+
+      .body--mode-roulette {
+        background-color: var(--foreground);
+        color: var(--background);
+      }
+
+      .roulette__letter {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 900;
+        font-size: 50vw;
       }
 
       .category {
@@ -84,7 +99,20 @@ permalink: /basta
     <script type="text/javascript"></script>
   </head>
 
-  <body>
+  <body
+    class="body--mode-input"
+  >
+    <section
+      class="roulette"
+    >
+      <div
+        id="roulette-letter"
+        class="roulette__letter"
+      >
+        Q
+      </div>
+    </section>
+
     <section>
       <div
         class="category"
