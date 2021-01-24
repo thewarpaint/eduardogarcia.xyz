@@ -36,17 +36,24 @@ permalink: /basta
       }
 
       .category__title {
-        font-size: 2.5vw;
+        font-size: 3vw;
         text-transform: uppercase;
       }
 
       .category__input {
+        width: 80vw;
+        padding: 2vw 0;
         background-color: transparent;
         border: none;
         border-bottom: 1px solid var(--foreground);
-        color: var(--foreground);
+        border-radius: 0;
         font-size: 7.5vw;
-        width: 100%;
+        color: var(--foreground);
+        outline: none;
+      }
+
+      .category__input:focus {
+        outline: 3px solid rgba(245, 223, 77, .5); /* --p-illuminating */
       }
 
       .stop {
