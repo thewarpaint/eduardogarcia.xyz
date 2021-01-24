@@ -35,9 +35,12 @@ permalink: /basta
       }
 
       body {
-        margin: 5vw 10vw;
+        margin: 0 10vw 5vw;
         font-size: 16px;
         font-weight: 300;
+        transition-property: background-color, border-color, color;
+        transition-duration: .333s;
+        transition-timing-function: ease-in-out;
       }
 
       .body--mode-input {
@@ -51,10 +54,11 @@ permalink: /basta
       }
 
       .roulette__letter {
+        cursor: pointer;
         text-align: center;
         text-transform: uppercase;
         font-weight: 900;
-        font-size: 50vw;
+        font-size: 33vh;
       }
 
       .category {
@@ -143,7 +147,7 @@ permalink: /basta
   </head>
 
   <body
-    class="body--mode-input"
+    class="body--mode-roulette"
   >
     <section
       class="roulette"
