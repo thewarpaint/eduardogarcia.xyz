@@ -111,16 +111,39 @@ permalink: /basta
         ROULETTE: 'body--mode-roulette',
       };
 
+      const firebaseConfig = {
+        apiKey: "AIzaSyB4w3C1DBUU-zQqq5EJ1AY0am0eJyT-8_k",
+        authDomain: "basta-game.firebaseapp.com",
+        databaseURL: "https://basta-game-default-rtdb.firebaseio.com",
+        projectId: "basta-game",
+        storageBucket: "basta-game.appspot.com",
+        messagingSenderId: "423605935808",
+        appId: "1:423605935808:web:54d13733fe1cc1b47e5725"
+      };
+
       let rouletteIntervalId;
+      let database;
 
       function setup () {
-        $dom.rouletteLetter = document.getElementById('roulette-letter');
+        firebase.initializeApp(firebaseConfig);
+        database = firebase.database();
 
-        rouletteIntervalId = startRoulette();
+        // $dom hydration
+        $dom.rouletteLetter = document.getElementById('roulette-letter');
 
         $dom.rouletteLetter.addEventListener('click', (event) => {
           stopRoulette();
+          writeCurrentLetter();
         });
+
+        // Firebase handlers
+        const starCountRef = firebase.database().ref('currentLetter');
+
+        starCountRef.on('value', (snapshot) => {
+          onCurrentLetter(snapshot);
+        });
+
+        rouletteIntervalId = startRoulette();
       }
 
       function startRoulette() {
@@ -148,6 +171,27 @@ permalink: /basta
       function setMode(modeClass) {
         document.body.classList.remove(modeClasses.INPUT, modeClasses.ROULETTE);
         document.body.classList.add(modeClass);
+      }
+
+      function writeCurrentLetter() {
+        // TODO: Add state
+        database.ref('currentLetter').set($dom.rouletteLetter.textContent);
+      }
+
+      // TODO: Update state
+      function updateCurrentLetter(currentLetter) {
+        $dom.rouletteLetter.textContent = currentLetter;
+      }
+
+      function onCurrentLetter(snapshot) {
+        const currentLetter = snapshot.val();
+
+        if (!currentLetter) {
+          return;
+        }
+
+        stopRoulette();
+        updateCurrentLetter(currentLetter);
       }
 
       document.addEventListener('DOMContentLoaded', (event) => {
