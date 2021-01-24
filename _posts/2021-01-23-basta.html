@@ -11,6 +11,11 @@ permalink: /basta
 
     <title>Basta: el juego - eduardogarcia.xyz</title>
 
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,900&display=swap"
+      rel="stylesheet"
+    >
+
     <style type="text/css">
       :root {
         /* https://connect.pantone.com/#/color-of-the-year */
@@ -23,10 +28,16 @@ permalink: /basta
         --foreground: var(--p-illuminating);
       }
 
+      body,
+      button,
+      input {
+        font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
       body {
         margin: 5vw 10vw;
         font-size: 16px;
-        font-family: 'Helvetica Neue', 'Arial', sans-serif;
+        font-weight: 300;
         background-color: var(--background);
         color: var(--foreground);
       }
@@ -48,6 +59,7 @@ permalink: /basta
         border-bottom: 1px solid var(--foreground);
         border-radius: 0;
         font-size: 7.5vw;
+        font-weight: 900;
         color: var(--foreground);
         outline: none;
       }
@@ -64,6 +76,7 @@ permalink: /basta
         border: 1px solid var(--foreground);
         color: var(--foreground);
         font-size: 5vw;
+        font-weight: 900;
         text-transform: uppercase;
       }
     </style>
