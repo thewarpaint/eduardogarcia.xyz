@@ -101,15 +101,21 @@ permalink: /basta
     </style>
 
     <script type="text/javascript">
+      const modes = {
+        INPUT: 'body--mode-input',
+        ROULETTE: 'body--mode-roulette',
+      };
+
       const $dom = {
         rouletteLetter: null,
       };
 
-      const letterFrequencies = {};
-      const modeClasses = {
-        INPUT: 'body--mode-input',
-        ROULETTE: 'body--mode-roulette',
+      const state = {
+        mode: modes.ROULETTE,
+        currentLetter: '',
       };
+
+      const letterFrequencies = {};
 
       const firebaseConfig = {
         apiKey: "AIzaSyB4w3C1DBUU-zQqq5EJ1AY0am0eJyT-8_k",
@@ -124,7 +130,7 @@ permalink: /basta
       let rouletteIntervalId;
       let database;
 
-      function setup () {
+      function setup() {
         firebase.initializeApp(firebaseConfig);
         database = firebase.database();
 
@@ -133,7 +139,7 @@ permalink: /basta
 
         $dom.rouletteLetter.addEventListener('click', (event) => {
           stopRoulette();
-          writeCurrentLetter();
+          updateRemoteCurrentLetter();
         });
 
         // Firebase handlers
@@ -159,28 +165,21 @@ permalink: /basta
 
           letterFrequencies[letter]++;
 
-          $dom.rouletteLetter.textContent = letter;
+          updateState({
+            currentLetter: letter,
+          });
         }, 66); // ~15 fps
       }
 
       function stopRoulette() {
-        setMode(modeClasses.INPUT);
+        updateState({
+          mode: modes.INPUT,
+        });
         clearInterval(rouletteIntervalId);
       }
 
-      function setMode(modeClass) {
-        document.body.classList.remove(modeClasses.INPUT, modeClasses.ROULETTE);
-        document.body.classList.add(modeClass);
-      }
-
-      function writeCurrentLetter() {
-        // TODO: Add state
-        database.ref('currentLetter').set($dom.rouletteLetter.textContent);
-      }
-
-      // TODO: Update state
-      function updateCurrentLetter(currentLetter) {
-        $dom.rouletteLetter.textContent = currentLetter;
+      function updateRemoteCurrentLetter() {
+        database.ref('currentLetter').set(state.currentLetter);
       }
 
       function onCurrentLetter(snapshot) {
@@ -190,8 +189,24 @@ permalink: /basta
           return;
         }
 
+        updateState({
+          currentLetter,
+        });
+
         stopRoulette();
-        updateCurrentLetter(currentLetter);
+      }
+
+      function updateState(newState) {
+        Object.assign(state, newState);
+
+        if (newState.currentLetter) {
+          $dom.rouletteLetter.textContent = newState.currentLetter;
+        }
+
+        if (newState.mode) {
+          document.body.classList.remove(modes.INPUT, modes.ROULETTE);
+          document.body.classList.add(newState.mode);
+        }
       }
 
       document.addEventListener('DOMContentLoaded', (event) => {
