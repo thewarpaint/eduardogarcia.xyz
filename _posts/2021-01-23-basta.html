@@ -107,6 +107,8 @@ permalink: /basta
       };
 
       const $dom = {
+        loginForm: null,
+        loginNameInput: null,
         rouletteLetter: null,
       };
 
@@ -114,6 +116,9 @@ permalink: /basta
         mode: modes.ROULETTE,
         currentLetter: '',
         playerId: getAndMaybeSetPlayerId(),
+        playerData: {
+          name: '',
+        },
       };
 
       const letterFrequencies = {};
@@ -136,7 +141,21 @@ permalink: /basta
         database = firebase.database();
 
         // $dom hydration
+        $dom.loginForm = document.getElementById('login-form');
+        $dom.loginNameInput = document.getElementById('login--name-input');
         $dom.rouletteLetter = document.getElementById('roulette-letter');
+
+        // DOM handlers
+        $dom.loginForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          updateState({
+            playerData: {
+              name: $dom.loginNameInput.value,
+            },
+          });
+          updateRemotePlayer();
+        });
 
         $dom.rouletteLetter.addEventListener('click', (event) => {
           stopRoulette();
@@ -181,6 +200,10 @@ permalink: /basta
 
       function updateRemoteCurrentLetter() {
         database.ref('currentLetter').set(state.currentLetter);
+      }
+
+      function updateRemotePlayer() {
+        database.ref(`players/${state.playerId}`).set(state.playerData);
       }
 
       function onCurrentLetter(snapshot) {
@@ -233,7 +256,9 @@ permalink: /basta
     <section
       class="login"
     >
-      <form>
+      <form
+        id="login-form"
+      >
         <label
           for="login--name-input"
           class="category__title"
