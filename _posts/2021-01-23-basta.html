@@ -281,6 +281,10 @@ permalink: /basta
       function onPlayerData(snapshot) {
         const playerData = snapshot.val();
 
+        if (!playerData) {
+          return;
+        }
+
         updateState({
           playerData,
         });
