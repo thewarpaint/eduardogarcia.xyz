@@ -48,9 +48,20 @@ permalink: /basta
         color: var(--foreground);
       }
 
+      .body--mode-login,
       .body--mode-roulette {
         background-color: var(--foreground);
         color: var(--background);
+      }
+
+      .body--mode-login .roulette,
+      .body--mode-login .input {
+        display: none;
+      }
+
+      .body--mode-roulette .login,
+      .body--mode-input .login {
+        display: none;
       }
 
       .roulette__letter {
@@ -88,6 +99,7 @@ permalink: /basta
         color: var(--foreground);
       }
 
+      .body--mode-login .category__input,
       .body--mode-roulette .category__input {
         border-bottom-color: var(--background);
         color: var(--background);
@@ -114,6 +126,7 @@ permalink: /basta
         color: var(--foreground);
       }
 
+      .body--mode-login .stop,
       .body--mode-roulette .stop {
         border-bottom-color: var(--background);
         color: var(--background);
@@ -123,6 +136,7 @@ permalink: /basta
     <script type="text/javascript">
       const modes = {
         INPUT: 'body--mode-input',
+        LOGIN: 'body--mode-login',
         ROULETTE: 'body--mode-roulette',
       };
 
@@ -133,7 +147,7 @@ permalink: /basta
       };
 
       const state = {
-        mode: modes.ROULETTE,
+        mode: modes.LOGIN,
         currentLetter: '',
         playerId: getAndMaybeSetPlayerId(),
         playerData: {
@@ -170,11 +184,17 @@ permalink: /basta
           event.preventDefault();
 
           updateState({
+            mode: modes.ROULETTE,
             playerData: {
               name: $dom.loginNameInput.value,
             },
           });
+
           updateRemotePlayer();
+
+          database.ref('currentLetter').on('value', (snapshot) => {
+            onCurrentLetter(snapshot);
+          });
         });
 
         $dom.rouletteLetter.addEventListener('click', (event) => {
@@ -183,10 +203,6 @@ permalink: /basta
         });
 
         // Firebase handlers
-        database.ref('currentLetter').on('value', (snapshot) => {
-          onCurrentLetter(snapshot);
-        });
-
         database.ref(`players/${state.playerId}`).on('value', (snapshot) => {
           onPlayerData(snapshot);
         });
@@ -261,7 +277,7 @@ permalink: /basta
         }
 
         if (newState.mode) {
-          document.body.classList.remove(modes.INPUT, modes.ROULETTE);
+          document.body.classList.remove(modes.INPUT, modes.LOGIN, modes.ROULETTE);
           document.body.classList.add(newState.mode);
         }
 
@@ -291,7 +307,7 @@ permalink: /basta
   </head>
 
   <body
-    class="body--mode-roulette"
+    class="body--mode-login"
   >
     <section
       class="login"
@@ -330,7 +346,9 @@ permalink: /basta
       </div>
     </section>
 
-    <section>
+    <section
+      class="input"
+    >
       <div
         class="category"
       >
