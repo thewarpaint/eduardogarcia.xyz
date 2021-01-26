@@ -141,6 +141,14 @@ permalink: /basta
       };
 
       const $dom = {
+        answersForm: null,
+        answersAInput: null,
+        answersBInput: null,
+        answersCInput: null,
+        answersDInput: null,
+        answersEInput: null,
+        answersFInput: null,
+        answersGInput: null,
         loginForm: null,
         loginNameInput: null,
         rouletteLetter: null,
@@ -175,11 +183,23 @@ permalink: /basta
         database = firebase.database();
 
         // $dom hydration
+        $dom.answersForm = document.getElementById('answers-form');
+        $dom.answersAInput = document.getElementById('answers--a-input');
+        $dom.answersBInput = document.getElementById('answers--b-input');
+        $dom.answersCInput = document.getElementById('answers--c-input');
+        $dom.answersDInput = document.getElementById('answers--d-input');
+        $dom.answersEInput = document.getElementById('answers--e-input');
+        $dom.answersFInput = document.getElementById('answers--f-input');
+        $dom.answersGInput = document.getElementById('answers--g-input');
         $dom.loginForm = document.getElementById('login-form');
         $dom.loginNameInput = document.getElementById('login--name-input');
         $dom.rouletteLetter = document.getElementById('roulette-letter');
 
         // DOM handlers
+        $dom.answersForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+        });
+
         $dom.loginForm.addEventListener('submit', (event) => {
           event.preventDefault();
 
