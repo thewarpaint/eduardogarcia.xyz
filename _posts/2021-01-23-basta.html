@@ -75,12 +75,22 @@ permalink: /basta
         padding: 2vw 0;
         background-color: transparent;
         border: none;
-        border-bottom: 1px solid var(--foreground);
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
         border-radius: 0;
         font-size: 7.5vw;
         font-weight: 900;
-        color: var(--foreground);
         outline: none;
+      }
+
+      .body--mode-input .category__input {
+        border-bottom-color: var(--foreground);
+        color: var(--foreground);
+      }
+
+      .body--mode-roulette .category__input {
+        border-bottom-color: var(--background);
+        color: var(--background);
       }
 
       .category__input:focus {
@@ -92,11 +102,21 @@ permalink: /basta
         margin: 5vw 0;
         padding: 5vw 0;
         background-color: transparent;
-        border: 1px solid var(--foreground);
-        color: var(--foreground);
+        border-width: 1px;
+        border-style: solid;
         font-size: 5vw;
         font-weight: 900;
         text-transform: uppercase;
+      }
+
+      .body--mode-input .stop {
+        border-color: var(--foreground);
+        color: var(--foreground);
+      }
+
+      .body--mode-roulette .stop {
+        border-bottom-color: var(--background);
+        color: var(--background);
       }
     </style>
 
