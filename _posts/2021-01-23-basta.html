@@ -113,6 +113,7 @@ permalink: /basta
       const state = {
         mode: modes.ROULETTE,
         currentLetter: '',
+        playerId: getAndMaybeSetPlayerId(),
       };
 
       const letterFrequencies = {};
@@ -207,6 +208,17 @@ permalink: /basta
           document.body.classList.remove(modes.INPUT, modes.ROULETTE);
           document.body.classList.add(newState.mode);
         }
+      }
+
+      function getAndMaybeSetPlayerId() {
+        let playerId = localStorage.getItem('playerId');
+
+        if (!playerId) {
+          playerId = Math.round(Math.random() * Math.pow(2, 32)).toString(16);
+          localStorage.setItem('playerId', playerId);
+        }
+
+        return playerId;
       }
 
       document.addEventListener('DOMContentLoaded', (event) => {
