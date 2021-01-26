@@ -163,10 +163,12 @@ permalink: /basta
         });
 
         // Firebase handlers
-        const starCountRef = firebase.database().ref('currentLetter');
-
-        starCountRef.on('value', (snapshot) => {
+        database.ref('currentLetter').on('value', (snapshot) => {
           onCurrentLetter(snapshot);
+        });
+
+        database.ref(`players/${state.playerId}`).on('value', (snapshot) => {
+          onPlayerData(snapshot);
         });
 
         rouletteIntervalId = startRoulette();
@@ -220,7 +222,18 @@ permalink: /basta
         stopRoulette();
       }
 
+      function onPlayerData(snapshot) {
+        const playerData = snapshot.val();
+
+        updateState({
+          playerData,
+        });
+      }
+
       function updateState(newState) {
+        // Poor man's deep clone, revisit if necessary
+        const oldState = JSON.parse(JSON.stringify(state));
+
         Object.assign(state, newState);
 
         if (newState.currentLetter) {
@@ -230,6 +243,13 @@ permalink: /basta
         if (newState.mode) {
           document.body.classList.remove(modes.INPUT, modes.ROULETTE);
           document.body.classList.add(newState.mode);
+        }
+
+        if (newState.playerData) {
+          // Avoiding an infinite loop
+          if (oldState.playerData.name !== newState.playerData.name) {
+            $dom.loginNameInput.value = newState.playerData.name;
+          }
         }
       }
 
