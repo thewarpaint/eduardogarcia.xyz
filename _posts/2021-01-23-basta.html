@@ -154,12 +154,22 @@ permalink: /basta
         rouletteLetter: null,
       };
 
-      const state = {
+      let state = {
         mode: modes.LOGIN,
         currentLetter: '',
         playerId: getAndMaybeSetPlayerId(),
         playerData: {
+          answers: {
+            a: '',
+            b: '',
+            c: '',
+            d: '',
+            e: '',
+            f: '',
+            g: '',
+          },
           name: '',
+          score: 0,
         },
       };
 
@@ -198,6 +208,22 @@ permalink: /basta
         // DOM handlers
         $dom.answersForm.addEventListener('submit', (event) => {
           event.preventDefault();
+
+          updateState({
+            playerData: {
+              answers: {
+                a: $dom.answersAInput.value,
+                b: $dom.answersBInput.value,
+                c: $dom.answersCInput.value,
+                d: $dom.answersDInput.value,
+                e: $dom.answersEInput.value,
+                f: $dom.answersFInput.value,
+                g: $dom.answersGInput.value,
+              },
+            },
+          });
+
+          updateRemotePlayer();
         });
 
         $dom.loginForm.addEventListener('submit', (event) => {
@@ -294,7 +320,7 @@ permalink: /basta
         // Poor man's deep clone, revisit if necessary
         const oldState = JSON.parse(JSON.stringify(state));
 
-        Object.assign(state, newState);
+        state = mergeDeep(state, newState);
 
         if (newState.currentLetter) {
           $dom.rouletteLetter.textContent = newState.currentLetter;
