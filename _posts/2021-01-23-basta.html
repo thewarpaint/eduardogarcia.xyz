@@ -38,7 +38,7 @@ permalink: /basta
         margin: 0 10vw 5vw;
         font-size: 16px;
         font-weight: 300;
-        transition-property: background-color, border-color, color;
+        transition-property: background-color, border-color, color, opacity;
         transition-duration: .333s;
         transition-timing-function: ease-in-out;
       }
@@ -49,7 +49,8 @@ permalink: /basta
       }
 
       .body--mode-login,
-      .body--mode-roulette {
+      .body--mode-roulette,
+      .body--mode-sent {
         background-color: var(--foreground);
         color: var(--background);
       }
@@ -60,7 +61,8 @@ permalink: /basta
       }
 
       .body--mode-roulette .login,
-      .body--mode-input .login {
+      .body--mode-input .login,
+      .body--mode-sent .login {
         display: none;
       }
 
@@ -74,6 +76,10 @@ permalink: /basta
 
       .category {
         margin: 5vw 0;
+      }
+
+      .body--mode-sent .category {
+        opacity: .5;
       }
 
       .category__title {
@@ -100,7 +106,8 @@ permalink: /basta
       }
 
       .body--mode-login .category__input,
-      .body--mode-roulette .category__input {
+      .body--mode-roulette .category__input,
+      .body--mode-sent .category__input {
         border-bottom-color: var(--background);
         color: var(--background);
       }
@@ -127,7 +134,8 @@ permalink: /basta
       }
 
       .body--mode-login .stop,
-      .body--mode-roulette .stop {
+      .body--mode-roulette .stop,
+      .body--mode-sent .stop {
         border-bottom-color: var(--background);
         color: var(--background);
       }
@@ -138,6 +146,7 @@ permalink: /basta
         INPUT: 'body--mode-input',
         LOGIN: 'body--mode-login',
         ROULETTE: 'body--mode-roulette',
+        SENT: 'body--mode-sent',
       };
 
       const $dom = {
@@ -210,6 +219,7 @@ permalink: /basta
           event.preventDefault();
 
           updateState({
+            mode: modes.SENT,
             playerData: {
               answers: {
                 a: $dom.answersAInput.value,
@@ -327,8 +337,20 @@ permalink: /basta
         }
 
         if (newState.mode) {
-          document.body.classList.remove(modes.INPUT, modes.LOGIN, modes.ROULETTE);
+          document.body.classList.remove(modes.INPUT, modes.LOGIN, modes.ROULETTE, modes.SENT);
           document.body.classList.add(newState.mode);
+
+          [
+            $dom.answersAInput,
+            $dom.answersBInput,
+            $dom.answersCInput,
+            $dom.answersDInput,
+            $dom.answersEInput,
+            $dom.answersFInput,
+            $dom.answersGInput,
+          ].forEach(($answer) => {
+            $answer.disabled = newState.mode === modes.SENT;
+          });
         }
 
         if (newState.playerData) {
