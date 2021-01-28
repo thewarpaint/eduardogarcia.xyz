@@ -151,6 +151,7 @@ permalink: /basta
 
       const $dom = {
         answersForm: null,
+        answersSubmitButton: null,
         answersAInput: null,
         answersBInput: null,
         answersCInput: null,
@@ -203,6 +204,7 @@ permalink: /basta
 
         // $dom hydration
         $dom.answersForm = document.getElementById('answers-form');
+        $dom.answersSubmitButton = document.getElementById('answers--submit-button');
         $dom.answersAInput = document.getElementById('answers--a-input');
         $dom.answersBInput = document.getElementById('answers--b-input');
         $dom.answersCInput = document.getElementById('answers--c-input');
@@ -562,6 +564,7 @@ permalink: /basta
         </div>
 
         <button
+          id="answers--submit-button"
           type="submit"
           class="stop"
         >
