@@ -149,6 +149,8 @@ permalink: /basta
         SENT: 'body--mode-sent',
       };
 
+      const countdownLength = 10;
+
       const $dom = {
         answersForm: null,
         answersSubmitButton: null,
@@ -166,6 +168,7 @@ permalink: /basta
 
       let state = {
         mode: modes.LOGIN,
+        countdownEnd: null,
         currentLetter: '',
         playerId: getAndMaybeSetPlayerId(),
         playerData: {
@@ -220,8 +223,12 @@ permalink: /basta
         $dom.answersForm.addEventListener('submit', (event) => {
           event.preventDefault();
 
+          // Big assumption: local time can be trusted
+          const countdownEnd = new Date().getTime() + (countdownLength * 1000);
+
           updateState({
             mode: modes.SENT,
+            countdownEnd,
             playerData: {
               answers: {
                 a: $dom.answersAInput.value,
@@ -235,6 +242,7 @@ permalink: /basta
             },
           });
 
+          updateRemoteCountdownEnd();
           updateRemotePlayer();
         });
 
@@ -263,6 +271,10 @@ permalink: /basta
         // Firebase handlers
         database.ref(`players/${state.playerId}`).on('value', (snapshot) => {
           onPlayerData(snapshot);
+        });
+
+        database.ref('countdownEnd').on('value', (snapshot) => {
+          onCountdownEnd(snapshot);
         });
 
         rouletteIntervalId = startRoulette();
@@ -294,12 +306,42 @@ permalink: /basta
         clearInterval(rouletteIntervalId);
       }
 
+      function startCountdown() {
+        const countdownInterval = setInterval(() => {
+          const remainingTime = (state.countdownEnd - (new Date()).getTime()) / 1000;
+
+          if (remainingTime < 0) {
+            clearInterval(countdownInterval);
+
+            return;
+          }
+
+          const countdownCount = Math.ceil((countdownLength - remainingTime) / (countdownLength / 10));
+          const countdownText = `Basta ${countdownCount}`;
+
+          // TODO: Move to state
+          $dom.answersSubmitButton.textContent = countdownText;
+        }, 100); // ~10 runs per second
+      }
+
+      function updateRemoteCountdownEnd() {
+        database.ref('countdownEnd').set(state.countdownEnd);
+      }
+
       function updateRemoteCurrentLetter() {
         database.ref('currentLetter').set(state.currentLetter);
       }
 
       function updateRemotePlayer() {
         database.ref(`players/${state.playerId}`).set(state.playerData);
+      }
+
+      function onCountdownEnd(snapshot) {
+        const countdownEnd = snapshot.val();
+
+        updateState({
+          countdownEnd,
+        });
       }
 
       function onCurrentLetter(snapshot) {
@@ -360,6 +402,10 @@ permalink: /basta
           if (oldState.playerData.name !== newState.playerData.name) {
             $dom.loginNameInput.value = newState.playerData.name;
           }
+        }
+
+        if (newState.countdownEnd) {
+          startCountdown();
         }
       }
 
