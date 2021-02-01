@@ -161,6 +161,10 @@ permalink: /basta
         text-transform: uppercase;
       }
 
+      .stop[disabled] {
+        opacity: .5;
+      }
+
       .body--mode-input .stop {
         border-color: var(--foreground);
         color: var(--foreground);
@@ -176,6 +180,7 @@ permalink: /basta
     </style>
 
     <script type="text/javascript">
+      // Does it make sense to handle COUNTDOWN and SENT as different states?
       const modes = {
         COUNTDOWN: 'body--mode-countdown',
         INPUT: 'body--mode-input',
@@ -362,7 +367,7 @@ permalink: /basta
           if (remainingTime <= 0) {
             clearInterval(countdownInterval);
 
-            if (state.mode === modes.INPUT) {
+            if (state.mode === modes.COUNTDOWN) {
               updateState({
                 mode: modes.SENT,
                 playerData: {
@@ -404,10 +409,15 @@ permalink: /basta
 
       function onCountdown(snapshot) {
         const countdown = snapshot.val();
-
-        updateState({
+        const newState = {
           countdown,
-        });
+        };
+
+        if (state.mode === modes.INPUT && state.countdown.byPlayerName !== state.playerData.name) {
+          newState.mode = modes.COUNTDOWN;
+        }
+
+        updateState(newState);
       }
 
       function onCurrentLetter(snapshot) {
@@ -461,6 +471,8 @@ permalink: /basta
           ].forEach(($answer) => {
             $answer.disabled = newState.mode === modes.SENT;
           });
+
+          $dom.answersSubmitButton.disabled = [modes.COUNTDOWN, modes.SENT].includes(newState.mode);
         }
 
         if (newState.playerData) {
@@ -479,7 +491,7 @@ permalink: /basta
           }
         }
 
-        if (newState.countdown && [modes.INPUT, modes.SENT].includes(state.mode)) {
+        if (newState.countdown && [modes.COUNTDOWN, modes.SENT].includes(state.mode)) {
           startCountdown();
         }
 
