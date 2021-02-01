@@ -305,8 +305,10 @@ permalink: /basta
         });
 
         $dom.rouletteLetter.addEventListener('click', (event) => {
-          stopRoulette();
-          updateRemoteCurrentLetter();
+          if (state.mode === modes.ROULETTE) {
+            stopRoulette();
+            updateRemoteCurrentLetter();
+          }
         });
 
         // Firebase handlers
