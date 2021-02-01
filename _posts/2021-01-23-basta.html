@@ -38,6 +38,10 @@ permalink: /basta
         margin: 0 10vw 5vw;
         font-size: 16px;
         font-weight: 300;
+      }
+
+      body,
+      .header {
         transition-property: background-color, border-color, color, opacity;
         transition-duration: .333s;
         transition-timing-function: ease-in-out;
@@ -55,6 +59,7 @@ permalink: /basta
         color: var(--background);
       }
 
+      .body--mode-login .header,
       .body--mode-login .roulette,
       .body--mode-login .input {
         display: none;
@@ -64,6 +69,30 @@ permalink: /basta
       .body--mode-input .login,
       .body--mode-sent .login {
         display: none;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        padding: 2.5vw 0;
+        font-weight: 900;
+        font-size: 6.25vw;
+      }
+
+      .body--mode-input .header {
+        background-color: var(--background);
+        color: var(--foreground);
+      }
+
+      .body--mode-login .header,
+      .body--mode-roulette .header,
+      .body--mode-sent .header {
+        background-color: var(--foreground);
+        color: var(--background);
       }
 
       .roulette__letter {
@@ -478,6 +507,23 @@ permalink: /basta
           ¡Entrar!
         </button>
       </form>
+    </section>
+
+    <section
+      class="header"
+    >
+      <div
+        id="header--name"
+        class="header__name"
+      >
+        Eduardo
+      </div>
+      <div
+        id="header--score"
+        class="header__score"
+      >
+        987
+      </div>
     </section>
 
     <section
