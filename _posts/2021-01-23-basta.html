@@ -52,6 +52,7 @@ permalink: /basta
         color: var(--foreground);
       }
 
+      .body--mode-countdown,
       .body--mode-login,
       .body--mode-roulette,
       .body--mode-sent {
@@ -65,6 +66,7 @@ permalink: /basta
         display: none;
       }
 
+      .body--mode-countdown .login,
       .body--mode-roulette .login,
       .body--mode-input .login,
       .body--mode-sent .login {
@@ -88,6 +90,7 @@ permalink: /basta
         color: var(--foreground);
       }
 
+      .body--mode-countdown .header,
       .body--mode-login .header,
       .body--mode-roulette .header,
       .body--mode-sent .header {
@@ -134,6 +137,7 @@ permalink: /basta
         color: var(--foreground);
       }
 
+      .body--mode-countdown .category__input,
       .body--mode-login .category__input,
       .body--mode-roulette .category__input,
       .body--mode-sent .category__input {
@@ -162,6 +166,7 @@ permalink: /basta
         color: var(--foreground);
       }
 
+      .body--mode-countdown .stop,
       .body--mode-login .stop,
       .body--mode-roulette .stop,
       .body--mode-sent .stop {
@@ -172,6 +177,7 @@ permalink: /basta
 
     <script type="text/javascript">
       const modes = {
+        COUNTDOWN: 'body--mode-countdown',
         INPUT: 'body--mode-input',
         LOGIN: 'body--mode-login',
         ROULETTE: 'body--mode-roulette',
@@ -441,7 +447,7 @@ permalink: /basta
         }
 
         if (newState.mode) {
-          document.body.classList.remove(modes.INPUT, modes.LOGIN, modes.ROULETTE, modes.SENT);
+          document.body.classList.remove(modes.COUNTDOWN, modes.INPUT, modes.LOGIN, modes.ROULETTE, modes.SENT);
           document.body.classList.add(newState.mode);
 
           [
