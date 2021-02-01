@@ -350,8 +350,27 @@ permalink: /basta
         const countdownInterval = setInterval(() => {
           const remainingTime = (state.countdown.end - (new Date()).getTime()) / 1000;
 
-          if (remainingTime < 0) {
+          if (remainingTime <= 0) {
             clearInterval(countdownInterval);
+
+            if (state.mode === modes.INPUT) {
+              updateState({
+                mode: modes.SENT,
+                playerData: {
+                  answers: {
+                    a: $dom.answersAInput.value,
+                    b: $dom.answersBInput.value,
+                    c: $dom.answersCInput.value,
+                    d: $dom.answersDInput.value,
+                    e: $dom.answersEInput.value,
+                    f: $dom.answersFInput.value,
+                    g: $dom.answersGInput.value,
+                  },
+                },
+              });
+
+              updateRemotePlayer();
+            }
 
             return;
           }
@@ -451,7 +470,7 @@ permalink: /basta
           }
         }
 
-        if (newState.countdown) {
+        if (newState.countdown && [modes.INPUT, modes.SENT].includes(state.mode)) {
           startCountdown();
         }
 
