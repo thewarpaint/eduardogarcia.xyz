@@ -220,7 +220,7 @@ permalink: /basta
       let state = {
         mode: modes.LOGIN,
         countdown: {
-          end: null,
+          end: -1,
           byPlayerName: '',
         },
         currentLetter: '',
@@ -238,7 +238,7 @@ permalink: /basta
           name: '',
           score: 0,
         },
-        remainingTime: null,
+        remainingTime: -1,
       };
 
       const letterFrequencies = {};
@@ -350,8 +350,6 @@ permalink: /basta
           onCountdown(snapshot);
         });
 
-        rouletteIntervalId = startRoulette();
-
         maybeToggleAdminPanel();
       }
 
@@ -444,6 +442,9 @@ permalink: /basta
 
         if (state.mode === modes.INPUT && state.countdown.byPlayerName !== state.playerData.name) {
           newState.mode = modes.COUNTDOWN;
+        } else if (state.mode === modes.SENT && newState.countdown.end === -1) {
+          newState.mode = modes.ROULETTE;
+          newState.remainingTime = -1;
         }
 
         updateState(newState);
@@ -504,6 +505,22 @@ permalink: /basta
           $dom.answersSubmitButton.disabled = [modes.COUNTDOWN, modes.SENT].includes(newState.mode);
         }
 
+        if (newState.mode === modes.ROULETTE) {
+          rouletteIntervalId = startRoulette();
+
+          [
+            $dom.answersAInput,
+            $dom.answersBInput,
+            $dom.answersCInput,
+            $dom.answersDInput,
+            $dom.answersEInput,
+            $dom.answersFInput,
+            $dom.answersGInput,
+          ].forEach(($answer) => {
+            $answer.value = '';
+          });
+        }
+
         if (newState.playerData) {
           // Avoiding an infinite loop
           if (oldState.playerData.name !== newState.playerData.name) {
@@ -525,9 +542,13 @@ permalink: /basta
         }
 
         if (newState.remainingTime) {
-          const countdownCount = Math.ceil((countdownLength - newState.remainingTime) / (countdownLength / 10));
+          if (newState.remainingTime === -1) {
+            $dom.answersSubmitButton.textContent = '¡Basta!';
+          } else {
+            const countdownCount = Math.ceil((countdownLength - newState.remainingTime) / (countdownLength / 10));
 
-          $dom.answersSubmitButton.textContent = `Basta ${countdownCount}`;
+            $dom.answersSubmitButton.textContent = `Basta ${countdownCount}`;
+          }
         }
       }
 
