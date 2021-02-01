@@ -298,6 +298,7 @@ permalink: /basta
 
           updateRemotePlayer();
 
+          // TODO: Add handler from the start, improve onCurrentLetter
           database.ref('currentLetter').on('value', (snapshot) => {
             onCurrentLetter(snapshot);
           });
