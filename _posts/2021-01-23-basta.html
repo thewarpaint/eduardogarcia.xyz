@@ -199,7 +199,10 @@ permalink: /basta
 
       let state = {
         mode: modes.LOGIN,
-        countdownEnd: null,
+        countdown: {
+          end: null,
+          byPlayerName: '',
+        },
         currentLetter: '',
         playerId: getAndMaybeSetPlayerId(),
         playerData: {
@@ -261,7 +264,10 @@ permalink: /basta
 
           updateState({
             mode: modes.SENT,
-            countdownEnd,
+            countdown: {
+              end: countdownEnd,
+              byPlayerName: state.playerData.name,
+            },
             playerData: {
               answers: {
                 a: $dom.answersAInput.value,
@@ -275,7 +281,7 @@ permalink: /basta
             },
           });
 
-          updateRemoteCountdownEnd();
+          updateRemoteCountdown();
           updateRemotePlayer();
         });
 
@@ -306,8 +312,8 @@ permalink: /basta
           onPlayerData(snapshot);
         });
 
-        database.ref('countdownEnd').on('value', (snapshot) => {
-          onCountdownEnd(snapshot);
+        database.ref('countdown').on('value', (snapshot) => {
+          onCountdown(snapshot);
         });
 
         rouletteIntervalId = startRoulette();
@@ -341,7 +347,7 @@ permalink: /basta
 
       function startCountdown() {
         const countdownInterval = setInterval(() => {
-          const remainingTime = (state.countdownEnd - (new Date()).getTime()) / 1000;
+          const remainingTime = (state.countdown.end - (new Date()).getTime()) / 1000;
 
           if (remainingTime < 0) {
             clearInterval(countdownInterval);
@@ -357,8 +363,8 @@ permalink: /basta
         }, 100); // ~10 runs per second
       }
 
-      function updateRemoteCountdownEnd() {
-        database.ref('countdownEnd').set(state.countdownEnd);
+      function updateRemoteCountdown() {
+        database.ref('countdown').set(state.countdown);
       }
 
       function updateRemoteCurrentLetter() {
@@ -369,11 +375,11 @@ permalink: /basta
         database.ref(`players/${state.playerId}`).set(state.playerData);
       }
 
-      function onCountdownEnd(snapshot) {
-        const countdownEnd = snapshot.val();
+      function onCountdown(snapshot) {
+        const countdown = snapshot.val();
 
         updateState({
-          countdownEnd,
+          countdown,
         });
       }
 
@@ -446,7 +452,7 @@ permalink: /basta
           }
         }
 
-        if (newState.countdownEnd) {
+        if (newState.countdown) {
           startCountdown();
         }
       }
