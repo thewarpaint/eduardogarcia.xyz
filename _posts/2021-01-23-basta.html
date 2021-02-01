@@ -218,6 +218,7 @@ permalink: /basta
           name: '',
           score: 0,
         },
+        remainingTime: null,
       };
 
       const letterFrequencies = {};
@@ -355,11 +356,9 @@ permalink: /basta
             return;
           }
 
-          const countdownCount = Math.ceil((countdownLength - remainingTime) / (countdownLength / 10));
-          const countdownText = `Basta ${countdownCount}`;
-
-          // TODO: Move to state
-          $dom.answersSubmitButton.textContent = countdownText;
+          updateState({
+            remainingTime,
+          });
         }, 100); // ~10 runs per second
       }
 
@@ -454,6 +453,12 @@ permalink: /basta
 
         if (newState.countdown) {
           startCountdown();
+        }
+
+        if (newState.remainingTime) {
+          const countdownCount = Math.ceil((countdownLength - newState.remainingTime) / (countdownLength / 10));
+
+          $dom.answersSubmitButton.textContent = `Basta ${countdownCount}`;
         }
       }
 
