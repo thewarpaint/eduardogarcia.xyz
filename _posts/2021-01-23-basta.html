@@ -190,6 +190,8 @@ permalink: /basta
         answersEInput: null,
         answersFInput: null,
         answersGInput: null,
+        headerPlayerName: null,
+        headerScore: null,
         loginForm: null,
         loginNameInput: null,
         rouletteLetter: null,
@@ -244,6 +246,8 @@ permalink: /basta
         $dom.answersEInput = document.getElementById('answers--e-input');
         $dom.answersFInput = document.getElementById('answers--f-input');
         $dom.answersGInput = document.getElementById('answers--g-input');
+        $dom.headerPlayerName = document.getElementById('header--player-name');
+        $dom.headerScore = document.getElementById('header--score');
         $dom.loginForm = document.getElementById('login-form');
         $dom.loginNameInput = document.getElementById('login--name-input');
         $dom.rouletteLetter = document.getElementById('roulette-letter');
@@ -431,6 +435,15 @@ permalink: /basta
           if (oldState.playerData.name !== newState.playerData.name) {
             $dom.loginNameInput.value = newState.playerData.name;
           }
+
+          if (newState.playerData.name) {
+            $dom.headerPlayerName.textContent = newState.playerData.name;
+          }
+
+          // playerData.score can be 0
+          if (typeof newState.playerData.score !== 'undefined') {
+            $dom.headerScore.textContent = newState.playerData.score;
+          }
         }
 
         if (newState.countdownEnd) {
@@ -513,7 +526,7 @@ permalink: /basta
       class="header"
     >
       <div
-        id="header--name"
+        id="header--player-name"
         class="header__name"
       >
         Eduardo
