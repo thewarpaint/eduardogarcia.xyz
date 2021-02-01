@@ -177,6 +177,14 @@ permalink: /basta
         border-bottom-color: var(--background);
         color: var(--background);
       }
+
+      .admin-panel {
+        display: none;
+      }
+
+      .admin-panel--visible {
+        display: initial;
+      }
     </style>
 
     <script type="text/javascript">
@@ -192,6 +200,7 @@ permalink: /basta
       const countdownLength = 10;
 
       const $dom = {
+        adminResetLetterCountdown: null,
         answersForm: null,
         answersSubmitButton: null,
         answersAInput: null,
@@ -252,6 +261,7 @@ permalink: /basta
         database = firebase.database();
 
         // $dom hydration
+        $dom.adminResetLetterCountdown = document.getElementById('admin-panel--reset-letter-countdown');
         $dom.answersForm = document.getElementById('answers-form');
         $dom.answersSubmitButton = document.getElementById('answers--submit-button');
         $dom.answersAInput = document.getElementById('answers--a-input');
@@ -322,6 +332,15 @@ permalink: /basta
           }
         });
 
+        // Admin DOM handlers
+        $dom.adminResetLetterCountdown.addEventListener('click', (event) => {
+          updateRemoteCurrentLetter('');
+          updateRemoteCountdown({
+            byPlayerName: "",
+            end: -1,
+          });
+        });
+
         // Firebase handlers
         database.ref(`players/${state.playerId}`).on('value', (snapshot) => {
           onPlayerData(snapshot);
@@ -332,6 +351,8 @@ permalink: /basta
         });
 
         rouletteIntervalId = startRoulette();
+
+        maybeToggleAdminPanel();
       }
 
       function startRoulette() {
@@ -395,12 +416,20 @@ permalink: /basta
         }, 100); // ~10 runs per second
       }
 
-      function updateRemoteCountdown() {
-        database.ref('countdown').set(state.countdown);
+      function updateRemoteCountdown(overrideCountdown) {
+        const countdownToUpdate = typeof overrideCountdown === 'undefined'
+          ? state.countdown
+          : overrideCountdown;
+
+        database.ref('countdown').set(countdownToUpdate);
       }
 
-      function updateRemoteCurrentLetter() {
-        database.ref('currentLetter').set(state.currentLetter);
+      function updateRemoteCurrentLetter(overrideCurrentLetter) {
+        const currentLetterToUpdate = typeof overrideCurrentLetter === 'undefined'
+          ? state.currentLetter
+          : overrideCurrentLetter;
+
+        database.ref('currentLetter').set(currentLetterToUpdate);
       }
 
       function updateRemotePlayer() {
@@ -511,6 +540,13 @@ permalink: /basta
         }
 
         return playerId;
+      }
+
+      function maybeToggleAdminPanel() {
+        if (location.search.includes('admin')) {
+          // It'll only be used once, it's okay not to cache it
+          document.getElementById('admin-panel').classList.add('admin-panel--visible');
+        }
       }
 
       // https://stackoverflow.com/a/37164538
@@ -751,6 +787,21 @@ permalink: /basta
           ¡Basta!
         </button>
       </form>
+    </section>
+
+    <section
+      id="admin-panel"
+      class="admin-panel"
+    >
+      <details>
+        <summary>Admin panel</summary>
+
+        <button
+          id="admin-panel--reset-letter-countdown"
+        >
+          Reset current letter and countdown
+        </button>
+      </details>
     </section>
 
     <script
