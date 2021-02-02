@@ -21,11 +21,13 @@ permalink: /basta
         /* https://connect.pantone.com/#/color-of-the-year */
         --p-illuminating: #f5df4d;
         --p-skydiver: #00589b;
+
+        /* https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
+        --m-blue-900: #0d47a1;
+        --m-yellow-600: #fdd835;
+
         --black: #000000;
         --white: #ffffff;
-
-        --background: var(--p-skydiver);
-        --foreground: var(--p-illuminating);
       }
 
       body,
@@ -34,10 +36,29 @@ permalink: /basta
         font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
 
+      .body--mode-login,
+      .body--mode-roulette {
+        --background: var(--black);
+        --foreground: var(--white);
+      }
+
+      .body--mode-input,
+      .body--mode-sent {
+        --background: var(--m-blue-900);
+        --foreground: var(--white);
+      }
+
+      .body--mode-countdown {
+        --background: var(--m-yellow-600);
+        --foreground: var(--black);
+      }
+
       body {
         margin: 0 10vw 5vw;
         font-size: 16px;
         font-weight: 300;
+        background-color: var(--background);
+        color: var(--foreground);
       }
 
       body,
@@ -45,19 +66,6 @@ permalink: /basta
         transition-property: background-color, border-color, color, opacity;
         transition-duration: .333s;
         transition-timing-function: ease-in-out;
-      }
-
-      .body--mode-input {
-        background-color: var(--background);
-        color: var(--foreground);
-      }
-
-      .body--mode-countdown,
-      .body--mode-login,
-      .body--mode-roulette,
-      .body--mode-sent {
-        background-color: var(--foreground);
-        color: var(--background);
       }
 
       .body--mode-login .header,
@@ -85,17 +93,12 @@ permalink: /basta
         font-size: 6.25vw;
       }
 
-      .body--mode-input .header {
-        background-color: var(--background);
-        color: var(--foreground);
-      }
-
+      .body--mode-input .header,
       .body--mode-countdown .header,
       .body--mode-login .header,
       .body--mode-roulette .header,
       .body--mode-sent .header {
-        background-color: var(--foreground);
-        color: var(--background);
+        background-color: var(--background);
       }
 
       .roulette__letter {
@@ -132,21 +135,17 @@ permalink: /basta
         outline: none;
       }
 
-      .body--mode-input .category__input {
-        border-bottom-color: var(--foreground);
-        color: var(--foreground);
-      }
-
+      .body--mode-input .category__input,
       .body--mode-countdown .category__input,
       .body--mode-login .category__input,
       .body--mode-roulette .category__input,
       .body--mode-sent .category__input {
-        border-bottom-color: var(--background);
-        color: var(--background);
+        border-bottom-color: var(--foreground);
+        color: var(--foreground);
       }
 
       .category__input:focus {
-        outline: 3px solid rgba(245, 223, 77, .5); /* --p-illuminating */
+        outline: 3px solid rgba(255, 255, 255, .5);
       }
 
       .stop {
@@ -165,17 +164,13 @@ permalink: /basta
         opacity: .5;
       }
 
-      .body--mode-input .stop {
-        border-color: var(--foreground);
-        color: var(--foreground);
-      }
-
+      .body--mode-input .stop,
       .body--mode-countdown .stop,
       .body--mode-login .stop,
       .body--mode-roulette .stop,
       .body--mode-sent .stop {
-        border-bottom-color: var(--background);
-        color: var(--background);
+        border-bottom-color: var(--foreground);
+        color: var(--foreground);
       }
 
       .admin-panel {
