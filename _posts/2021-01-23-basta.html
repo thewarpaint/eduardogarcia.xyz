@@ -91,14 +91,8 @@ permalink: /basta
         padding: 2.5vw 0;
         font-weight: 900;
         font-size: 6.25vw;
-      }
-
-      .body--mode-input .header,
-      .body--mode-countdown .header,
-      .body--mode-login .header,
-      .body--mode-roulette .header,
-      .body--mode-sent .header {
         background-color: var(--background);
+        color: var(--foreground);
       }
 
       .roulette__letter {
@@ -133,13 +127,6 @@ permalink: /basta
         font-size: 7.5vw;
         font-weight: 900;
         outline: none;
-      }
-
-      .body--mode-input .category__input,
-      .body--mode-countdown .category__input,
-      .body--mode-login .category__input,
-      .body--mode-roulette .category__input,
-      .body--mode-sent .category__input {
         border-bottom-color: var(--foreground);
         color: var(--foreground);
       }
@@ -153,8 +140,8 @@ permalink: /basta
         margin: 5vw 0;
         padding: 5vw 0;
         background-color: transparent;
-        border-width: 1px;
-        border-style: solid;
+        border: 1px solid var(--foreground);
+        color: var(--foreground);
         font-size: 5vw;
         font-weight: 900;
         text-transform: uppercase;
@@ -162,15 +149,6 @@ permalink: /basta
 
       .stop[disabled] {
         opacity: .5;
-      }
-
-      .body--mode-input .stop,
-      .body--mode-countdown .stop,
-      .body--mode-login .stop,
-      .body--mode-roulette .stop,
-      .body--mode-sent .stop {
-        border-bottom-color: var(--foreground);
-        color: var(--foreground);
       }
 
       .admin-panel {
