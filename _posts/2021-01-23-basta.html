@@ -170,7 +170,7 @@ permalink: /basta
         SENT: 'body--mode-sent',
       };
 
-      const countdownLength = 10;
+      const countdownLength = 20;
 
       const $dom = {
         adminResetLetterCountdown: null,
@@ -518,7 +518,7 @@ permalink: /basta
           if (newState.remainingTime === -1) {
             $dom.answersSubmitButton.textContent = '¡Basta!';
           } else {
-            const countdownCount = Math.ceil((countdownLength - newState.remainingTime) / (countdownLength / 10));
+            const countdownCount = Math.ceil((countdownLength - newState.remainingTime) / (countdownLength / 20));
 
             $dom.answersSubmitButton.textContent = `Basta ${countdownCount}`;
           }
