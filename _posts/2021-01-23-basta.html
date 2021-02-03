@@ -120,8 +120,23 @@ permalink: /basta
         text-transform: uppercase;
       }
 
-      .button[disabled] {
-        opacity: .5;
+      .result-entry {
+        display: flex;
+        flex-flow: row nowrap;
+        font-size: 5vw;
+      }
+
+      .result-entry__player-name,
+      .result-entry__answer {
+        flex: 0 0 50%;
+      }
+
+      .result-entry__player-name {
+        text-align: right;
+      }
+
+      .result-entry__answer {
+        font-weight: 900;
       }
 
       .admin-panel {
@@ -143,6 +158,10 @@ permalink: /basta
         font-size: 5vw;
         font-weight: 900;
         text-transform: uppercase;
+      }
+
+      .button[disabled] {
+        opacity: .5;
       }
 
       .input {
@@ -784,6 +803,68 @@ permalink: /basta
           ¡Basta!
         </button>
       </form>
+    </section>
+
+    <section
+      class="results"
+    >
+      <div
+        class="category"
+      >
+        <div
+          class="category__title"
+        >
+          Nombre
+        </div>
+
+        <div
+          class="result-entry"
+        >
+          <div
+            class="result-entry__player-name"
+          >
+            user1234
+          </div>
+
+          <div
+            class="result-entry__answer"
+          >
+            Adriana
+          </div>
+        </div>
+
+        <div
+          class="result-entry"
+        >
+          <div
+            class="result-entry__player-name"
+          >
+            hlgatell
+          </div>
+
+          <div
+            class="result-entry__answer"
+          >
+            Andrés
+          </div>
+        </div>
+
+        <div
+          class="result-entry"
+        >
+          <div
+            class="result-entry__player-name"
+          >
+            bobbytables
+          </div>
+
+          <div
+            class="result-entry__answer"
+          >
+            Andrómeda
+          </div>
+        </div>
+      </div>
     </section>
 
     <section
