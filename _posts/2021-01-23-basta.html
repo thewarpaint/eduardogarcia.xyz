@@ -116,7 +116,32 @@ permalink: /basta
         text-transform: uppercase;
       }
 
-      .category__input {
+      .button[disabled] {
+        opacity: .5;
+      }
+
+      .admin-panel {
+        display: none;
+      }
+
+      .admin-panel--visible {
+        display: initial;
+      }
+
+      /* Generic classes */
+      .button {
+        width: 100%;
+        margin: 5vw 0;
+        padding: 5vw 0;
+        background-color: transparent;
+        border: 1px solid var(--foreground);
+        color: var(--foreground);
+        font-size: 5vw;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .input {
         width: 100%;
         padding: 2vw 0;
         background-color: transparent;
@@ -131,32 +156,8 @@ permalink: /basta
         color: var(--foreground);
       }
 
-      .category__input:focus {
+      .input:focus {
         outline: 3px solid rgba(255, 255, 255, .5);
-      }
-
-      .button {
-        width: 100%;
-        margin: 5vw 0;
-        padding: 5vw 0;
-        background-color: transparent;
-        border: 1px solid var(--foreground);
-        color: var(--foreground);
-        font-size: 5vw;
-        font-weight: 900;
-        text-transform: uppercase;
-      }
-
-      .button[disabled] {
-        opacity: .5;
-      }
-
-      .admin-panel {
-        display: none;
-      }
-
-      .admin-panel--visible {
-        display: initial;
       }
     </style>
 
@@ -592,7 +593,7 @@ permalink: /basta
         <input
           id="login--name-input"
           type="text"
-          class="category__input"
+          class="input"
           required
           autocomplete="off"
           autocapitalize="off"
@@ -652,7 +653,7 @@ permalink: /basta
           <input
             id="answers--a-input"
             type="text"
-            class="category__input"
+            class="input"
             required
             autocomplete="off"
             autocapitalize="off"
@@ -671,7 +672,7 @@ permalink: /basta
           <input
             id="answers--b-input"
             type="text"
-            class="category__input"
+            class="input"
             required
             autocomplete="off"
             autocapitalize="off"
@@ -690,7 +691,7 @@ permalink: /basta
           <input
             id="answers--c-input"
             type="text"
-            class="category__input"
+            class="input"
             required
             autocomplete="off"
             autocapitalize="off"
@@ -709,7 +710,7 @@ permalink: /basta
           <input
             id="answers--d-input"
             type="text"
-            class="category__input"
+            class="input"
             required
             autocomplete="off"
             autocapitalize="off"
@@ -728,7 +729,7 @@ permalink: /basta
           <input
             id="answers--e-input"
             type="text"
-            class="category__input"
+            class="input"
             required
             autocomplete="off"
             autocapitalize="off"
@@ -747,7 +748,7 @@ permalink: /basta
           <input
             id="answers--f-input"
             type="text"
-            class="category__input"
+            class="input"
             required
             autocomplete="off"
             autocapitalize="off"
@@ -766,7 +767,7 @@ permalink: /basta
           <input
             id="answers--g-input"
             type="text"
-            class="category__input"
+            class="input"
             required
             autocomplete="off"
             autocapitalize="off"
