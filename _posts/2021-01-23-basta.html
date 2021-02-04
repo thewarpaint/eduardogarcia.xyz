@@ -359,7 +359,7 @@ permalink: /basta
           onCountdown(snapshot);
         });
 
-        maybeToggleAdminPanel();
+        maybeDoAdminSetup();
       }
 
       function startRoulette() {
@@ -572,11 +572,55 @@ permalink: /basta
         return playerId;
       }
 
-      function maybeToggleAdminPanel() {
-        if (location.search.includes('admin')) {
-          // It'll only be used once, it's okay not to cache it
-          document.getElementById('admin-panel').classList.add('admin-panel--visible');
+      function maybeDoAdminSetup() {
+        if (!location.search.includes('admin')) {
+          return;
         }
+
+        // It'll only be used once, it's okay not to cache it
+        document.getElementById('admin-panel').classList.add('admin-panel--visible');
+
+        // TODO: Fix this temporary mess
+        database.ref('players').on('value', (snapshot) => {
+          const players = snapshot.val();
+
+          const answersHtml = Object.keys(players).map((playerId) => {
+            const playerData = players[playerId];
+
+            return `
+              <div
+                class="result-entry"
+              >
+                <div
+                  class="result-entry__player-name"
+                >
+                  ${playerData.name}
+                </div>
+
+                <div
+                  class="result-entry__answer"
+                >
+                  ${playerData.answers.a}
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          const categoryHtml = `
+            <div
+              class="category"
+            >
+              <div
+                class="category__title"
+              >
+                Nombre
+              </div>
+              ${answersHtml}
+            </div>
+          `;
+
+          document.getElementById('results').innerHTML = categoryHtml;
+        });
       }
 
       // https://stackoverflow.com/a/37164538
@@ -820,6 +864,7 @@ permalink: /basta
     </section>
 
     <section
+      id="results"
       class="results"
     >
       <div
