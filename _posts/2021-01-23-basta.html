@@ -122,13 +122,15 @@ permalink: /basta
 
       .result-entry {
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        margin: 5vw 0;
         font-size: 5vw;
       }
 
       .result-entry__player-name,
       .result-entry__answer {
-        flex: 0 0 50%;
+        flex: 0 0 calc(50% - 3.75vw);
       }
 
       .result-entry__player-name {
@@ -158,6 +160,12 @@ permalink: /basta
         font-size: 5vw;
         font-weight: 900;
         text-transform: uppercase;
+      }
+
+      .button--small {
+        width: auto;
+        margin: 1.25vw;
+        padding: 1.25vw 2.5vw;
       }
 
       .button[disabled] {
@@ -831,6 +839,34 @@ permalink: /basta
           >
             Adriana
           </div>
+
+          <div
+            class="result-entry__scores"
+          >
+            <button
+              class="button button--small"
+            >
+              100
+            </button>
+
+            <button
+              class="button button--small"
+            >
+              50
+            </button>
+
+            <button
+              class="button button--small"
+            >
+              33
+            </button>
+
+            <button
+              class="button button--small"
+            >
+              25
+            </button>
+          </div>
         </div>
 
         <div
@@ -847,6 +883,34 @@ permalink: /basta
           >
             Andrés
           </div>
+
+          <div
+            class="result-entry__scores"
+          >
+            <button
+              class="button button--small"
+            >
+              100
+            </button>
+
+            <button
+              class="button button--small"
+            >
+              50
+            </button>
+
+            <button
+              class="button button--small"
+            >
+              33
+            </button>
+
+            <button
+              class="button button--small"
+            >
+              25
+            </button>
+          </div>
         </div>
 
         <div
@@ -862,6 +926,34 @@ permalink: /basta
             class="result-entry__answer"
           >
             Andrómeda
+          </div>
+
+          <div
+            class="result-entry__scores"
+          >
+            <button
+              class="button button--small"
+            >
+              100
+            </button>
+
+            <button
+              class="button button--small"
+            >
+              50
+            </button>
+
+            <button
+              class="button button--small"
+            >
+              33
+            </button>
+
+            <button
+              class="button button--small"
+            >
+              25
+            </button>
           </div>
         </div>
       </div>
