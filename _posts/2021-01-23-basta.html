@@ -206,6 +206,39 @@ permalink: /basta
         SENT: 'body--mode-sent',
       };
 
+      // TODO: Refactor to remove `property`
+      // TODO: Use this array to build the answers form
+      const categories = [
+        {
+          label: 'Nombre',
+          property: 'a',
+        },
+        {
+          label: 'País o ciudad',
+          property: 'b',
+        },
+        {
+          label: 'Animal',
+          property: 'c',
+        },
+        {
+          label: 'Flor o fruto',
+          property: 'd',
+        },
+        {
+          label: 'Color',
+          property: 'e',
+        },
+        {
+          label: 'Comida',
+          property: 'f',
+        },
+        {
+          label: 'Película o serie',
+          property: 'g',
+        },
+      ]
+
       const countdownLength = 20;
 
       const $dom = {
@@ -580,46 +613,48 @@ permalink: /basta
         // It'll only be used once, it's okay not to cache it
         document.getElementById('admin-panel').classList.add('admin-panel--visible');
 
-        // TODO: Fix this temporary mess
+        // TODO: Fix this temporary mess, including the XSS vulnerability
         database.ref('players').on('value', (snapshot) => {
           const players = snapshot.val();
 
-          const answersHtml = Object.keys(players).map((playerId) => {
-            const playerData = players[playerId];
+          const answersHtml = categories.map((category) => {
+            const playersAnswersHtml = Object.keys(players).map((playerId) => {
+              const playerData = players[playerId];
+
+              return `
+                <div
+                  class="result-entry"
+                >
+                  <div
+                    class="result-entry__player-name"
+                  >
+                    ${playerData.name}
+                  </div>
+
+                  <div
+                    class="result-entry__answer"
+                  >
+                    ${playerData.answers[category.property]}
+                  </div>
+                </div>
+              `;
+            }).join('');
 
             return `
               <div
-                class="result-entry"
+                class="category"
               >
                 <div
-                  class="result-entry__player-name"
+                  class="category__title"
                 >
-                  ${playerData.name}
+                  ${category.label}
                 </div>
-
-                <div
-                  class="result-entry__answer"
-                >
-                  ${playerData.answers.a}
-                </div>
+                ${playersAnswersHtml}
               </div>
             `;
           }).join('');
 
-          const categoryHtml = `
-            <div
-              class="category"
-            >
-              <div
-                class="category__title"
-              >
-                Nombre
-              </div>
-              ${answersHtml}
-            </div>
-          `;
-
-          document.getElementById('results').innerHTML = categoryHtml;
+          document.getElementById('results').innerHTML = answersHtml;
         });
       }
 
