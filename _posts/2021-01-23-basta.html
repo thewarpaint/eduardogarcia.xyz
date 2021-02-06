@@ -129,6 +129,10 @@ permalink: /basta
         font-size: 5vw;
       }
 
+      .results {
+        display: none;
+      }
+
       .result-entry__player-name,
       .result-entry__answer {
         flex: 0 0 calc(50% - 3.75vw);
@@ -654,7 +658,7 @@ permalink: /basta
             `;
           }).join('');
 
-          document.getElementById('results').innerHTML = answersHtml;
+          // document.getElementById('results').innerHTML = answersHtml;
         });
       }
 
