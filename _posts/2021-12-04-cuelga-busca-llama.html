@@ -35,10 +35,16 @@ permalink: /cuelga-busca-llama
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 16px;
         /* TODO: Fix lists */
+      }
+
+      .intro,
+      .hero,
+      .section-title {
         text-align: center;
       }
 
-      .intro {
+      .intro,
+      .advice-list {
         font-size: 1.25rem;
       }
 
@@ -63,6 +69,10 @@ permalink: /cuelga-busca-llama
         }
       }
 
+      .step {
+        margin: 7.5rem 0;
+      }
+
       /* TODO: Improve class name */
       .section-title {
         font-size: 2.5rem;
@@ -72,10 +82,9 @@ permalink: /cuelga-busca-llama
         color: gray;
       }
 
-      @media(max-width: 480px) {
-        .advice-list {
-          text-align: left;
-        }
+      .advice-list {
+        margin: auto;
+        max-width: 50rem;
       }
     </style>
   </head>
@@ -108,7 +117,9 @@ permalink: /cuelga-busca-llama
       llama
     </h1>
 
-    <p>
+    <section
+      class="step"
+    >
       <h2
         class="section-title"
       >
@@ -133,9 +144,11 @@ permalink: /cuelga-busca-llama
           operaciones financieras en tu cuenta.
         </li>
       </ul>
-    </p>
+    </section>
 
-    <p>
+    <section
+      class="step"
+    >
       <h2
         class="section-title"
       >
@@ -154,9 +167,11 @@ permalink: /cuelga-busca-llama
           Busca el teléfono de tu banco en la parte trasera de tu tarjeta o en su sitio web oficial.
         </li>
       </ul>
-    </p>
+    </section>
 
-    <p>
+    <section
+      class="step"
+    >
       <h2
         class="section-title"
       >
@@ -175,7 +190,7 @@ permalink: /cuelga-busca-llama
           Marca a tu banco para solicitar confirmación sobre la información de la llamada original.
         </li>
       </ul>
-    </p>
+    </section>
 
     <!-- TODO: add references -->
     <!-- <ul>
