@@ -48,7 +48,19 @@ permalink: /cuelga-busca-llama
       }
 
       .hero {
-        font-size: 5rem;
+        font-size: 20vw;
+      }
+
+      @media(min-width: 481px) {
+        .hero {
+          font-size: 15vw;
+        }
+      }
+
+      @media(min-width: 769px) {
+        .hero {
+          font-size: 10vw;
+        }
       }
 
       /* TODO: Improve class name */
@@ -85,10 +97,15 @@ permalink: /cuelga-busca-llama
       </p>
     </section>
 
+    <!-- TODO: remove `<br>`s -->
     <h1
       class="hero"
     >
-      cuelga, busca, llama
+      cuelga,
+      <br>
+      busca,
+      <br>
+      llama
     </h1>
 
     <p>
@@ -160,10 +177,11 @@ permalink: /cuelga-busca-llama
       </ul>
     </p>
 
-    <ul>
+    <!-- TODO: add references -->
+    <!-- <ul>
       <li>
         https://krebsonsecurity.com/2020/04/when-in-doubt-hang-up-look-up-call-back/
       </li>
-    </ul>
+    </ul> -->
   </body>
 </html>
