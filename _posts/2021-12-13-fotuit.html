@@ -1,0 +1,207 @@
+---
+permalink: /fotuit
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      charset="utf-8"
+    >
+
+    <style
+      type="text/css"
+    >
+      /* twitter.com { */
+      @font-face {
+        font-family: TwitterChirpExtendedHeavy;
+        src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff2) format('woff2');
+        src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff) format('woff');
+        font-weight: 800;
+        font-style: 'normal';
+        font-display: 'swap';
+      }
+      @font-face {
+        font-family: TwitterChirp;
+        src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff2) format('woff2');
+        src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff) format('woff');
+        font-weight: 400;
+        font-style: 'normal';
+        font-display: 'swap';
+      }
+      @font-face {
+        font-family: TwitterChirp;
+        src: url(https://abs.twimg.com/fonts/v2/chirp-medium-web.woff2) format('woff2');
+        src: url(https://abs.twimg.com/fonts/v2/chirp-medium-web.woff) format('woff');
+        font-weight: 500;
+        font-style: 'normal';
+        font-display: 'swap';
+      }
+      @font-face {
+        font-family: TwitterChirp;
+        src: url(https://abs.twimg.com/fonts/v2/chirp-bold-web.woff2) format('woff2');
+        src: url(https://abs.twimg.com/fonts/v2/chirp-bold-web.woff) format('woff');
+        font-weight: 700;
+        font-style: 'normal';
+        font-display: 'swap';
+      }
+      @font-face {
+        font-family: TwitterChirp;
+        src: url(https://abs.twimg.com/fonts/v2/chirp-heavy-web.woff2) format('woff2');
+        src: url(https://abs.twimg.com/fonts/v2/chirp-heavy-web.woff) format('woff');
+        font-weight: 800;
+        font-style: 'normal';
+        font-display: 'swap';
+      }
+      /* } twitter.com */
+
+      body {
+        background-color: black;
+        background-image: url("https://pbs.twimg.com/media/FGNXT8xUYAQe2eo?format=jpg&name=360x360");
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: rgb(217, 217, 217);
+        font-family: TwitterChirp, "Helvetica Neue", Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .overlay {
+        background-color: rgba(0, 0, 0, .666);
+        padding: 5rem;
+      }
+
+      .profile-image {
+        border-radius: 50% 50%;
+        height: 72px;
+        width: 72px;
+      }
+
+      .username,
+      .user-id {
+        font-size: 1.5rem;
+      }
+
+      .username {
+        font-weight: 700;
+      }
+
+      .verified-badge {
+        display: inline-block;
+        fill: rgb(217, 217, 217);
+        height: 20px;
+        width: 20px;
+      }
+
+      .user-id {
+        color: rgb(110, 118, 125);
+      }
+
+      .text {
+        font-size: 2.5rem;
+      }
+
+      .date-time-app,
+      .stats {
+        color: rgb(110, 118, 125);
+        font-size: 1.5rem;
+      }
+
+      .date-time-app {
+        text-decoration: none;
+      }
+
+      .stats-number {
+        color: rgb(217, 217, 217);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="overlay"
+    >
+      <!-- <img
+        class="profile-image"
+        src="https://pbs.twimg.com/profile_images/1433234061691084800/8TUii2rl_x96.jpg"
+      > -->
+
+      <img
+        class="profile-image"
+        src="https://pbs.twimg.com/profile_images/1433234061691084800/8TUii2rl_400x400.jpg"
+      >
+
+      <div>
+        <div
+          class="username"
+        >
+          Andrés Manuel
+          <!--  -->
+          <svg
+            viewBox="0 0 24 24"
+            aria-label="Verified account"
+            class="verified-badge"
+          >
+            <g>
+              <path
+                d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"
+              >
+              </path>
+            </g>
+          </svg>
+        </div>
+        <div
+          class="user-id"
+        >
+          @lopezobrador_
+        </div>
+      </div>
+
+      <p
+        lang="es"
+        dir="ltr"
+        class="text"
+      >
+        Lamento profundamente la tragedia ocasionada por la volcadura de un tráiler
+        en Chiapas que transportaba migrantes centroamericanos. Es muy doloroso.
+        Abrazo a los familiares de las víctimas.
+      </p>
+
+      <a
+        href="https://twitter.com/lopezobrador_/status/1469109393421574145"
+        class="date-time-app"
+      >
+        6:59 PM · Dec 9, 2021 · Twitter Web App
+      </a>
+
+      <ul
+        class="stats"
+      >
+        <li>
+          <span
+            class="stats-number"
+          >
+            4,088
+          </span>
+          Retweets
+        </li>
+        <li>
+          <span
+            class="stats-number"
+          >
+            410
+          </span>
+          Quote Tweets
+        </li>
+        <li>
+          <span
+            class="stats-number"
+          >
+            18.8K
+          </span>
+          Likes
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
