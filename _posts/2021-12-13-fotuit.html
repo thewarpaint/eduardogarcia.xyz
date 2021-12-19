@@ -85,8 +85,8 @@ permalink: /fotuit
 
       .profile-image {
         border-radius: 50% 50%;
-        height: 5rem;
-        width: 5rem;
+        height: 6.25rem;
+        width: 6.25rem;
       }
 
       .profile-user {
@@ -95,7 +95,7 @@ permalink: /fotuit
 
       .username,
       .user-id {
-        font-size: 1.5rem;
+        font-size: 2rem;
       }
 
       .username {
@@ -105,10 +105,10 @@ permalink: /fotuit
       .verified-badge {
         display: inline-block;
         fill: rgb(217, 217, 217);
-        height: 1.5rem;
-        width: 1.5rem;
+        height: 2rem;
+        width: 2rem;
         position: relative;
-        top: .1875rem;
+        top: .25rem;
       }
 
       .user-id {
@@ -125,7 +125,13 @@ permalink: /fotuit
         font-size: 2.5rem;
       }
 
-      .date-time-source,
+      .date-time-source-credit {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+      }
+
+      .date-time-source-credit,
       .stats {
         color: rgb(110, 118, 125);
         font-size: 1.5rem;
@@ -279,28 +285,37 @@ permalink: /fotuit
         a su mujer y Yunes a su hijo. Nepotismo y vil corrupción.
       </p>
 
-      <span
-        class="date-time-source"
+      <div
+        class="date-time-source-credit"
       >
-        <span
-          id="time"
+        <div
+          class="date-time-source"
         >
-          18:12
-        </span>
-         ·
-        <span
-          id="date"
+          <span
+            id="time"
+          >
+            18:12
+          </span>
+          ·
+          <span
+            id="date"
+          >
+            Enero 8, 2017
+          </span>
+          ·
+          <span
+            id="source"
+          >
+            Twitter for Android
+          </span>
+        </div>
+
+        <div
+          class="credit"
         >
-          Enero 8, 2017
-        </span>
-         ·
-        <span
-          id="source"
-        >
-          Twitter for Android
-        </span>
-        · Hecho con Fotuit
-      </span>
+          Hecho con <b>Fotuit</b>
+        </div>
+      </div>
 
       <ul
         class="stats"
