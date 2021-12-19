@@ -125,14 +125,10 @@ permalink: /fotuit
         font-size: 2.5rem;
       }
 
-      .date-time-app,
+      .date-time-source,
       .stats {
         color: rgb(110, 118, 125);
         font-size: 1.5rem;
-      }
-
-      .date-time-app {
-        text-decoration: none;
       }
 
       .stats {
@@ -159,6 +155,14 @@ permalink: /fotuit
         const profileImageUrl = urlSearchParams.get('profileImageUrl');
         const name = urlSearchParams.get('name');
         const username = urlSearchParams.get('username');
+        const isVerified = urlSearchParams.get('isVerified') === 'true';
+        const text = urlSearchParams.get('text');
+        const retweets = urlSearchParams.get('retweets');
+        const likes = urlSearchParams.get('likes');
+        const quoteTweets = urlSearchParams.get('quoteTweets');
+        const date = urlSearchParams.get('date');
+        const time = urlSearchParams.get('time');
+        const source = urlSearchParams.get('source');
 
         if (backgroundImageUrl) {
           document.body.style = `background-image: url("${backgroundImageUrl}")`;
@@ -174,6 +178,45 @@ permalink: /fotuit
 
         if (username) {
           document.getElementById('username').textContent = username;
+        }
+
+        if (!isVerified) {
+          document.getElementById('verified-badge').style = 'display: none;';
+        }
+
+        if (text) {
+          document.getElementById('text').textContent = text;
+        }
+
+        // TODO: Format all numbers, hide container if none present
+        if (retweets) {
+          document.getElementById('stats-retweets-text').textContent = retweets;
+        } else {
+          document.getElementById('stats-retweets').style = 'display: none;';
+        }
+
+        if (quoteTweets) {
+          document.getElementById('stats-quote-tweets-text').textContent = quoteTweets;
+        } else {
+          document.getElementById('stats-quote-tweets').style = 'display: none;';
+        }
+
+        if (likes) {
+          document.getElementById('stats-likes-text').textContent = likes;
+        } else {
+          document.getElementById('stats-likes').style = 'display: none;';
+        }
+
+        if (date) {
+          document.getElementById('date').textContent = date;
+        }
+
+        if (time) {
+          document.getElementById('time').textContent = time;
+        }
+
+        if (source) {
+          document.getElementById('source').textContent = source;
         }
       });
     </script>
@@ -208,6 +251,7 @@ permalink: /fotuit
               viewBox="0 0 24 24"
               aria-label="Verified account"
               class="verified-badge"
+              id="verified-badge"
             >
               <g>
                 <path
@@ -229,26 +273,45 @@ permalink: /fotuit
         lang="es"
         dir="ltr"
         class="text"
+        id="text"
       >
         Calderón busca reelegirse con su esposa, Moreno Valle también quiere de candidata
         a su mujer y Yunes a su hijo. Nepotismo y vil corrupción.
       </p>
 
-      <a
-        href="https://twitter.com/lopezobrador_/status/818249023727484929"
-        class="date-time-app"
+      <span
+        class="date-time-source"
       >
-        18:12 · Enero 8, 2017 · Twitter for Android · Hecho con Fotuit
-      </a>
+        <span
+          id="time"
+        >
+          18:12
+        </span>
+         ·
+        <span
+          id="date"
+        >
+          Enero 8, 2017
+        </span>
+         ·
+        <span
+          id="source"
+        >
+          Twitter for Android
+        </span>
+        · Hecho con Fotuit
+      </span>
 
       <ul
         class="stats"
       >
         <li
           class="stats-item"
+          id="stats-retweets"
         >
           <span
             class="stats-number"
+            id="stats-retweets-text"
           >
             4,431
           </span>
@@ -257,9 +320,11 @@ permalink: /fotuit
 
         <li
           class="stats-item"
+          id="stats-quote-tweets"
         >
           <span
             class="stats-number"
+            id="stats-quote-tweets-text"
           >
             2,069
           </span>
@@ -268,9 +333,11 @@ permalink: /fotuit
 
         <li
           class="stats-item"
+          id="stats-likes"
         >
           <span
             class="stats-number"
+            id="stats-likes-text"
           >
             6,474
           </span>
