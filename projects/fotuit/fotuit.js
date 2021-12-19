@@ -5,12 +5,22 @@ const {
 } = process.env;
 
 // TODO: Get from command line args
-const tweetId = '818249023727484929';
+const tweetId = '1268876804300791810';
+const backgroundImageUrl = 'https://pbs.twimg.com/media/EZyws8nUwAEg4VM?format=jpg&name=medium';
+
+// Temporary, while we figure out where to retrieve it from / how to format it
+const quoteTweets = 1337;
+const date = 'Junio 5, 2020';
+const time = '07:06';
 
 async function main() {
   const payload = await getPayloadFromTweetId(tweetId);
 
   console.log(payload);
+
+  const fotuitUrl = buildFotuitUrl(payload);
+
+  console.log(fotuitUrl);
 }
 
 async function getPayloadFromTweetId(tweetId) {
@@ -51,6 +61,18 @@ function buildPayloadFromTwitterResponse(twitterResponse) {
     source,
   } = twitterResponse;
 
+  // RegExp.exec is weird, see the MDN reference below for a primer
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec#description
+  //
+  // HTML cannot be parsed with regular expressions, but the <a> tag that Twitter returns is pretty simple
+  // https://blog.codinghorror.com/parsing-html-the-cthulhu-way/
+  const [, sourceWithoutHtml] = /<a [^>]+>(.*?)<\/a>/g.exec(source);
+
+  const esMxFormatter = new Intl.NumberFormat('es-MX');
+  const formattedRetweets = esMxFormatter.format(retweets);
+  const formattedLikes = esMxFormatter.format(likes);
+  const formattedQuoteTweets = esMxFormatter.format(quoteTweets);
+
   return {
     id,
     createdAt,
@@ -59,10 +81,29 @@ function buildPayloadFromTwitterResponse(twitterResponse) {
     username,
     profileImageUrl,
     isVerified,
-    retweets,
-    likes,
-    source,
+    retweets: formattedRetweets,
+    likes: formattedLikes,
+    quoteTweets: formattedQuoteTweets,
+    source: sourceWithoutHtml,
+    date,
+    time,
   };
+}
+
+function buildFotuitUrl(params) {
+  return `https://eduardogarcia.xyz/fotuit?` +
+    `name=${encodeURIComponent(params.name)}&` +
+    `username=${encodeURIComponent(params.username)}&` +
+    `profileImageUrl=${encodeURIComponent(params.profileImageUrl)}&` +
+    `isVerified=${params.isVerified.toString()}&` +
+    `text=${encodeURIComponent(params.text)}&` +
+    `date=${encodeURIComponent(params.date)}&` +
+    `time=${encodeURIComponent(params.time)}&` +
+    `retweets=${params.retweets}&` +
+    `likes=${params.likes}&` +
+    `quoteTweets=${params.quoteTweets}&` +
+    `source=${encodeURIComponent(params.source)}&` +
+    `backgroundImageUrl=${encodeURIComponent(backgroundImageUrl)}&`;
 }
 
 (async () => {
