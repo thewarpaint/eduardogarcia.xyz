@@ -6,12 +6,7 @@ const {
 
 const siteRoot = 'https://fotuit.glitch.me/';
 
-// TODO: Get from command line args
-const tweetId = '1268876804300791810';
-const backgroundImageUrl = 'https://pbs.twimg.com/media/EZyws8nUwAEg4VM?format=jpg&name=medium';
-
 // Temporary, while we figure out where to retrieve it from / how to format it
-const quoteTweets = 1337;
 const date = 'Junio 5, 2020';
 const time = '07:06';
 
@@ -63,7 +58,6 @@ function buildPayloadFromTwitterResponse(twitterResponse) {
   const esMxFormatter = new Intl.NumberFormat('es-MX');
   const formattedRetweets = esMxFormatter.format(retweets);
   const formattedLikes = esMxFormatter.format(likes);
-  const formattedQuoteTweets = esMxFormatter.format(quoteTweets);
 
   return {
     id,
@@ -75,7 +69,6 @@ function buildPayloadFromTwitterResponse(twitterResponse) {
     isVerified,
     retweets: formattedRetweets,
     likes: formattedLikes,
-    quoteTweets: formattedQuoteTweets,
     source: sourceWithoutHtml,
     date,
     time,
@@ -95,7 +88,7 @@ function buildFotuitUrl(params) {
     `likes=${params.likes}&` +
     `quoteTweets=${params.quoteTweets}&` +
     `source=${encodeURIComponent(params.source)}&` +
-    `backgroundImageUrl=${encodeURIComponent(backgroundImageUrl)}&`;
+    `backgroundImageUrl=${encodeURIComponent(params.backgroundImageUrl)}&`;
 }
 
 export {
