@@ -23,6 +23,8 @@ fastifyServer.post('/v1/fotuit', async function(request, reply) {
     backgroundImageUrl,
   } = request.body;
 
+  console.log(`Starting to process a request for tweetId=${tweetId}`);
+
   const payload = {
     ...await getPayloadFromTweetId(tweetId),
     backgroundImageUrl,
@@ -30,11 +32,15 @@ fastifyServer.post('/v1/fotuit', async function(request, reply) {
 
   const fotuitUrl = buildFotuitUrl(payload);
 
+  console.log(`Generating an image for url=${fotuitUrl}`);
+
   const screenshot = await getPageScreenshot(fotuitUrl);
 
   reply
     .type('png')
     .send(screenshot);
+
+  console.log(`Request for tweetId=${tweetId} served`);
 });
 
 // TODO: bring back after static files are added
