@@ -16,3 +16,12 @@ Generating image...
 
 Fotuit saved as claudiashein_1268876804300791810_1200x700.png
 ```
+
+```
+curl \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d @body.json \
+    -o fotuit.png \
+    https://fotuit.glitch.me/v1/fotuit
+```
