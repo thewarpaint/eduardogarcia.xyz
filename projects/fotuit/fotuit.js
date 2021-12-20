@@ -6,10 +6,6 @@ const {
 
 const siteRoot = 'https://fotuit.glitch.me/';
 
-// Temporary, while we figure out where to retrieve it from / how to format it
-const date = 'Junio 5, 2020';
-const time = '07:06';
-
 async function getPayloadFromTweetId(tweetId) {
   const url = buildTwitterApiUrl(tweetId);
 
@@ -62,6 +58,12 @@ function buildPayloadFromTwitterResponse(twitterResponse) {
   // TODO: Find a better way to get the higher resolution profile image
   const biggerProfileImageUrl = profileImageUrl.replace('_normal.jpg', '_400x400.jpg');
 
+  // TODO: Convert to CDMX time, format properly
+  const createdAtDate = new Date(createdAt);
+  const createdAtString = createdAtDate.toISOString(); // YYYY-MM-DDTHH:mm:ss.sssZ
+  const date = createdAtString.substring(0, 10); // YYYY-MM-DD
+  const time = createdAtString.substring(11, 16); // HH:mm
+
   return {
     id,
     createdAt,
@@ -89,7 +91,6 @@ function buildFotuitUrl(params) {
     `time=${encodeURIComponent(params.time)}&` +
     `retweets=${params.retweets}&` +
     `likes=${params.likes}&` +
-    `quoteTweets=${params.quoteTweets}&` +
     `source=${encodeURIComponent(params.source)}&` +
     `backgroundImageUrl=${encodeURIComponent(params.backgroundImageUrl)}&`;
 }
