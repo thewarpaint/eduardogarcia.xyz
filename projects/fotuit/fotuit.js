@@ -59,13 +59,16 @@ function buildPayloadFromTwitterResponse(twitterResponse) {
   const formattedRetweets = esMxFormatter.format(retweets);
   const formattedLikes = esMxFormatter.format(likes);
 
+  // TODO: Find a better way to get the higher resolution profile image
+  const biggerProfileImageUrl = profileImageUrl.replace('_normal.jpg', '_400x400.jpg');
+
   return {
     id,
     createdAt,
     text,
     name,
     username,
-    profileImageUrl,
+    profileImageUrl: biggerProfileImageUrl,
     isVerified,
     retweets: formattedRetweets,
     likes: formattedLikes,
