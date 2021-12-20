@@ -129,17 +129,25 @@ permalink: /fotuit
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
+        align-items: center;
       }
 
       .date-time-source-credit,
+      .credit-link,
       .stats {
         color: rgb(110, 118, 125);
         font-size: 1.5rem;
       }
 
+      .credit {
+        text-align: right;
+      }
+
       .stats {
         list-style-type: none;
         padding: 0;
+        /* Reset margin for the last element in the page */
+        margin-bottom: 0;
       }
 
       .stats-item {
@@ -315,7 +323,16 @@ permalink: /fotuit
         <div
           class="credit"
         >
-          Hecho con <b>Fotuit</b>
+          <div>
+            Hecho con <b>Fotuit</b>
+          </div>
+
+          <a
+            class="credit-link"
+            href="https://fotuit.glitch.me"
+          >
+            fotuit.glitch.me
+          </a>
         </div>
       </div>
 
