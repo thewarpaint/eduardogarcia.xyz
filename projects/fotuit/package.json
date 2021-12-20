@@ -15,9 +15,11 @@
     "fastify-static": "^4.5.0",
     "handlebars": "^4.7.7",
     "node-fetch": "^3.1.0",
-    "point-of-view": "^4.16.0"
+    "point-of-view": "^4.16.0",
+    "puppeteer": "^13.0.0",
+    "puppeteer-core": "^13.0.0"
   },
   "engines": {
-    "node": "16.x"
+    "node": "17.x"
   }
 }
