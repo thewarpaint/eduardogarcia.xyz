@@ -4,6 +4,8 @@ const {
   TWITTER_BEARER_TOKEN,
 } = process.env;
 
+const siteRoot = 'https://fotuit.glitch.me/';
+
 // TODO: Get from command line args
 const tweetId = '1268876804300791810';
 const backgroundImageUrl = 'https://pbs.twimg.com/media/EZyws8nUwAEg4VM?format=jpg&name=medium';
@@ -12,16 +14,6 @@ const backgroundImageUrl = 'https://pbs.twimg.com/media/EZyws8nUwAEg4VM?format=j
 const quoteTweets = 1337;
 const date = 'Junio 5, 2020';
 const time = '07:06';
-
-async function main() {
-  const payload = await getPayloadFromTweetId(tweetId);
-
-  console.log(payload);
-
-  const fotuitUrl = buildFotuitUrl(payload);
-
-  console.log(fotuitUrl);
-}
 
 async function getPayloadFromTweetId(tweetId) {
   const url = buildTwitterApiUrl(tweetId);
@@ -91,7 +83,7 @@ function buildPayloadFromTwitterResponse(twitterResponse) {
 }
 
 function buildFotuitUrl(params) {
-  return `https://eduardogarcia.xyz/fotuit?` +
+  return `${siteRoot}?` +
     `name=${encodeURIComponent(params.name)}&` +
     `username=${encodeURIComponent(params.username)}&` +
     `profileImageUrl=${encodeURIComponent(params.profileImageUrl)}&` +
@@ -106,6 +98,7 @@ function buildFotuitUrl(params) {
     `backgroundImageUrl=${encodeURIComponent(backgroundImageUrl)}&`;
 }
 
-(async () => {
-  await main();
-})();
+export {
+  buildFotuitUrl,
+  getPayloadFromTweetId,
+};
