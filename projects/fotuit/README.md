@@ -17,11 +17,21 @@ Generating image...
 Fotuit saved as claudiashein_1268876804300791810_1200x700.png
 ```
 
-```
-curl \
+```sh
+$ curl https://fotuit.glitch.me/v1/fotuit \
     -X POST \
     -H "Content-Type: application/json" \
     -d @body.json \
+    -o fotuit.png
+
+$ curl https://fotuit.glitch.me/v1/fotuit \
+    -X POST \
+    -H "Content-Type: application/json" \
     -o fotuit.png \
-    https://fotuit.glitch.me/v1/fotuit
+    -d @- << EOF
+{
+  "tweetId": "1268876804300791810",
+  "backgroundImageUrl": "https://pbs.twimg.com/media/EZyws8nUwAEg4VM?format=jpg&name=medium"
+}
+EOF
 ```

@@ -142,4 +142,4 @@ console.log(getFormattedEvaluationResult(guess, evaluationResult));
 
 Ah, that's not very telling. You should see something like this in your terminal:
 
-<!-- img -->
+![Wordle: formatted evaluation result](https://raw.githubusercontent.com/thewarpaint/eduardogarcia.xyz/master/assets/images/wordle--terminal-arson.png)
