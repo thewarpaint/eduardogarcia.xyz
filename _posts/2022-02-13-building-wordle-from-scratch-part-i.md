@@ -3,7 +3,11 @@
 _This could be interesting for you if you're learning programming, if you know how to program
 but you're learning Javascript, or if you're looking for ways to hate Javascript even more._
 
-By now you're probably familiar with the story of Wordle.
+By now you're probably familiar with
+[the](https://www.nytimes.com/2022/01/03/technology/wordle-word-game-creator.html)
+[story](https://twitter.com/powerlanguish)
+[of](https://trends.google.com/trends/explore?date=today%203-m&q=wordle)
+[Wordle](https://www.nytimes.com/2022/01/31/business/media/new-york-times-wordle.html).
 So let's jump right into building our own clone from scratch, shall we?
 
 But where to begin? Let's start with a few things that we know for sure are needed:
@@ -143,3 +147,115 @@ console.log(getFormattedEvaluationResult(guess, evaluationResult));
 Ah, that's not very telling. You should see something like this in your terminal:
 
 ![Wordle: formatted evaluation result](https://raw.githubusercontent.com/thewarpaint/eduardogarcia.xyz/master/assets/images/wordle--terminal-arson.png)
+
+So, it looks like it's working. Let's write some tests to make sure it is. What scenarios do we need to cover?
+
+First, the one we just tested (the word has only some matches):
+
+```js
+const guessWithSomeMatches = 'ARSON';
+const expectedSomeMatchesResult = [
+  Evaluation.present, // 'A' is present but not in this position
+  Evaluation.absent,  // 'R' is absent from the answer
+  Evaluation.present, // 'S' is present but not in this position
+  Evaluation.correct, // 'O' is correct in this position
+  Evaluation.absent,  // 'N' is absent from the answer
+];
+
+const someMatchesResult = evaluateGuess(guessWithSomeMatches);
+const someMatchesErrorMessage =
+  `Expected a guess with some matches to have result: ${getFormattedResult(expectedSomeMatchesResult)}` +
+  ` but found: ${getFormattedResult(someMatchesResult)}`;
+```
+
+Then, the guess word has no matches:
+
+```js
+const guessWithNoMatches = 'NERDY';
+const expectedNoMatchesResult = [
+  Evaluation.absent, // 'N' is absent from the answer
+  Evaluation.absent, // 'E' is absent from the answer
+  Evaluation.absent, // 'R' is absent from the answer
+  Evaluation.absent, // 'D' is absent from the answer
+  Evaluation.absent, // 'Y' is absent from the answer
+];
+
+console.assert(areResultsEqual(
+  evaluateGuess(guessWithNoMatches),
+  expectedNoMatchesResult
+), `Expected a guess with no matches to have result: [${expectedNoMatchesResult.join(', ')}]`);
+```
+
+Now let's cover anagrams of the solution, i.e. all the letters are present but in a different order:
+
+```js
+const guessWithAllMatches = 'COSTA';
+const expectedAllMatchesResult = [
+  Evaluation.present, // 'C' is present but not in this position
+  Evaluation.present, // 'O' is present but not in this position
+  Evaluation.present, // 'S' is present but not in this position
+  Evaluation.present, // 'T' is present but not in this position
+  Evaluation.present, // 'A' is present but not in this position
+];
+
+const allMatchesResult = evaluateGuess(guessWithAllMatches);
+const allMatchesErrorMessage =
+  `Expected a guess with some matches to have result: ${getFormattedResult(expectedAllMatchesResult)}` +
+  ` but found: ${getFormattedResult(allMatchesResult)}`;
+
+console.assert(areResultsEqual(
+  allMatchesResult,
+  expectedAllMatchesResult
+), allMatchesErrorMessage);
+```
+
+Finally, the guess is the solution:
+
+```js
+const exactGuess = 'TACOS';
+const expectedExactGuessResult = [
+  Evaluation.correct, // 'T' is correct in this position
+  Evaluation.correct, // 'A' is correct in this position
+  Evaluation.correct, // 'C' is correct in this position
+  Evaluation.correct, // 'O' is correct in this position
+  Evaluation.correct, // 'S' is correct in this position
+];
+
+const exactGuessResult = evaluateGuess(exactGuess);
+const exactGuessErrorMessage =
+  `Expected a guess with some matches to have result: ${getFormattedResult(expectedExactGuessResult)}` +
+  ` but found: ${getFormattedResult(exactGuessResult)}`;
+
+console.assert(areResultsEqual(
+  exactGuessResult,
+  expectedExactGuessResult
+), exactGuessErrorMessage);
+```
+
+We need to do the array comparison ourselves, comparing them directly with `===` won't work:
+
+```js
+/**
+ * Determine if two results are equal.
+ *
+ * @param {Array<String>} resultA - An array of evaluation results
+ * @param {Array<String>} resultB - An array of evaluation results
+ * @returns {Boolean} If both results passed are equal
+ */
+function areResultsEqual(resultA, resultB) {
+  if (resultA.length !== resultB.length) {
+    return false;
+  }
+
+  for (let i = 0; i < resultA.length; i++) {
+    if (resultA[i] !== resultB[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+```
+
+That's it for today! Although we still have a long way to go, we now have an important part of the
+game mechanics working and tests that cover all possible scenarios.
