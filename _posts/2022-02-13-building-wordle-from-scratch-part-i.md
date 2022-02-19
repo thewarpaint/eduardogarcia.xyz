@@ -90,7 +90,7 @@ This means that:
 - `N` is not present in the answer (black square)
 
 It's a bit tedious to analyse the result this way, so let's write a function to have a first
-graphical approximation of the evaluation result.
+visual approximation of the evaluation result.
 
 ```js
 /**
@@ -166,6 +166,11 @@ const someMatchesResult = evaluateGuess(guessWithSomeMatches);
 const someMatchesErrorMessage =
   `Expected a guess with some matches to have result: ${getFormattedResult(expectedSomeMatchesResult)}` +
   ` but found: ${getFormattedResult(someMatchesResult)}`;
+
+console.assert(areResultsEqual(
+  someMatchesResult,
+  expectedSomeMatchesResult
+), someMatchesErrorMessage);
 ```
 
 Then, the guess word has no matches:
@@ -180,10 +185,14 @@ const expectedNoMatchesResult = [
   Evaluation.absent, // 'Y' is absent from the answer
 ];
 
+const noMatchesResult = evaluateGuess(guessWithNoMatches);
+const noMatchesErrorMessage =
+  `Expected a guess with no matches to have result: [${expectedNoMatchesResult.join(', ')}]`;
+
 console.assert(areResultsEqual(
-  evaluateGuess(guessWithNoMatches),
+  noMatchesResult,
   expectedNoMatchesResult
-), `Expected a guess with no matches to have result: [${expectedNoMatchesResult.join(', ')}]`);
+), noMatchesErrorMessage);
 ```
 
 Now let's cover anagrams of the solution, i.e. all the letters are present but in a different order:
