@@ -3,6 +3,12 @@
 _This could be interesting for you if you're learning programming, if you know how to program
 but you're learning Javascript, or if you're looking for ways to hate Javascript even more._
 
+_You can run the code in this post in your
+[browser](https://developer.chrome.com/docs/devtools/console/javascript/)
+[console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console),
+with [Node.js locally](https://nodejs.dev/learn/run-nodejs-scripts-from-the-command-line)
+or in an [online REPL](https://replit.com/languages/nodejs)._
+
 By now you're probably familiar with
 [the](https://www.nytimes.com/2022/01/03/technology/wordle-word-game-creator.html)
 [story](https://twitter.com/powerlanguish)
@@ -153,6 +159,16 @@ So, it looks like it's working. Let's write some tests to make sure it is. What 
 First, the one we just tested (the word has only some matches):
 
 ```js
+/**
+ * Get an array as a comma-separated string enclosed in brackets.
+ *
+ * @param {String} result - An array of evaluation results
+ * @returns {String} The formatted result string
+ */
+function getFormattedArray(result) {
+  return `[${result.join(', ')}]`;
+}
+
 const guessWithSomeMatches = 'ARSON';
 const expectedSomeMatchesResult = [
   Evaluation.present, // 'A' is present but not in this position
@@ -164,8 +180,8 @@ const expectedSomeMatchesResult = [
 
 const someMatchesResult = evaluateGuess(guessWithSomeMatches);
 const someMatchesErrorMessage =
-  `Expected a guess with some matches to have result: ${getFormattedResult(expectedSomeMatchesResult)}` +
-  ` but found: ${getFormattedResult(someMatchesResult)}`;
+  `Expected a guess with some matches to have result: ${getFormattedArray(expectedSomeMatchesResult)}` +
+  ` but found: ${getFormattedArray(someMatchesResult)}`;
 
 console.assert(areResultsEqual(
   someMatchesResult,
@@ -209,8 +225,8 @@ const expectedAllMatchesResult = [
 
 const allMatchesResult = evaluateGuess(guessWithAllMatches);
 const allMatchesErrorMessage =
-  `Expected a guess with some matches to have result: ${getFormattedResult(expectedAllMatchesResult)}` +
-  ` but found: ${getFormattedResult(allMatchesResult)}`;
+  `Expected a guess with some matches to have result: ${getFormattedArray(expectedAllMatchesResult)}` +
+  ` but found: ${getFormattedArray(allMatchesResult)}`;
 
 console.assert(areResultsEqual(
   allMatchesResult,
@@ -232,8 +248,8 @@ const expectedExactGuessResult = [
 
 const exactGuessResult = evaluateGuess(exactGuess);
 const exactGuessErrorMessage =
-  `Expected a guess with some matches to have result: ${getFormattedResult(expectedExactGuessResult)}` +
-  ` but found: ${getFormattedResult(exactGuessResult)}`;
+  `Expected a guess with some matches to have result: ${getFormattedArray(expectedExactGuessResult)}` +
+  ` but found: ${getFormattedArray(exactGuessResult)}`;
 
 console.assert(areResultsEqual(
   exactGuessResult,
