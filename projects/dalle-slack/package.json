@@ -11,5 +11,8 @@
     "slack"
   ],
   "author": "Eduardo G",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "dalle-node": "1.0.7"
+  }
 }
