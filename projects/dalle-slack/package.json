@@ -1,0 +1,15 @@
+{
+  "name": "dalle-slack",
+  "version": "0.0.1",
+  "description": "A Slack app to generate DALL-E 2 images from a text prompt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dall-e",
+    "slack"
+  ],
+  "author": "Eduardo G",
+  "license": "UNLICENSED"
+}
