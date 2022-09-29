@@ -2,9 +2,10 @@
   "name": "dalle-slack",
   "version": "0.0.1",
   "description": "A Slack app to generate DALL-E 2 images from a text prompt",
-  "main": "index.js",
+  "type": "module",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [
     "dall-e",
@@ -13,6 +14,10 @@
   "author": "Eduardo G",
   "license": "UNLICENSED",
   "dependencies": {
-    "dalle-node": "1.0.7"
+    "dalle-node": "1.0.7",
+    "fastify": "4.6.0"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
