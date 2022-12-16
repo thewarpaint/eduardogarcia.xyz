@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-93.4521581",
+          "18.2898776"
+        ]
+      },
+      "properties": {
+        "politician": "Claudia Sheinbaum",
+        "date": "2022-12-10",
+        "place": "Comalcalco, Tabasco",
+        "sourceUrls": [
+          "https://twitter.com/Claudiashein/status/1602876034583609347",
+          "https://www.eleconomista.com.mx/estados/Sin-privilegios-alcanzan-los-recursos-para-destinarselos-al-pueblo-Claudia-Sheinbaum-fue-arropada-por-mas-de-17-mil-tabasquenos-20221211-0018.html"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          "-100.308611",
+          "25.671389"
+        ]
+      },
+      "properties": {
+        "politician": "Marcelo Ebrard",
+        "date": "2022-12-11",
+        "place": "Monterrey, Nuevo León",
+        "sourceUrls": [
+          "https://twitter.com/m_ebrard/status/1601695788484087808",
+          "https://twitter.com/mario_delgado/status/1602023656644919296",
+          "https://www.milenio.com/politica/marcelo-ebrard-visita-nuevo-leon-reune-mario-delgado"
+        ]
+      }
+    }
+  ]
+}
