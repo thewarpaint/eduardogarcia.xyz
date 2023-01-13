@@ -1,0 +1,307 @@
+---
+permalink: /food
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      charset="utf-8"
+    >
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+
+    <style
+      type="text/css"
+    >
+      .day-inner {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .meal {
+        display: block;
+        width: 12px;
+        height: 12px;
+      }
+
+      .meal--beef {
+        background-color: #f44336;
+      }
+
+      .meal--beef-chicken {
+        background: linear-gradient(135deg, #f44336 0%, #f44336 49.9%, #ffc107 50%, #ffc107 100%);
+      }
+
+      .meal--beef-eggs {
+        background: linear-gradient(135deg, #f44336 0%, #f44336 49.9%, #ffee58 50%, #ffee58 100%);
+      }
+
+      .meal--beef-pork {
+        background: linear-gradient(135deg, #f44336 0%, #f44336 49.9%, #f48fb1 50%, #f48fb1 100%);
+      }
+
+      .meal--beef-veggies {
+        background: linear-gradient(135deg, #f44336 0%, #f44336 49.9%, #8bc34a 50%, #8bc34a 100%);
+      }
+
+      .meal--chicken {
+        background-color: #ffc107;
+      }
+
+      .meal--chicken-eggs {
+        background: linear-gradient(135deg, #ffc107 0%, #ffc107 49.9%, #ffee58 50%, #ffee58 100%);
+      }
+
+      .meal--chicken-pork {
+        background: linear-gradient(135deg, #ffc107 0%, #ffc107 49.9%, #f48fb1 50%, #f48fb1 100%);
+      }
+
+      .meal--eggs {
+        background-color: #ffee58;
+      }
+
+      .meal--eggs-veggies {
+        background: linear-gradient(135deg, #ffee58 0%, #ffee58 49.9%, #8bc34a 50%, #8bc34a 100%);
+      }
+
+      .meal--fish {
+        background-color: #4dd0e1;
+      }
+
+      .meal--none {
+        background-color: #eceff1;
+      }
+
+      .meal--pork {
+        background-color: #f48fb1;
+      }
+
+      /* TODO: Merge with chicken as poultry */
+      .meal--turkey {
+        background-color: #ffc107;
+      }
+
+      .meal--veggies {
+        background-color: #8bc34a;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-01"
+            >
+              <li
+                class="meal meal--beef"
+              ></li>
+              <li
+                class="meal meal--pork"
+              ></li>
+              <li
+                class="meal meal--pork"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-02"
+            >
+              <li
+                class="meal meal--eggs"
+              ></li>
+              <li
+                class="meal meal--pork"
+              ></li>
+              <li
+                class="meal meal--fish"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-03"
+            >
+              <li
+                class="meal meal--eggs"
+              ></li>
+              <li
+                class="meal meal--beef-pork"
+              ></li>
+              <li
+                class="meal meal--none"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-04"
+            >
+              <li
+                class="meal meal--eggs"
+              ></li>
+              <li
+                class="meal meal--beef-veggies"
+              ></li>
+              <li
+                class="meal meal--beef-pork"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-05"
+            >
+              <li
+                class="meal meal--chicken"
+              ></li>
+              <li
+                class="meal meal--chicken"
+              ></li>
+              <li
+                class="meal meal--none"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-06"
+            >
+              <li
+                class="meal meal--eggs-veggies"
+              ></li>
+              <li
+                class="meal meal--none"
+              ></li>
+              <li
+                class="meal meal--beef-pork"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-07"
+            >
+              <li
+                class="meal meal--beef-eggs"
+              ></li>
+              <li
+                class="meal meal--beef"
+              ></li>
+              <li
+                class="meal meal--none"
+              ></li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-08"
+            >
+              <li
+                class="meal meal--eggs"
+              ></li>
+              <li
+                class="meal meal--chicken-pork"
+              ></li>
+              <li
+                class="meal meal--veggies"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-09"
+            >
+              <li
+                class="meal meal--turkey"
+              ></li>
+              <li
+                class="meal meal--chicken-pork"
+              ></li>
+              <li
+                class="meal meal--chicken"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-10"
+            >
+              <li
+                class="meal meal--chicken"
+              ></li>
+              <li
+                class="meal meal--chicken"
+              ></li>
+              <li
+                class="meal meal--fish"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-11"
+            >
+              <li
+                class="meal meal--eggs"
+              ></li>
+              <li
+                class="meal meal--chicken"
+              ></li>
+              <li
+                class="meal meal--beef"
+              ></li>
+            </ul>
+          </td>
+
+          <td>
+            <ul
+              class="day-inner"
+              title="2023-01-12"
+            >
+              <li
+                class="meal meal--chicken-eggs"
+              ></li>
+              <li
+                class="meal meal--beef-chicken"
+              ></li>
+              <li
+                class="meal meal--chicken"
+              ></li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
