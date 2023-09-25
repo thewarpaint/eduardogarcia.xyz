@@ -74,14 +74,19 @@ permalink: /is-it-cinema
 
       .pane {
         flex: 1 0 50%;
+        background-color: black;
       }
 
       .pane--video {
-        background-color: white;
+        display: flex;
+      }
+
+      .pane__iframe {
+        flex: 1 0 auto;
+        height: 100%;
       }
 
       .pane--reaction {
-        background-color: black;
         color: white;
         display: flex;
         flex-flow: column-reverse wrap;
@@ -121,8 +126,9 @@ permalink: /is-it-cinema
       class="pane pane--video"
     >
       <iframe
-        width="560"
-        height="315"
+        class="pane__iframe"
+        width="640"
+        height="480"
         src="https://www.youtube.com/embed/aqImpqOFWXs"
         title="YouTube video player"
         frameborder="0"
