@@ -82,7 +82,7 @@ permalink: /is-it-cinema
       }
 
       .pane__iframe {
-        flex: 1 0 auto;
+        flex: 1 1 auto;
         height: 100%;
       }
 
@@ -118,6 +118,17 @@ permalink: /is-it-cinema
         font-size: 2.5vmax;
         text-align: right;
       }
+
+      @media (max-width: 640px) {
+        body {
+          flex-flow: column wrap;
+        }
+
+        .pane--reaction--marty-serious {
+          background-position: right center;
+          background-size: 133%;
+        }
+      }
     </style>
   </head>
 
@@ -127,8 +138,8 @@ permalink: /is-it-cinema
     >
       <iframe
         class="pane__iframe"
-        width="640"
-        height="480"
+        width="320"
+        height="240"
         src="https://www.youtube.com/embed/aqImpqOFWXs"
         title="YouTube video player"
         frameborder="0"
