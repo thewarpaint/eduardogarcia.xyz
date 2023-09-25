@@ -1,0 +1,157 @@
+---
+permalink: /is-it-cinema
+---
+{%- assign postTitle = "Is it cinema?" -%}
+{%- assign postDescription = "Ask Martin Charles Scorsese if your video is cinema or not" -%}
+<!--
+  - https://www.bostonglobe.com/arts/movies/2016/12/29/martin-scorsese-cinema-gone/s4ekJjONfrxyjZO4pkONqL/story.html
+    - https://bostonglobe-prod.cdn.arcpublishing.com/resizer/NzdesrclpAsgcxjrfkAWh8zQpZc=/1440x0/arc-anglerfish-arc2-prod-bostonglobe.s3.amazonaws.com/public/WSLEGUWMJQI6NECD67LAQQIFTU.jpg
+  - https://www.vanityfair.com/hollywood/2023/05/martin-scorsese-im-old-i-want-to-tell-stories-but-theres-no-more-time
+    - https://media.vanityfair.com/photos/6463a5c3b908056a1d56848e/master/w_2240,c_limit/1069868130
+  - https://www.nytimes.com/2020/01/02/movies/martin-scorsese-irishman.html
+    - https://static01.nyt.com/images/2020/01/05/arts/05martin-scorsese1/merlin_166357275_0c1dc616-f771-4b77-ba63-718da162096e-superJumbo.jpg?quality=75&auto=webp
+    - https://static01.nyt.com/images/2020/01/05/arts/05martin-scorsese1/merlin_166357275_0c1dc616-f771-4b77-ba63-718da162096e-superJumbo.jpg?quality=75
+    - https://static01.nyt.com/images/2020/01/05/arts/05martin-scorsese3/merlin_166494351_bd751ae1-3353-4343-bbd4-a20129ae3f1b-superJumbo.jpg?quality=75&auto=webp
+    - https://static01.nyt.com/images/2020/01/05/arts/05martin-scorsese3/merlin_166494351_bd751ae1-3353-4343-bbd4-a20129ae3f1b-superJumbo.jpg?quality=75
+
+  Fonts:
+    - https://fonts.google.com/specimen/DM+Serif+Display?preview.text=Yes,%20this%20is%20cinema.%0A%E2%80%94Martin%20Scorsese&preview.text_type=custom&classification=Display&stroke=Serif&stylecount=2
+    - https://fonts.google.com/specimen/Bigshot+One?preview.text=Yes,%20this%20is%20cinema.%0A%E2%80%94Martin%20Scorsese&preview.text_type=custom&classification=Display&stroke=Serif
+    - https://fonts.google.com/specimen/Gloock?preview.text=Yes,%20this%20is%20cinema.%0A%E2%80%94Martin%20Scorsese&preview.text_type=custom&classification=Display&stroke=Serif
+    - https://fonts.google.com/specimen/Abril+Fatface?preview.text=Yes,%20this%20is%20cinema.%0A%E2%80%94Martin%20Scorsese&preview.text_type=custom&classification=Display&stroke=Serif
+    - https://fonts.google.com/specimen/Yeseva+One?preview.text=Yes,%20this%20is%20cinema.%0A%E2%80%94Martin%20Scorsese&preview.text_type=custom&classification=Display&stroke=Serif
+ -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="{{ postTitle }}">
+    <meta name="description" content="{{ postDescription }}">
+
+    <title>{{ postTitle }}</title>
+
+    <!-- Twitter meta tags, missing: `twitter:site` -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ postTitle }}">
+    <meta name="twitter:description" content="{{ postDescription }}">
+    <!-- <meta name="twitter:image" content=""> -->
+
+    <!-- Open Graph (Facebook) meta tags -->
+    <meta property="og:title" content="{{ postTitle }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://eduardogarcia.xyz/is-it-cinema">
+    <!-- <meta property="og:image" content=""> -->
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    >
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    >
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    >
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: stretch;
+      }
+
+      .pane {
+        flex: 1 0 50%;
+      }
+
+      .pane--video {
+        background-color: white;
+      }
+
+      .pane--reaction {
+        background-color: black;
+        color: white;
+        display: flex;
+        flex-flow: column-reverse wrap;
+        align-items: center;
+      }
+
+      .pane--reaction--marty-serious {
+        background-image: url('https://bostonglobe-prod.cdn.arcpublishing.com/resizer/NzdesrclpAsgcxjrfkAWh8zQpZc=/1440x0/arc-anglerfish-arc2-prod-bostonglobe.s3.amazonaws.com/public/WSLEGUWMJQI6NECD67LAQQIFTU.jpg');
+        background-size: cover;
+        background-position: right 25% bottom;
+      }
+
+      .quote {
+        font-family: "DM Serif Display", serif;
+        margin: 2.5rem;
+      }
+
+      .quote__blockquote {
+        margin: 0;
+      }
+
+      .quote__text {
+        font-size: 4vmax;
+        margin: 0;
+      }
+
+      .quote__author {
+        font-style: italic;
+        font-size: 2.5vmax;
+        text-align: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section
+      class="pane pane--video"
+    >
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/aqImpqOFWXs"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </section>
+
+    <section
+      class="pane pane--reaction pane--reaction--marty-serious"
+    >
+      <h1
+        class="quote"
+      >
+        <blockquote
+          class="quote__blockquote"
+        >
+          <p
+            class="quote__text"
+          >
+            Yes, this is cinema.
+          </p>
+          <footer
+            class="quote__author"
+          >
+            —Martin Scorsese
+          </footer>
+        </blockquote>
+      </h1>
+    </section>
+  </body>
+</html>
