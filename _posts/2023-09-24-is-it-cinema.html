@@ -113,6 +113,11 @@ permalink: /is-it-cinema
         margin: 0;
       }
 
+      .body--is-cinema .quote__text--is-not-cinema,
+      .body--is-not-cinema .quote__text--is-cinema {
+        display: none;
+      }
+
       .quote__author {
         font-style: italic;
         font-size: 2.5vmax;
@@ -163,7 +168,16 @@ permalink: /is-it-cinema
           <p
             class="quote__text"
           >
-            Yes, this is cinema.
+            <span
+              class="quote__text--is-cinema"
+            >
+              Yes, this is cinema.
+            </span>
+            <span
+              class="quote__text--is-not-cinema"
+            >
+              No, this is not cinema.
+            </span>
           </p>
           <footer
             class="quote__author"
