@@ -1,3 +1,6 @@
+// TODO: Don't pollute the global namespace!
+const videoUrlInputId = 'video-url';
+
 function getVideoUrlFromQueryString() {
   const searchParams = new URLSearchParams(window.location.search);
 
@@ -23,6 +26,10 @@ function getYoutubeVideoId(videoUrl) {
   }
 
   return null;
+}
+
+function isYoutubeUrl(url) {
+  return getYoutubeVideoId(url) !== null;
 }
 
 function getYoutubeEmbedUrl(videoId) {
@@ -53,6 +60,19 @@ function isItCinema(videoId) {
   const cinemaEndings = ['c', '1', /* n */ 'e', /* m */ 'a'];
 
   return cinemaEndings.includes(lastCharFromHash);
+}
+
+function onSubmit(e) {
+  // TODO: Update URL using `window.history` API, always prevent form submission
+  const $videoUrlInput = document.getElementById(videoUrlInputId);
+  const videoUrl = $videoUrlInput.value;
+
+  if (isYoutubeUrl(videoUrl)) {
+    return true;
+  }
+
+  e.preventDefault();
+  return false;
 }
 
 function main() {

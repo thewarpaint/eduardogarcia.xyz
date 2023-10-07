@@ -17,7 +17,13 @@ body {
   background-color: black;
 }
 
-.pane--video {
+.pane--video,
+.pane--reaction {
+  display: none;
+}
+
+.body--is-cinema .pane--video,
+.body--is-not-cinema .pane--video {
   display: flex;
 }
 
@@ -26,9 +32,13 @@ body {
   height: 100%;
 }
 
+.body--is-cinema .pane--reaction,
+.body--is-not-cinema .pane--reaction {
+  display: flex;
+}
+
 .pane--reaction {
   color: white;
-  display: flex;
   flex-flow: column-reverse wrap;
   align-items: center;
 }
@@ -37,6 +47,11 @@ body {
   background-image: url('https://bostonglobe-prod.cdn.arcpublishing.com/resizer/NzdesrclpAsgcxjrfkAWh8zQpZc=/1440x0/arc-anglerfish-arc2-prod-bostonglobe.s3.amazonaws.com/public/WSLEGUWMJQI6NECD67LAQQIFTU.jpg');
   background-size: cover;
   background-position: right 25% bottom;
+}
+
+.body--is-cinema .pane--intro,
+.body--is-not-cinema .pane--intro {
+  display: none;
 }
 
 .quote {
@@ -53,9 +68,14 @@ body {
   margin: 0;
 }
 
-.body--is-cinema .quote__text--is-not-cinema,
-.body--is-not-cinema .quote__text--is-cinema {
+.quote__text--is-cinema,
+.quote__text--is-not-cinema {
   display: none;
+}
+
+.body--is-cinema .quote__text--is-cinema,
+.body--is-not-cinema .quote__text--is-not-cinema {
+  display: inline;
 }
 
 .quote__author {
