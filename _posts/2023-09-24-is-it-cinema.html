@@ -71,15 +71,24 @@ permalink: /is-it-cinema
       class="pane pane--intro"
     >
       <form
+        class="form"
         onsubmit="return onSubmit(event)"
       >
-        <label>
+        <label
+          class="form__label"
+        >
           <input
             id="video-url"
+            class="form__input"
             type="url"
             name="video"
             placeholder="Enter a Youtube URL"
           >
+          <span
+            class="form__label-text"
+          >
+            Enter a Youtube URL
+          </span>
         </label>
       </form>
     </section>

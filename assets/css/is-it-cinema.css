@@ -1,3 +1,18 @@
+:root {
+  --open-color-gray2: #e9ecef;
+  --open-color-gray3: #dee2e6;
+  --open-color-gray5: #adb5bd;
+  --open-color-gray6: #868e96;
+  --open-color-gray7: #495057;
+  --open-color-gray9: #212529;
+
+  --bg: black;
+  --fg: var(--open-color-gray3);
+
+  --form-input-inactive: var(--open-color-gray7);
+  --form-input-active: var(--fg);
+}
+
 html,
 body {
   width: 100%;
@@ -10,11 +25,12 @@ body {
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
+  background-color: var(--bg);
+  font-size: 16px;
 }
 
 .pane {
   flex: 1 0 50%;
-  background-color: black;
 }
 
 .pane--video,
@@ -52,6 +68,46 @@ body {
 .body--is-cinema .pane--intro,
 .body--is-not-cinema .pane--intro {
   display: none;
+}
+
+.pane--intro {
+  display: flex;
+  align-items: center;
+}
+
+.form {
+  flex: 1 0 auto;
+}
+
+.form__label {
+  display: block;
+}
+
+.form__label-text {
+  display: none;
+}
+
+.form__input {
+  box-sizing: border-box;
+  display: block;
+  background-color: var(--bg);
+  border-radius: .5rem;
+  border: 1px solid var(--form-input-inactive);
+  color: var(--form-input-active);
+  font-size: 2rem;
+  padding: 1rem;
+  width: 90%;
+  margin: 0 5%;
+}
+
+.form__input:active,
+.form__input:focus,
+.form__input:hover {
+  border-color: var(--form-input-active);
+}
+
+.form__input::placeholder {
+  color: var(--form-input-inactive);
 }
 
 .quote {
