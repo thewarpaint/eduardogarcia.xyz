@@ -36,6 +36,28 @@ function getYoutubeEmbedUrl(videoId) {
   return `https://www.youtube.com/embed/${videoId}`;
 }
 
+function getTiktokVideoId(videoUrl) {
+  const fullTiktokUrlRegex = /https?\:\/\/(?:www\.)?tiktok\.com\/@[0-9A-Za-z_-]+\/video\/([0-9]+).*/i;
+
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
+  // If `.match` returns a 2-length array, the 1-th element will have the video id
+  videoIdMatches = videoUrl.match(fullTiktokUrlRegex);
+
+  if (videoIdMatches !== null && videoIdMatches.length === 2) {
+    return videoIdMatches[1];
+  }
+
+  return null;
+}
+
+function isTiktokUrl(url) {
+  return getTiktokVideoId(url) !== null;
+}
+
+function getTiktokEmbedUrl(videoId) {
+  return `https://www.tiktok.com/embed/v2/${videoId}?lang=en-US`;
+}
+
 function updateIframeUrl(url) {
   const iframeId = 'iframe';
   document.getElementById(iframeId).src = url;
@@ -67,7 +89,7 @@ function onSubmit(e) {
   const $videoUrlInput = document.getElementById(videoUrlInputId);
   const videoUrl = $videoUrlInput.value;
 
-  if (isYoutubeUrl(videoUrl)) {
+  if (isYoutubeUrl(videoUrl) || isTiktokUrl(videoUrl)) {
     return true;
   }
 
@@ -84,15 +106,26 @@ function main() {
 
   const youtubeId = getYoutubeVideoId(videoUrl);
 
-  if (youtubeId === null) {
+  // TODO: Refactor duplicate behaviour
+  if (youtubeId !== null) {
+    const youtubeEmbedUrl = getYoutubeEmbedUrl(youtubeId);
+    updateIframeUrl(youtubeEmbedUrl);
+
+    const isCinema = isItCinema(youtubeId);
+    updateBodyClasses(isCinema);
+
     return;
   }
 
-  const youtubeEmbedUrl = getYoutubeEmbedUrl(youtubeId);
-  updateIframeUrl(youtubeEmbedUrl);
+  const tiktokId = getTiktokVideoId(videoUrl);
 
-  const isCinema = isItCinema(youtubeId);
-  updateBodyClasses(isCinema);
+  if (tiktokId !== null) {
+    const tiktokEmbedUrl = getTiktokEmbedUrl(tiktokId);
+    updateIframeUrl(tiktokEmbedUrl);
+
+    const isCinema = isItCinema(tiktokId);
+    updateBodyClasses(isCinema);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
