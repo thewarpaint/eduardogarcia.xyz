@@ -58,6 +58,28 @@ function getTiktokEmbedUrl(videoId) {
   return `https://www.tiktok.com/embed/v2/${videoId}?lang=en-US`;
 }
 
+function getInstagramVideoId(videoUrl) {
+  const fullInstagramUrlRegex = /https?\:\/\/(?:www\.)?instagram\.com\/reel\/([0-9A-Za-z_-]+).*/i;
+
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
+  // If `.match` returns a 2-length array, the 1-th element will have the video id
+  videoIdMatches = videoUrl.match(fullInstagramUrlRegex);
+
+  if (videoIdMatches !== null && videoIdMatches.length === 2) {
+    return videoIdMatches[1];
+  }
+
+  return null;
+}
+
+function isInstagramUrl(url) {
+  return getInstagramVideoId(url) !== null;
+}
+
+function getInstagramEmbedUrl(videoId) {
+  return `https://www.instagram.com/reel/${videoId}/embed/`;
+}
+
 function updateIframeUrl(url) {
   const iframeId = 'iframe';
   document.getElementById(iframeId).src = url;
@@ -89,7 +111,7 @@ function onSubmit(e) {
   const $videoUrlInput = document.getElementById(videoUrlInputId);
   const videoUrl = $videoUrlInput.value;
 
-  if (isYoutubeUrl(videoUrl) || isTiktokUrl(videoUrl)) {
+  if (isYoutubeUrl(videoUrl) || isTiktokUrl(videoUrl) || isInstagramUrl(videoUrl)) {
     return true;
   }
 
@@ -124,6 +146,18 @@ function main() {
     updateIframeUrl(tiktokEmbedUrl);
 
     const isCinema = isItCinema(tiktokId);
+    updateBodyClasses(isCinema);
+
+    return;
+  }
+
+  const instagramId = getInstagramVideoId(videoUrl);
+
+  if (instagramId !== null) {
+    const instagramEmbedUrl = getInstagramEmbedUrl(instagramId);
+    updateIframeUrl(instagramEmbedUrl);
+
+    const isCinema = isItCinema(instagramId);
     updateBodyClasses(isCinema);
   }
 }
