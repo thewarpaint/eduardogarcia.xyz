@@ -150,4 +150,12 @@ body {
     background-position: right center;
     background-size: 133%;
   }
+
+  .form__input {
+    border-radius: .25rem;
+    font-size: 1rem;
+    padding: .5rem;
+    width: calc(100% - 3rem);
+    margin: 0 1.5rem;
+  }
 }
