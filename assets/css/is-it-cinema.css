@@ -113,6 +113,7 @@ body {
 .quote {
   font-family: "DM Serif Display", serif;
   margin: 2.5rem;
+  text-shadow: 1px 1px 0px var(--open-color-gray9);
 }
 
 .quote__blockquote {
