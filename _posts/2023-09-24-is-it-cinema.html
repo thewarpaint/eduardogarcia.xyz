@@ -3,6 +3,7 @@ permalink: /is-it-cinema
 ---
 {%- assign postTitle = "Is it cinema?" -%}
 {%- assign postDescription = "Ask Martin Charles Scorsese if your video is cinema or not" -%}
+{%- assign postThumbnail = "https://bostonglobe-prod.cdn.arcpublishing.com/resizer/NzdesrclpAsgcxjrfkAWh8zQpZc=/1440x0/arc-anglerfish-arc2-prod-bostonglobe.s3.amazonaws.com/public/WSLEGUWMJQI6NECD67LAQQIFTU.jpg" -%}
 <!--
   - https://www.bostonglobe.com/arts/movies/2016/12/29/martin-scorsese-cinema-gone/s4ekJjONfrxyjZO4pkONqL/story.html
     - https://bostonglobe-prod.cdn.arcpublishing.com/resizer/NzdesrclpAsgcxjrfkAWh8zQpZc=/1440x0/arc-anglerfish-arc2-prod-bostonglobe.s3.amazonaws.com/public/WSLEGUWMJQI6NECD67LAQQIFTU.jpg
@@ -35,13 +36,13 @@ permalink: /is-it-cinema
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ postTitle }}">
     <meta name="twitter:description" content="{{ postDescription }}">
-    <!-- <meta name="twitter:image" content=""> -->
+    <meta name="twitter:image" content="{{ postThumbnail }}">
 
     <!-- Open Graph (Facebook) meta tags -->
     <meta property="og:title" content="{{ postTitle }}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://eduardogarcia.xyz/is-it-cinema">
-    <!-- <meta property="og:image" content=""> -->
+    <meta property="og:image" content="{{ postThumbnail }}">
 
     <link
       rel="preconnect"
