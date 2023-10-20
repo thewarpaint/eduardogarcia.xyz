@@ -80,6 +80,28 @@ function getInstagramEmbedUrl(videoId) {
   return `https://www.instagram.com/reel/${videoId}/embed/`;
 }
 
+function getTwitterVideoId(videoUrl) {
+  const fullTwitterUrlRegex = /https?\:\/\/(?:www\.)?(?:x|twitter)\.com\/(?:[0-9A-Za-z_@]+)\/status\/([0-9]+).*/i;
+
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
+  // If `.match` returns a 2-length array, the 1-th element will have the video id
+  videoIdMatches = videoUrl.match(fullTwitterUrlRegex);
+
+  if (videoIdMatches !== null && videoIdMatches.length === 2) {
+    return videoIdMatches[1];
+  }
+
+  return null;
+}
+
+function isTwitterUrl(url) {
+  return getTwitterVideoId(url) !== null;
+}
+
+function getTwitterEmbedUrl(videoId) {
+  return `https://platform.twitter.com/embed/Tweet.html?hideThread=true&lang=en&theme=dark&id=${videoId}`;
+}
+
 function updateIframeUrl(url) {
   const iframeId = 'iframe';
   document.getElementById(iframeId).src = url;
@@ -111,7 +133,7 @@ function onSubmit(e) {
   const $videoUrlInput = document.getElementById(videoUrlInputId);
   const videoUrl = $videoUrlInput.value;
 
-  if (isYoutubeUrl(videoUrl) || isTiktokUrl(videoUrl) || isInstagramUrl(videoUrl)) {
+  if (isYoutubeUrl(videoUrl) || isTiktokUrl(videoUrl) || isInstagramUrl(videoUrl) || isTwitterUrl(videoUrl)) {
     return true;
   }
 
@@ -159,7 +181,24 @@ function main() {
 
     const isCinema = isItCinema(instagramId);
     updateBodyClasses(isCinema);
+
+    return;
   }
+
+  const twitterId = getTwitterVideoId(videoUrl);
+
+  if (twitterId !== null) {
+    const twitterEmbedUrl = getTwitterEmbedUrl(twitterId);
+    updateIframeUrl(twitterEmbedUrl);
+
+    const isCinema = isItCinema(twitterId);
+    updateBodyClasses(isCinema);
+
+    return;
+  }
+
+  // TODO: Display warning message
+  console.warn('URL not recognized!');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
