@@ -33,7 +33,7 @@ function isYoutubeUrl(url) {
 }
 
 function getYoutubeEmbedUrl(videoId) {
-  return `https://www.youtube.com/embed/${videoId}`;
+  return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 }
 
 function getTiktokVideoId(videoUrl) {
