@@ -1,0 +1,580 @@
+---
+permalink: /games
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Minigames 🎲">
+    <meta name="description" content="Minigames 🎲">
+
+    <title>Minigames 🎲  - eduardogarcia.xyz</title>
+
+    <style type="text/css">
+      :root {
+        /* https://material.io/design/color/the-color-system.html#tools-for-picking-colors */
+        --m-blue-900: #0d47a1;
+        --m-yellow-600: #fdd835;
+
+        --black: #000000;
+        --white: #ffffff;
+
+        /* https://colorhunt.co/palette/f2efe79acbd048a6a7006a71 */
+        --beige: #F2EFE7;
+        --light-teal: #9ACBD0;
+        --teal: #48A6A7;
+        --dark-teal: #006A71;
+      }
+
+      html {
+        font-size: 2.5vmin;
+      }
+
+      @media (width <= 1024px) {
+        html {
+          font-size: 1.75vmin;
+        }
+      }
+
+      @media (orientation: portrait) {
+        html {
+          font-size: 1.25vmin;
+        }
+      }
+
+      body {
+        font-family: 'Helvetica Neue', Helvetica, sans-serif;
+        margin: 0;
+      }
+
+      main {
+        display: flex;
+        flex: 1 0 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      button {
+        border: .5rem solid var(--beige);
+        background-color: var(--beige);
+        color: var(--dark-teal);
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 2.5rem;
+        height: 25vh;
+        text-align: center;
+        vertical-align: middle;
+        width: 20vw;
+      }
+
+      button:hover {
+        border-color: var(--light-teal);
+      }
+
+      .selected {
+        background-color: var(--light-teal);
+        border-color: var(--light-teal);
+      }
+
+      .success {
+        background-color: var(--light-teal);
+        border-color: var(--light-teal);
+        opacity: .25;
+        pointer-events: none;
+      }
+
+      [data-type=emoji] {
+        font-size: 5rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <button
+        id="button-emoji-cat"
+        data-type="emoji"
+        data-animal="cat"
+        data-speak="cat"
+      >
+        🐱
+      </button>
+
+      <button
+        id="button-word-dog"
+        data-type="word"
+        data-animal="dog"
+        data-speak="dog"
+      >
+        dog
+      </button>
+
+      <button
+        id="button-emoji-monkey"
+        data-type="emoji"
+        data-animal="monkey"
+        data-speak="monkey"
+      >
+        🐵
+      </button>
+
+      <button
+        id="button-word-cat"
+        data-type="word"
+        data-animal="cat"
+        data-speak="cat"
+      >
+        cat
+      </button>
+
+      <button
+        id="button-emoji-bear"
+        data-type="emoji"
+        data-animal="bear"
+        data-speak="bear"
+      >
+        🐻
+      </button>
+
+      <button
+        id="button-word-tiger"
+        data-type="word"
+        data-animal="tiger"
+        data-speak="tiger"
+      >
+        tiger
+      </button>
+
+      <button
+        id="button-emoji-dog"
+        data-type="emoji"
+        data-animal="dog"
+        data-speak="dog"
+      >
+        🐶
+      </button>
+
+      <button
+        id="button-word-elephant"
+        data-type="word"
+        data-animal="elephant"
+        data-speak="elephant"
+      >
+        elephant
+      </button>
+
+      <button
+        id="button-emoji-mouse"
+        data-type="emoji"
+        data-animal="mouse"
+        data-speak="mouse"
+      >
+        🐭
+      </button>
+
+      <button
+        id="button-word-bear"
+        data-type="word"
+        data-animal="bear"
+        data-speak="bear"
+      >
+        bear
+      </button>
+
+      <button
+        id="button-emoji-tiger"
+        data-type="emoji"
+        data-animal="tiger"
+        data-speak="tiger"
+      >
+        🐯
+      </button>
+
+      <button
+        id="button-word-bunny"
+        data-type="word"
+        data-animal="bunny"
+        data-speak="bunny"
+      >
+        bunny
+      </button>
+
+      <button
+        id="button-emoji-elephant"
+        data-type="emoji"
+        data-animal="elephant"
+        data-speak="elephant"
+      >
+        🐘
+      </button>
+
+      <button
+        id="button-word-pig"
+        data-type="word"
+        data-animal="pig"
+        data-speak="pig"
+      >
+        pig
+      </button>
+
+      <button
+        id="button-emoji-lion"
+        data-type="emoji"
+        data-animal="lion"
+        data-speak="lion"
+      >
+        🦁
+      </button>
+
+      <button
+        id="button-word-lion"
+        data-type="word"
+        data-animal="lion"
+        data-speak="lion"
+      >
+        lion
+      </button>
+
+      <button
+        id="button-emoji-bunny"
+        data-type="emoji"
+        data-animal="bunny"
+        data-speak="bunny"
+      >
+        🐰
+      </button>
+
+      <button
+        id="button-word-mouse"
+        data-type="word"
+        data-animal="mouse"
+        data-speak="mouse"
+      >
+        mouse
+      </button>
+
+      <button
+        id="button-emoji-pig"
+        data-type="emoji"
+        data-animal="pig"
+        data-speak="pig"
+      >
+        🐷
+      </button>
+
+      <button
+        id="button-word-monkey"
+        data-type="word"
+        data-animal="monkey"
+        data-speak="monkey"
+      >
+        monkey
+      </button>
+    </div>
+
+    <script>
+      // From:
+      // * https://github.com/thewarpaint/caracteres/blob/master/assets/main.js
+      // * https://github.com/thewarpaint/caracteres/blob/master/_includes/early-scripts.html
+
+      const Globals = {
+        languages: ["en-UK", "en-US", "en-GB", "en"]
+      };
+
+      document.addEventListener('DOMContentLoaded', function (event) {
+        FeatureDetection.init();
+        Games.init();
+      });
+
+      // TODO: Refactor to proper class
+      const FeatureDetection = (function () {
+        function FeatureDetection() {}
+
+        FeatureDetection.prototype.hasSpeechSynthesis = function () {
+          return 'speechSynthesis' in window;
+        };
+
+        FeatureDetection.prototype.hasLocalStorage = function () {
+          // From https://github.com/Modernizr/Modernizr/blob/master/feature-detects/storage/localstorage.js#L40
+          var mod = 'modernizr';
+
+          try {
+            localStorage.setItem(mod, mod);
+            localStorage.removeItem(mod);
+            return true;
+          } catch (e) {
+            return false;
+          }
+        };
+
+        FeatureDetection.prototype.init = function () {
+          var features = [
+            {
+              detector: this.hasSpeechSynthesis,
+              aClass: 'body--has-speech-synthesis'
+            },
+            {
+              detector: this.hasLocalStorage,
+              aClass: 'body--has-local-storage'
+            }
+          ];
+
+          // TODO: Refactor to use `classList`
+          var bodyClasses = [];
+
+          for(var i = 0; i < features.length; i++) {
+            if (features[i].detector()) {
+              bodyClasses.push(features[i].aClass);
+            }
+          }
+
+          document.body.className += ' ' + bodyClasses.join(' ');
+        };
+
+        return new FeatureDetection();
+      })();
+
+      // TODO: Refactor to proper class
+      const Console = (function () {
+        function Console() {
+          this.element = document.querySelector('.console');
+        }
+
+        Console.prototype.log = function log(string) {
+          console.log(string);
+
+          if (this.element) {
+            this.element.innerHTML += '\n⇒ ' + string;
+          }
+        };
+
+        return new Console();
+      })();
+
+      // TODO: Refactor to proper class
+      const Synth = (function () {
+        function Synth() {
+          this.voices = {};
+          this.onVoicesChangedCallback = function () {}; // noop
+        }
+
+        Synth.prototype.init = function (onVoicesChangedCallback) {
+          if (FeatureDetection.hasSpeechSynthesis()) {
+            if (typeof speechSynthesis.onvoiceschanged !== 'undefined') {
+              speechSynthesis.onvoiceschanged = this.onVoicesChanged;
+            }
+
+            if (typeof onVoicesChangedCallback === 'function') {
+              this.onVoicesChangedCallback = onVoicesChangedCallback;
+            }
+
+            this.onVoicesChanged();
+          }
+        };
+
+        Synth.prototype.onVoicesChanged = function () {
+          speechSynthesis.getVoices().forEach(function (voice) {
+            var normalizedLanguageId = voice.lang.replace(/_/g, '-');
+
+            if (!window.Synth.voices[normalizedLanguageId]) {
+              Console.log('Adding voice for language ' + normalizedLanguageId + '.');
+              window.Synth.voices[normalizedLanguageId] = voice;
+            }
+          });
+
+          window.Synth.onVoicesChangedCallback();
+        };
+
+        Synth.prototype.speakInLanguageIds = function (word, languageIds) {
+          for (var i = 0; i < languageIds.length; i++) {
+            if (window.Synth.voices[languageIds[i]]) {
+              this.speak(word, this.voices[languageIds[i]]);
+
+              return;
+            }
+          }
+
+          Console.log('No voice available for languages: ' + languageIds.join(',') + '.');
+        };
+
+        Synth.prototype.speakInLanguageId = function (word, languageId) {
+          if (!this.voices[languageId]) {
+            Console.log('No voice available for language: ' + languageId + '.');
+            return;
+          }
+
+          this.speak(word, this.voices[languageId]);
+        };
+
+        Synth.prototype.speak = function (word, voice) {
+          Console.log('Speaking "' + word + '" in ' + voice.lang + '.');
+
+          var utterance;
+
+          if (!window.myUtterances) {
+            window.myUtterances = {};
+          }
+
+          if (window.myUtterances[word]) {
+            utterance = window.myUtterances[word];
+          } else {
+            utterance = new SpeechSynthesisUtterance(word);
+            utterance.voice = voice;
+            utterance.lang = voice.lang;
+            window.myUtterances[word] = utterance;
+          }
+
+          speechSynthesis.speak(utterance);
+        };
+
+        return new Synth();
+      })();
+
+      const Games = (function () {
+        function Games() {
+          this.mainLanguage = null;
+          this.hasMainLanguageVoice = false;
+          this.showNerdStuffBtn = null;
+          // { id, type, animal }
+          this.state = {
+            activeCard: null,
+          };
+        }
+
+        Games.prototype.init = function () {
+          Console.log('Version: ' + Globals.version);
+
+          Synth.init(this.onVoicesChanged);
+
+          if (FeatureDetection.hasSpeechSynthesis()) {
+            this.addSpeakButtonClickListeners();
+          }
+
+          // this.showNerdStuffBtn = document.getElementById('show-nerd-stuff-btn');
+          // this.showNerdStuffBtn.addEventListener('click', window.Chocolate.onShowNerdStuffClick.bind(this));
+        };
+
+        Games.prototype.onVoicesChanged = function () {
+          for (var i = 0; i < Globals.languages.length; i++) {
+            window.Games.hasMainLanguageVoice =
+              typeof window.Synth.voices[Globals.languages[i]] !== 'undefined';
+
+            if (window.Games.hasMainLanguageVoice) {
+              Console.log('Selecting voice for language ' + Globals.languages[i] + '.');
+              window.Games.mainLanguage = Globals.languages[i];
+              document.body.classList.add('body--has-voice-available');
+
+              break;
+            }
+          }
+
+          if (!window.Games.hasMainLanguageVoice) {
+            Console.log('No voice available for languages: ' + Globals.languages.join(',') + '.');
+          }
+        };
+
+        Games.prototype.speak = function (word) {
+          window.Synth.speakInLanguageId(word, window.Games.mainLanguage);
+        };
+
+        Games.prototype.onCardClick = function (e) {
+          window.Games.speak(this.getAttribute('data-speak'));
+
+          const cardElement = e.target;
+
+          const clickedCard = {
+            id: cardElement.id,
+            type: cardElement.dataset.type,
+            animal: cardElement.dataset.animal,
+          };
+
+          window.Games.state = window.Games.applyNextState(window.Games.state, clickedCard);
+        };
+
+
+        Games.prototype.applyNextState = function (oldState, clickedCard) {
+          // State transitions (state + event => new state):
+          // * start + first click => selected
+          // * start + second click, unrelated => start
+          // * start + second click, same card => start
+          // * start + second click, match => success
+          // * selected + second click, unrelated => start
+          // * selected + second click, match => success
+
+          const $clickedCard = document.getElementById(clickedCard.id);
+          const initialState = {
+            activeCard: null,
+          };
+          let newState = {};
+
+          // TODO: Refactor classList updates into a returned closure to be executed by caller
+          if (oldState.activeCard === null) {
+            // First click
+            // Transition: start + first click => selected
+            $clickedCard.classList.add('selected');
+
+            newState = {
+              activeCard: clickedCard,
+            };
+          } else {
+            // Second click
+            const isSameCard = oldState.activeCard.id === clickedCard.id;
+            const isMatch = oldState.activeCard.animal === clickedCard.animal;
+            const $activeCard = document.getElementById(oldState.activeCard.id);
+
+            if (isSameCard) {
+              // Transition:  start + second click, same card => start
+              $activeCard.classList.remove('selected');
+
+              newState = initialState;
+            } else if (isMatch) {
+              // Transition: selected + second click, match => success
+              $activeCard.classList.remove('selected');
+              $activeCard.classList.add('success');
+
+              // Transition: start + second click, match => success
+              $clickedCard.classList.add('success');
+
+              newState = initialState;
+            } else {
+              // Transition: start + second click, unrelated => start (no-op)
+              // Transition: selected + second click, unrelated => start
+              $activeCard.classList.remove('selected');
+
+              newState = initialState;
+            }
+          }
+
+          return newState;
+        };
+
+        Games.prototype.onListenableLinkClick = function () {
+          if (this.getAttribute('data-lang')) {
+            var languageIds = this.getAttribute('data-lang').split(',');
+            window.Synth.speakInLanguageIds(this.innerText, languageIds);
+          } else {
+            window.Games.speak(this.innerText);
+          }
+        };
+
+        Games.prototype.addSpeakButtonClickListeners = function () {
+          Array.prototype.slice.apply(document.querySelectorAll('[data-speak]'))
+            .forEach(function (button) {
+              button.addEventListener('click', window.Games.onCardClick);
+            });
+        };
+
+        Games.prototype.onShowNerdStuffClick = function () {
+          document.getElementById('console').classList.remove('console--hidden');
+          this.showNerdStuffBtn.classList.add('btn--hidden');
+        };
+
+        return new Games();
+      })();
+
+      window.Games = Games;
+      window.Synth = Synth;
+    </script>
+  </body>
+</html>
