@@ -63,9 +63,11 @@ permalink: /games
         font-weight: bold;
         font-size: 2.5rem;
         height: 25vh;
+        height: 25dvh;
         text-align: center;
         vertical-align: middle;
         width: 20vw;
+        width: 20dvw;
       }
 
       button:hover {
@@ -91,187 +93,7 @@ permalink: /games
   </head>
 
   <body>
-    <main>
-      <button
-        id="button-emoji-cat"
-        data-type="emoji"
-        data-animal="cat"
-        data-speak="cat"
-      >
-        🐱
-      </button>
-
-      <button
-        id="button-word-dog"
-        data-type="word"
-        data-animal="dog"
-        data-speak="dog"
-      >
-        dog
-      </button>
-
-      <button
-        id="button-emoji-monkey"
-        data-type="emoji"
-        data-animal="monkey"
-        data-speak="monkey"
-      >
-        🐵
-      </button>
-
-      <button
-        id="button-word-cat"
-        data-type="word"
-        data-animal="cat"
-        data-speak="cat"
-      >
-        cat
-      </button>
-
-      <button
-        id="button-emoji-bear"
-        data-type="emoji"
-        data-animal="bear"
-        data-speak="bear"
-      >
-        🐻
-      </button>
-
-      <button
-        id="button-word-tiger"
-        data-type="word"
-        data-animal="tiger"
-        data-speak="tiger"
-      >
-        tiger
-      </button>
-
-      <button
-        id="button-emoji-dog"
-        data-type="emoji"
-        data-animal="dog"
-        data-speak="dog"
-      >
-        🐶
-      </button>
-
-      <button
-        id="button-word-elephant"
-        data-type="word"
-        data-animal="elephant"
-        data-speak="elephant"
-      >
-        elephant
-      </button>
-
-      <button
-        id="button-emoji-mouse"
-        data-type="emoji"
-        data-animal="mouse"
-        data-speak="mouse"
-      >
-        🐭
-      </button>
-
-      <button
-        id="button-word-bear"
-        data-type="word"
-        data-animal="bear"
-        data-speak="bear"
-      >
-        bear
-      </button>
-
-      <button
-        id="button-emoji-tiger"
-        data-type="emoji"
-        data-animal="tiger"
-        data-speak="tiger"
-      >
-        🐯
-      </button>
-
-      <button
-        id="button-word-bunny"
-        data-type="word"
-        data-animal="bunny"
-        data-speak="bunny"
-      >
-        bunny
-      </button>
-
-      <button
-        id="button-emoji-elephant"
-        data-type="emoji"
-        data-animal="elephant"
-        data-speak="elephant"
-      >
-        🐘
-      </button>
-
-      <button
-        id="button-word-pig"
-        data-type="word"
-        data-animal="pig"
-        data-speak="pig"
-      >
-        pig
-      </button>
-
-      <button
-        id="button-emoji-lion"
-        data-type="emoji"
-        data-animal="lion"
-        data-speak="lion"
-      >
-        🦁
-      </button>
-
-      <button
-        id="button-word-lion"
-        data-type="word"
-        data-animal="lion"
-        data-speak="lion"
-      >
-        lion
-      </button>
-
-      <button
-        id="button-emoji-bunny"
-        data-type="emoji"
-        data-animal="bunny"
-        data-speak="bunny"
-      >
-        🐰
-      </button>
-
-      <button
-        id="button-word-mouse"
-        data-type="word"
-        data-animal="mouse"
-        data-speak="mouse"
-      >
-        mouse
-      </button>
-
-      <button
-        id="button-emoji-pig"
-        data-type="emoji"
-        data-animal="pig"
-        data-speak="pig"
-      >
-        🐷
-      </button>
-
-      <button
-        id="button-word-monkey"
-        data-type="word"
-        data-animal="monkey"
-        data-speak="monkey"
-      >
-        monkey
-      </button>
-    </div>
+    <main></main>
 
     <script>
       // From:
@@ -279,8 +101,116 @@ permalink: /games
       // * https://github.com/thewarpaint/caracteres/blob/master/_includes/early-scripts.html
 
       const Globals = {
-        languages: ["en-UK", "en-US", "en-GB", "en"]
+        // languages: ["en-UK", "en-US", "en-GB", "en"]
+        languages: ["es-MX", "es-ES", "es"]
       };
+
+      const animals = [
+        {
+          cardId: 'cat',
+          emoji: '🐱',
+          i18n: {
+            en: 'cat',
+            es: 'gato',
+          },
+        },
+        {
+          cardId: 'dog',
+          emoji: '🐶',
+          i18n: {
+            en: 'dog',
+            es: 'perro',
+          },
+        },
+        {
+          cardId: 'monkey',
+          emoji: '🐵',
+          i18n: {
+            en: 'monkey',
+            es: 'mono',
+          },
+        },
+        {
+          cardId: 'bear',
+          emoji: '🐻',
+          i18n: {
+            en: 'bear',
+            es: 'oso',
+          },
+        },
+        {
+          cardId: 'mouse',
+          emoji: '🐭',
+          i18n: {
+            en: 'mouse',
+            es: 'ratón',
+          },
+        },
+        {
+          cardId: 'tiger',
+          emoji: '🐯',
+          i18n: {
+            en: 'tiger',
+            es: 'tigre',
+          },
+        },
+        {
+          cardId: 'elephant',
+          emoji: '🐘',
+          i18n: {
+            en: 'elephant',
+            es: 'elefante',
+          },
+        },
+        {
+          cardId: 'lion',
+          emoji: '🦁',
+          i18n: {
+            en: 'lion',
+            es: 'león',
+          },
+        },
+        {
+          cardId: 'bunny',
+          emoji: '🐰',
+          i18n: {
+            en: 'bunny',
+            es: 'conejo',
+          },
+        },
+        {
+          cardId: 'pig',
+          emoji: '🐷',
+          i18n: {
+            en: 'pig',
+            es: 'cerdo',
+          },
+        },
+        // {
+        //   cardId: 'fox',
+        //   emoji: '🦊',
+        //   i18n: {
+        //     en: 'fox',
+        //     es: 'zorro',
+        //   },
+        // },
+        // {
+        //   cardId: 'horse',
+        //   emoji: '🐴',
+        //   i18n: {
+        //     en: 'horse',
+        //     es: 'caballo',
+        //   },
+        // },
+        // {
+        //   cardId: 'cow',
+        //   emoji: '🐮',
+        //   i18n: {
+        //     en: 'cow',
+        //     es: 'vaca',
+        //   },
+        // },
+      ]
 
       document.addEventListener('DOMContentLoaded', function (event) {
         FeatureDetection.init();
@@ -440,12 +370,43 @@ permalink: /games
           this.state = {
             activeCard: null,
           };
+          this.language = 'es';
         }
 
         Games.prototype.init = function () {
           Console.log('Version: ' + Globals.version);
 
           Synth.init(this.onVoicesChanged);
+
+          let innerHtml = '';
+          let animalsShuffled = Array.from(animals);
+          shuffleArray(animalsShuffled);
+
+          const emojiAnimalsHtmls = animalsShuffled
+            .map((animal) =>
+              window.Games.getCardInnerHtml(animal, 'emoji', window.Games.language)
+            );
+
+          shuffleArray(animalsShuffled);
+
+          const wordAnimalsHtmls = animalsShuffled
+            .map((animal) =>
+              window.Games.getCardInnerHtml(animal, 'word', window.Games.language)
+            );
+
+          const emojiFirst = Math.random() > 0.5;
+
+          for (let i = 0; i < animalsShuffled.length; i++) {
+            if (emojiFirst) {
+              innerHtml += emojiAnimalsHtmls[i];
+              innerHtml += wordAnimalsHtmls[i];
+            } else {
+              innerHtml += wordAnimalsHtmls[i];
+              innerHtml += emojiAnimalsHtmls[i];
+            }
+          }
+
+          document.querySelector('main').innerHTML = document.querySelector('main').innerHTML + innerHtml;
 
           if (FeatureDetection.hasSpeechSynthesis()) {
             this.addSpeakButtonClickListeners();
@@ -549,6 +510,23 @@ permalink: /games
           return newState;
         };
 
+        Games.prototype.getCardInnerHtml = function (cardData, type, language) {
+          const {cardId, emoji} = cardData;
+          const speakText = cardData.i18n[language];
+          const buttonText = type === 'emoji' ? emoji : speakText;
+
+          return `
+            <button
+              id="button-${type}-${cardId}"
+              data-type="${type}"
+              data-animal="${cardId}"
+              data-speak="${speakText}"
+            >
+              ${buttonText}
+            </button>
+          `;
+        };
+
         Games.prototype.onListenableLinkClick = function () {
           if (this.getAttribute('data-lang')) {
             var languageIds = this.getAttribute('data-lang').split(',');
@@ -572,6 +550,15 @@ permalink: /games
 
         return new Games();
       })();
+
+      // Randomize array in-place using Durstenfeld shuffle algorithm
+      // https://stackoverflow.com/a/12646864
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
 
       window.Games = Games;
       window.Synth = Synth;
