@@ -5,7 +5,7 @@ permalink: /games
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="title" content="Minigames 🎲">
     <meta name="description" content="Minigames 🎲">
 
@@ -29,6 +29,7 @@ permalink: /games
 
       html {
         font-size: 2.5vmin;
+        background-color: var(--dark-teal);
       }
 
       @media (width <= 1024px) {
@@ -80,8 +81,9 @@ permalink: /games
       }
 
       .success {
-        background-color: var(--light-teal);
-        border-color: var(--light-teal);
+        background-color: var(--dark-teal);
+        border-color: var(--dark-teal);
+        color: var(--light-teal);
         opacity: .25;
         pointer-events: none;
       }
@@ -154,38 +156,38 @@ permalink: /games
             es: 'tigre',
           },
         },
-        {
-          cardId: 'elephant',
-          emoji: '🐘',
-          i18n: {
-            en: 'elephant',
-            es: 'elefante',
-          },
-        },
-        {
-          cardId: 'lion',
-          emoji: '🦁',
-          i18n: {
-            en: 'lion',
-            es: 'león',
-          },
-        },
-        {
-          cardId: 'bunny',
-          emoji: '🐰',
-          i18n: {
-            en: 'bunny',
-            es: 'conejo',
-          },
-        },
-        {
-          cardId: 'pig',
-          emoji: '🐷',
-          i18n: {
-            en: 'pig',
-            es: 'cerdo',
-          },
-        },
+        // {
+        //   cardId: 'elephant',
+        //   emoji: '🐘',
+        //   i18n: {
+        //     en: 'elephant',
+        //     es: 'elefante',
+        //   },
+        // },
+        // {
+        //   cardId: 'lion',
+        //   emoji: '🦁',
+        //   i18n: {
+        //     en: 'lion',
+        //     es: 'león',
+        //   },
+        // },
+        // {
+        //   cardId: 'bunny',
+        //   emoji: '🐰',
+        //   i18n: {
+        //     en: 'bunny',
+        //     es: 'conejo',
+        //   },
+        // },
+        // {
+        //   cardId: 'pig',
+        //   emoji: '🐷',
+        //   i18n: {
+        //     en: 'pig',
+        //     es: 'cerdo',
+        //   },
+        // },
         // {
         //   cardId: 'fox',
         //   emoji: '🦊',
@@ -194,22 +196,38 @@ permalink: /games
         //     es: 'zorro',
         //   },
         // },
-        // {
-        //   cardId: 'horse',
-        //   emoji: '🐴',
-        //   i18n: {
-        //     en: 'horse',
-        //     es: 'caballo',
-        //   },
-        // },
-        // {
-        //   cardId: 'cow',
-        //   emoji: '🐮',
-        //   i18n: {
-        //     en: 'cow',
-        //     es: 'vaca',
-        //   },
-        // },
+        {
+          cardId: 'horse',
+          emoji: '🐴',
+          i18n: {
+            en: 'horse',
+            es: 'caballo',
+          },
+        },
+        {
+          cardId: 'cow',
+          emoji: '🐮',
+          i18n: {
+            en: 'cow',
+            es: 'vaca',
+          },
+        },
+        {
+          cardId: 'chicken',
+          emoji: '🐤',
+          i18n: {
+            en: 'chicken',
+            es: 'pollo',
+          },
+        },
+        {
+          cardId: 'hen',
+          emoji: '🐔',
+          i18n: {
+            en: 'hen',
+            es: 'gallina',
+          },
+        },
       ]
 
       document.addEventListener('DOMContentLoaded', function (event) {
