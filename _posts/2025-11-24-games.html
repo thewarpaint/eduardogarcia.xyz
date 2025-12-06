@@ -156,46 +156,46 @@ permalink: /games
             es: 'tigre',
           },
         },
-        // {
-        //   cardId: 'elephant',
-        //   emoji: '🐘',
-        //   i18n: {
-        //     en: 'elephant',
-        //     es: 'elefante',
-        //   },
-        // },
-        // {
-        //   cardId: 'lion',
-        //   emoji: '🦁',
-        //   i18n: {
-        //     en: 'lion',
-        //     es: 'león',
-        //   },
-        // },
-        // {
-        //   cardId: 'bunny',
-        //   emoji: '🐰',
-        //   i18n: {
-        //     en: 'bunny',
-        //     es: 'conejo',
-        //   },
-        // },
-        // {
-        //   cardId: 'pig',
-        //   emoji: '🐷',
-        //   i18n: {
-        //     en: 'pig',
-        //     es: 'cerdo',
-        //   },
-        // },
-        // {
-        //   cardId: 'fox',
-        //   emoji: '🦊',
-        //   i18n: {
-        //     en: 'fox',
-        //     es: 'zorro',
-        //   },
-        // },
+        {
+          cardId: 'elephant',
+          emoji: '🐘',
+          i18n: {
+            en: 'elephant',
+            es: 'elefante',
+          },
+        },
+        {
+          cardId: 'lion',
+          emoji: '🦁',
+          i18n: {
+            en: 'lion',
+            es: 'león',
+          },
+        },
+        {
+          cardId: 'bunny',
+          emoji: '🐰',
+          i18n: {
+            en: 'bunny',
+            es: 'conejo',
+          },
+        },
+        {
+          cardId: 'pig',
+          emoji: '🐷',
+          i18n: {
+            en: 'pig',
+            es: 'cerdo',
+          },
+        },
+        {
+          cardId: 'fox',
+          emoji: '🦊',
+          i18n: {
+            en: 'fox',
+            es: 'zorro',
+          },
+        },
         {
           cardId: 'horse',
           emoji: '🐴',
@@ -226,6 +226,87 @@ permalink: /games
           i18n: {
             en: 'hen',
             es: 'gallina',
+          },
+        },
+        {
+          cardId: 'frog',
+          emoji: '🐸',
+          i18n: {
+            en: 'frog',
+            es: 'rana',
+          },
+        },
+        {
+          cardId: 'turtle',
+          emoji: '🐢',
+          i18n: {
+            en: 'turtle',
+            es: 'tortuga',
+          },
+        },
+        {
+          cardId: 'crocodile',
+          emoji: '🐊',
+          i18n: {
+            en: 'crocodile',
+            es: 'cocodrilo',
+          },
+        },
+        {
+          cardId: 'kangaroo',
+          emoji: '🦘',
+          i18n: {
+            en: 'kangaroo',
+            es: 'canguro',
+          },
+        },
+        {
+          cardId: 'snail',
+          emoji: '🐌',
+          i18n: {
+            en: 'snail',
+            es: 'caracol',
+          },
+        },
+
+        {
+          cardId: 'spider',
+          emoji: '🕷️',
+          i18n: {
+            en: 'spider',
+            es: 'araña',
+          },
+        },
+        {
+          cardId: 't-rex',
+          emoji: '🦖',
+          i18n: {
+            en: 't-rex',
+            es: 't rex',
+          },
+        },
+        {
+          cardId: 'unicorn',
+          emoji: '🦄',
+          i18n: {
+            en: 'unicorn',
+            es: 'unicornio',
+          },
+        },
+        {
+          cardId: 'bat',
+          emoji: '🦇',
+          i18n: {
+            en: 'bat',
+            es: 'murcié-lago',
+          },
+        },
+        {
+          cardId: 'duck',
+          emoji: '🦆',
+          i18n: {
+            en: 'duck',
+            es: 'pato',
           },
         },
       ]
@@ -389,6 +470,7 @@ permalink: /games
             activeCard: null,
           };
           this.language = 'es';
+          this.maxCards = 10;
         }
 
         Games.prototype.init = function () {
@@ -396,8 +478,12 @@ permalink: /games
 
           Synth.init(this.onVoicesChanged);
 
+
           let innerHtml = '';
-          let animalsShuffled = Array.from(animals);
+
+          shuffleArray(animals);
+          const selectedAnimals = animals.slice(0, window.Games.maxCards);
+          let animalsShuffled = Array.from(selectedAnimals);
           shuffleArray(animalsShuffled);
 
           const emojiAnimalsHtmls = animalsShuffled
