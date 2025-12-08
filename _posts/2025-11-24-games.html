@@ -394,8 +394,92 @@ permalink: /games
             es: 'lobo',
           },
         },
+      ];
 
-      ]
+      const fruitsAndVeggies = [
+        {
+          cardId: 'tomato',
+          emoji: '🍅',
+          i18n: {
+            en: 'tomato',
+            es: 'jitomate',
+          },
+        },
+        {
+          cardId: 'apple',
+          emoji: '🍎',
+          i18n: {
+            en: 'apple',
+            es: 'manzana',
+          },
+        },
+        {
+          cardId: 'banana',
+          emoji: '🍌',
+          i18n: {
+            en: 'banana',
+            es: 'banana',
+          },
+        },
+        {
+          cardId: 'carrot',
+          emoji: '🥕',
+          i18n: {
+            en: 'carrot',
+            es: 'zanahoria',
+          },
+        },
+        {
+          cardId: 'mango',
+          emoji: '🥭',
+          i18n: {
+            en: 'mango',
+            es: 'mango',
+          },
+        },
+        {
+          cardId: 'strawberry',
+          emoji: '🍓',
+          i18n: {
+            en: 'strawberry',
+            es: 'fresa',
+          },
+        },
+        {
+          cardId: 'potato',
+          emoji: '🥔',
+          i18n: {
+            en: 'potato',
+            es: 'papa',
+          },
+        },
+        {
+          cardId: 'blueberry',
+          emoji: '🫐',
+          i18n: {
+            en: 'blueberry',
+            es: 'mora azul',
+          },
+        },
+        {
+          cardId: 'corn',
+          emoji: '🌽',
+          i18n: {
+            en: 'corn',
+            es: 'elote',
+          },
+        },
+        {
+          cardId: 'orange',
+          emoji: '🍊',
+          i18n: {
+            en: 'orange',
+            es: 'naranja',
+          },
+        },
+      ];
+
+      const cards = fruitsAndVeggies;
 
       document.addEventListener('DOMContentLoaded', function (event) {
         FeatureDetection.init();
@@ -566,36 +650,35 @@ permalink: /games
 
           Synth.init(this.onVoicesChanged);
 
-
           let innerHtml = '';
 
-          shuffleArray(animals);
-          const selectedAnimals = animals.slice(0, window.Games.maxCards);
-          let animalsShuffled = Array.from(selectedAnimals);
+          shuffleArray(cards);
+          const selectedCards = cards.slice(0, window.Games.maxCards);
+          let cardsShuffled = Array.from(selectedCards);
           const baseLanguage = window.Games.mainBaseLanguage;
-          shuffleArray(animalsShuffled);
+          shuffleArray(cardsShuffled);
 
-          const emojiAnimalsHtmls = animalsShuffled
-            .map((animal) =>
-              window.Games.getCardInnerHtml(animal, 'emoji', baseLanguage)
+          const emojiCardsHtmls = cardsShuffled
+            .map((card) =>
+              window.Games.getCardInnerHtml(card, 'emoji', baseLanguage)
             );
 
-          shuffleArray(animalsShuffled);
+          shuffleArray(cardsShuffled);
 
-          const wordAnimalsHtmls = animalsShuffled
-            .map((animal) =>
-              window.Games.getCardInnerHtml(animal, 'word', baseLanguage)
+          const wordCardsHtmls = cardsShuffled
+            .map((card) =>
+              window.Games.getCardInnerHtml(card, 'word', baseLanguage)
             );
 
           const emojiFirst = Math.random() > 0.5;
 
-          for (let i = 0; i < animalsShuffled.length; i++) {
+          for (let i = 0; i < cardsShuffled.length; i++) {
             if (emojiFirst) {
-              innerHtml += emojiAnimalsHtmls[i];
-              innerHtml += wordAnimalsHtmls[i];
+              innerHtml += emojiCardsHtmls[i];
+              innerHtml += wordCardsHtmls[i];
             } else {
-              innerHtml += wordAnimalsHtmls[i];
-              innerHtml += emojiAnimalsHtmls[i];
+              innerHtml += wordCardsHtmls[i];
+              innerHtml += emojiCardsHtmls[i];
             }
           }
 
