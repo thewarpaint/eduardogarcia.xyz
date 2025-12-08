@@ -105,9 +105,11 @@ permalink: /games
       // * https://github.com/thewarpaint/caracteres/blob/master/assets/main.js
       // * https://github.com/thewarpaint/caracteres/blob/master/_includes/early-scripts.html
 
+      const urlLanguage = new URL(window.location.href).searchParams.get('lang');
+      const defaultLanguages = ["es-MX", "es-ES", "es"]; // ["en-UK", "en-US", "en-GB", "en"]
+
       const Globals = {
-        // languages: ["en-UK", "en-US", "en-GB", "en"]
-        languages: ["es-MX", "es-ES", "es"]
+        languages: urlLanguage === null ? defaultLanguages : [urlLanguage],
       };
 
       const animals = [
@@ -546,14 +548,16 @@ permalink: /games
 
       const Games = (function () {
         function Games() {
-          this.mainLanguage = null;
           this.hasMainLanguageVoice = false;
           this.showNerdStuffBtn = null;
           // { id, type, animal }
           this.state = {
             activeCard: null,
           };
-          this.language = 'es';
+          // TODO: Extract into lang utils
+          // Default values, will be updated later if needed
+          this.mainLanguage = Globals.languages[0];
+          this.mainBaseLanguage = this.mainLanguage.split('-')[0];
           this.maxCards = 10;
         }
 
@@ -568,18 +572,19 @@ permalink: /games
           shuffleArray(animals);
           const selectedAnimals = animals.slice(0, window.Games.maxCards);
           let animalsShuffled = Array.from(selectedAnimals);
+          const baseLanguage = window.Games.mainBaseLanguage;
           shuffleArray(animalsShuffled);
 
           const emojiAnimalsHtmls = animalsShuffled
             .map((animal) =>
-              window.Games.getCardInnerHtml(animal, 'emoji', window.Games.language)
+              window.Games.getCardInnerHtml(animal, 'emoji', baseLanguage)
             );
 
           shuffleArray(animalsShuffled);
 
           const wordAnimalsHtmls = animalsShuffled
             .map((animal) =>
-              window.Games.getCardInnerHtml(animal, 'word', window.Games.language)
+              window.Games.getCardInnerHtml(animal, 'word', baseLanguage)
             );
 
           const emojiFirst = Math.random() > 0.5;
@@ -612,6 +617,7 @@ permalink: /games
             if (window.Games.hasMainLanguageVoice) {
               Console.log('Selecting voice for language ' + Globals.languages[i] + '.');
               window.Games.mainLanguage = Globals.languages[i];
+              window.Games.mainBaseLanguage = window.Games.mainLanguage.split('-')[0];
               document.body.classList.add('body--has-voice-available');
 
               break;
