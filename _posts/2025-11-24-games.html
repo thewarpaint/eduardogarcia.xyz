@@ -105,8 +105,13 @@ permalink: /games
       // * https://github.com/thewarpaint/caracteres/blob/master/assets/main.js
       // * https://github.com/thewarpaint/caracteres/blob/master/_includes/early-scripts.html
 
-      const urlLanguage = new URL(window.location.href).searchParams.get('lang');
+      // TODO: Extract into URL helper
+      const url = new URL(window.location.href);
+
       const defaultLanguages = ["es-MX", "es-ES", "es"]; // ["en-UK", "en-US", "en-GB", "en"]
+      const urlLanguage = url.searchParams.get('lang');
+      const defaultGame = 'animals';
+      const urlGame = url.searchParams.get('game');
 
       const Globals = {
         languages: urlLanguage === null ? defaultLanguages : [urlLanguage],
@@ -586,7 +591,13 @@ permalink: /games
         },
       ];
 
-      const cards = bodyParts;
+      const games = {
+        animals,
+        bodyParts,
+        fruitsAndVeggies,
+      };
+
+      const cards = urlGame === null ? games[defaultGame] : games[urlGame];
 
       document.addEventListener('DOMContentLoaded', function (event) {
         FeatureDetection.init();
