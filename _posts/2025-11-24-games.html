@@ -716,11 +716,103 @@ permalink: /games
         },
       ];
 
+      const numbers = [
+        {
+          cardId: 'zero',
+          emoji: '0️⃣',
+          i18n: {
+            en: 'zero',
+            es: 'cero',
+          },
+        },
+        {
+          cardId: 'one',
+          emoji: '1️⃣',
+          i18n: {
+            en: 'one',
+            es: 'uno',
+          },
+        },
+        {
+          cardId: 'two',
+          emoji: '2️⃣',
+          i18n: {
+            en: 'two',
+            es: 'dos',
+          },
+        },
+        {
+          cardId: 'three',
+          emoji: '3️⃣',
+          i18n: {
+            en: 'three',
+            es: 'tres',
+          },
+        },
+        {
+          cardId: 'four',
+          emoji: '4️⃣',
+          i18n: {
+            en: 'four',
+            es: 'cuatro',
+          },
+        },
+        {
+          cardId: 'five',
+          emoji: '5️⃣',
+          i18n: {
+            en: 'five',
+            es: 'cinco',
+          },
+        },
+        {
+          cardId: 'six',
+          emoji: '6️⃣',
+          i18n: {
+            en: 'six',
+            es: 'seis',
+          },
+        },
+        {
+          cardId: 'seven',
+          emoji: '7️⃣',
+          i18n: {
+            en: 'seven',
+            es: 'siete',
+          },
+        },
+        {
+          cardId: 'eight',
+          emoji: '8️⃣',
+          i18n: {
+            en: 'eight',
+            es: 'ocho',
+          },
+        },
+        {
+          cardId: 'nine',
+          emoji: '9️⃣',
+          i18n: {
+            en: 'nine',
+            es: 'nueve',
+          },
+        },
+        {
+          cardId: 'ten',
+          emoji: '🔟',
+          i18n: {
+            en: 'ten',
+            es: 'diez',
+          },
+        },
+      ];
+
       const games = {
         animals,
         bodyParts,
         faces,
         fruitsAndVeggies,
+        numbers,
       };
 
       const cards = urlGame === null ? games[defaultGame] : games[urlGame];
