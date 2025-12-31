@@ -117,13 +117,77 @@ permalink: /games/memory
         languages: urlLanguage === null ? defaultLanguages : [urlLanguage],
       };
 
-      const animals = [
+      const mammals = [
+        {
+          cardId: 'bat',
+          emoji: '🦇',
+          i18n: {
+            en: 'bat',
+            es: 'murciélago',
+          },
+        },
+        {
+          cardId: 'bear',
+          emoji: '🐻',
+          i18n: {
+            en: 'bear',
+            es: 'oso',
+          },
+        },
+        {
+          cardId: 'bison',
+          emoji: '🦬',
+          i18n: {
+            en: 'bison',
+            es: 'búfalo',
+          },
+        },
+        {
+          cardId: 'boar',
+          emoji: '🐗',
+          i18n: {
+            en: 'boar',
+            es: 'jabalí',
+          },
+        },
+        {
+          cardId: 'bunny',
+          emoji: '🐰',
+          i18n: {
+            en: 'bunny',
+            es: 'conejo',
+          },
+        },
         {
           cardId: 'cat',
           emoji: '🐱',
           i18n: {
             en: 'cat',
             es: 'gato',
+          },
+        },
+        {
+          cardId: 'camel',
+          emoji: '🐪',
+          i18n: {
+            en: 'camel',
+            es: 'camello',
+          },
+        },
+        {
+          cardId: 'cow',
+          emoji: '🐮',
+          i18n: {
+            en: 'cow',
+            es: 'vaca',
+          },
+        },
+        {
+          cardId: 'deer',
+          emoji: '🦌',
+          i18n: {
+            en: 'deer',
+            es: 'reno',
           },
         },
         {
@@ -135,6 +199,102 @@ permalink: /games/memory
           },
         },
         {
+          cardId: 'elephant',
+          emoji: '🐘',
+          i18n: {
+            en: 'elephant',
+            es: 'elefante',
+          },
+        },
+        {
+          cardId: 'fox',
+          emoji: '🦊',
+          i18n: {
+            en: 'fox',
+            es: 'zorro',
+          },
+        },
+        {
+          cardId: 'giraffe',
+          emoji: '🦒',
+          i18n: {
+            en: 'giraffe',
+            es: 'jirafa',
+          },
+        },
+        {
+          cardId: 'gorilla',
+          emoji: '🦍',
+          i18n: {
+            en: 'gorilla',
+            es: 'gorila',
+          },
+        },
+        {
+          cardId: 'hedgehog',
+          emoji: '🦔',
+          i18n: {
+            en: 'hedgehog',
+            es: 'puerco espín',
+          },
+        },
+        {
+          cardId: 'hippopotamus',
+          emoji: '🦛',
+          i18n: {
+            en: 'hippopotamus',
+            es: 'hipopótamo',
+          },
+        },
+        {
+          cardId: 'horse',
+          emoji: '🐴',
+          i18n: {
+            en: 'horse',
+            es: 'caballo',
+          },
+        },
+        {
+          cardId: 'kangaroo',
+          emoji: '🦘',
+          i18n: {
+            en: 'kangaroo',
+            es: 'canguro',
+          },
+        },
+        {
+          cardId: 'koala',
+          emoji: '🐨',
+          i18n: {
+            en: 'koala',
+            es: 'koala',
+          },
+        },
+        {
+          cardId: 'llama',
+          emoji: '🦙',
+          i18n: {
+            en: 'llama',
+            es: 'llama',
+          },
+        },
+        {
+          cardId: 'leopard',
+          emoji: '🐆',
+          i18n: {
+            en: 'leopard',
+            es: 'leopardo',
+          },
+        },
+        {
+          cardId: 'lion',
+          emoji: '🦁',
+          i18n: {
+            en: 'lion',
+            es: 'león',
+          },
+        },
+        {
           cardId: 'monkey',
           emoji: '🐵',
           i18n: {
@@ -143,13 +303,121 @@ permalink: /games/memory
           },
         },
         {
-          cardId: 'bear',
-          emoji: '🐻',
+          cardId: 'mouse',
+          emoji: '🐭',
           i18n: {
-            en: 'bear',
-            es: 'oso',
+            en: 'mouse',
+            es: 'ratón',
           },
         },
+        {
+          cardId: 'orangutan',
+          emoji: '🦧',
+          i18n: {
+            en: 'orangutan',
+            es: 'orangután',
+          },
+        },
+        {
+          cardId: 'panda',
+          emoji: '🐼',
+          i18n: {
+            en: 'panda',
+            es: 'panda',
+          },
+        },
+        {
+          cardId: 'pig',
+          emoji: '🐷',
+          i18n: {
+            en: 'pig',
+            es: 'cerdo',
+          },
+        },
+        {
+          cardId: 'polar-bear',
+          emoji: '🐻‍❄️',
+          i18n: {
+            en: 'polar bear',
+            es: 'oso polar',
+          },
+        },
+        {
+          cardId: 'raccoon',
+          emoji: '🦝',
+          i18n: {
+            en: 'raccoon',
+            es: 'mapache',
+          },
+        },
+        {
+          cardId: 'rhinoceros',
+          emoji: '🦏',
+          i18n: {
+            en: 'rhinoceros',
+            es: 'rinoceronte',
+          },
+        },
+        {
+          cardId: 'skunk',
+          emoji: '🦨',
+          i18n: {
+            en: 'skunk',
+            es: 'zorrillo',
+          },
+        },
+        {
+          cardId: 'sloth',
+          emoji: '🦥',
+          i18n: {
+            en: 'sloth',
+            es: 'perezoso',
+          },
+        },
+        {
+          cardId: 'squirrel',
+          emoji: '🐿️',
+          i18n: {
+            en: 'squirrel',
+            es: 'ardilla',
+          },
+        },
+        {
+          cardId: 'tiger',
+          emoji: '🐯',
+          i18n: {
+            en: 'tiger',
+            es: 'tigre',
+          },
+        },
+        {
+          cardId: 'wolf',
+          emoji: '🐺',
+          i18n: {
+            en: 'wolf',
+            es: 'lobo',
+          },
+        },
+        {
+          cardId: 'whale',
+          emoji: '🐳',
+          i18n: {
+            en: 'whale',
+            es: 'ballena',
+          },
+        },
+        {
+          cardId: 'zebra',
+          emoji: '🦓',
+          i18n: {
+            en: 'zebra',
+            es: 'cebra',
+          },
+        },
+      ];
+
+      const animals = [
+        ...mammals,
         {
           cardId: 'chicken',
           emoji: '🐤',
@@ -224,14 +492,6 @@ permalink: /games/memory
           },
         },
         {
-          cardId: 'bat',
-          emoji: '🦇',
-          i18n: {
-            en: 'bat',
-            es: 'murciélago',
-          },
-        },
-        {
           cardId: 'duck',
           emoji: '🦆',
           i18n: {
@@ -285,263 +545,6 @@ permalink: /games/memory
           i18n: {
             en: 'snake',
             es: 'víbora',
-          },
-        },
-        // mammals
-        {
-          cardId: 'bunny',
-          emoji: '🐰',
-          i18n: {
-            en: 'bunny',
-            es: 'conejo',
-          },
-        },
-        {
-          cardId: 'camel',
-          emoji: '🐪',
-          i18n: {
-            en: 'camel',
-            es: 'camello',
-          },
-        },
-        {
-          cardId: 'cow',
-          emoji: '🐮',
-          i18n: {
-            en: 'cow',
-            es: 'vaca',
-          },
-        },
-        {
-          cardId: 'elephant',
-          emoji: '🐘',
-          i18n: {
-            en: 'elephant',
-            es: 'elefante',
-          },
-        },
-        {
-          cardId: 'fox',
-          emoji: '🦊',
-          i18n: {
-            en: 'fox',
-            es: 'zorro',
-          },
-        },
-        {
-          cardId: 'giraffe',
-          emoji: '🦒',
-          i18n: {
-            en: 'giraffe',
-            es: 'jirafa',
-          },
-        },
-        {
-          cardId: 'horse',
-          emoji: '🐴',
-          i18n: {
-            en: 'horse',
-            es: 'caballo',
-          },
-        },
-        {
-          cardId: 'kangaroo',
-          emoji: '🦘',
-          i18n: {
-            en: 'kangaroo',
-            es: 'canguro',
-          },
-        },
-        {
-          cardId: 'koala',
-          emoji: '🐨',
-          i18n: {
-            en: 'koala',
-            es: 'koala',
-          },
-        },
-        {
-          cardId: 'lion',
-          emoji: '🦁',
-          i18n: {
-            en: 'lion',
-            es: 'león',
-          },
-        },
-        {
-          cardId: 'mouse',
-          emoji: '🐭',
-          i18n: {
-            en: 'mouse',
-            es: 'ratón',
-          },
-        },
-        {
-          cardId: 'panda',
-          emoji: '🐼',
-          i18n: {
-            en: 'panda',
-            es: 'panda',
-          },
-        },
-        {
-          cardId: 'pig',
-          emoji: '🐷',
-          i18n: {
-            en: 'pig',
-            es: 'cerdo',
-          },
-        },
-        {
-          cardId: 'polar-bear',
-          emoji: '🐻‍❄️',
-          i18n: {
-            en: 'polar bear',
-            es: 'oso polar',
-          },
-        },
-        {
-          cardId: 'squirrel',
-          emoji: '🐿️',
-          i18n: {
-            en: 'squirrel',
-            es: 'ardilla',
-          },
-        },
-        {
-          cardId: 'tiger',
-          emoji: '🐯',
-          i18n: {
-            en: 'tiger',
-            es: 'tigre',
-          },
-        },
-        {
-          cardId: 'wolf',
-          emoji: '🐺',
-          i18n: {
-            en: 'wolf',
-            es: 'lobo',
-          },
-        },
-        {
-          cardId: 'whale',
-          emoji: '🐳',
-          i18n: {
-            en: 'whale',
-            es: 'ballena',
-          },
-        },
-        {
-          cardId: 'zebra',
-          emoji: '🦓',
-          i18n: {
-            en: 'zebra',
-            es: 'cebra',
-          },
-        },
-        {
-          cardId: 'gorilla',
-          emoji: '🦍',
-          i18n: {
-            en: 'gorilla',
-            es: 'gorila',
-          },
-        },
-        {
-          cardId: 'orangutan',
-          emoji: '🦧',
-          i18n: {
-            en: 'orangutan',
-            es: 'orangután',
-          },
-        },
-        {
-          cardId: 'raccoon',
-          emoji: '🦝',
-          i18n: {
-            en: 'raccoon',
-            es: 'mapache',
-          },
-        },
-        {
-          cardId: 'leopard',
-          emoji: '🐆',
-          i18n: {
-            en: 'leopard',
-            es: 'leopardo',
-          },
-        },
-        {
-          cardId: 'deer',
-          emoji: '🦌',
-          i18n: {
-            en: 'deer',
-            es: 'reno',
-          },
-        },
-        {
-          cardId: 'bison',
-          emoji: '🦬',
-          i18n: {
-            en: 'bison',
-            es: 'búfalo',
-          },
-        },
-        {
-          cardId: 'boar',
-          emoji: '🐗',
-          i18n: {
-            en: 'boar',
-            es: 'jabalí',
-          },
-        },
-        {
-          cardId: 'llama',
-          emoji: '🦙',
-          i18n: {
-            en: 'llama',
-            es: 'llama',
-          },
-        },
-        {
-          cardId: 'rhinoceros',
-          emoji: '🦏',
-          i18n: {
-            en: 'rhinoceros',
-            es: 'rinoceronte',
-          },
-        },
-        {
-          cardId: 'hippopotamus',
-          emoji: '🦛',
-          i18n: {
-            en: 'hippopotamus',
-            es: 'hipopótamo',
-          },
-        },
-        {
-          cardId: 'hedgehog',
-          emoji: '🦔',
-          i18n: {
-            en: 'hedgehog',
-            es: 'puerco espín',
-          },
-        },
-        {
-          cardId: 'sloth',
-          emoji: '🦥',
-          i18n: {
-            en: 'sloth',
-            es: 'perezoso',
-          },
-        },
-        {
-          cardId: 'skunk',
-          emoji: '🦨',
-          i18n: {
-            en: 'skunk',
-            es: 'zorrillo',
           },
         },
       ];
@@ -913,6 +916,7 @@ permalink: /games/memory
 
       const games = {
         animals,
+        mammals,
         bodyParts,
         faces,
         fruitsAndVeggies,
