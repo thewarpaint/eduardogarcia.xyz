@@ -1,4 +1,4 @@
-var CACHE_VERSION = 'cache-v%COMMIT_SHA%';
+var CACHE_VERSION = 'cache-v463433e';
 
 self.addEventListener('install', function (event) {
   addAssetsToCache(event);
@@ -32,10 +32,10 @@ function addAssetsToCache(event) {
 
         return cache.addAll([
           '/geometry-club',
-          '/assets/js/main.js',
-          '/assets/js/geometry-club.js',
+          '/assets/js/main.js.6c8d34e4d9f32beef481d506919d9d7004096bcd.js',
+          '/assets/js/geometry-club.js.7cc1ae06b4b2d2832cdb1e12440b16ec81951054.js',
           '/assets/css/main.css',
-          '/assets/css/geometry-club.css',
+          '/assets/css/geometry-club.css.6a4a8c79db75873a0562020fc5d0999b175d87cb.css',
           '/assets/images/geometry-club-preview.jpg',
           '/assets/images/geometry-club-preview--128-128.jpg',
         ]);
