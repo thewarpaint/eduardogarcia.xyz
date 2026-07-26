@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="title" content="Christopher Nolan Filmography">
-    <meta name="description" content="Every Christopher Nolan directed feature, with writer, cinematographer and composer credits, and their Academy Award history.">
+    <meta name="description" content="Every Christopher Nolan directed feature, with cast, writer, cinematographer and composer credits, and their Academy Award history.">
     <meta name="theme-color" content="#0b0b0f">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Christopher Nolan Filmography">
-    <meta name="twitter:description" content="Every Christopher Nolan directed feature, with writer, cinematographer and composer credits, and their Academy Award history.">
+    <meta name="twitter:description" content="Every Christopher Nolan directed feature, with cast, writer, cinematographer and composer credits, and their Academy Award history.">
 
     <meta property="og:title" content="Christopher Nolan Filmography">
     <meta property="og:type" content="website">
@@ -168,6 +168,12 @@
         line-height: 1.35;
       }
 
+      .actor-list {
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+      }
+
       .credit {
         display: flex;
         align-items: flex-start;
@@ -235,9 +241,10 @@
       <h1>Christopher Nolan, as director</h1>
 
       <p>
-        Every feature Christopher Nolan has directed, with the writer, cinematographer and
-        composer he worked with, and how each fared at the Academy Awards in the corresponding
-        category (Original/Adapted Screenplay, Cinematography, Original Score).
+        Every feature Christopher Nolan has directed, with the main and secondary cast, writer,
+        cinematographer and composer he worked with, and how each fared at the Academy Awards in
+        the corresponding category (Best Actor/Actress, Best Supporting Actor/Actress,
+        Original/Adapted Screenplay, Cinematography, Original Score).
       </p>
 
       <div class="legend">
@@ -273,6 +280,14 @@
           </tr>
 
           <tr>
+            <th scope="row">Main actor(s)</th>
+          </tr>
+
+          <tr>
+            <th scope="row">Secondary actor(s)</th>
+          </tr>
+
+          <tr>
             <th scope="row">Writer</th>
           </tr>
 
@@ -289,81 +304,154 @@
 
     <footer>
       Oscar results reflect the Academy Awards ceremony following each film's release, in the
-      Best Original/Adapted Screenplay, Best Cinematography and Best Original Score categories.
-      The gold trophy is a stylized icon, not the official Academy statuette artwork.
+      Best Actor/Actress, Best Supporting Actor/Actress, Best Original/Adapted Screenplay, Best
+      Cinematography and Best Original Score categories. The gold trophy is a stylized icon, not
+      the official Academy statuette artwork.
     </footer>
 
     <script>
       // status: null (not nominated), "nominated", "won"
+      // mainActors/secondaryActors: array of { name, status }, one entry per actor
       var films = [
         {
           title: "Following", year: 1998, colors: ["#2b2b2b", "#0c0c0c"],
+          mainActors: [{ name: "Jeremy Theobald", status: null }],
+          secondaryActors: [
+            { name: "Lucy Russell", status: null },
+            { name: "Alex Haw", status: null }
+          ],
           writer: { names: ["Christopher Nolan"], status: null },
           cinematographer: { names: ["Christopher Nolan"], status: null },
           composer: { names: ["David Julyan"], status: null }
         },
         {
           title: "Memento", year: 2000, colors: ["#4a4238", "#141414"],
+          mainActors: [{ name: "Guy Pearce", status: null }],
+          secondaryActors: [
+            { name: "Carrie-Anne Moss", status: null },
+            { name: "Joe Pantoliano", status: null }
+          ],
           writer: { names: ["Christopher Nolan"], status: "nominated" },
           cinematographer: { names: ["Wally Pfister"], status: null },
           composer: { names: ["David Julyan"], status: null }
         },
         {
           title: "Insomnia", year: 2002, colors: ["#7ca7c9", "#1c2b36"],
+          mainActors: [{ name: "Al Pacino", status: null }],
+          secondaryActors: [
+            { name: "Robin Williams", status: null },
+            { name: "Hilary Swank", status: null }
+          ],
           writer: { names: ["Hillary Seitz"], status: null },
           cinematographer: { names: ["Wally Pfister"], status: null },
           composer: { names: ["David Julyan"], status: null }
         },
         {
           title: "Batman Begins", year: 2005, colors: ["#26313f", "#05070a"],
+          mainActors: [{ name: "Christian Bale", status: null }],
+          secondaryActors: [
+            { name: "Michael Caine", status: null },
+            { name: "Liam Neeson", status: null },
+            { name: "Katie Holmes", status: null }
+          ],
           writer: { names: ["Christopher Nolan", "David S. Goyer"], status: null },
           cinematographer: { names: ["Wally Pfister"], status: null },
           composer: { names: ["Hans Zimmer", "James Newton Howard"], status: null }
         },
         {
           title: "The Prestige", year: 2006, colors: ["#3a2e4a", "#0c0a12"],
+          mainActors: [
+            { name: "Hugh Jackman", status: null },
+            { name: "Christian Bale", status: null }
+          ],
+          secondaryActors: [
+            { name: "Michael Caine", status: null },
+            { name: "Scarlett Johansson", status: null }
+          ],
           writer: { names: ["Christopher Nolan", "Jonathan Nolan"], status: null },
           cinematographer: { names: ["Wally Pfister"], status: "nominated" },
           composer: { names: ["David Julyan"], status: null }
         },
         {
           title: "The Dark Knight", year: 2008, colors: ["#1b1f24", "#c96a1f"],
+          mainActors: [{ name: "Christian Bale", status: null }],
+          secondaryActors: [
+            { name: "Heath Ledger", status: "won" },
+            { name: "Aaron Eckhart", status: null },
+            { name: "Michael Caine", status: null }
+          ],
           writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null },
           cinematographer: { names: ["Wally Pfister"], status: null },
           composer: { names: ["Hans Zimmer", "James Newton Howard"], status: null }
         },
         {
           title: "Inception", year: 2010, colors: ["#1c2b4a", "#c9a24a"],
+          mainActors: [{ name: "Leonardo DiCaprio", status: null }],
+          secondaryActors: [
+            { name: "Joseph Gordon-Levitt", status: null },
+            { name: "Marion Cotillard", status: null },
+            { name: "Tom Hardy", status: null }
+          ],
           writer: { names: ["Christopher Nolan"], status: "nominated" },
           cinematographer: { names: ["Wally Pfister"], status: "won" },
           composer: { names: ["Hans Zimmer"], status: "nominated" }
         },
         {
           title: "The Dark Knight Rises", year: 2012, colors: ["#20242b", "#7a3b12"],
+          mainActors: [{ name: "Christian Bale", status: null }],
+          secondaryActors: [
+            { name: "Tom Hardy", status: null },
+            { name: "Anne Hathaway", status: null },
+            { name: "Joseph Gordon-Levitt", status: null }
+          ],
           writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null },
           cinematographer: { names: ["Wally Pfister"], status: null },
           composer: { names: ["Hans Zimmer"], status: null }
         },
         {
           title: "Interstellar", year: 2014, colors: ["#0e1a2b", "#d98a2b"],
+          mainActors: [{ name: "Matthew McConaughey", status: null }],
+          secondaryActors: [
+            { name: "Anne Hathaway", status: null },
+            { name: "Jessica Chastain", status: null },
+            { name: "Michael Caine", status: null }
+          ],
           writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null },
           cinematographer: { names: ["Hoyte van Hoytema"], status: "nominated" },
           composer: { names: ["Hans Zimmer"], status: null }
         },
         {
           title: "Dunkirk", year: 2017, colors: ["#3c4a52", "#0e1417"],
+          mainActors: [{ name: "Fionn Whitehead", status: null }],
+          secondaryActors: [
+            { name: "Tom Hardy", status: null },
+            { name: "Mark Rylance", status: null },
+            { name: "Kenneth Branagh", status: null }
+          ],
           writer: { names: ["Christopher Nolan"], status: null },
           cinematographer: { names: ["Hoyte van Hoytema"], status: "nominated" },
           composer: { names: ["Hans Zimmer"], status: "nominated" }
         },
         {
           title: "Tenet", year: 2020, colors: ["#8a1620", "#0d1b1e"],
+          mainActors: [{ name: "John David Washington", status: null }],
+          secondaryActors: [
+            { name: "Robert Pattinson", status: null },
+            { name: "Elizabeth Debicki", status: null },
+            { name: "Kenneth Branagh", status: null }
+          ],
           writer: { names: ["Christopher Nolan"], status: null },
           cinematographer: { names: ["Hoyte van Hoytema"], status: null },
           composer: { names: ["Ludwig Göransson"], status: null }
         },
         {
           title: "Oppenheimer", year: 2023, colors: ["#c9531e", "#100c0a"],
+          mainActors: [{ name: "Cillian Murphy", status: "won" }],
+          secondaryActors: [
+            { name: "Robert Downey Jr.", status: "won" },
+            { name: "Emily Blunt", status: "nominated" },
+            { name: "Matt Damon", status: null }
+          ],
           writer: { names: ["Christopher Nolan"], status: "nominated" },
           cinematographer: { names: ["Hoyte van Hoytema"], status: "won" },
           composer: { names: ["Ludwig Göransson"], status: "won" }
@@ -389,12 +477,29 @@
         );
       }
 
+      function actorListCell(actors) {
+        return (
+          '<div class="actor-list">' +
+            actors.map(function (actor) {
+              return (
+                '<div class="credit">' +
+                  '<span class="credit__name">' + actor.name + '</span>' +
+                  oscarIcon(actor.status) +
+                '</div>'
+              );
+            }).join("") +
+          '</div>'
+        );
+      }
+
       var headerRow = document.getElementById("film-header-row");
       var rows = document.querySelectorAll("#filmography tbody tr");
       var posterRow = rows[0];
-      var writerRow = rows[1];
-      var cinematographerRow = rows[2];
-      var composerRow = rows[3];
+      var mainActorsRow = rows[1];
+      var secondaryActorsRow = rows[2];
+      var writerRow = rows[3];
+      var cinematographerRow = rows[4];
+      var composerRow = rows[5];
 
       films.forEach(function (film) {
         var th = document.createElement("th");
@@ -412,6 +517,16 @@
         poster.innerHTML = '<span class="poster__label">' + film.title + '</span>';
         posterTd.appendChild(poster);
         posterRow.appendChild(posterTd);
+
+        var mainActorsTd = document.createElement("td");
+        mainActorsTd.className = "credit-cell";
+        mainActorsTd.innerHTML = actorListCell(film.mainActors);
+        mainActorsRow.appendChild(mainActorsTd);
+
+        var secondaryActorsTd = document.createElement("td");
+        secondaryActorsTd.className = "credit-cell";
+        secondaryActorsTd.innerHTML = actorListCell(film.secondaryActors);
+        secondaryActorsRow.appendChild(secondaryActorsTd);
 
         var writerTd = document.createElement("td");
         writerTd.className = "credit-cell";
