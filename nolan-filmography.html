@@ -1,0 +1,433 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Christopher Nolan Filmography">
+    <meta name="description" content="Every Christopher Nolan directed feature, with writer, cinematographer and composer credits, and their Academy Award history.">
+    <meta name="theme-color" content="#0b0b0f">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Christopher Nolan Filmography">
+    <meta name="twitter:description" content="Every Christopher Nolan directed feature, with writer, cinematographer and composer credits, and their Academy Award history.">
+
+    <meta property="og:title" content="Christopher Nolan Filmography">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eduardogarcia.xyz/nolan-filmography">
+
+    <title>Christopher Nolan Filmography &mdash; Eduardo Garc&iacute;a</title>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0b0f;
+        --panel: #16161d;
+        --border: #2a2a35;
+        --text: #eef0f5;
+        --muted: #9aa0ad;
+        --gold: #e8c26a;
+        --gold-dim: #6b5c33;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      a {
+        color: var(--gold);
+      }
+
+      header {
+        padding: 2.5rem 1.5rem 1.5rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1.25rem;
+        font-size: .85rem;
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--gold);
+      }
+
+      h1 {
+        margin: 0 0 .5rem;
+        font-size: 2rem;
+        letter-spacing: .02em;
+      }
+
+      header p {
+        margin: 0 0 1rem;
+        color: var(--muted);
+        line-height: 1.5;
+        max-width: 640px;
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        align-items: center;
+        font-size: .85rem;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+      }
+
+      .legend__item {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        padding: 0 1.5rem 3rem;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin: 0 auto;
+      }
+
+      thead th {
+        position: sticky;
+        top: 0;
+        background: var(--bg);
+        z-index: 2;
+        vertical-align: bottom;
+        padding: 0 .6rem 1rem;
+      }
+
+      th.row-label-head {
+        position: sticky;
+        left: 0;
+        z-index: 3;
+        background: var(--bg);
+      }
+
+      .film-heading {
+        width: 132px;
+      }
+
+      .film-heading .title {
+        font-size: .95rem;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+
+      .film-heading .year {
+        display: block;
+        margin-top: .15rem;
+        font-size: .8rem;
+        font-weight: normal;
+        color: var(--muted);
+      }
+
+      tbody th {
+        position: sticky;
+        left: 0;
+        background: var(--panel);
+        z-index: 1;
+        text-align: right;
+        font-weight: 600;
+        font-size: .85rem;
+        color: var(--muted);
+        padding: .9rem .9rem;
+        white-space: nowrap;
+        border-top: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+      }
+
+      td {
+        padding: .7rem .6rem;
+        border-top: 1px solid var(--border);
+        vertical-align: middle;
+        text-align: center;
+      }
+
+      td.credit-cell {
+        text-align: left;
+        font-size: .82rem;
+        line-height: 1.35;
+      }
+
+      .credit {
+        display: flex;
+        align-items: flex-start;
+        gap: .4rem;
+      }
+
+      .credit__name {
+        flex: 1;
+      }
+
+      .poster {
+        width: 110px;
+        height: 163px;
+        border-radius: 6px;
+        display: flex;
+        align-items: flex-end;
+        padding: .5rem;
+        margin: 0 auto;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, .5);
+        border: 1px solid rgba(255, 255, 255, .08);
+      }
+
+      .poster__label {
+        font-size: .68rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+        color: #fff;
+      }
+
+      .oscar {
+        flex: none;
+        width: 15px;
+        height: 15px;
+        margin-top: .1rem;
+      }
+
+      .oscar--won {
+        opacity: 1;
+      }
+
+      .oscar--nominated {
+        opacity: .35;
+      }
+
+      footer {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 1.5rem 3rem;
+        color: var(--muted);
+        font-size: .8rem;
+        line-height: 1.6;
+      }
+
+      footer a {
+        color: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a class="back-link" href="/">&larr; eduardogarcia.xyz</a>
+
+      <h1>Christopher Nolan, as director</h1>
+
+      <p>
+        Every feature Christopher Nolan has directed, with the writer, cinematographer and
+        composer he worked with, and how each fared at the Academy Awards in the corresponding
+        category (Original/Adapted Screenplay, Cinematography, Original Score).
+      </p>
+
+      <div class="legend">
+        <span class="legend__item">
+          <svg class="oscar oscar--won" viewBox="0 0 24 24" fill="currentColor" style="color: var(--gold);" aria-hidden="true">
+            <path d="M12 2c-1.1 0-2 1.34-2 3 0 .93.32 1.75.82 2.32C9.2 8.1 8 9.86 8 12c0 1.86.9 3.45 2.25 4.36-.5.32-1.55 1.04-2.16 2.24C7.5 19.7 7 21 7 21h10s-.5-1.3-1.09-2.4c-.61-1.2-1.66-1.92-2.16-2.24C15.1 15.45 16 13.86 16 12c0-2.14-1.2-3.9-2.82-4.68.5-.57.82-1.39.82-2.32 0-1.66-.9-3-2-3z"/>
+          </svg>
+          Won the Oscar
+        </span>
+
+        <span class="legend__item">
+          <svg class="oscar oscar--nominated" viewBox="0 0 24 24" fill="currentColor" style="color: var(--gold);" aria-hidden="true">
+            <path d="M12 2c-1.1 0-2 1.34-2 3 0 .93.32 1.75.82 2.32C9.2 8.1 8 9.86 8 12c0 1.86.9 3.45 2.25 4.36-.5.32-1.55 1.04-2.16 2.24C7.5 19.7 7 21 7 21h10s-.5-1.3-1.09-2.4c-.61-1.2-1.66-1.92-2.16-2.24C15.1 15.45 16 13.86 16 12c0-2.14-1.2-3.9-2.82-4.68.5-.57.82-1.39.82-2.32 0-1.66-.9-3-2-3z"/>
+          </svg>
+          Nominated
+        </span>
+
+        <span class="legend__item">No icon &mdash; not nominated</span>
+      </div>
+    </header>
+
+    <div class="table-wrap">
+      <table id="filmography">
+        <thead>
+          <tr id="film-header-row">
+            <th class="row-label-head"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th scope="row">Poster</th>
+          </tr>
+
+          <tr>
+            <th scope="row">Writer</th>
+          </tr>
+
+          <tr>
+            <th scope="row">Cinematographer</th>
+          </tr>
+
+          <tr>
+            <th scope="row">Composer</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      Oscar results reflect the Academy Awards ceremony following each film's release, in the
+      Best Original/Adapted Screenplay, Best Cinematography and Best Original Score categories.
+      The gold trophy is a stylized icon, not the official Academy statuette artwork.
+    </footer>
+
+    <script>
+      // status: null (not nominated), "nominated", "won"
+      var films = [
+        {
+          title: "Following", year: 1998, colors: ["#2b2b2b", "#0c0c0c"],
+          writer: { names: ["Christopher Nolan"], status: null },
+          cinematographer: { names: ["Christopher Nolan"], status: null },
+          composer: { names: ["David Julyan"], status: null }
+        },
+        {
+          title: "Memento", year: 2000, colors: ["#4a4238", "#141414"],
+          writer: { names: ["Christopher Nolan"], status: "nominated" },
+          cinematographer: { names: ["Wally Pfister"], status: null },
+          composer: { names: ["David Julyan"], status: null }
+        },
+        {
+          title: "Insomnia", year: 2002, colors: ["#7ca7c9", "#1c2b36"],
+          writer: { names: ["Hillary Seitz"], status: null },
+          cinematographer: { names: ["Wally Pfister"], status: null },
+          composer: { names: ["David Julyan"], status: null }
+        },
+        {
+          title: "Batman Begins", year: 2005, colors: ["#26313f", "#05070a"],
+          writer: { names: ["Christopher Nolan", "David S. Goyer"], status: null },
+          cinematographer: { names: ["Wally Pfister"], status: null },
+          composer: { names: ["Hans Zimmer", "James Newton Howard"], status: null }
+        },
+        {
+          title: "The Prestige", year: 2006, colors: ["#3a2e4a", "#0c0a12"],
+          writer: { names: ["Christopher Nolan", "Jonathan Nolan"], status: null },
+          cinematographer: { names: ["Wally Pfister"], status: "nominated" },
+          composer: { names: ["David Julyan"], status: null }
+        },
+        {
+          title: "The Dark Knight", year: 2008, colors: ["#1b1f24", "#c96a1f"],
+          writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null },
+          cinematographer: { names: ["Wally Pfister"], status: null },
+          composer: { names: ["Hans Zimmer", "James Newton Howard"], status: null }
+        },
+        {
+          title: "Inception", year: 2010, colors: ["#1c2b4a", "#c9a24a"],
+          writer: { names: ["Christopher Nolan"], status: "nominated" },
+          cinematographer: { names: ["Wally Pfister"], status: "won" },
+          composer: { names: ["Hans Zimmer"], status: "nominated" }
+        },
+        {
+          title: "The Dark Knight Rises", year: 2012, colors: ["#20242b", "#7a3b12"],
+          writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null },
+          cinematographer: { names: ["Wally Pfister"], status: null },
+          composer: { names: ["Hans Zimmer"], status: null }
+        },
+        {
+          title: "Interstellar", year: 2014, colors: ["#0e1a2b", "#d98a2b"],
+          writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null },
+          cinematographer: { names: ["Hoyte van Hoytema"], status: "nominated" },
+          composer: { names: ["Hans Zimmer"], status: null }
+        },
+        {
+          title: "Dunkirk", year: 2017, colors: ["#3c4a52", "#0e1417"],
+          writer: { names: ["Christopher Nolan"], status: null },
+          cinematographer: { names: ["Hoyte van Hoytema"], status: "nominated" },
+          composer: { names: ["Hans Zimmer"], status: "nominated" }
+        },
+        {
+          title: "Tenet", year: 2020, colors: ["#8a1620", "#0d1b1e"],
+          writer: { names: ["Christopher Nolan"], status: null },
+          cinematographer: { names: ["Hoyte van Hoytema"], status: null },
+          composer: { names: ["Ludwig Göransson"], status: null }
+        },
+        {
+          title: "Oppenheimer", year: 2023, colors: ["#c9531e", "#100c0a"],
+          writer: { names: ["Christopher Nolan"], status: "nominated" },
+          cinematographer: { names: ["Hoyte van Hoytema"], status: "won" },
+          composer: { names: ["Ludwig Göransson"], status: "won" }
+        }
+      ];
+
+      var oscarPath = "M12 2c-1.1 0-2 1.34-2 3 0 .93.32 1.75.82 2.32C9.2 8.1 8 9.86 8 12c0 1.86.9 3.45 2.25 4.36-.5.32-1.55 1.04-2.16 2.24C7.5 19.7 7 21 7 21h10s-.5-1.3-1.09-2.4c-.61-1.2-1.66-1.92-2.16-2.24C15.1 15.45 16 13.86 16 12c0-2.14-1.2-3.9-2.82-4.68.5-.57.82-1.39.82-2.32 0-1.66-.9-3-2-3z";
+
+      function oscarIcon(status) {
+        if (!status) return "";
+        return (
+          '<svg class="oscar oscar--' + status + '" viewBox="0 0 24 24" fill="currentColor" ' +
+          'style="color: var(--gold);" aria-hidden="true"><path d="' + oscarPath + '"/></svg>'
+        );
+      }
+
+      function creditCell(credit) {
+        return (
+          '<div class="credit">' +
+            '<span class="credit__name">' + credit.names.join(", ") + '</span>' +
+            oscarIcon(credit.status) +
+          '</div>'
+        );
+      }
+
+      var headerRow = document.getElementById("film-header-row");
+      var rows = document.querySelectorAll("#filmography tbody tr");
+      var posterRow = rows[0];
+      var writerRow = rows[1];
+      var cinematographerRow = rows[2];
+      var composerRow = rows[3];
+
+      films.forEach(function (film) {
+        var th = document.createElement("th");
+        th.className = "film-heading";
+        th.innerHTML =
+          '<span class="title">' + film.title + '</span>' +
+          '<span class="year">' + film.year + '</span>';
+        headerRow.appendChild(th);
+
+        var posterTd = document.createElement("td");
+        var poster = document.createElement("div");
+        poster.className = "poster";
+        poster.style.background =
+          "linear-gradient(160deg, " + film.colors[0] + ", " + film.colors[1] + ")";
+        poster.innerHTML = '<span class="poster__label">' + film.title + '</span>';
+        posterTd.appendChild(poster);
+        posterRow.appendChild(posterTd);
+
+        var writerTd = document.createElement("td");
+        writerTd.className = "credit-cell";
+        writerTd.innerHTML = creditCell(film.writer);
+        writerRow.appendChild(writerTd);
+
+        var cinematographerTd = document.createElement("td");
+        cinematographerTd.className = "credit-cell";
+        cinematographerTd.innerHTML = creditCell(film.cinematographer);
+        cinematographerRow.appendChild(cinematographerTd);
+
+        var composerTd = document.createElement("td");
+        composerTd.className = "credit-cell";
+        composerTd.innerHTML = creditCell(film.composer);
+        composerRow.appendChild(composerTd);
+      });
+    </script>
+  </body>
+</html>
