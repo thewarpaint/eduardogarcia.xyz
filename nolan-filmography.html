@@ -247,8 +247,8 @@
       <p>
         Every feature Christopher Nolan has directed, with the main and secondary cast, writer,
         cinematographer and composer he worked with, and how each fared at the Academy Awards in
-        the corresponding category (Best Actor/Actress, Best Supporting Actor/Actress,
-        Original/Adapted Screenplay, Cinematography, Original Score).
+        the corresponding category (Best Director, Best Actor/Actress, Best Supporting
+        Actor/Actress, Original/Adapted Screenplay, Cinematography, Original Score).
       </p>
 
       <div class="legend">
@@ -292,6 +292,10 @@
           </tr>
 
           <tr>
+            <th scope="row">Direction</th>
+          </tr>
+
+          <tr>
             <th scope="row">Main actor(s)</th>
           </tr>
 
@@ -316,8 +320,10 @@
 
     <footer>
       Oscar results reflect the Academy Awards ceremony following each film's release, in the
-      Best Actor/Actress, Best Supporting Actor/Actress, Best Original/Adapted Screenplay, Best
-      Cinematography and Best Original Score categories. The gold trophy is a stylized icon, not
+      Best Director, Best Actor/Actress, Best Supporting Actor/Actress, Best Original/Adapted
+      Screenplay, Best Cinematography and Best Original Score categories. The Direction row omits
+      the director's name since it's Christopher Nolan for every film here &mdash; only the
+      result is shown. The gold trophy is a stylized icon, not
       the official Academy statuette artwork. The Odyssey (2026) just released, so its Oscar
       nominations haven't been announced yet &mdash; the hourglass icon marks those categories as
       pending rather than implying a loss.
@@ -329,6 +335,7 @@
       var films = [
         {
           title: "Following", year: 1998, colors: ["#2b2b2b", "#0c0c0c"],
+          direction: null,
           mainActors: [{ name: "Jeremy Theobald", status: null }],
           secondaryActors: [
             { name: "Lucy Russell", status: null },
@@ -340,6 +347,7 @@
         },
         {
           title: "Memento", year: 2000, colors: ["#4a4238", "#141414"],
+          direction: null,
           mainActors: [{ name: "Guy Pearce", status: null }],
           secondaryActors: [
             { name: "Carrie-Anne Moss", status: null },
@@ -351,6 +359,7 @@
         },
         {
           title: "Insomnia", year: 2002, colors: ["#7ca7c9", "#1c2b36"],
+          direction: null,
           mainActors: [{ name: "Al Pacino", status: null }],
           secondaryActors: [
             { name: "Robin Williams", status: null },
@@ -362,6 +371,7 @@
         },
         {
           title: "Batman Begins", year: 2005, colors: ["#26313f", "#05070a"],
+          direction: null,
           mainActors: [{ name: "Christian Bale", status: null }],
           secondaryActors: [
             { name: "Michael Caine", status: null },
@@ -374,6 +384,7 @@
         },
         {
           title: "The Prestige", year: 2006, colors: ["#3a2e4a", "#0c0a12"],
+          direction: null,
           mainActors: [
             { name: "Hugh Jackman", status: null },
             { name: "Christian Bale", status: null }
@@ -388,6 +399,7 @@
         },
         {
           title: "The Dark Knight", year: 2008, colors: ["#1b1f24", "#c96a1f"],
+          direction: null,
           mainActors: [{ name: "Christian Bale", status: null }],
           secondaryActors: [
             { name: "Heath Ledger", status: "won" },
@@ -400,6 +412,7 @@
         },
         {
           title: "Inception", year: 2010, colors: ["#1c2b4a", "#c9a24a"],
+          direction: null,
           mainActors: [{ name: "Leonardo DiCaprio", status: null }],
           secondaryActors: [
             { name: "Joseph Gordon-Levitt", status: null },
@@ -412,6 +425,7 @@
         },
         {
           title: "The Dark Knight Rises", year: 2012, colors: ["#20242b", "#7a3b12"],
+          direction: null,
           mainActors: [{ name: "Christian Bale", status: null }],
           secondaryActors: [
             { name: "Tom Hardy", status: null },
@@ -424,6 +438,7 @@
         },
         {
           title: "Interstellar", year: 2014, colors: ["#0e1a2b", "#d98a2b"],
+          direction: null,
           mainActors: [{ name: "Matthew McConaughey", status: null }],
           secondaryActors: [
             { name: "Anne Hathaway", status: null },
@@ -436,6 +451,7 @@
         },
         {
           title: "Dunkirk", year: 2017, colors: ["#3c4a52", "#0e1417"],
+          direction: "nominated",
           mainActors: [{ name: "Fionn Whitehead", status: null }],
           secondaryActors: [
             { name: "Tom Hardy", status: null },
@@ -448,6 +464,7 @@
         },
         {
           title: "Tenet", year: 2020, colors: ["#8a1620", "#0d1b1e"],
+          direction: null,
           mainActors: [{ name: "John David Washington", status: null }],
           secondaryActors: [
             { name: "Robert Pattinson", status: null },
@@ -460,6 +477,7 @@
         },
         {
           title: "Oppenheimer", year: 2023, colors: ["#c9531e", "#100c0a"],
+          direction: "won",
           mainActors: [{ name: "Cillian Murphy", status: "won" }],
           secondaryActors: [
             { name: "Robert Downey Jr.", status: "won" },
@@ -472,6 +490,7 @@
         },
         {
           title: "The Odyssey", year: 2026, colors: ["#123a4d", "#d9a54a"],
+          direction: "pending",
           mainActors: [{ name: "Matt Damon", status: "pending" }],
           secondaryActors: [
             { name: "Tom Holland", status: "pending" },
@@ -511,6 +530,10 @@
         );
       }
 
+      function directionCell(status) {
+        return oscarIcon(status);
+      }
+
       function actorListCell(actors) {
         return (
           '<div class="actor-list">' +
@@ -529,11 +552,12 @@
       var headerRow = document.getElementById("film-header-row");
       var rows = document.querySelectorAll("#filmography tbody tr");
       var posterRow = rows[0];
-      var mainActorsRow = rows[1];
-      var secondaryActorsRow = rows[2];
-      var writerRow = rows[3];
-      var cinematographerRow = rows[4];
-      var composerRow = rows[5];
+      var directionRow = rows[1];
+      var mainActorsRow = rows[2];
+      var secondaryActorsRow = rows[3];
+      var writerRow = rows[4];
+      var cinematographerRow = rows[5];
+      var composerRow = rows[6];
 
       films.forEach(function (film) {
         var th = document.createElement("th");
@@ -551,6 +575,10 @@
         poster.innerHTML = '<span class="poster__label">' + film.title + '</span>';
         posterTd.appendChild(poster);
         posterRow.appendChild(posterTd);
+
+        var directionTd = document.createElement("td");
+        directionTd.innerHTML = directionCell(film.direction);
+        directionRow.appendChild(directionTd);
 
         var mainActorsTd = document.createElement("td");
         mainActorsTd.className = "credit-cell";
