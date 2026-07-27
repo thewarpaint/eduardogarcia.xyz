@@ -219,6 +219,10 @@
         opacity: .35;
       }
 
+      .oscar--pending {
+        opacity: .55;
+      }
+
       footer {
         max-width: 900px;
         margin: 0 auto;
@@ -263,6 +267,14 @@
         </span>
 
         <span class="legend__item">No icon &mdash; not nominated</span>
+
+        <span class="legend__item">
+          <svg class="oscar oscar--pending" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 3"></path>
+          </svg>
+          Nominations not yet announced
+        </span>
       </div>
     </header>
 
@@ -306,7 +318,9 @@
       Oscar results reflect the Academy Awards ceremony following each film's release, in the
       Best Actor/Actress, Best Supporting Actor/Actress, Best Original/Adapted Screenplay, Best
       Cinematography and Best Original Score categories. The gold trophy is a stylized icon, not
-      the official Academy statuette artwork.
+      the official Academy statuette artwork. The Odyssey (2026) just released, so its Oscar
+      nominations haven't been announced yet &mdash; the hourglass icon marks those categories as
+      pending rather than implying a loss.
     </footer>
 
     <script>
@@ -455,6 +469,18 @@
           writer: { names: ["Christopher Nolan"], status: "nominated" },
           cinematographer: { names: ["Hoyte van Hoytema"], status: "won" },
           composer: { names: ["Ludwig Göransson"], status: "won" }
+        },
+        {
+          title: "The Odyssey", year: 2026, colors: ["#123a4d", "#d9a54a"],
+          mainActors: [{ name: "Matt Damon", status: "pending" }],
+          secondaryActors: [
+            { name: "Tom Holland", status: "pending" },
+            { name: "Anne Hathaway", status: "pending" },
+            { name: "Zendaya", status: "pending" }
+          ],
+          writer: { names: ["Christopher Nolan"], status: "pending" },
+          cinematographer: { names: ["Hoyte van Hoytema"], status: "pending" },
+          composer: { names: ["Ludwig Göransson"], status: "pending" }
         }
       ];
 
@@ -462,6 +488,14 @@
 
       function oscarIcon(status) {
         if (!status) return "";
+        if (status === "pending") {
+          return (
+            '<svg class="oscar oscar--pending" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" ' +
+            'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+              '<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path>' +
+            '</svg>'
+          );
+        }
         return (
           '<svg class="oscar oscar--' + status + '" viewBox="0 0 24 24" fill="currentColor" ' +
           'style="color: var(--gold);" aria-hidden="true"><path d="' + oscarPath + '"/></svg>'
