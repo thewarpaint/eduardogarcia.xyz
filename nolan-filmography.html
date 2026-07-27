@@ -184,6 +184,12 @@
         flex: 1;
       }
 
+      .credit__type {
+        margin-top: .15rem;
+        font-size: .72rem;
+        color: var(--muted);
+      }
+
       .poster {
         width: 110px;
         height: 163px;
@@ -246,9 +252,10 @@
 
       <p>
         Every feature Christopher Nolan has directed, with the main and secondary cast, writer,
-        cinematographer and composer he worked with, and how each fared at the Academy Awards in
-        the corresponding category (Best Director, Best Actor/Actress, Best Supporting
-        Actor/Actress, Original/Adapted Screenplay, Cinematography, Original Score).
+        cinematographer, editor and composer he worked with, and how each fared at the Academy
+        Awards in the corresponding category (Best Director, Best Actor/Actress, Best Supporting
+        Actor/Actress, Original/Adapted Screenplay, Cinematography, Film Editing, Original Score).
+        The Writer row also notes whether the screenplay was original or adapted.
       </p>
 
       <div class="legend">
@@ -312,6 +319,10 @@
           </tr>
 
           <tr>
+            <th scope="row">Editing</th>
+          </tr>
+
+          <tr>
             <th scope="row">Composer</th>
           </tr>
         </tbody>
@@ -321,7 +332,8 @@
     <footer>
       Oscar results reflect the Academy Awards ceremony following each film's release, in the
       Best Director, Best Actor/Actress, Best Supporting Actor/Actress, Best Original/Adapted
-      Screenplay, Best Cinematography and Best Original Score categories. The Direction row omits
+      Screenplay, Best Cinematography, Best Film Editing and Best Original Score categories. The
+      Direction row omits
       the director's name since it's Christopher Nolan for every film here &mdash; only the
       result is shown. The gold trophy is a stylized icon, not
       the official Academy statuette artwork. The Odyssey (2026) just released, so its Oscar
@@ -341,8 +353,9 @@
             { name: "Lucy Russell", status: null },
             { name: "Alex Haw", status: null }
           ],
-          writer: { names: ["Christopher Nolan"], status: null },
+          writer: { names: ["Christopher Nolan"], status: null, type: "Original" },
           cinematographer: { names: ["Christopher Nolan"], status: null },
+          editor: { names: ["Christopher Nolan"], status: null },
           composer: { names: ["David Julyan"], status: null }
         },
         {
@@ -353,8 +366,9 @@
             { name: "Carrie-Anne Moss", status: null },
             { name: "Joe Pantoliano", status: null }
           ],
-          writer: { names: ["Christopher Nolan"], status: "nominated" },
+          writer: { names: ["Christopher Nolan"], status: "nominated", type: "Original" },
           cinematographer: { names: ["Wally Pfister"], status: null },
+          editor: { names: ["Dody Dorn"], status: "nominated" },
           composer: { names: ["David Julyan"], status: null }
         },
         {
@@ -365,8 +379,9 @@
             { name: "Robin Williams", status: null },
             { name: "Hilary Swank", status: null }
           ],
-          writer: { names: ["Hillary Seitz"], status: null },
+          writer: { names: ["Hillary Seitz"], status: null, type: "Adapted" },
           cinematographer: { names: ["Wally Pfister"], status: null },
+          editor: { names: ["Dody Dorn"], status: null },
           composer: { names: ["David Julyan"], status: null }
         },
         {
@@ -378,8 +393,9 @@
             { name: "Liam Neeson", status: null },
             { name: "Katie Holmes", status: null }
           ],
-          writer: { names: ["Christopher Nolan", "David S. Goyer"], status: null },
+          writer: { names: ["Christopher Nolan", "David S. Goyer"], status: null, type: "Adapted" },
           cinematographer: { names: ["Wally Pfister"], status: null },
+          editor: { names: ["Lee Smith"], status: null },
           composer: { names: ["Hans Zimmer", "James Newton Howard"], status: null }
         },
         {
@@ -393,8 +409,9 @@
             { name: "Michael Caine", status: null },
             { name: "Scarlett Johansson", status: null }
           ],
-          writer: { names: ["Christopher Nolan", "Jonathan Nolan"], status: null },
+          writer: { names: ["Christopher Nolan", "Jonathan Nolan"], status: null, type: "Adapted" },
           cinematographer: { names: ["Wally Pfister"], status: "nominated" },
+          editor: { names: ["Lee Smith"], status: null },
           composer: { names: ["David Julyan"], status: null }
         },
         {
@@ -406,8 +423,9 @@
             { name: "Aaron Eckhart", status: null },
             { name: "Michael Caine", status: null }
           ],
-          writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null },
+          writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null, type: "Adapted" },
           cinematographer: { names: ["Wally Pfister"], status: null },
+          editor: { names: ["Lee Smith"], status: null },
           composer: { names: ["Hans Zimmer", "James Newton Howard"], status: null }
         },
         {
@@ -419,8 +437,9 @@
             { name: "Marion Cotillard", status: null },
             { name: "Tom Hardy", status: null }
           ],
-          writer: { names: ["Christopher Nolan"], status: "nominated" },
+          writer: { names: ["Christopher Nolan"], status: "nominated", type: "Original" },
           cinematographer: { names: ["Wally Pfister"], status: "won" },
+          editor: { names: ["Lee Smith"], status: "nominated" },
           composer: { names: ["Hans Zimmer"], status: "nominated" }
         },
         {
@@ -432,8 +451,9 @@
             { name: "Anne Hathaway", status: null },
             { name: "Joseph Gordon-Levitt", status: null }
           ],
-          writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null },
+          writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null, type: "Adapted" },
           cinematographer: { names: ["Wally Pfister"], status: null },
+          editor: { names: ["Lee Smith"], status: null },
           composer: { names: ["Hans Zimmer"], status: null }
         },
         {
@@ -445,8 +465,9 @@
             { name: "Jessica Chastain", status: null },
             { name: "Michael Caine", status: null }
           ],
-          writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null },
+          writer: { names: ["Jonathan Nolan", "Christopher Nolan"], status: null, type: "Original" },
           cinematographer: { names: ["Hoyte van Hoytema"], status: "nominated" },
+          editor: { names: ["Lee Smith"], status: null },
           composer: { names: ["Hans Zimmer"], status: null }
         },
         {
@@ -458,8 +479,9 @@
             { name: "Mark Rylance", status: null },
             { name: "Kenneth Branagh", status: null }
           ],
-          writer: { names: ["Christopher Nolan"], status: null },
+          writer: { names: ["Christopher Nolan"], status: null, type: "Original" },
           cinematographer: { names: ["Hoyte van Hoytema"], status: "nominated" },
+          editor: { names: ["Lee Smith"], status: "won" },
           composer: { names: ["Hans Zimmer"], status: "nominated" }
         },
         {
@@ -471,8 +493,9 @@
             { name: "Elizabeth Debicki", status: null },
             { name: "Kenneth Branagh", status: null }
           ],
-          writer: { names: ["Christopher Nolan"], status: null },
+          writer: { names: ["Christopher Nolan"], status: null, type: "Original" },
           cinematographer: { names: ["Hoyte van Hoytema"], status: null },
+          editor: { names: ["Jennifer Lame"], status: null },
           composer: { names: ["Ludwig Göransson"], status: null }
         },
         {
@@ -484,8 +507,9 @@
             { name: "Emily Blunt", status: "nominated" },
             { name: "Matt Damon", status: null }
           ],
-          writer: { names: ["Christopher Nolan"], status: "nominated" },
+          writer: { names: ["Christopher Nolan"], status: "nominated", type: "Adapted" },
           cinematographer: { names: ["Hoyte van Hoytema"], status: "won" },
+          editor: { names: ["Jennifer Lame"], status: "won" },
           composer: { names: ["Ludwig Göransson"], status: "won" }
         },
         {
@@ -497,8 +521,9 @@
             { name: "Anne Hathaway", status: "pending" },
             { name: "Zendaya", status: "pending" }
           ],
-          writer: { names: ["Christopher Nolan"], status: "pending" },
+          writer: { names: ["Christopher Nolan"], status: "pending", type: "Adapted" },
           cinematographer: { names: ["Hoyte van Hoytema"], status: "pending" },
+          editor: { names: ["Jennifer Lame"], status: "pending" },
           composer: { names: ["Ludwig Göransson"], status: "pending" }
         }
       ];
@@ -530,6 +555,13 @@
         );
       }
 
+      function writerCell(writer) {
+        return (
+          creditCell(writer) +
+          '<div class="credit__type">' + writer.type + ' screenplay</div>'
+        );
+      }
+
       function directionCell(status) {
         return oscarIcon(status);
       }
@@ -557,7 +589,8 @@
       var secondaryActorsRow = rows[3];
       var writerRow = rows[4];
       var cinematographerRow = rows[5];
-      var composerRow = rows[6];
+      var editorRow = rows[6];
+      var composerRow = rows[7];
 
       films.forEach(function (film) {
         var th = document.createElement("th");
@@ -592,13 +625,18 @@
 
         var writerTd = document.createElement("td");
         writerTd.className = "credit-cell";
-        writerTd.innerHTML = creditCell(film.writer);
+        writerTd.innerHTML = writerCell(film.writer);
         writerRow.appendChild(writerTd);
 
         var cinematographerTd = document.createElement("td");
         cinematographerTd.className = "credit-cell";
         cinematographerTd.innerHTML = creditCell(film.cinematographer);
         cinematographerRow.appendChild(cinematographerTd);
+
+        var editorTd = document.createElement("td");
+        editorTd.className = "credit-cell";
+        editorTd.innerHTML = creditCell(film.editor);
+        editorRow.appendChild(editorTd);
 
         var composerTd = document.createElement("td");
         composerTd.className = "credit-cell";
