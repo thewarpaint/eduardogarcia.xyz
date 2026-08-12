@@ -125,9 +125,21 @@ permalink: /games/metro-sort
         text-align: center;
       }
 
-      .status__attempts {
-        color: var(--fg);
+      .status__badges {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: .3rem;
+        margin-left: .4rem;
+        vertical-align: middle;
+      }
+
+      .status__badge {
+        border-radius: .3rem;
+        color: #111418;
+        display: inline-block;
+        font-size: .72rem;
         font-weight: bold;
+        padding: .12rem .4rem;
       }
 
       #status[data-tone="win"] {
@@ -573,20 +585,42 @@ permalink: /games/metro-sort
           els.hint.innerHTML = 'Ordena estas estaciones en el sentido <strong>' + first + '</strong> → <strong>' + last + '</strong>.';
         }
 
+        function scaleColor(ratio) {
+          var hue = Math.round(ratio * 120);
+          return 'hsl(' + hue + ', 72%, 48%)';
+        }
+
+        function appendAttemptBadges(parent) {
+          if (state.history.length === 0) {
+            return;
+          }
+
+          var badges = document.createElement('span');
+          badges.className = 'status__badges';
+
+          state.history.forEach(function (attempt, i) {
+            var badge = document.createElement('span');
+            badge.className = 'status__badge';
+            badge.textContent = attempt.correctCount + '/' + STATIONS_PER_PUZZLE;
+            badge.style.backgroundColor = scaleColor(attempt.correctCount / STATIONS_PER_PUZZLE);
+            badge.setAttribute('title', 'Intento ' + (i + 1));
+            badges.appendChild(badge);
+          });
+
+          parent.appendChild(badges);
+        }
+
         function renderStatus() {
           els.status.removeAttribute('data-tone');
           els.status.innerHTML = '';
-
-          var attemptsSummary = state.history.length > 0
-            ? ' · Aciertos por intento: ' + state.history.map(function (h) { return h.correctCount; }).join(', ')
-            : '';
 
           if (state.gameOver) {
             if (state.won) {
               els.status.textContent = '¡Correcto! Resolviste el orden en ' + state.history.length + (state.history.length === 1 ? ' intento.' : ' intentos.') + ' 🎉';
               els.status.setAttribute('data-tone', 'win');
             } else {
-              els.status.textContent = 'Se acabaron tus intentos.' + attemptsSummary;
+              els.status.appendChild(document.createTextNode('Se acabaron tus intentos.'));
+              appendAttemptBadges(els.status);
               els.status.setAttribute('data-tone', 'lose');
             }
 
@@ -594,15 +628,8 @@ permalink: /games/metro-sort
           }
 
           var plural = state.attemptsRemaining === 1 ? 'intento' : 'intentos';
-          var mainText = document.createTextNode('Te quedan ' + state.attemptsRemaining + ' ' + plural + '.');
-          els.status.appendChild(mainText);
-
-          if (attemptsSummary) {
-            var summaryEl = document.createElement('span');
-            summaryEl.className = 'status__attempts';
-            summaryEl.textContent = attemptsSummary;
-            els.status.appendChild(summaryEl);
-          }
+          els.status.appendChild(document.createTextNode('Te quedan ' + state.attemptsRemaining + ' ' + plural + '.'));
+          appendAttemptBadges(els.status);
         }
 
         function renderStationList() {
