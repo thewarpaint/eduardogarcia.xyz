@@ -25,7 +25,6 @@ permalink: /games/metro-sort
         --line-color-fg: #ffffff;
         --correct: #29a366;
         --incorrect: #d8483f;
-        --dot-empty: #2a3442;
       }
 
       * {
@@ -52,7 +51,7 @@ permalink: /games/metro-sort
         align-items: center;
         margin: 0 auto;
         max-width: 32rem;
-        padding: 1.25rem 1rem 3rem;
+        padding: 1rem 1rem 2rem;
       }
 
       .top-bar {
@@ -76,7 +75,7 @@ permalink: /games/metro-sort
       .subtitle {
         color: var(--fg-muted);
         font-size: .95rem;
-        margin: 0 0 1.25rem;
+        margin: 0 0 .85rem;
       }
 
       .line-badge {
@@ -109,8 +108,8 @@ permalink: /games/metro-sort
         border-radius: .75rem;
         font-size: .95rem;
         line-height: 1.4;
-        margin: 1rem 0;
-        padding: .85rem 1rem;
+        margin: .75rem 0;
+        padding: .65rem .85rem;
         width: 100%;
       }
 
@@ -120,10 +119,15 @@ permalink: /games/metro-sort
 
       .status {
         color: var(--fg-muted);
-        font-size: .9rem;
-        margin: 0 0 .5rem;
+        font-size: .85rem;
+        margin: 0 0 .4rem;
         min-height: 1.2em;
         text-align: center;
+      }
+
+      .status__attempts {
+        color: var(--fg);
+        font-weight: bold;
       }
 
       #status[data-tone="win"] {
@@ -147,11 +151,11 @@ permalink: /games/metro-sort
         align-items: center;
         background-color: var(--panel);
         border: 2px solid var(--panel-border);
-        border-radius: .75rem;
+        border-radius: .6rem;
         display: flex;
-        gap: .75rem;
-        margin-bottom: .6rem;
-        padding: .6rem .75rem;
+        gap: .6rem;
+        margin-bottom: .4rem;
+        padding: .4rem .6rem;
         transition: border-color .2s ease, background-color .2s ease;
       }
 
@@ -171,26 +175,27 @@ permalink: /games/metro-sort
         display: flex;
         flex: 0 0 auto;
         font-weight: bold;
-        height: 1.75rem;
+        height: 1.6rem;
         justify-content: center;
-        width: 1.75rem;
+        width: 1.6rem;
       }
 
       .station__name {
         flex: 1 1 auto;
-        font-size: 1.05rem;
-        line-height: 1.3;
+        font-size: 1rem;
+        line-height: 1.25;
       }
 
       .station__mark {
         flex: 0 0 auto;
-        font-size: 1.1rem;
+        font-size: 1.15rem;
+        line-height: 1;
       }
 
       .station__buttons {
         display: flex;
         flex: 0 0 auto;
-        flex-direction: column;
+        flex-direction: row;
         gap: .3rem;
       }
 
@@ -201,9 +206,9 @@ permalink: /games/metro-sort
         color: var(--fg);
         cursor: pointer;
         font-size: 1rem;
-        height: 2.2rem;
+        height: 2.1rem;
         line-height: 1;
-        width: 2.6rem;
+        width: 2.4rem;
       }
 
       .btn-move:active {
@@ -243,54 +248,6 @@ permalink: /games/metro-sort
         margin-top: .75rem;
         padding: .8rem 1.5rem;
         width: 100%;
-      }
-
-      .history {
-        margin-top: 1.5rem;
-        width: 100%;
-      }
-
-      .history__title {
-        color: var(--fg-muted);
-        font-size: .8rem;
-        letter-spacing: .05em;
-        margin: 0 0 .5rem;
-        text-transform: uppercase;
-      }
-
-      .history__row {
-        align-items: center;
-        display: flex;
-        gap: .75rem;
-        margin-bottom: .4rem;
-      }
-
-      .history__label {
-        color: var(--fg-muted);
-        flex: 0 0 auto;
-        font-size: .85rem;
-        width: 4.5rem;
-      }
-
-      .history__dots {
-        display: flex;
-        gap: .35rem;
-      }
-
-      .dot {
-        background-color: var(--dot-empty);
-        border-radius: 999px;
-        height: .8rem;
-        width: .8rem;
-      }
-
-      .dot--filled {
-        background-color: var(--line-color);
-      }
-
-      .history__count {
-        color: var(--fg-muted);
-        font-size: .85rem;
       }
 
       .result {
@@ -361,11 +318,6 @@ permalink: /games/metro-sort
       <ol id="station-list" class="station-list"></ol>
 
       <button id="check-btn" type="button" class="btn-primary">Verificar orden</button>
-
-      <div id="history" class="history" hidden>
-        <p class="history__title">Historial de intentos</p>
-        <div id="history-rows"></div>
-      </div>
 
       <div id="result" class="result" hidden>
         <h2 id="result-heading"></h2>
@@ -592,7 +544,6 @@ permalink: /games/metro-sort
           renderHint();
           renderStatus();
           renderStationList();
-          renderHistory();
           renderResult();
 
           els.checkBtn.disabled = state.gameOver;
@@ -612,13 +563,18 @@ permalink: /games/metro-sort
 
         function renderStatus() {
           els.status.removeAttribute('data-tone');
+          els.status.innerHTML = '';
+
+          var attemptsSummary = state.history.length > 0
+            ? ' · Aciertos por intento: ' + state.history.join(', ')
+            : '';
 
           if (state.gameOver) {
             if (state.won) {
-              els.status.textContent = '¡Correcto! Resolviste el orden. 🎉';
+              els.status.textContent = '¡Correcto! Resolviste el orden en ' + state.history.length + (state.history.length === 1 ? ' intento.' : ' intentos.') + ' 🎉';
               els.status.setAttribute('data-tone', 'win');
             } else {
-              els.status.textContent = 'Se acabaron tus intentos.';
+              els.status.textContent = 'Se acabaron tus intentos.' + attemptsSummary;
               els.status.setAttribute('data-tone', 'lose');
             }
 
@@ -626,7 +582,15 @@ permalink: /games/metro-sort
           }
 
           var plural = state.attemptsRemaining === 1 ? 'intento' : 'intentos';
-          els.status.textContent = 'Te quedan ' + state.attemptsRemaining + ' ' + plural + '.';
+          var mainText = document.createTextNode('Te quedan ' + state.attemptsRemaining + ' ' + plural + '.');
+          els.status.appendChild(mainText);
+
+          if (attemptsSummary) {
+            var summaryEl = document.createElement('span');
+            summaryEl.className = 'status__attempts';
+            summaryEl.textContent = attemptsSummary;
+            els.status.appendChild(summaryEl);
+          }
         }
 
         function renderStationList() {
@@ -655,7 +619,7 @@ permalink: /games/metro-sort
             if (state.gameOver) {
               var mark = document.createElement('span');
               mark.className = 'station__mark';
-              mark.textContent = name === state.correctOrder[index] ? '✅' : '❌';
+              mark.textContent = name === state.correctOrder[index] ? '🟩' : '🟥';
               li.appendChild(mark);
             } else {
               var buttons = document.createElement('span');
@@ -690,43 +654,6 @@ permalink: /games/metro-sort
           });
         }
 
-        function renderHistory() {
-          if (state.history.length === 0) {
-            els.history.hidden = true;
-            return;
-          }
-
-          els.history.hidden = false;
-          els.historyRows.innerHTML = '';
-
-          state.history.forEach(function (correctCount, i) {
-            var row = document.createElement('div');
-            row.className = 'history__row';
-
-            var label = document.createElement('span');
-            label.className = 'history__label';
-            label.textContent = 'Intento ' + (i + 1);
-
-            var dots = document.createElement('span');
-            dots.className = 'history__dots';
-
-            for (var d = 0; d < STATIONS_PER_PUZZLE; d++) {
-              var dot = document.createElement('span');
-              dot.className = 'dot' + (d < correctCount ? ' dot--filled' : '');
-              dots.appendChild(dot);
-            }
-
-            var count = document.createElement('span');
-            count.className = 'history__count';
-            count.textContent = correctCount + '/' + STATIONS_PER_PUZZLE;
-
-            row.appendChild(label);
-            row.appendChild(dots);
-            row.appendChild(count);
-            els.historyRows.appendChild(row);
-          });
-        }
-
         function renderResult() {
           if (!state.gameOver) {
             els.result.hidden = true;
@@ -740,7 +667,7 @@ permalink: /games/metro-sort
           state.currentOrder.forEach(function (name, index) {
             var li = document.createElement('li');
             var isCorrect = name === state.correctOrder[index];
-            li.textContent = (isCorrect ? '✅ ' : '❌ ') + name;
+            li.textContent = (isCorrect ? '🟩 ' : '🟥 ') + name;
             els.revealYourOrder.appendChild(li);
           });
 
@@ -760,8 +687,6 @@ permalink: /games/metro-sort
             status: $('status'),
             stationList: $('station-list'),
             checkBtn: $('check-btn'),
-            history: $('history'),
-            historyRows: $('history-rows'),
             result: $('result'),
             resultHeading: $('result-heading'),
             revealYourOrder: $('reveal-your-order'),
