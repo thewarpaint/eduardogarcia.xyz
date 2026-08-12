@@ -503,15 +503,14 @@ permalink: /games/metro-sort
         }
 
         function pickIndices(length, count) {
+          var start = Math.floor(Math.random() * (length - count + 1));
           var indices = [];
 
-          for (var i = 0; i < length; i++) {
-            indices.push(i);
+          for (var i = 0; i < count; i++) {
+            indices.push(start + i);
           }
 
-          return shuffle(indices).slice(0, count).sort(function (a, b) {
-            return a - b;
-          });
+          return indices;
         }
 
         function startNewGame() {
