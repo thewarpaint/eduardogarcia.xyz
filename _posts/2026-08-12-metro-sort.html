@@ -1,0 +1,783 @@
+---
+permalink: /games/metro-sort
+---
+<!DOCTYPE html>
+<html
+  lang="es-MX"
+>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="title" content="Ordena el Metro 🚇">
+    <meta name="description" content="Ordena 5 estaciones de una línea del Metro de la Ciudad de México en el orden correcto. Tienes 5 intentos.">
+
+    <title>Ordena el Metro 🚇 - eduardogarcia.xyz</title>
+
+    <style type="text/css">
+      /* Palette inspired by the official STC Metro CDMX line colours, applied per-line via --line-color */
+      :root {
+        --bg: #0b0f14;
+        --panel: #141a22;
+        --panel-border: #232c38;
+        --fg: #e7ecf2;
+        --fg-muted: #93a1b3;
+        --line-color: #0057a8;
+        --line-color-fg: #ffffff;
+        --correct: #29a366;
+        --incorrect: #d8483f;
+        --dot-empty: #2a3442;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--fg);
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 32rem;
+        padding: 1.25rem 1rem 3rem;
+      }
+
+      .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .top-bar a {
+        color: var(--fg-muted);
+        font-size: .85rem;
+        text-decoration: none;
+      }
+
+      h1 {
+        font-size: clamp(1.4rem, 5vw, 1.75rem);
+        margin: .5rem 0 .25rem;
+      }
+
+      .subtitle {
+        color: var(--fg-muted);
+        font-size: .95rem;
+        margin: 0 0 1.25rem;
+      }
+
+      .line-badge {
+        align-items: center;
+        background-color: var(--line-color);
+        border-radius: 999px;
+        color: var(--line-color-fg);
+        display: inline-flex;
+        font-weight: bold;
+        gap: .5rem;
+        padding: .4rem 1rem;
+      }
+
+      .line-badge__circle {
+        align-items: center;
+        background-color: var(--line-color-fg);
+        border-radius: 999px;
+        color: var(--line-color);
+        display: flex;
+        font-size: .9rem;
+        font-weight: 900;
+        height: 1.5rem;
+        justify-content: center;
+        width: 1.5rem;
+      }
+
+      .hint {
+        background-color: var(--panel);
+        border: 1px solid var(--panel-border);
+        border-radius: .75rem;
+        font-size: .95rem;
+        line-height: 1.4;
+        margin: 1rem 0;
+        padding: .85rem 1rem;
+        width: 100%;
+      }
+
+      .hint strong {
+        color: var(--line-color);
+      }
+
+      .status {
+        color: var(--fg-muted);
+        font-size: .9rem;
+        margin: 0 0 .5rem;
+        min-height: 1.2em;
+        text-align: center;
+      }
+
+      #status[data-tone="win"] {
+        color: var(--correct);
+        font-weight: bold;
+      }
+
+      #status[data-tone="lose"] {
+        color: var(--incorrect);
+        font-weight: bold;
+      }
+
+      .station-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+
+      .station {
+        align-items: center;
+        background-color: var(--panel);
+        border: 2px solid var(--panel-border);
+        border-radius: .75rem;
+        display: flex;
+        gap: .75rem;
+        margin-bottom: .6rem;
+        padding: .6rem .75rem;
+        transition: border-color .2s ease, background-color .2s ease;
+      }
+
+      .station--correct {
+        border-color: var(--correct);
+      }
+
+      .station--incorrect {
+        border-color: var(--incorrect);
+      }
+
+      .station__rank {
+        align-items: center;
+        background-color: var(--line-color);
+        border-radius: 999px;
+        color: var(--line-color-fg);
+        display: flex;
+        flex: 0 0 auto;
+        font-weight: bold;
+        height: 1.75rem;
+        justify-content: center;
+        width: 1.75rem;
+      }
+
+      .station__name {
+        flex: 1 1 auto;
+        font-size: 1.05rem;
+        line-height: 1.3;
+      }
+
+      .station__mark {
+        flex: 0 0 auto;
+        font-size: 1.1rem;
+      }
+
+      .station__buttons {
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        gap: .3rem;
+      }
+
+      .btn-move {
+        background-color: var(--panel-border);
+        border: none;
+        border-radius: .4rem;
+        color: var(--fg);
+        cursor: pointer;
+        font-size: 1rem;
+        height: 2.2rem;
+        line-height: 1;
+        width: 2.6rem;
+      }
+
+      .btn-move:active {
+        background-color: var(--line-color);
+      }
+
+      .btn-move:disabled {
+        cursor: not-allowed;
+        opacity: .3;
+      }
+
+      .btn-primary {
+        background-color: var(--line-color);
+        border: none;
+        border-radius: .6rem;
+        color: var(--line-color-fg);
+        cursor: pointer;
+        font-size: 1.05rem;
+        font-weight: bold;
+        margin-top: .5rem;
+        padding: .9rem 1.5rem;
+        width: 100%;
+      }
+
+      .btn-primary:disabled {
+        cursor: not-allowed;
+        opacity: .35;
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        border: 1px solid var(--panel-border);
+        border-radius: .6rem;
+        color: var(--fg);
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: .75rem;
+        padding: .8rem 1.5rem;
+        width: 100%;
+      }
+
+      .history {
+        margin-top: 1.5rem;
+        width: 100%;
+      }
+
+      .history__title {
+        color: var(--fg-muted);
+        font-size: .8rem;
+        letter-spacing: .05em;
+        margin: 0 0 .5rem;
+        text-transform: uppercase;
+      }
+
+      .history__row {
+        align-items: center;
+        display: flex;
+        gap: .75rem;
+        margin-bottom: .4rem;
+      }
+
+      .history__label {
+        color: var(--fg-muted);
+        flex: 0 0 auto;
+        font-size: .85rem;
+        width: 4.5rem;
+      }
+
+      .history__dots {
+        display: flex;
+        gap: .35rem;
+      }
+
+      .dot {
+        background-color: var(--dot-empty);
+        border-radius: 999px;
+        height: .8rem;
+        width: .8rem;
+      }
+
+      .dot--filled {
+        background-color: var(--line-color);
+      }
+
+      .history__count {
+        color: var(--fg-muted);
+        font-size: .85rem;
+      }
+
+      .result {
+        margin-top: 1.5rem;
+        width: 100%;
+      }
+
+      .result[hidden] {
+        display: none;
+      }
+
+      .result h2 {
+        font-size: 1.3rem;
+        margin: 0 0 1rem;
+      }
+
+      .reveal {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .reveal h3 {
+        color: var(--fg-muted);
+        font-size: .8rem;
+        letter-spacing: .05em;
+        margin: 0 0 .5rem;
+        text-transform: uppercase;
+      }
+
+      .reveal ol {
+        margin: 0;
+        padding-left: 1.25rem;
+      }
+
+      .reveal li {
+        font-size: .9rem;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 420px) {
+        .reveal {
+          gap: .75rem;
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="top-bar">
+        <a href="/games">← Minigames</a>
+      </div>
+
+      <h1>Ordena el Metro 🚇</h1>
+      <p class="subtitle">Acomoda las 5 estaciones en el orden correcto de la línea. Tienes 5 intentos.</p>
+
+      <div id="line-badge" class="line-badge">
+        <span id="line-badge-circle" class="line-badge__circle"></span>
+        <span id="line-badge-name"></span>
+      </div>
+
+      <p id="hint" class="hint"></p>
+
+      <p id="status" class="status"></p>
+
+      <ol id="station-list" class="station-list"></ol>
+
+      <button id="check-btn" type="button" class="btn-primary">Verificar orden</button>
+
+      <div id="history" class="history" hidden>
+        <p class="history__title">Historial de intentos</p>
+        <div id="history-rows"></div>
+      </div>
+
+      <div id="result" class="result" hidden>
+        <h2 id="result-heading"></h2>
+
+        <div class="reveal">
+          <div class="reveal__col">
+            <h3>Tu último intento</h3>
+            <ol id="reveal-your-order"></ol>
+          </div>
+
+          <div class="reveal__col">
+            <h3>Orden correcto</h3>
+            <ol id="reveal-correct-order"></ol>
+          </div>
+        </div>
+
+        <button id="new-game-btn" type="button" class="btn-secondary">Jugar de nuevo</button>
+      </div>
+    </main>
+
+    <script>
+      (function () {
+        'use strict';
+
+        var TOTAL_ATTEMPTS = 5;
+        var STATIONS_PER_PUZZLE = 5;
+
+        // Station order taken from the official STC Metro CDMX line diagrams,
+        // listed from one terminus to the other.
+        var LINES = [
+          {
+            id: '1',
+            name: 'Línea 1',
+            color: '#ec2a7b',
+            textColor: '#ffffff',
+            stations: ['Observatorio', 'Tacubaya', 'Juanacatlán', 'Chapultepec', 'Sevilla', 'Insurgentes', 'Cuauhtémoc', 'Balderas', 'Salto del Agua', 'Isabel la Católica', 'Pino Suárez', 'Merced', 'Candelaria', 'San Lázaro', 'Moctezuma', 'Balbuena', 'Boulevard Puerto Aéreo', 'Gómez Farías', 'Zaragoza', 'Pantitlán'],
+          },
+          {
+            id: '2',
+            name: 'Línea 2',
+            color: '#0057a8',
+            textColor: '#ffffff',
+            stations: ['Cuatro Caminos', 'Panteones', 'Tacuba', 'Cuitláhuac', 'Popotla', 'Colegio Militar', 'Normal', 'San Cosme', 'Revolución', 'Hidalgo', 'Bellas Artes', 'Allende', 'Zócalo', 'Pino Suárez', 'San Antonio Abad', 'Chabacano', 'Viaducto', 'Xola', 'Villa de Cortés', 'Nativitas', 'Portales', 'Ermita', 'General Anaya', 'Tasqueña'],
+          },
+          {
+            id: '3',
+            name: 'Línea 3',
+            color: '#8f8f00',
+            textColor: '#ffffff',
+            stations: ['Indios Verdes', 'Deportivo 18 de Marzo', 'Potrero', 'La Raza', 'Tlatelolco', 'Guerrero', 'Hidalgo', 'Juárez', 'Balderas', 'Niños Héroes', 'Hospital General', 'Centro Médico', 'Etiopía', 'Eugenia', 'División del Norte', 'Zapata', 'Coyoacán', 'Viveros', 'Miguel Ángel de Quevedo', 'Copilco', 'Universidad'],
+          },
+          {
+            id: '5',
+            name: 'Línea 5',
+            color: '#ffcd00',
+            textColor: '#1a1a1a',
+            stations: ['Politécnico', 'Instituto del Petróleo', 'Autobuses del Norte', 'La Raza', 'Misterios', 'Valle Gómez', 'Consulado', 'Eduardo Molina', 'Aragón', 'Oceanía', 'Terminal Aérea', 'Hangares', 'Pantitlán'],
+          },
+          {
+            id: '6',
+            name: 'Línea 6',
+            color: '#e2231a',
+            textColor: '#ffffff',
+            stations: ['El Rosario', 'Tezozómoc', 'UAM Azcapotzalco', 'Ferrería', 'Norte 45', 'Vallejo', 'Instituto del Petróleo', 'Lindavista', 'Deportivo 18 de Marzo', 'Martín Carrera'],
+          },
+          {
+            id: '7',
+            name: 'Línea 7',
+            color: '#f68b1f',
+            textColor: '#1a1a1a',
+            stations: ['El Rosario', 'Aquiles Serdán', 'Camarones', 'Refinería', 'Tacuba', 'San Joaquín', 'Polanco', 'Auditorio', 'Constituyentes', 'Tacubaya', 'San Pedro de los Pinos', 'San Antonio', 'Mixcoac', 'Barranca del Muerto'],
+          },
+          {
+            id: '8',
+            name: 'Línea 8',
+            color: '#0e8a4b',
+            textColor: '#ffffff',
+            stations: ['Garibaldi/Lagunilla', 'Bellas Artes', 'San Juan de Letrán', 'Salto del Agua', 'Doctores', 'Obrera', 'Chabacano', 'La Viga', 'Santa Anita', 'Coyuya', 'Iztacalco', 'Apatlaco', 'Aculco', 'Escuadrón 201', 'Atlalilco', 'Iztapalapa', 'Cerro de la Estrella', 'UAM-I', 'Constitución de 1917'],
+          },
+          {
+            id: '9',
+            name: 'Línea 9',
+            color: '#6d4c33',
+            textColor: '#ffffff',
+            stations: ['Pantitlán', 'Puebla', 'Ciudad Deportiva', 'Velódromo', 'Mixiuhca', 'Jamaica', 'Chabacano', 'Lázaro Cárdenas', 'Centro Médico', 'Chilpancingo', 'Patriotismo', 'Tacubaya'],
+          },
+          {
+            id: 'A',
+            name: 'Línea A',
+            color: '#8e2c8f',
+            textColor: '#ffffff',
+            stations: ['Pantitlán', 'Agrícola Oriental', 'Canal de San Juan', 'Tepalcates', 'Guelatao', 'Peñón Viejo', 'Acatitla', 'Santa Marta', 'Los Reyes', 'La Paz'],
+          },
+          {
+            id: '12',
+            name: 'Línea 12',
+            color: '#a67c00',
+            textColor: '#ffffff',
+            stations: ['Mixcoac', 'Insurgentes Sur', 'Hospital 20 de Noviembre', 'Zapata', 'Parque de los Venados', 'Eje Central', 'Ermita', 'Mexicaltzingo', 'Atlalilco', 'Culhuacán', 'San Andrés Tomatlán', 'Lomas Estrella', 'Calle 11', 'Periférico Oriente', 'Tezonco', 'Olivos', 'Nopalera', 'Zapotitlán', 'Tlaltenco', 'Tláhuac'],
+          },
+        ];
+
+        var state = null;
+        var els = {};
+
+        function $(id) {
+          return document.getElementById(id);
+        }
+
+        function shuffle(array) {
+          var copy = array.slice();
+
+          for (var i = copy.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = copy[i];
+            copy[i] = copy[j];
+            copy[j] = tmp;
+          }
+
+          return copy;
+        }
+
+        function arraysEqual(a, b) {
+          if (a.length !== b.length) {
+            return false;
+          }
+
+          for (var i = 0; i < a.length; i++) {
+            if (a[i] !== b[i]) {
+              return false;
+            }
+          }
+
+          return true;
+        }
+
+        function pickIndices(length, count) {
+          var indices = [];
+
+          for (var i = 0; i < length; i++) {
+            indices.push(i);
+          }
+
+          return shuffle(indices).slice(0, count).sort(function (a, b) {
+            return a - b;
+          });
+        }
+
+        function startNewGame() {
+          var line = LINES[Math.floor(Math.random() * LINES.length)];
+          var indices = pickIndices(line.stations.length, STATIONS_PER_PUZZLE);
+          var correctOrder = indices.map(function (i) {
+            return line.stations[i];
+          });
+
+          var currentOrder;
+
+          do {
+            currentOrder = shuffle(correctOrder);
+          } while (arraysEqual(currentOrder, correctOrder));
+
+          state = {
+            line: line,
+            correctOrder: correctOrder,
+            currentOrder: currentOrder,
+            attemptsRemaining: TOTAL_ATTEMPTS,
+            history: [],
+            gameOver: false,
+            won: false,
+          };
+
+          document.documentElement.style.setProperty('--line-color', line.color);
+          document.documentElement.style.setProperty('--line-color-fg', line.textColor);
+
+          render();
+        }
+
+        function moveStation(index, direction) {
+          if (state.gameOver) {
+            return;
+          }
+
+          var target = index + direction;
+
+          if (target < 0 || target >= state.currentOrder.length) {
+            return;
+          }
+
+          var tmp = state.currentOrder[index];
+          state.currentOrder[index] = state.currentOrder[target];
+          state.currentOrder[target] = tmp;
+
+          render();
+        }
+
+        function checkOrder() {
+          if (state.gameOver) {
+            return;
+          }
+
+          var correctCount = 0;
+
+          for (var i = 0; i < state.currentOrder.length; i++) {
+            if (state.currentOrder[i] === state.correctOrder[i]) {
+              correctCount++;
+            }
+          }
+
+          state.attemptsRemaining--;
+          state.history.push(correctCount);
+
+          if (correctCount === STATIONS_PER_PUZZLE) {
+            state.gameOver = true;
+            state.won = true;
+          } else if (state.attemptsRemaining === 0) {
+            state.gameOver = true;
+            state.won = false;
+          }
+
+          render();
+        }
+
+        function render() {
+          renderBadge();
+          renderHint();
+          renderStatus();
+          renderStationList();
+          renderHistory();
+          renderResult();
+
+          els.checkBtn.disabled = state.gameOver;
+        }
+
+        function renderBadge() {
+          els.lineBadgeCircle.textContent = state.line.id;
+          els.lineBadgeName.textContent = state.line.name;
+        }
+
+        function renderHint() {
+          var first = state.line.stations[0];
+          var last = state.line.stations[state.line.stations.length - 1];
+
+          els.hint.innerHTML = 'Ordena estas estaciones en el sentido <strong>' + first + '</strong> → <strong>' + last + '</strong>.';
+        }
+
+        function renderStatus() {
+          els.status.removeAttribute('data-tone');
+
+          if (state.gameOver) {
+            if (state.won) {
+              els.status.textContent = '¡Correcto! Resolviste el orden. 🎉';
+              els.status.setAttribute('data-tone', 'win');
+            } else {
+              els.status.textContent = 'Se acabaron tus intentos.';
+              els.status.setAttribute('data-tone', 'lose');
+            }
+
+            return;
+          }
+
+          var plural = state.attemptsRemaining === 1 ? 'intento' : 'intentos';
+          els.status.textContent = 'Te quedan ' + state.attemptsRemaining + ' ' + plural + '.';
+        }
+
+        function renderStationList() {
+          els.stationList.innerHTML = '';
+
+          state.currentOrder.forEach(function (name, index) {
+            var li = document.createElement('li');
+            li.className = 'station';
+
+            if (state.gameOver) {
+              var isCorrect = name === state.correctOrder[index];
+              li.className += isCorrect ? ' station--correct' : ' station--incorrect';
+            }
+
+            var rank = document.createElement('span');
+            rank.className = 'station__rank';
+            rank.textContent = String(index + 1);
+
+            var nameEl = document.createElement('span');
+            nameEl.className = 'station__name';
+            nameEl.textContent = name;
+
+            li.appendChild(rank);
+            li.appendChild(nameEl);
+
+            if (state.gameOver) {
+              var mark = document.createElement('span');
+              mark.className = 'station__mark';
+              mark.textContent = name === state.correctOrder[index] ? '✅' : '❌';
+              li.appendChild(mark);
+            } else {
+              var buttons = document.createElement('span');
+              buttons.className = 'station__buttons';
+
+              var upBtn = document.createElement('button');
+              upBtn.type = 'button';
+              upBtn.className = 'btn-move';
+              upBtn.textContent = '▲';
+              upBtn.setAttribute('aria-label', 'Subir ' + name);
+              upBtn.disabled = index === 0;
+              upBtn.addEventListener('click', function () {
+                moveStation(index, -1);
+              });
+
+              var downBtn = document.createElement('button');
+              downBtn.type = 'button';
+              downBtn.className = 'btn-move';
+              downBtn.textContent = '▼';
+              downBtn.setAttribute('aria-label', 'Bajar ' + name);
+              downBtn.disabled = index === state.currentOrder.length - 1;
+              downBtn.addEventListener('click', function () {
+                moveStation(index, 1);
+              });
+
+              buttons.appendChild(upBtn);
+              buttons.appendChild(downBtn);
+              li.appendChild(buttons);
+            }
+
+            els.stationList.appendChild(li);
+          });
+        }
+
+        function renderHistory() {
+          if (state.history.length === 0) {
+            els.history.hidden = true;
+            return;
+          }
+
+          els.history.hidden = false;
+          els.historyRows.innerHTML = '';
+
+          state.history.forEach(function (correctCount, i) {
+            var row = document.createElement('div');
+            row.className = 'history__row';
+
+            var label = document.createElement('span');
+            label.className = 'history__label';
+            label.textContent = 'Intento ' + (i + 1);
+
+            var dots = document.createElement('span');
+            dots.className = 'history__dots';
+
+            for (var d = 0; d < STATIONS_PER_PUZZLE; d++) {
+              var dot = document.createElement('span');
+              dot.className = 'dot' + (d < correctCount ? ' dot--filled' : '');
+              dots.appendChild(dot);
+            }
+
+            var count = document.createElement('span');
+            count.className = 'history__count';
+            count.textContent = correctCount + '/' + STATIONS_PER_PUZZLE;
+
+            row.appendChild(label);
+            row.appendChild(dots);
+            row.appendChild(count);
+            els.historyRows.appendChild(row);
+          });
+        }
+
+        function renderResult() {
+          if (!state.gameOver) {
+            els.result.hidden = true;
+            return;
+          }
+
+          els.result.hidden = false;
+          els.resultHeading.textContent = state.won ? '¡Lo lograste! 🎉' : 'Este era el orden correcto';
+
+          els.revealYourOrder.innerHTML = '';
+          state.currentOrder.forEach(function (name, index) {
+            var li = document.createElement('li');
+            var isCorrect = name === state.correctOrder[index];
+            li.textContent = (isCorrect ? '✅ ' : '❌ ') + name;
+            els.revealYourOrder.appendChild(li);
+          });
+
+          els.revealCorrectOrder.innerHTML = '';
+          state.correctOrder.forEach(function (name) {
+            var li = document.createElement('li');
+            li.textContent = name;
+            els.revealCorrectOrder.appendChild(li);
+          });
+        }
+
+        function init() {
+          els = {
+            lineBadgeCircle: $('line-badge-circle'),
+            lineBadgeName: $('line-badge-name'),
+            hint: $('hint'),
+            status: $('status'),
+            stationList: $('station-list'),
+            checkBtn: $('check-btn'),
+            history: $('history'),
+            historyRows: $('history-rows'),
+            result: $('result'),
+            resultHeading: $('result-heading'),
+            revealYourOrder: $('reveal-your-order'),
+            revealCorrectOrder: $('reveal-correct-order'),
+            newGameBtn: $('new-game-btn'),
+          };
+
+          els.checkBtn.addEventListener('click', checkOrder);
+          els.newGameBtn.addEventListener('click', startNewGame);
+
+          startNewGame();
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+      })();
+    </script>
+  </body>
+</html>
