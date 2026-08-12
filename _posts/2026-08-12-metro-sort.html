@@ -264,12 +264,6 @@ permalink: /games/metro-sort
         margin: 0 0 1rem;
       }
 
-      .reveal {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: 1fr 1fr;
-      }
-
       .reveal h3 {
         color: var(--fg-muted);
         font-size: .8rem;
@@ -288,11 +282,31 @@ permalink: /games/metro-sort
         line-height: 1.6;
       }
 
-      @media (max-width: 420px) {
-        .reveal {
-          gap: .75rem;
-          grid-template-columns: 1fr;
-        }
+      .guess-grid {
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .guess-grid__row {
+        align-items: center;
+        display: flex;
+        gap: .6rem;
+      }
+
+      .guess-grid__label {
+        color: var(--fg-muted);
+        flex: 0 0 auto;
+        font-size: .8rem;
+        width: 4.2rem;
+      }
+
+      .guess-grid__squares {
+        display: flex;
+        gap: .3rem;
+        font-size: 1.3rem;
+        line-height: 1;
       }
     </style>
   </head>
@@ -322,16 +336,11 @@ permalink: /games/metro-sort
       <div id="result" class="result" hidden>
         <h2 id="result-heading"></h2>
 
-        <div class="reveal">
-          <div class="reveal__col">
-            <h3>Tu último intento</h3>
-            <ol id="reveal-your-order"></ol>
-          </div>
+        <div id="guess-grid" class="guess-grid"></div>
 
-          <div class="reveal__col">
-            <h3>Orden correcto</h3>
-            <ol id="reveal-correct-order"></ol>
-          </div>
+        <div class="reveal">
+          <h3>Orden correcto</h3>
+          <ol id="reveal-correct-order"></ol>
         </div>
 
         <button id="new-game-btn" type="button" class="btn-secondary">Jugar de nuevo</button>
@@ -526,7 +535,10 @@ permalink: /games/metro-sort
           }
 
           state.attemptsRemaining--;
-          state.history.push(correctCount);
+          state.history.push({
+            guess: state.currentOrder.slice(),
+            correctCount: correctCount,
+          });
 
           if (correctCount === STATIONS_PER_PUZZLE) {
             state.gameOver = true;
@@ -566,7 +578,7 @@ permalink: /games/metro-sort
           els.status.innerHTML = '';
 
           var attemptsSummary = state.history.length > 0
-            ? ' · Aciertos por intento: ' + state.history.join(', ')
+            ? ' · Aciertos por intento: ' + state.history.map(function (h) { return h.correctCount; }).join(', ')
             : '';
 
           if (state.gameOver) {
@@ -663,12 +675,27 @@ permalink: /games/metro-sort
           els.result.hidden = false;
           els.resultHeading.textContent = state.won ? '¡Lo lograste! 🎉' : 'Este era el orden correcto';
 
-          els.revealYourOrder.innerHTML = '';
-          state.currentOrder.forEach(function (name, index) {
-            var li = document.createElement('li');
-            var isCorrect = name === state.correctOrder[index];
-            li.textContent = (isCorrect ? '🟩 ' : '🟥 ') + name;
-            els.revealYourOrder.appendChild(li);
+          els.guessGrid.innerHTML = '';
+          state.history.forEach(function (attempt, i) {
+            var row = document.createElement('div');
+            row.className = 'guess-grid__row';
+
+            var label = document.createElement('span');
+            label.className = 'guess-grid__label';
+            label.textContent = 'Intento ' + (i + 1);
+
+            var squares = document.createElement('span');
+            squares.className = 'guess-grid__squares';
+            squares.setAttribute('aria-label', attempt.correctCount + ' de ' + STATIONS_PER_PUZZLE + ' en su lugar');
+
+            attempt.guess.forEach(function (name, index) {
+              var isCorrect = name === state.correctOrder[index];
+              squares.appendChild(document.createTextNode(isCorrect ? '🟩' : '🟥'));
+            });
+
+            row.appendChild(label);
+            row.appendChild(squares);
+            els.guessGrid.appendChild(row);
           });
 
           els.revealCorrectOrder.innerHTML = '';
@@ -689,7 +716,7 @@ permalink: /games/metro-sort
             checkBtn: $('check-btn'),
             result: $('result'),
             resultHeading: $('result-heading'),
-            revealYourOrder: $('reveal-your-order'),
+            guessGrid: $('guess-grid'),
             revealCorrectOrder: $('reveal-correct-order'),
             newGameBtn: $('new-game-btn'),
           };
