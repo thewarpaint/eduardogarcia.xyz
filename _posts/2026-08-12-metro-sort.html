@@ -285,7 +285,7 @@ permalink: /games/metro-sort
       }
 
       .reveal ol {
-        margin: 0;
+        margin: 0 0 1.25rem;
         padding-left: 1.25rem;
       }
 
@@ -348,14 +348,14 @@ permalink: /games/metro-sort
       <div id="result" class="result" hidden>
         <h2 id="result-heading"></h2>
 
-        <div id="guess-grid" class="guess-grid"></div>
-
         <div class="reveal">
           <h3>Orden correcto</h3>
           <ol id="reveal-correct-order"></ol>
         </div>
 
-        <button id="new-game-btn" type="button" class="btn-secondary">Jugar de nuevo</button>
+        <div id="guess-grid" class="guess-grid"></div>
+
+        <button id="share-btn" type="button" class="btn-secondary">Compartir</button>
       </div>
     </main>
 
@@ -409,7 +409,7 @@ permalink: /games/metro-sort
             name: 'Línea 6',
             color: '#e2231a',
             textColor: '#ffffff',
-            stations: ['El Rosario', 'Tezozómoc', 'UAM Azcapotzalco', 'Ferrería', 'Norte 45', 'Vallejo', 'Instituto del Petróleo', 'Lindavista', 'Deportivo 18 de Marzo', 'Martín Carrera'],
+            stations: ['El Rosario', 'Tezozómoc', 'UAM Azcapotzalco', 'Ferrería', 'Norte 45', 'Vallejo', 'Instituto del Petróleo', 'Lindavista', 'Deportivo 18 de Marzo', 'La Villa / Basílica', 'Martín Carrera'],
           },
           {
             id: '7',
@@ -747,6 +747,52 @@ permalink: /games/metro-sort
           });
         }
 
+        function buildShareText() {
+          return state.history.map(function (attempt) {
+            return attempt.guess.map(function (name, index) {
+              return name === state.correctOrder[index] ? '🟩' : '🟥';
+            }).join('');
+          }).join('\n');
+        }
+
+        function copyToClipboard(text) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text);
+          }
+
+          var textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+
+          var succeeded = false;
+          try {
+            succeeded = document.execCommand('copy');
+          } catch (e) {
+            succeeded = false;
+          }
+
+          document.body.removeChild(textarea);
+
+          return succeeded ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+        }
+
+        function shareResult() {
+          var originalLabel = els.shareBtn.textContent;
+
+          copyToClipboard(buildShareText()).then(function () {
+            els.shareBtn.textContent = '¡Copiado!';
+          }, function () {
+            els.shareBtn.textContent = 'No se pudo copiar';
+          }).then(function () {
+            setTimeout(function () {
+              els.shareBtn.textContent = originalLabel;
+            }, 1500);
+          });
+        }
+
         function init() {
           els = {
             lineBadgeCircle: $('line-badge-circle'),
@@ -759,11 +805,11 @@ permalink: /games/metro-sort
             resultHeading: $('result-heading'),
             guessGrid: $('guess-grid'),
             revealCorrectOrder: $('reveal-correct-order'),
-            newGameBtn: $('new-game-btn'),
+            shareBtn: $('share-btn'),
           };
 
           els.checkBtn.addEventListener('click', checkOrder);
-          els.newGameBtn.addEventListener('click', startNewGame);
+          els.shareBtn.addEventListener('click', shareResult);
 
           startNewGame();
         }
