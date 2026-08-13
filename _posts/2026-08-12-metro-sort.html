@@ -755,11 +755,7 @@ permalink: /games/metro-sort
           }).join('\n');
         }
 
-        function copyToClipboard(text) {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            return navigator.clipboard.writeText(text);
-          }
-
+        function copyViaExecCommand(text) {
           var textarea = document.createElement('textarea');
           textarea.value = text;
           textarea.style.position = 'fixed';
@@ -777,6 +773,16 @@ permalink: /games/metro-sort
           document.body.removeChild(textarea);
 
           return succeeded ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+        }
+
+        function copyToClipboard(text) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text).catch(function () {
+              return copyViaExecCommand(text);
+            });
+          }
+
+          return copyViaExecCommand(text);
         }
 
         function shareResult() {
