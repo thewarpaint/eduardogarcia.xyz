@@ -576,7 +576,7 @@ permalink: /metrordle
 
   <div class="sign">
     <div class="sign__head">
-      <h1>Metrordle</h1>
+      <h1 id="game-title">Metrordle</h1>
       <p class="dek">5 estaciones revueltas, 5 intentos. Cada intento solo dice cuántas quedaron en su lugar.</p>
 
       <div class="roundel-row">
@@ -633,6 +633,7 @@ permalink: /metrordle
 
     var TOTAL_ATTEMPTS = 5;
     var STATIONS_PER_PUZZLE = 5;
+    var SHARE_URL = 'https://eduardogarcia.xyz/metrordle';
 
     var LINES = [
       { id: '1', name: 'Línea 1', color: '#ec2a7b', textColor: '#ffffff', stations: ['Observatorio', 'Tacubaya', 'Juanacatlán', 'Chapultepec', 'Sevilla', 'Insurgentes', 'Cuauhtémoc', 'Balderas', 'Salto del Agua', 'Isabel la Católica', 'Pino Suárez', 'Merced', 'Candelaria', 'San Lázaro', 'Moctezuma', 'Balbuena', 'Boulevard Puerto Aéreo', 'Gómez Farías', 'Zaragoza', 'Pantitlán'] },
@@ -856,6 +857,7 @@ permalink: /metrordle
     function render(animate) {
       if (animate) captureRects();
 
+      renderTitle();
       renderRoundel();
       renderTrack();
       renderHeadsign();
@@ -866,6 +868,10 @@ permalink: /metrordle
       els.checkBtn.disabled = state.gameOver;
 
       if (animate) flipAnimate();
+    }
+
+    function renderTitle() {
+      $('game-title').textContent = 'Metrordle #' + state.gameNumber;
     }
 
     function renderRoundel() {
@@ -1041,7 +1047,7 @@ permalink: /metrordle
         }).join('');
       }).join('\n');
 
-      return 'Metrordle #' + state.gameNumber + '\n' + grid;
+      return 'Metrordle #' + state.gameNumber + '\n' + grid + '\n' + SHARE_URL;
     }
 
     function copyViaExecCommand(text) {
