@@ -577,7 +577,7 @@ permalink: /metrordle
   <div class="sign">
     <div class="sign__head">
       <h1 id="game-title">Metrordle</h1>
-      <p class="dek">5 estaciones revueltas, 5 intentos. Cada intento solo dice cuántas quedaron en su lugar.</p>
+      <p class="dek">Ordena las 5 estaciones correctamente en 5 intentos. Te diremos cuántas están en el lugar correcto.</p>
 
       <div class="roundel-row">
         <div class="roundel" id="roundel">
@@ -607,7 +607,7 @@ permalink: /metrordle
     <ol class="platform" id="platform"></ol>
 
     <div class="actions">
-      <button type="button" class="btn-primary" id="check-btn">Verificar orden</button>
+      <button type="button" class="btn-primary" id="check-btn">Verificar</button>
     </div>
 
     <div class="reveal" id="reveal" hidden>
@@ -1003,7 +1003,7 @@ permalink: /metrordle
 
       var banner = $('reveal-banner');
       banner.className = 'reveal__banner ' + (state.won ? 'reveal__banner--win' : 'reveal__banner--lose');
-      banner.textContent = state.won ? 'Llegaste a la estación correcta' : 'Así era el orden correcto';
+      banner.textContent = state.won ? '¡Lo lograste!' : 'Suerte para la próxima…';
 
       var board = $('guess-board');
       board.innerHTML = '';
@@ -1013,7 +1013,7 @@ permalink: /metrordle
 
         var label = document.createElement('span');
         label.className = 'guess-board__label';
-        label.textContent = 'INT. ' + (i + 1);
+        label.textContent = 'Intento ' + (i + 1);
 
         var squares = document.createElement('span');
         squares.className = 'guess-board__squares';
