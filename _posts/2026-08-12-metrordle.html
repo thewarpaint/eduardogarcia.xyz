@@ -1045,9 +1045,9 @@ permalink: /metrordle
         return attempt.guess.map(function (name, index) {
           return name === state.correctOrder[index] ? '🟩' : '🟥';
         }).join('');
-      }).join('\n');
+      }).join('\n\n');
 
-      return '#Metrordle #' + state.gameNumber + '\n' + grid + '\n' + SHARE_URL;
+      return '#Metrordle #' + state.gameNumber + '\n\n' + grid + '\n\n' + SHARE_URL;
     }
 
     function copyViaExecCommand(text) {
