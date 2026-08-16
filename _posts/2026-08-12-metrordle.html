@@ -453,6 +453,23 @@ permalink: /metrordle
     color: var(--danger-ink);
   }
 
+  .streak-badge {
+    align-items: center;
+    background: var(--paper-well);
+    border: 1px solid var(--rule);
+    border-radius: 0.5rem;
+    display: flex;
+    font-size: 0.88rem;
+    gap: 0.3rem;
+    margin-bottom: 1.1rem;
+    padding: 0.55rem 0.85rem;
+  }
+
+  .streak-badge strong {
+    font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
   .guess-board {
     display: flex;
     flex-direction: column;
@@ -613,6 +630,10 @@ permalink: /metrordle
     <div class="reveal" id="reveal" hidden>
       <div id="reveal-banner"></div>
 
+      <div class="streak-badge">
+        🔥 Racha: <strong id="streak-count"></strong>
+      </div>
+
       <div class="reveal__col">
         <h3>Orden correcto</h3>
         <ol id="reveal-correct"></ol>
@@ -714,6 +735,12 @@ permalink: /metrordle
       return date.getFullYear() + '-' + pad2(date.getMonth() + 1) + '-' + pad2(date.getDate());
     }
 
+    function getPreviousDateKey(dateKey) {
+      var d = new Date(dateKey + 'T00:00:00');
+      d.setDate(d.getDate() - 1);
+      return getDateKey(d);
+    }
+
     function getGameNumberForDateKey(dateKey) {
       var start = new Date(START_DATE_KEY + 'T00:00:00');
       var target = new Date(dateKey + 'T00:00:00');
@@ -761,6 +788,45 @@ permalink: /metrordle
       }
     }
 
+    function loadStreak() {
+      try {
+        var raw = localStorage.getItem('metrordle:streak');
+        if (!raw) return { count: 0, lastResultDate: null };
+        var parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed.count !== 'number') return { count: 0, lastResultDate: null };
+        return parsed;
+      } catch (e) {
+        return { count: 0, lastResultDate: null };
+      }
+    }
+
+    function saveStreak(streak) {
+      try {
+        localStorage.setItem('metrordle:streak', JSON.stringify(streak));
+      } catch (e) {
+        // localStorage unavailable - streak just won't persist this session.
+      }
+    }
+
+    function updateStreakForResult(dateKey, won) {
+      var streak = loadStreak();
+
+      if (won) {
+        var previousDateKey = getPreviousDateKey(dateKey);
+        // A win only extends the streak if yesterday's result is the last
+        // one recorded; otherwise (first game ever, or a gap where a day
+        // was skipped or lost) today's win starts a fresh streak of 1.
+        streak.count = streak.lastResultDate === previousDateKey ? streak.count + 1 : 1;
+      } else {
+        streak.count = 0;
+      }
+
+      streak.lastResultDate = dateKey;
+      saveStreak(streak);
+
+      return streak.count;
+    }
+
     function startNewGame() {
       var dateKey = getDateKey(new Date());
       var gameNumber = getGameNumberForDateKey(dateKey);
@@ -793,6 +859,7 @@ permalink: /metrordle
         history: history,
         gameOver: gameOver,
         won: saved ? !!saved.won : false,
+        streak: gameOver ? loadStreak().count : 0,
       };
 
       document.documentElement.style.setProperty('--line', puzzle.line.color);
@@ -825,6 +892,9 @@ permalink: /metrordle
       } else if (state.attemptsRemaining === 0) {
         state.gameOver = true;
         state.won = false;
+      }
+      if (state.gameOver) {
+        state.streak = updateStreakForResult(state.dateKey, state.won);
       }
       persistState();
       render(false);
@@ -1008,6 +1078,8 @@ permalink: /metrordle
       banner.className = 'reveal__banner ' + (state.won ? 'reveal__banner--win' : 'reveal__banner--lose');
       banner.textContent = state.won ? '¡Lo lograste!' : 'Suerte para la próxima…';
 
+      $('streak-count').textContent = state.streak;
+
       var board = $('guess-board');
       board.innerHTML = '';
       state.history.forEach(function (attempt, i) {
@@ -1050,7 +1122,7 @@ permalink: /metrordle
         }).join('');
       }).join('\n');
 
-      return '#Metrordle #' + state.gameNumber + '\n\n' + grid + '\n\n' + SHARE_URL;
+      return '#Metrordle #' + state.gameNumber + '\n\n' + grid + '\n\n🔥 Racha: ' + state.streak + '\n\n' + SHARE_URL;
     }
 
     function copyViaExecCommand(text) {
