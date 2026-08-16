@@ -453,23 +453,6 @@ permalink: /metrordle
     color: var(--danger-ink);
   }
 
-  .streak-badge {
-    align-items: center;
-    background: var(--paper-well);
-    border: 1px solid var(--rule);
-    border-radius: 0.5rem;
-    display: flex;
-    font-size: 0.88rem;
-    gap: 0.3rem;
-    margin-bottom: 1.1rem;
-    padding: 0.55rem 0.85rem;
-  }
-
-  .streak-badge strong {
-    font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
-    font-variant-numeric: tabular-nums;
-  }
-
   .guess-board {
     display: flex;
     flex-direction: column;
@@ -629,10 +612,6 @@ permalink: /metrordle
 
     <div class="reveal" id="reveal" hidden>
       <div id="reveal-banner"></div>
-
-      <div class="streak-badge">
-        🔥 Racha: <strong id="streak-count"></strong>
-      </div>
 
       <div class="reveal__col">
         <h3>Orden correcto</h3>
@@ -825,6 +804,10 @@ permalink: /metrordle
       saveStreak(streak);
 
       return streak.count;
+    }
+
+    function formatStreak(count) {
+      return 'Racha: ' + count + (count === 1 ? ' día' : ' días');
     }
 
     function startNewGame() {
@@ -1076,9 +1059,7 @@ permalink: /metrordle
 
       var banner = $('reveal-banner');
       banner.className = 'reveal__banner ' + (state.won ? 'reveal__banner--win' : 'reveal__banner--lose');
-      banner.textContent = state.won ? '¡Lo lograste!' : 'Suerte para la próxima…';
-
-      $('streak-count').textContent = state.streak;
+      banner.textContent = (state.won ? '¡Lo lograste!' : 'Suerte para la próxima…') + ' 🔥 ' + formatStreak(state.streak);
 
       var board = $('guess-board');
       board.innerHTML = '';
@@ -1122,7 +1103,7 @@ permalink: /metrordle
         }).join('');
       }).join('\n');
 
-      return '#Metrordle #' + state.gameNumber + '\n\n' + grid + '\n\n🔥 Racha: ' + state.streak + '\n\n' + SHARE_URL;
+      return '#Metrordle #' + state.gameNumber + '\n\n' + grid + '\n\n🔥 ' + formatStreak(state.streak) + '\n\n' + SHARE_URL;
     }
 
     function copyViaExecCommand(text) {
