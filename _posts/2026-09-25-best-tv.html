@@ -478,13 +478,10 @@ permalink: /bestTV
         var WANT = 2;
 
         // Share format, base64url-encoded bytes:
-        //   [name length][name, UTF-8][format][payload]
-        // Format 0 (sparse): 9 bits per marked show, packed MSB first:
-        //   7-bit index, "I've seen it" bit, "I want to see it" bit.
-        // Format 1 (dense): 2 bits per show for all 100 shows (25 bytes).
-        // Whichever is shorter is used.
-        var FORMAT_SPARSE = 0;
-        var FORMAT_DENSE = 1;
+        //   [name length][name, UTF-8][marks]
+        // Marks: 2 bits per show ("I've seen it", "I want to see it") for all
+        // 100 shows, packed MSB first (25 bytes).
+        var MARKS_BYTES = Math.ceil(SHOWS.length * 2 / 8);
 
         var nameInput = document.getElementById('name');
         var countsEl = document.getElementById('counts');
@@ -708,27 +705,13 @@ permalink: /bestTV
             bytes.push(byte);
           });
 
-          var sparse = new BitWriter();
-          var dense = new BitWriter();
+          var marks = new BitWriter();
 
-          data.marks.forEach(function (mark, index) {
-            if (mark) {
-              sparse.write(index, 7);
-              sparse.write(mark, 2);
-            }
-
-            dense.write(mark, 2);
+          data.marks.forEach(function (mark) {
+            marks.write(mark, 2);
           });
 
-          if (sparse.bytes().length <= dense.bytes().length) {
-            bytes.push(FORMAT_SPARSE);
-            bytes = bytes.concat(sparse.bytes());
-          } else {
-            bytes.push(FORMAT_DENSE);
-            bytes = bytes.concat(dense.bytes());
-          }
-
-          return toBase64Url(bytes);
+          return toBase64Url(bytes.concat(marks.bytes()));
         }
 
         function decode(text) {
@@ -737,30 +720,16 @@ permalink: /bestTV
             var result = emptyState();
             var nameLength = bytes[0];
 
-            if (bytes.length < nameLength + 2) {
+            if (bytes.length !== nameLength + 1 + MARKS_BYTES) {
               return null;
             }
 
-            var format = bytes[nameLength + 1];
-            var reader = new BitReader(bytes.slice(nameLength + 2));
+            var reader = new BitReader(bytes.slice(nameLength + 1));
 
             result.name = new TextDecoder().decode(new Uint8Array(bytes.slice(1, nameLength + 1)));
 
-            if (format === FORMAT_SPARSE) {
-              while (reader.remaining() >= 9) {
-                var index = reader.read(7);
-                var mark = reader.read(2);
-
-                if (index < SHOWS.length) {
-                  result.marks[index] = mark;
-                }
-              }
-            } else if (format === FORMAT_DENSE) {
-              for (var i = 0; i < SHOWS.length && reader.remaining() >= 2; i++) {
-                result.marks[i] = reader.read(2);
-              }
-            } else {
-              return null;
+            for (var i = 0; i < SHOWS.length; i++) {
+              result.marks[i] = reader.read(2);
             }
 
             return result;
@@ -794,11 +763,6 @@ permalink: /bestTV
 
         function BitReader(bytes) {
           var position = 0;
-          var total = bytes.length * 8;
-
-          this.remaining = function () {
-            return total - position;
-          };
 
           this.read = function (bits) {
             var value = 0;
