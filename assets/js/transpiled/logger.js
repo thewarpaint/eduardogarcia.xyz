@@ -1,14 +1,14 @@
-var Logger = /** @class */ (function () {
-    function Logger() {
-        this.$log = null;
+var Logger;
+(function (Logger) {
+    var $log = null;
+    function init() {
+        $log = document.getElementById('logger');
     }
-    Logger.prototype.init = function () {
-        this.$log = document.getElementById('logger');
-    };
-    Logger.prototype.log = function (string) {
+    Logger.init = init;
+    function log(string) {
         console.log(string);
-        this.$log.innerHTML += '\n⇒ ' + string;
-    };
-    return Logger;
-}());
+        $log.innerHTML += '\n⇒ ' + string;
+    }
+    Logger.log = log;
+})(Logger || (Logger = {}));
 //# sourceMappingURL=logger.js.map
