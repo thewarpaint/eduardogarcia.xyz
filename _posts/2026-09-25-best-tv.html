@@ -1,0 +1,836 @@
+---
+permalink: /bestTV
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="The 100 Best TV Shows of the 21st Century">
+    <meta name="description" content="Keep track of which of The New York Times' 100 best TV shows of the 21st century you've seen and want to see, and share your list.">
+
+    <title>The 100 Best TV Shows of the 21st Century - eduardogarcia.xyz</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700&family=Old+Standard+TT&display=swap" rel="stylesheet">
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --ink: #121212;
+        --muted: #5a5a5a;
+        --rule: #121212;
+        --hairline: #999;
+        --paper: #fff;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--paper);
+        color: var(--ink);
+        font-family: 'Libre Franklin', 'Franklin Gothic Book', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 48px 32px 32px;
+      }
+
+      .source {
+        margin: 0 0 4px;
+        font-family: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+        font-size: 15px;
+        color: var(--muted);
+      }
+
+      .source a {
+        color: inherit;
+      }
+
+      h1 {
+        margin: 0 0 20px;
+        font-family: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+        font-size: 50px;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        line-height: 1.1;
+      }
+
+      h1 sup {
+        font-size: 0.45em;
+        vertical-align: 0;
+        position: relative;
+        top: -0.9em;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 16px 32px;
+        padding: 16px 0;
+        border-top: 2px solid var(--rule);
+      }
+
+      .name {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        flex: 1 1 260px;
+        margin: 0;
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .name input {
+        flex: 1;
+        min-width: 0;
+        padding: 2px 0;
+        border: 0;
+        border-bottom: 1px solid var(--hairline);
+        border-radius: 0;
+        background: transparent;
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+
+      .name input:focus {
+        outline: none;
+        border-bottom-color: var(--ink);
+      }
+
+      .name input:disabled {
+        border-bottom-color: transparent;
+        color: var(--ink);
+        -webkit-text-fill-color: var(--ink);
+        opacity: 1;
+      }
+
+      .counts {
+        margin: 0;
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .button {
+        padding: 6px 14px;
+        border: 1px solid var(--ink);
+        border-radius: 0;
+        background: transparent;
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .notice {
+        margin: 0;
+        padding: 12px 0;
+        border-top: 1px solid var(--hairline);
+        font-size: 14px;
+      }
+
+      .notice[hidden] {
+        display: none;
+      }
+
+      .lists {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 48px;
+        border-top: 1px solid var(--rule);
+      }
+
+      .column-header,
+      .show {
+        display: grid;
+        grid-template-columns: 1fr 76px 76px;
+        align-items: center;
+      }
+
+      .column-header {
+        padding: 12px 0 10px;
+        border-bottom: 1px solid var(--rule);
+        margin-bottom: 20px;
+        font-size: 12px;
+        line-height: 1.3;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .column-header span {
+        padding-left: 4px;
+      }
+
+      ol {
+        margin: 0 0 24px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .show {
+        min-height: 30px;
+        font-size: 15px;
+      }
+
+      .show-title {
+        display: flex;
+        gap: 8px;
+        padding-right: 8px;
+      }
+
+      .show-rank {
+        flex: 0 0 38px;
+        font-weight: 700;
+      }
+
+      .show-name {
+        font-weight: 700;
+      }
+
+      .show-years {
+        font-weight: 400;
+        color: #333;
+        white-space: nowrap;
+      }
+
+      .check {
+        justify-self: start;
+        position: relative;
+        width: 17px;
+        height: 17px;
+        margin: 0;
+        border: 1px solid #333;
+        border-radius: 0;
+        background: var(--paper);
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+      }
+
+      .check:checked::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 1px;
+        width: 5px;
+        height: 10px;
+        border: solid var(--ink);
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      .check:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+      }
+
+      .check:disabled {
+        cursor: default;
+      }
+
+      footer {
+        padding-top: 16px;
+        border-top: 1px solid var(--rule);
+        font-size: 15px;
+        color: var(--muted);
+      }
+
+      footer a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 860px) {
+        .page {
+          padding: 24px 16px;
+        }
+
+        h1 {
+          font-size: 34px;
+        }
+
+        .lists {
+          grid-template-columns: 1fr;
+        }
+
+        .lists section + section .column-header {
+          display: none;
+        }
+
+        .lists section + section ol {
+          margin-top: -24px;
+        }
+
+        .column-header,
+        .show {
+          grid-template-columns: 1fr 56px 56px;
+        }
+
+        .column-header {
+          position: sticky;
+          top: 0;
+          z-index: 1;
+          background: var(--paper);
+          font-size: 10px;
+        }
+
+        .column-header span {
+          padding-left: 0;
+        }
+
+        .show {
+          min-height: 36px;
+          font-size: 14px;
+        }
+
+        .show-title {
+          display: block;
+          padding-left: 30px;
+          text-indent: -30px;
+        }
+
+        .show-rank {
+          display: inline-block;
+          width: 30px;
+          text-indent: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <p class="source">
+        From <a href="https://www.nytimes.com/bestTV">The New York Times</a>
+      </p>
+
+      <h1>The 100 Best TV Shows of the 21<sup>st</sup> Century</h1>
+
+      <div class="toolbar">
+        <label class="name">
+          Name
+          <input
+            id="name"
+            type="text"
+            maxlength="40"
+            autocomplete="name"
+            placeholder="Your name"
+          >
+        </label>
+
+        <p class="counts" id="counts"></p>
+
+        <button class="button" id="share" type="button">Share</button>
+        <a class="button" id="mine" href="" hidden>View my list</a>
+      </div>
+
+      <p class="notice" id="notice" hidden></p>
+
+      <div class="lists" id="lists"></div>
+
+      <footer>
+        Explore the list at <a href="https://www.nytimes.com/bestTV">nytimes.com/bestTV</a>
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        'use strict';
+
+        var SHOWS = [
+          ['Breaking Bad', '2008-2013'],
+          ['The Wire', '2002-2008'],
+          ['Mad Men', '2007-2015'],
+          ['Succession', '2018-2023'],
+          ['Fleabag', '2016-2019'],
+          ['Game of Thrones', '2011-2019'],
+          ['Veep', '2012-2019'],
+          ['30 Rock', '2006-2013'],
+          ['Curb Your Enthusiasm', '2000-2024'],
+          ['Atlanta', '2016-2022'],
+          ['The Office (U.S.)', '2005-2013'],
+          ['Arrested Development', '2003-2019'],
+          ['Girls', '2012-2017'],
+          ['Friday Night Lights', '2006-2011'],
+          ['Six Feet Under', '2001-2005'],
+          ['The Office (U.K.)', '2001-2003'],
+          ['The Americans', '2013-2018'],
+          ['I May Destroy You', '2020'],
+          ['Chernobyl', '2019'],
+          ['The Crown', '2016-2023'],
+          ['The White Lotus', '2021-present'],
+          ['Lost', '2004-2010'],
+          ['The Comeback', '2005-2026'],
+          ['Deadwood', '2004-2006'],
+          ['The Leftovers', '2014-2017'],
+          ['Black Mirror', '2011-present'],
+          ['Better Call Saul', '2015-2022'],
+          ['Band of Brothers', '2001'],
+          ['Key & Peele', '2012-2015'],
+          ['Severance', '2022-present'],
+          ['Survivor', '2000-present'],
+          ['Andor', '2022-2025'],
+          ['Enlightened', '2011-2013'],
+          ['Schitt’s Creek', '2015-2020'],
+          ['True Detective (Season 1)', '2014'],
+          ['The Pitt', '2025-present'],
+          ['Battlestar Galactica', '2005-2009'],
+          ['Homeland', '2011-2020'],
+          ['Watchmen', '2019'],
+          ['Adolescence', '2025'],
+          ['Louie', '2010-2015'],
+          ['Hacks', '2021-2026'],
+          ['Peaky Blinders', '2013-2022'],
+          ['BoJack Horseman', '2014-2020'],
+          ['Happy Valley', '2014-2023'],
+          ['Broad City', '2014-2019'],
+          ['Twin Peaks: The Return', '2017'],
+          ['House of Cards', '2013-2018'],
+          ['Normal People', '2020'],
+          ['Parks and Recreation', '2009-2015'],
+          ['The Good Place', '2016-2020'],
+          ['Downton Abbey', '2010-2015'],
+          ['Stranger Things', '2016-2025'],
+          ['The Bureau', '2015-2020'],
+          ['Insecure', '2016-2021'],
+          ['Nathan for You', '2013-2017'],
+          ['I Think You Should Leave', '2019-present'],
+          ['Chappelle’s Show', '2003-2006'],
+          ['PEN15', '2019-2021'],
+          ['Peep Show', '2003-2015'],
+          ['RuPaul’s Drag Race', '2009-present'],
+          ['Slow Horses', '2022-present'],
+          ['The Thick of It', '2005-2012'],
+          ['Anthony Bourdain: Parts Unknown', '2013-2018'],
+          ['Mare of Easttown', '2021'],
+          ['The Rehearsal', '2022-present'],
+          ['The Handmaid’s Tale', '2017-2025'],
+          ['Ozark', '2017-2022'],
+          ['Anthony Bourdain: No Reservations', '2005-2012'],
+          ['The Shield', '2002-2008'],
+          ['Beef (Season 1)', '2023'],
+          ['Squid Game', '2021-2025'],
+          ['Barry', '2018-2023'],
+          ['The Bear', '2022-2026'],
+          ['Ted Lasso', '2020-present'],
+          ['Somebody Somewhere', '2022-2024'],
+          ['Modern Family', '2009-2020'],
+          ['It’s Always Sunny in Philadelphia', '2005-present'],
+          ['The Good Wife', '2009-2016'],
+          ['How To With John Wilson', '2020-2023'],
+          ['The Queen’s Gambit', '2020'],
+          ['Better Things', '2016-2022'],
+          ['Justified', '2010-2015'],
+          ['Planet Earth', '2006'],
+          ['The Great British Baking Show', '2010-present'],
+          ['Shogun', '2024-present'],
+          ['Reservation Dogs', '2021-2023'],
+          ['Dexter', '2006-2013'],
+          ['Baby Reindeer', '2024'],
+          ['Eastbound & Down', '2009-2013'],
+          ['Catastrophe', '2015-2019'],
+          ['The Night Of', '2016'],
+          ['Station Eleven', '2021-2022'],
+          ['The Diplomat', '2023-present'],
+          ['House', '2004-2012'],
+          ['Halt and Catch Fire', '2014-2017'],
+          ['Community', '2009-2015'],
+          ['The OA', '2016-2019'],
+          ['Gilmore Girls', '2000-2007'],
+          ['Scandal', '2012-2018']
+        ];
+
+        var STORAGE_KEY = 'bestTV';
+        var SEEN = 1;
+        var WANT = 2;
+
+        // Share format, base64url-encoded bytes:
+        //   [name length][name, UTF-8][format][payload]
+        // Format 0 (sparse): 9 bits per marked show, packed MSB first:
+        //   7-bit index, "I've seen it" bit, "I want to see it" bit.
+        // Format 1 (dense): 2 bits per show for all 100 shows (25 bytes).
+        // Whichever is shorter is used.
+        var FORMAT_SPARSE = 0;
+        var FORMAT_DENSE = 1;
+
+        var nameInput = document.getElementById('name');
+        var countsEl = document.getElementById('counts');
+        var shareButton = document.getElementById('share');
+        var mineLink = document.getElementById('mine');
+        var noticeEl = document.getElementById('notice');
+        var listsEl = document.getElementById('lists');
+
+        var params = new URLSearchParams(window.location.search);
+        var shared = params.has('s') ? decode(params.get('s')) : null;
+        var readOnly = shared !== null;
+        var state = readOnly ? shared : load();
+
+        render();
+
+        if (readOnly) {
+          shareButton.hidden = true;
+          mineLink.hidden = false;
+          mineLink.href = window.location.pathname;
+          nameInput.disabled = true;
+          nameInput.placeholder = '';
+          showNotice(
+            (state.name ? state.name + '’s list' : 'A shared list') +
+            '. Your own list is saved separately and hasn’t been changed.'
+          );
+        } else if (params.has('s')) {
+          showNotice('That shared link couldn’t be read.');
+        }
+
+        nameInput.value = state.name;
+        updateCounts();
+
+        nameInput.addEventListener('input', function () {
+          state.name = nameInput.value;
+          save();
+        });
+
+        listsEl.addEventListener('change', function (event) {
+          var target = event.target;
+
+          if (!target.classList.contains('check')) {
+            return;
+          }
+
+          var index = Number(target.dataset.index);
+          var flag = Number(target.dataset.flag);
+
+          state.marks[index] = target.checked
+            ? state.marks[index] | flag
+            : state.marks[index] & ~flag;
+
+          save();
+          updateCounts();
+        });
+
+        shareButton.addEventListener('click', share);
+
+        function render() {
+          var fragment = document.createDocumentFragment();
+
+          for (var column = 0; column < 2; column++) {
+            var section = document.createElement('section');
+            var header = document.createElement('div');
+            var list = document.createElement('ol');
+            var start = column * 50;
+
+            header.className = 'column-header';
+            header.setAttribute('aria-hidden', 'true');
+            header.innerHTML = '<span></span><span>I’ve seen it</span><span>I want to see it</span>';
+
+            list.start = start + 1;
+
+            for (var i = start; i < start + 50; i++) {
+              list.appendChild(renderShow(i));
+            }
+
+            section.appendChild(header);
+            section.appendChild(list);
+            fragment.appendChild(section);
+          }
+
+          listsEl.appendChild(fragment);
+        }
+
+        function renderShow(index) {
+          var item = document.createElement('li');
+          var title = document.createElement('span');
+          var rank = document.createElement('span');
+          var name = document.createElement('span');
+          var years = document.createElement('span');
+
+          item.className = 'show';
+          title.className = 'show-title';
+          rank.className = 'show-rank';
+          name.className = 'show-name';
+          years.className = 'show-years';
+
+          rank.textContent = (index + 1) + '.';
+          name.textContent = SHOWS[index][0];
+          years.textContent = ' (' + SHOWS[index][1] + ')';
+
+          var label = document.createElement('span');
+          label.appendChild(name);
+          label.appendChild(years);
+
+          title.appendChild(rank);
+          title.appendChild(label);
+          item.appendChild(title);
+          item.appendChild(renderCheckbox(index, SEEN, 'I’ve seen it'));
+          item.appendChild(renderCheckbox(index, WANT, 'I want to see it'));
+
+          return item;
+        }
+
+        function renderCheckbox(index, flag, text) {
+          var checkbox = document.createElement('input');
+
+          checkbox.type = 'checkbox';
+          checkbox.className = 'check';
+          checkbox.dataset.index = index;
+          checkbox.dataset.flag = flag;
+          checkbox.checked = (state.marks[index] & flag) !== 0;
+          checkbox.disabled = readOnly;
+          checkbox.setAttribute('aria-label', text + ': ' + SHOWS[index][0]);
+
+          return checkbox;
+        }
+
+        function updateCounts() {
+          var seen = 0;
+          var want = 0;
+
+          state.marks.forEach(function (mark) {
+            if (mark & SEEN) {
+              seen++;
+            }
+
+            if (mark & WANT) {
+              want++;
+            }
+          });
+
+          countsEl.textContent = 'Seen ' + seen + ' · Want to see ' + want;
+        }
+
+        function showNotice(text) {
+          noticeEl.textContent = text;
+          noticeEl.hidden = false;
+        }
+
+        function emptyState() {
+          var marks = [];
+
+          for (var i = 0; i < SHOWS.length; i++) {
+            marks.push(0);
+          }
+
+          return { name: '', marks: marks };
+        }
+
+        function load() {
+          var result = emptyState();
+
+          try {
+            var parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+            if (parsed && typeof parsed.name === 'string') {
+              result.name = parsed.name;
+            }
+
+            if (parsed && Array.isArray(parsed.marks)) {
+              for (var i = 0; i < SHOWS.length; i++) {
+                result.marks[i] = (parsed.marks[i] | 0) & (SEEN | WANT);
+              }
+            }
+          } catch (e) {
+            // localStorage unavailable or corrupted - start with an empty list.
+          }
+
+          return result;
+        }
+
+        function save() {
+          if (readOnly) {
+            return;
+          }
+
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          } catch (e) {
+            // localStorage unavailable - changes only live for this visit.
+          }
+        }
+
+        function share() {
+          var url = window.location.origin + window.location.pathname + '?s=' + encode(state);
+          var title = state.name
+            ? state.name + '’s 100 Best TV Shows of the 21st Century'
+            : 'The 100 Best TV Shows of the 21st Century';
+
+          if (navigator.share) {
+            navigator.share({ title: title, url: url }).catch(function () {
+              // Dismissed by the user - nothing to do.
+            });
+          } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(function () {
+              showNotice('Link copied to the clipboard.');
+            }, function () {
+              window.prompt('Copy this link:', url);
+            });
+          } else {
+            window.prompt('Copy this link:', url);
+          }
+        }
+
+        function encode(data) {
+          var nameBytes = new TextEncoder().encode(data.name.trim()).slice(0, 255);
+          var bytes = [nameBytes.length];
+
+          nameBytes.forEach(function (byte) {
+            bytes.push(byte);
+          });
+
+          var sparse = new BitWriter();
+          var dense = new BitWriter();
+
+          data.marks.forEach(function (mark, index) {
+            if (mark) {
+              sparse.write(index, 7);
+              sparse.write(mark, 2);
+            }
+
+            dense.write(mark, 2);
+          });
+
+          if (sparse.bytes().length <= dense.bytes().length) {
+            bytes.push(FORMAT_SPARSE);
+            bytes = bytes.concat(sparse.bytes());
+          } else {
+            bytes.push(FORMAT_DENSE);
+            bytes = bytes.concat(dense.bytes());
+          }
+
+          return toBase64Url(bytes);
+        }
+
+        function decode(text) {
+          try {
+            var bytes = fromBase64Url(text);
+            var result = emptyState();
+            var nameLength = bytes[0];
+
+            if (bytes.length < nameLength + 2) {
+              return null;
+            }
+
+            var format = bytes[nameLength + 1];
+            var reader = new BitReader(bytes.slice(nameLength + 2));
+
+            result.name = new TextDecoder().decode(new Uint8Array(bytes.slice(1, nameLength + 1)));
+
+            if (format === FORMAT_SPARSE) {
+              while (reader.remaining() >= 9) {
+                var index = reader.read(7);
+                var mark = reader.read(2);
+
+                if (index < SHOWS.length) {
+                  result.marks[index] = mark;
+                }
+              }
+            } else if (format === FORMAT_DENSE) {
+              for (var i = 0; i < SHOWS.length && reader.remaining() >= 2; i++) {
+                result.marks[i] = reader.read(2);
+              }
+            } else {
+              return null;
+            }
+
+            return result;
+          } catch (e) {
+            return null;
+          }
+        }
+
+        function BitWriter() {
+          var output = [];
+          var current = 0;
+          var used = 0;
+
+          this.write = function (value, bits) {
+            for (var i = bits - 1; i >= 0; i--) {
+              current = (current << 1) | ((value >> i) & 1);
+              used++;
+
+              if (used === 8) {
+                output.push(current);
+                current = 0;
+                used = 0;
+              }
+            }
+          };
+
+          this.bytes = function () {
+            return used ? output.concat(current << (8 - used)) : output.slice();
+          };
+        }
+
+        function BitReader(bytes) {
+          var position = 0;
+          var total = bytes.length * 8;
+
+          this.remaining = function () {
+            return total - position;
+          };
+
+          this.read = function (bits) {
+            var value = 0;
+
+            for (var i = 0; i < bits; i++) {
+              var byte = bytes[position >> 3];
+              value = (value << 1) | ((byte >> (7 - (position & 7))) & 1);
+              position++;
+            }
+
+            return value;
+          };
+        }
+
+        function toBase64Url(bytes) {
+          return btoa(String.fromCharCode.apply(null, bytes))
+            .replace(/\+/g, '-')
+            .replace(/\//g, '_')
+            .replace(/=+$/, '');
+        }
+
+        function fromBase64Url(text) {
+          var binary = atob(text.replace(/-/g, '+').replace(/_/g, '/'));
+          var bytes = [];
+
+          for (var i = 0; i < binary.length; i++) {
+            bytes.push(binary.charCodeAt(i));
+          }
+
+          return bytes;
+        }
+      })();
+    </script>
+  </body>
+</html>
