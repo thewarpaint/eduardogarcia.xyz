@@ -137,5 +137,12 @@ permalink: /games
         </li>
       </ul>
     </nav>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/games-service-worker.js', { scope: '/games' });
+        });
+      }
+    </script>
   </body>
 </html>

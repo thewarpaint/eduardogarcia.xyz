@@ -1284,5 +1284,12 @@ permalink: /games/memory
       window.Games = Games;
       window.Synth = Synth;
     </script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/games-service-worker.js', { scope: '/games' });
+        });
+      }
+    </script>
   </body>
 </html>
