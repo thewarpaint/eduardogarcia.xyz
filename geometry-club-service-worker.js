@@ -47,7 +47,9 @@ function removeOldCaches(cacheKeys) {
   return Promise.all(
     cacheKeys
       .filter(function (cacheKey) {
-        return cacheKey !== CACHE_VERSION;
+        // Only this service worker's own caches, other service workers on the
+        // site (e.g. the games') keep theirs
+        return cacheKey.indexOf('cache-v') === 0 && cacheKey !== CACHE_VERSION;
       })
       .map(function (cacheKey) {
         console.log('Deleting cache ' + cacheKey);
