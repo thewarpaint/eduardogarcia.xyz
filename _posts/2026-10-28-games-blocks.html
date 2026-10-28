@@ -1,0 +1,919 @@
+---
+permalink: /games/blocks
+---
+<!DOCTYPE html>
+<html
+  lang="es-MX"
+>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="title" content="Minigames 🎲">
+    <meta name="description" content="Minigames 🎲">
+
+    <title>Minigames 🎲  - eduardogarcia.xyz</title>
+
+    <style type="text/css">
+      :root {
+        /* https://colorhunt.co/palette/f2efe79acbd048a6a7006a71 */
+        --beige: #F2EFE7;
+        --light-teal: #9ACBD0;
+        --teal: #48A6A7;
+        --dark-teal: #006A71;
+        --darker-teal: #00484d;
+
+        /* Set from JS on resize, see Layout */
+        --cell: 40px;
+        --gap: 3px;
+
+        /* Pieces in the tray are drawn smaller than on the board */
+        --tray-scale: .55;
+      }
+
+      /* No scrolling, zooming, text selection or long press menus anywhere on
+         the page, so dragging a piece never moves anything but the piece */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        overscroll-behavior: none;
+        touch-action: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html {
+        background-color: var(--dark-teal);
+      }
+
+      body {
+        box-sizing: border-box;
+        color: var(--beige);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: calc(var(--cell) * .4);
+        font-family: 'Helvetica Neue', Helvetica, sans-serif;
+        height: 100vh;
+        height: 100dvh;
+        inset: 0;
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        position: fixed;
+        width: 100%;
+      }
+
+      /* Score */
+
+      .scores {
+        display: flex;
+        justify-content: space-between;
+        width: calc(var(--cell) * 8 + var(--gap) * 11);
+      }
+
+      .score {
+        display: flex;
+        flex-direction: column;
+        font-size: calc(var(--cell) * .3);
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .score--best {
+        align-items: flex-end;
+        color: var(--light-teal);
+      }
+
+      .score__value {
+        font-size: calc(var(--cell) * .7);
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+
+      .score__value--bump {
+        animation: bump .25s ease-out;
+      }
+
+      /* Board */
+
+      .board {
+        background-color: var(--darker-teal);
+        border-radius: calc(var(--gap) * 2);
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: repeat(8, var(--cell));
+        grid-template-rows: repeat(8, var(--cell));
+        padding: calc(var(--gap) * 2);
+      }
+
+      .cell {
+        background-color: rgba(255, 255, 255, .06);
+        border-radius: calc(var(--gap) * 1.5);
+      }
+
+      /* Where the dragged piece would land */
+      .cell--preview {
+        opacity: .45;
+      }
+
+      /* Lines the dragged piece would complete */
+      .cell--will-clear {
+        filter: brightness(1.35);
+      }
+
+      .cell--clearing {
+        animation: clear .3s ease-in forwards;
+      }
+
+      /* Squares
+       *
+       * Every square of a piece, both in the tray, while dragging and once
+       * placed on the board, is a .square with a data-skin. To use images,
+       * set --square-image on each skin below, e.g.
+       *
+       *   .square[data-skin="1"] {
+       *     --square-image: url('/assets/images/games/blocks/1.png');
+       *   }
+       *
+       * The image covers the whole square, on top of --square-color, which
+       * can stay as a fallback while it loads. Drop the bevel in .square if
+       * the images already have their own.
+       */
+
+      .square {
+        --square-color: var(--light-teal);
+        --square-image: none;
+
+        background-color: var(--square-color);
+        background-image: var(--square-image);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: calc(var(--gap) * 1.5);
+        box-shadow:
+          inset 0 calc(var(--cell) * -.08) 0 rgba(0, 0, 0, .2),
+          inset 0 calc(var(--cell) * .06) 0 rgba(255, 255, 255, .3);
+      }
+
+      .square[data-skin="1"] { --square-color: #e5484d; }
+      .square[data-skin="2"] { --square-color: #f76b15; }
+      .square[data-skin="3"] { --square-color: #ffc53d; }
+      .square[data-skin="4"] { --square-color: #46a758; }
+      .square[data-skin="5"] { --square-color: #3e8ef7; }
+      .square[data-skin="6"] { --square-color: #8e4ec6; }
+      .square[data-skin="7"] { --square-color: #e93d82; }
+
+      /* Pieces */
+
+      .tray {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        height: calc(var(--cell) * 5 * var(--tray-scale) + var(--gap) * 4);
+        width: calc(var(--cell) * 8 + var(--gap) * 11);
+      }
+
+      .slot {
+        align-items: center;
+        cursor: grab;
+        display: flex;
+        justify-content: center;
+      }
+
+      .piece {
+        --size: var(--cell);
+        --piece-gap: var(--gap);
+
+        display: grid;
+        gap: var(--piece-gap);
+        grid-auto-columns: var(--size);
+        grid-auto-rows: var(--size);
+      }
+
+      .slot .piece {
+        --size: calc(var(--cell) * var(--tray-scale));
+        --piece-gap: calc(var(--gap) * var(--tray-scale));
+
+        transition: opacity .2s;
+      }
+
+      .slot .piece--hidden {
+        visibility: hidden;
+      }
+
+      .slot .piece--blocked {
+        filter: grayscale(1);
+        opacity: .35;
+      }
+
+      .slot .piece--dealt {
+        animation: deal .25s ease-out backwards;
+      }
+
+      /* The piece following the finger, see Drag */
+      .dragged {
+        cursor: grabbing;
+        left: 0;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        will-change: transform;
+        z-index: 10;
+      }
+
+      .dragged .piece {
+        animation: lift .12s ease-out;
+        filter: drop-shadow(0 calc(var(--cell) * .15) calc(var(--cell) * .2) rgba(0, 0, 0, .35));
+        transform-origin: top left;
+      }
+
+      .dragged--returning {
+        transition: transform .18s ease-in;
+      }
+
+      .dragged--returning .piece {
+        transition: transform .18s ease-in;
+        transform: scale(var(--tray-scale));
+      }
+
+      /* Game over */
+
+      .game-over {
+        align-items: center;
+        background-color: rgba(0, 72, 77, .85);
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--cell) * .4);
+        inset: 0;
+        justify-content: center;
+        position: fixed;
+        z-index: 20;
+      }
+
+      .game-over[hidden] {
+        display: none;
+      }
+
+      .game-over__title {
+        font-size: calc(var(--cell) * .9);
+        margin: 0;
+      }
+
+      .game-over__score {
+        font-size: calc(var(--cell) * .5);
+        margin: 0;
+      }
+
+      .game-over__button {
+        background-color: var(--beige);
+        border: 0;
+        border-radius: calc(var(--gap) * 3);
+        color: var(--dark-teal);
+        cursor: pointer;
+        font-size: calc(var(--cell) * .5);
+        font-weight: bold;
+        padding: calc(var(--cell) * .25) calc(var(--cell) * .6);
+      }
+
+      @keyframes bump {
+        50% { transform: scale(1.2); }
+      }
+
+      @keyframes clear {
+        from { transform: scale(1); opacity: 1; }
+        to { transform: scale(.2); opacity: 0; }
+      }
+
+      @keyframes deal {
+        from { transform: scale(.4); opacity: 0; }
+      }
+
+      @keyframes lift {
+        from { transform: scale(var(--tray-scale)); }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="scores">
+      <div class="score">
+        <span data-i18n="score"></span>
+        <span class="score__value" id="score">0</span>
+      </div>
+
+      <div class="score score--best">
+        <span data-i18n="best"></span>
+        <span class="score__value" id="best">0</span>
+      </div>
+    </header>
+
+    <main class="board" id="board"></main>
+
+    <div class="tray" id="tray">
+      <div class="slot" data-slot="0"></div>
+      <div class="slot" data-slot="1"></div>
+      <div class="slot" data-slot="2"></div>
+    </div>
+
+    <div class="game-over" id="game-over" hidden>
+      <h1 class="game-over__title" data-i18n="gameOver"></h1>
+      <p class="game-over__score" id="final-score"></p>
+      <button class="game-over__button" id="play-again" data-i18n="playAgain"></button>
+    </div>
+
+    <script>
+      const url = new URL(window.location.href);
+      const language = (url.searchParams.get('lang') || 'es-MX').split('-')[0] === 'en' ? 'en' : 'es';
+
+      const i18n = {
+        en: {
+          score: 'Score',
+          best: 'Best',
+          gameOver: 'No more moves!',
+          finalScore: 'Score: ',
+          playAgain: 'Play again',
+        },
+        es: {
+          score: 'Puntos',
+          best: 'Récord',
+          gameOver: '¡Ya no caben!',
+          finalScore: 'Puntos: ',
+          playAgain: 'Jugar otra vez',
+        },
+      };
+
+      document.documentElement.lang = language === 'en' ? 'en-US' : 'es-MX';
+
+      document.querySelectorAll('[data-i18n]').forEach(function (element) {
+        element.textContent = i18n[language][element.dataset.i18n];
+      });
+
+      const SIZE = 8;
+      const SKINS = 7;
+      const BEST_SCORE_KEY = 'games.blocks.best';
+
+      // '#' is a square, '.' is empty
+      const SHAPES = [
+        ['#'],
+        ['##'], ['#', '#'],
+        ['###'], ['#', '#', '#'],
+        ['####'], ['#', '#', '#', '#'],
+        ['#####'], ['#', '#', '#', '#', '#'],
+        ['##', '##'],
+        ['###', '###'], ['##', '##', '##'],
+        ['###', '###', '###'],
+        ['##', '#.'], ['##', '.#'], ['#.', '##'], ['.#', '##'],
+        ['###', '#..'], ['###', '..#'], ['#..', '###'], ['..#', '###'],
+        ['##', '#.', '#.'], ['##', '.#', '.#'], ['#.', '#.', '##'], ['.#', '.#', '##'],
+        ['###', '.#.'], ['.#.', '###'], ['#.', '##', '#.'], ['.#', '##', '.#'],
+        ['##.', '.##'], ['.##', '##.'], ['#.', '##', '.#'], ['.#', '##', '#.'],
+        ['###', '#..', '#..'], ['###', '..#', '..#'], ['#..', '#..', '###'], ['..#', '..#', '###'],
+      ];
+
+      // localStorage can throw, e.g. in private mode
+      const Storage = {
+        get: function (key) {
+          try {
+            return window.localStorage.getItem(key);
+          } catch (error) {
+            return null;
+          }
+        },
+
+        set: function (key, value) {
+          try {
+            window.localStorage.setItem(key, value);
+          } catch (error) {
+            // noop
+          }
+        },
+      };
+
+      function createPiece() {
+        const shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+        const squares = [];
+
+        shape.forEach(function (row, rowIndex) {
+          row.split('').forEach(function (character, columnIndex) {
+            if (character === '#') {
+              squares.push([rowIndex, columnIndex]);
+            }
+          });
+        });
+
+        return {
+          squares: squares,
+          width: shape[0].length,
+          height: shape.length,
+          skin: 1 + Math.floor(Math.random() * SKINS),
+        };
+      }
+
+      function renderPiece(piece) {
+        const element = document.createElement('div');
+
+        element.className = 'piece';
+
+        piece.squares.forEach(function (square) {
+          const squareElement = document.createElement('div');
+
+          squareElement.className = 'square';
+          squareElement.dataset.skin = piece.skin;
+          squareElement.style.gridRow = square[0] + 1;
+          squareElement.style.gridColumn = square[1] + 1;
+          element.appendChild(squareElement);
+        });
+
+        return element;
+      }
+
+      const Game = {
+        // SIZE * SIZE cells, 0 when empty or the skin of the square in it
+        board: [],
+        pieces: [],
+        score: 0,
+        best: parseInt(Storage.get(BEST_SCORE_KEY), 10) || 0,
+        // Lines cleared in consecutive moves, for the combo bonus
+        streak: 0,
+
+        $board: document.getElementById('board'),
+        $cells: [],
+        $slots: Array.prototype.slice.call(document.querySelectorAll('.slot')),
+        $score: document.getElementById('score'),
+        $best: document.getElementById('best'),
+        $gameOver: document.getElementById('game-over'),
+        $finalScore: document.getElementById('final-score'),
+
+        init: function () {
+          for (let i = 0; i < SIZE * SIZE; i++) {
+            const cell = document.createElement('div');
+
+            cell.className = 'cell';
+            this.$board.appendChild(cell);
+            this.$cells.push(cell);
+          }
+
+          document.getElementById('play-again').addEventListener('click', this.start.bind(this));
+
+          this.start();
+        },
+
+        start: function () {
+          this.board = new Array(SIZE * SIZE).fill(0);
+          this.score = 0;
+          this.streak = 0;
+          this.$gameOver.hidden = true;
+
+          for (let i = 0; i < SIZE * SIZE; i++) {
+            this.renderCell(i);
+          }
+
+          this.renderScore();
+          this.deal();
+        },
+
+        // Deals 3 new pieces, retrying a few times so at least one of them fits
+        deal: function () {
+          for (let attempt = 0; attempt < 10; attempt++) {
+            this.pieces = [createPiece(), createPiece(), createPiece()];
+
+            if (this.pieces.some(this.fitsAnywhere, this)) {
+              break;
+            }
+          }
+
+          this.$slots.forEach(function (slot, index) {
+            const element = renderPiece(this.pieces[index]);
+
+            element.classList.add('piece--dealt');
+            element.style.animationDelay = (index * 0.06) + 's';
+            slot.replaceChildren(element);
+          }, this);
+
+          this.updateTray();
+        },
+
+        fits: function (piece, row, column) {
+          if (row < 0 || column < 0 || row + piece.height > SIZE || column + piece.width > SIZE) {
+            return false;
+          }
+
+          return piece.squares.every(function (square) {
+            return this.board[(row + square[0]) * SIZE + column + square[1]] === 0;
+          }, this);
+        },
+
+        fitsAnywhere: function (piece) {
+          for (let row = 0; row <= SIZE - piece.height; row++) {
+            for (let column = 0; column <= SIZE - piece.width; column++) {
+              if (this.fits(piece, row, column)) {
+                return true;
+              }
+            }
+          }
+
+          return false;
+        },
+
+        // Indexes of the cells in the rows and columns that would be full
+        // with the given extra cells filled
+        fullLines: function (extraIndexes) {
+          const filled = this.board.map(function (skin) {
+            return skin !== 0;
+          });
+          const indexes = new Set();
+          let lines = 0;
+
+          (extraIndexes || []).forEach(function (index) {
+            filled[index] = true;
+          });
+
+          for (let i = 0; i < SIZE; i++) {
+            const row = [];
+            const column = [];
+
+            for (let j = 0; j < SIZE; j++) {
+              row.push(i * SIZE + j);
+              column.push(j * SIZE + i);
+            }
+
+            [row, column].forEach(function (line) {
+              if (line.every(function (index) { return filled[index]; })) {
+                lines++;
+                line.forEach(function (index) { indexes.add(index); });
+              }
+            });
+          }
+
+          return { indexes: indexes, lines: lines };
+        },
+
+        pieceIndexes: function (piece, row, column) {
+          return piece.squares.map(function (square) {
+            return (row + square[0]) * SIZE + column + square[1];
+          });
+        },
+
+        // Returns whether the piece was placed
+        place: function (slotIndex, row, column) {
+          const piece = this.pieces[slotIndex];
+
+          if (!piece || !this.fits(piece, row, column)) {
+            return false;
+          }
+
+          const indexes = this.pieceIndexes(piece, row, column);
+
+          indexes.forEach(function (index) {
+            this.board[index] = piece.skin;
+            this.renderCell(index);
+          }, this);
+
+          const cleared = this.fullLines();
+
+          cleared.indexes.forEach(function (index) {
+            const skin = this.board[index];
+
+            this.board[index] = 0;
+            this.renderCell(index, skin);
+          }, this);
+
+          this.streak = cleared.lines > 0 ? this.streak + 1 : 0;
+          this.addPoints(indexes.length + cleared.lines * cleared.lines * 10 * Math.max(1, this.streak));
+
+          this.pieces[slotIndex] = null;
+          this.$slots[slotIndex].replaceChildren();
+
+          if (this.pieces.every(function (remaining) { return remaining === null; })) {
+            this.deal();
+          } else {
+            this.updateTray();
+          }
+
+          return true;
+        },
+
+        // Greys out the pieces that don't fit, and ends the game when none do
+        updateTray: function () {
+          let anyFits = false;
+
+          this.pieces.forEach(function (piece, index) {
+            if (piece === null) {
+              return;
+            }
+
+            const fits = this.fitsAnywhere(piece);
+
+            anyFits = anyFits || fits;
+            this.$slots[index].firstChild.classList.toggle('piece--blocked', !fits);
+          }, this);
+
+          if (!anyFits) {
+            window.setTimeout(this.gameOver.bind(this), 600);
+          }
+        },
+
+        gameOver: function () {
+          this.$finalScore.textContent = i18n[language].finalScore + this.score;
+          this.$gameOver.hidden = false;
+        },
+
+        addPoints: function (points) {
+          this.score += points;
+
+          if (this.score > this.best) {
+            this.best = this.score;
+            Storage.set(BEST_SCORE_KEY, this.best);
+          }
+
+          this.renderScore();
+          this.$score.classList.remove('score__value--bump');
+          // Restart the animation
+          void this.$score.offsetWidth;
+          this.$score.classList.add('score__value--bump');
+        },
+
+        renderScore: function () {
+          this.$score.textContent = this.score;
+          this.$best.textContent = this.best;
+        },
+
+        // clearedSkin animates the square that was in an emptied cell away
+        renderCell: function (index, clearedSkin) {
+          const cell = this.$cells[index];
+          const skin = this.board[index] || clearedSkin;
+
+          cell.className = 'cell';
+
+          if (skin) {
+            cell.classList.add('square');
+            cell.dataset.skin = skin;
+          } else {
+            delete cell.dataset.skin;
+          }
+
+          if (clearedSkin) {
+            cell.classList.add('cell--clearing');
+            cell.addEventListener('animationend', function onEnd() {
+              cell.removeEventListener('animationend', onEnd);
+
+              if (cell.classList.contains('cell--clearing')) {
+                this.renderCell(index);
+              }
+            }.bind(this));
+          }
+        },
+
+        // Shows where the piece would land and which lines it would clear,
+        // or clears the preview when piece is null
+        preview: function (piece, row, column) {
+          for (let i = 0; i < SIZE * SIZE; i++) {
+            if (!this.$cells[i].classList.contains('cell--clearing')) {
+              this.renderCell(i);
+            }
+          }
+
+          if (!piece) {
+            return;
+          }
+
+          const indexes = this.pieceIndexes(piece, row, column);
+
+          indexes.forEach(function (index) {
+            const cell = this.$cells[index];
+
+            cell.className = 'cell square cell--preview';
+            cell.dataset.skin = piece.skin;
+          }, this);
+
+          this.fullLines(indexes).indexes.forEach(function (index) {
+            const cell = this.$cells[index];
+
+            cell.classList.add('square', 'cell--will-clear');
+            cell.dataset.skin = piece.skin;
+          }, this);
+        },
+      };
+
+      // Sizes everything from the viewport, so the board, the tray and the
+      // score always fit on screen without scrolling
+      const Layout = {
+        cell: 0,
+        gap: 0,
+
+        update: function () {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+
+          // The board is 8 cells plus gaps wide; vertically the score, the
+          // board and the tray take about 14 cells
+          this.cell = Math.floor(Math.min(width * 0.96 / 8.9, height / 14, 90));
+          this.gap = Math.max(2, Math.round(this.cell * 0.07));
+
+          document.documentElement.style.setProperty('--cell', this.cell + 'px');
+          document.documentElement.style.setProperty('--gap', this.gap + 'px');
+        },
+
+        pieceWidth: function (piece) {
+          return piece.width * this.cell + (piece.width - 1) * this.gap;
+        },
+
+        pieceHeight: function (piece) {
+          return piece.height * this.cell + (piece.height - 1) * this.gap;
+        },
+      };
+
+      // Pointer events cover mouse, touch and pen alike. The dragged piece is
+      // a fixed position copy moved with transforms on each animation frame,
+      // and snaps to the closest cell on the board
+      const Drag = {
+        active: null,
+
+        init: function () {
+          Game.$slots.forEach(function (slot, index) {
+            slot.addEventListener('pointerdown', this.start.bind(this, index));
+          }, this);
+
+          window.addEventListener('pointermove', this.move.bind(this));
+          window.addEventListener('pointerup', this.end.bind(this));
+          window.addEventListener('pointercancel', this.cancel.bind(this));
+
+          // iOS Safari ignores touch-action for some gestures, so block them
+          // here too. Must be non-passive to be cancelable
+          document.addEventListener('touchmove', function (event) {
+            event.preventDefault();
+          }, { passive: false });
+
+          document.addEventListener('gesturestart', function (event) {
+            event.preventDefault();
+          });
+
+          document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+          });
+        },
+
+        start: function (slotIndex, event) {
+          const piece = Game.pieces[slotIndex];
+
+          if (this.active || !piece || !event.isPrimary) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const source = Game.$slots[slotIndex].firstChild;
+          const element = document.createElement('div');
+          const firstCell = Game.$cells[0].getBoundingClientRect();
+
+          element.className = 'dragged';
+          element.appendChild(renderPiece(piece));
+          document.body.appendChild(element);
+          source.classList.add('piece--hidden');
+
+          this.active = {
+            slotIndex: slotIndex,
+            piece: piece,
+            source: source,
+            element: element,
+            pointerId: event.pointerId,
+            // On touch the piece floats above the finger so it stays visible
+            lift: event.pointerType === 'mouse' ? Layout.pieceHeight(piece) / 2 : Layout.pieceHeight(piece) + Layout.cell,
+            boardLeft: firstCell.left,
+            boardTop: firstCell.top,
+            pitch: Layout.cell + Layout.gap,
+            x: event.clientX,
+            y: event.clientY,
+            row: null,
+            column: null,
+            frame: null,
+          };
+
+          this.render();
+        },
+
+        move: function (event) {
+          if (!this.active || event.pointerId !== this.active.pointerId) {
+            return;
+          }
+
+          this.active.x = event.clientX;
+          this.active.y = event.clientY;
+
+          if (this.active.frame === null) {
+            this.active.frame = window.requestAnimationFrame(this.render.bind(this));
+          }
+        },
+
+        // Top left corner of the dragged piece
+        position: function () {
+          return {
+            left: this.active.x - Layout.pieceWidth(this.active.piece) / 2,
+            top: this.active.y - this.active.lift,
+          };
+        },
+
+        render: function () {
+          const active = this.active;
+
+          if (!active) {
+            return;
+          }
+
+          const position = this.position();
+          const row = Math.round((position.top - active.boardTop) / active.pitch);
+          const column = Math.round((position.left - active.boardLeft) / active.pitch);
+
+          active.frame = null;
+          active.element.style.transform = 'translate3d(' + position.left + 'px, ' + position.top + 'px, 0)';
+
+          if (!Game.fits(active.piece, row, column)) {
+            if (active.row !== null) {
+              active.row = active.column = null;
+              Game.preview(null);
+            }
+
+            return;
+          }
+
+          if (row !== active.row || column !== active.column) {
+            active.row = row;
+            active.column = column;
+            Game.preview(active.piece, row, column);
+          }
+        },
+
+        end: function (event) {
+          const active = this.active;
+
+          if (!active || event.pointerId !== active.pointerId) {
+            return;
+          }
+
+          // Catch up with the last move before deciding where it lands
+          if (active.frame !== null) {
+            window.cancelAnimationFrame(active.frame);
+          }
+
+          this.render();
+          this.active = null;
+          Game.preview(null);
+
+          if (active.row !== null && Game.place(active.slotIndex, active.row, active.column)) {
+            active.element.remove();
+            return;
+          }
+
+          this.returnToTray(active);
+        },
+
+        cancel: function (event) {
+          const active = this.active;
+
+          if (!active || event.pointerId !== active.pointerId) {
+            return;
+          }
+
+          if (active.frame !== null) {
+            window.cancelAnimationFrame(active.frame);
+          }
+
+          this.active = null;
+          Game.preview(null);
+          this.returnToTray(active);
+        },
+
+        // Animates the dragged piece back to its slot, then shows the original
+        returnToTray: function (active) {
+          const target = active.source.getBoundingClientRect();
+          const done = function () {
+            active.element.remove();
+            active.source.classList.remove('piece--hidden');
+          };
+
+          active.element.classList.add('dragged--returning');
+          active.element.style.transform = 'translate3d(' + target.left + 'px, ' + target.top + 'px, 0)';
+          active.element.addEventListener('transitionend', done, { once: true });
+          // In case transitionend never fires, e.g. the piece didn't move
+          window.setTimeout(done, 250);
+        },
+      };
+
+      Layout.update();
+      window.addEventListener('resize', Layout.update.bind(Layout));
+
+      Game.init();
+      Drag.init();
+    </script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/games-service-worker.js', { scope: '/games' });
+        });
+      }
+    </script>
+  </body>
+</html>

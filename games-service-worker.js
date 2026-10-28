@@ -8,6 +8,7 @@ var NAVIGATION_TIMEOUT_MS = 1500;
 var PRECACHE_URLS = [
   '/games',
   '/games/memory',
+  '/games/blocks',
 ];
 
 function log() {
