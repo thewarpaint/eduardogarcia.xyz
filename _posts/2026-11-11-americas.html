@@ -1,0 +1,1275 @@
+---
+permalink: /americas
+---
+<!DOCTYPE html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="title" content="Las Américas">
+    <meta name="description" content="Un mapa interactivo con las diferencias entre Latinoamérica, Iberoamérica, Hispanoamérica, Norteamérica, Centroamérica y Sudamérica.">
+
+    <title>Las Américas - eduardogarcia.xyz</title>
+
+    <style>
+      /* One screen: title, map (takes whatever height is left), selectors and a
+         one sentence summary; the full details open in a panel */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --ink: #1d2730;
+        --muted: #5b6b78;
+        --paper: #ffffff;
+        --ocean: #e8f1f7;
+        --land: #cfd8df;
+        --land-stroke: #ffffff;
+        --chip: #f1f4f6;
+        --rule: #dde3e8;
+        --shadow: rgba(16, 24, 32, .18);
+        --backdrop: rgba(16, 24, 32, .45);
+
+        --north: #1971c2;
+        --central: #0b7285;
+        --south: #6741d9;
+        --latam: #c2255c;
+        --hispano: #d9480f;
+        --ibero: #8f6400;
+
+        /* Set from JS to the selected category's color */
+        --active: var(--north);
+
+        --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --ink: #e6edf3;
+          --muted: #9aa8b4;
+          --paper: #12181d;
+          --ocean: #172129;
+          --land: #34424d;
+          --land-stroke: #12181d;
+          --chip: #1f2a32;
+          --rule: #2a3640;
+          --shadow: rgba(0, 0, 0, .5);
+          --backdrop: rgba(0, 0, 0, .6);
+
+          color-scheme: dark;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        --ink: #e6edf3;
+        --muted: #9aa8b4;
+        --paper: #12181d;
+        --ocean: #172129;
+        --land: #34424d;
+        --land-stroke: #12181d;
+        --chip: #1f2a32;
+        --rule: #2a3640;
+        --shadow: rgba(0, 0, 0, .5);
+        --backdrop: rgba(0, 0, 0, .6);
+
+        color-scheme: dark;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      html {
+        background-color: var(--paper);
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        background-color: var(--paper);
+        color: var(--ink);
+        margin: 0;
+        font-family: var(--font);
+        font-size: 16px;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .screen {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        height: 100%;
+        margin: 0 auto;
+        max-width: 60rem;
+        padding-block: max(.75rem, env(safe-area-inset-top, 0px)) max(.75rem, env(safe-area-inset-bottom, 0px));
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+      }
+
+      /* Title and language */
+
+      .header {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+      }
+
+      .header__title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        letter-spacing: -.015em;
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      .languages {
+        display: flex;
+        gap: .375rem;
+      }
+
+      .language {
+        background: none;
+        border: 2px solid transparent;
+        border-radius: .375rem;
+        cursor: pointer;
+        display: flex;
+        line-height: 0;
+        opacity: .45;
+        padding: 2px;
+        transition: opacity .2s, border-color .2s;
+      }
+
+      .language:hover {
+        opacity: .85;
+      }
+
+      .language[aria-pressed="true"] {
+        border-color: var(--rule);
+        opacity: 1;
+      }
+
+      .language svg {
+        border-radius: 2px;
+        display: block;
+        height: 1.25rem;
+        width: 2.1rem;
+      }
+
+      /* Map */
+
+      .map-container {
+        background-color: var(--ocean);
+        border-radius: 1rem;
+        flex: 1 1 auto;
+        min-height: 9rem;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .map {
+        display: block;
+        height: 100%;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+      }
+
+      .country {
+        cursor: pointer;
+        fill: var(--land);
+        stroke: var(--land-stroke);
+        stroke-linejoin: round;
+        stroke-width: .6;
+        transition: fill .45s ease;
+      }
+
+      .country--marker {
+        stroke-width: 1.5;
+      }
+
+      .country.is-highlighted {
+        fill: var(--active);
+      }
+
+      .country.is-focused {
+        stroke: var(--ink);
+        stroke-width: 2;
+      }
+
+      .country--marker.is-focused {
+        stroke-width: 2.5;
+      }
+
+      /* Name and categories of the tapped or hovered country */
+      .country-info {
+        background-color: var(--paper);
+        border-radius: .75rem;
+        bottom: .75rem;
+        box-shadow: 0 .25rem 1rem var(--shadow);
+        left: .75rem;
+        max-width: calc(100% - 1.5rem);
+        padding: .6rem .8rem;
+        pointer-events: none;
+        position: absolute;
+      }
+
+      .country-info__name {
+        font-weight: bold;
+        margin: 0 0 .25rem;
+      }
+
+      .country-info__categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .25rem .75rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .country-info__category {
+        align-items: center;
+        display: flex;
+        font-size: .8125rem;
+        gap: .3rem;
+      }
+
+      .country-info__category::before {
+        background-color: var(--color);
+        border-radius: 50%;
+        content: '';
+        height: .5rem;
+        width: .5rem;
+      }
+
+      /* Category selectors */
+
+      .controls {
+        display: grid;
+        gap: .5rem 1rem;
+      }
+
+      @media (min-width: 700px) {
+        .controls {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* Same height with or without the pause button, so both rows line up */
+      .controls__header {
+        align-items: center;
+        display: flex;
+        height: 1.25rem;
+        justify-content: space-between;
+        margin-bottom: .3rem;
+      }
+
+      .controls__label {
+        color: var(--muted);
+        font-size: .75rem;
+        font-weight: bold;
+        letter-spacing: .06em;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      .controls__group {
+        display: grid;
+        gap: .5rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .selector {
+        --color: var(--north);
+
+        align-items: center;
+        background-color: var(--chip);
+        border: 2px solid transparent;
+        border-radius: .5rem;
+        box-shadow: inset 0 -3px 0 var(--color);
+        color: var(--ink);
+        cursor: pointer;
+        display: flex;
+        font-size: clamp(.6875rem, 3.1vw, .875rem);
+        font-weight: bold;
+        /* Last resort on very narrow screens */
+        hyphens: auto;
+        justify-content: center;
+        line-height: 1.2;
+        min-height: 2.75rem;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        padding: .4rem .2rem;
+        position: relative;
+        text-align: center;
+        transition: background-color .2s, color .2s;
+      }
+
+      .selector:hover {
+        border-color: var(--color);
+      }
+
+      .selector:focus-visible {
+        outline: 3px solid var(--color);
+        outline-offset: 2px;
+      }
+
+      .selector[aria-pressed="true"] {
+        background-color: var(--color);
+        color: #ffffff;
+      }
+
+      /* Time left until the next category while cycling */
+      .selector__progress {
+        background-color: rgba(255, 255, 255, .7);
+        bottom: 0;
+        height: 3px;
+        left: 0;
+        position: absolute;
+        transform: scaleX(0);
+        transform-origin: left;
+        width: 100%;
+      }
+
+      .is-cycling .selector[aria-pressed="true"] .selector__progress {
+        animation: progress var(--cycle-duration) linear forwards;
+      }
+
+      .selector[data-category="north"] { --color: var(--north); }
+      .selector[data-category="central"] { --color: var(--central); }
+      .selector[data-category="south"] { --color: var(--south); }
+      .selector[data-category="latam"] { --color: var(--latam); }
+      .selector[data-category="hispano"] { --color: var(--hispano); }
+      .selector[data-category="ibero"] { --color: var(--ibero); }
+
+      .playback {
+        background: none;
+        border: 0;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 1rem;
+        line-height: 1;
+        padding: 0 .125rem;
+      }
+
+      .playback:hover {
+        color: var(--ink);
+      }
+
+      .language:focus-visible,
+      .playback:focus-visible,
+      .icon-button:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+      }
+
+      /* One sentence summary */
+
+      .summary {
+        align-items: center;
+        border-left: 3px solid var(--active);
+        display: flex;
+        gap: .75rem;
+        padding-left: .75rem;
+      }
+
+      .summary__text {
+        flex: 1 1 auto;
+        font-size: .9375rem;
+        line-height: 1.4;
+        margin: 0;
+        min-width: 0;
+      }
+
+      .summary__name {
+        font-weight: bold;
+      }
+
+      .icon-button {
+        align-items: center;
+        background-color: var(--chip);
+        border: 0;
+        border-radius: 50%;
+        color: var(--ink);
+        cursor: pointer;
+        display: flex;
+        flex: 0 0 auto;
+        height: 2.5rem;
+        justify-content: center;
+        padding: 0;
+        width: 2.5rem;
+      }
+
+      .icon-button:hover {
+        background-color: var(--rule);
+      }
+
+      .icon-button svg {
+        height: 1.125rem;
+        width: 1.125rem;
+      }
+
+      /* Full details panel: a bottom sheet on phones, a centered panel on wider
+         screens */
+
+      .panel {
+        background-color: var(--paper);
+        border: 0;
+        border-radius: 1rem 1rem 0 0;
+        box-shadow: 0 -.5rem 2rem var(--shadow);
+        color: var(--ink);
+        inset: auto 0 0 0;
+        margin: 0;
+        max-height: 85%;
+        max-width: 100%;
+        overflow: auto;
+        padding: 0;
+        position: fixed;
+        width: 100%;
+      }
+
+      /* Padding lives here, so a click on the dialog itself is always the backdrop */
+      .panel__body {
+        padding-block: 1.25rem max(1.5rem, env(safe-area-inset-bottom, 0px));
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+      }
+
+      @media (min-width: 700px) {
+        .panel {
+          border-radius: 1rem;
+          box-shadow: 0 1rem 3rem var(--shadow);
+          inset: 0;
+          margin: auto;
+          max-height: min(85%, 40rem);
+          width: min(36rem, calc(100% - 2rem));
+        }
+      }
+
+      @media (min-width: 700px) {
+        .panel__body {
+          padding: 1.5rem;
+        }
+      }
+
+      .panel::backdrop {
+        background-color: var(--backdrop);
+      }
+
+      .panel[open] {
+        animation: panel-in .25s ease-out;
+      }
+
+      .panel__header {
+        align-items: flex-start;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+      }
+
+      .panel__kind {
+        color: var(--active);
+        font-size: .75rem;
+        font-weight: bold;
+        letter-spacing: .06em;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      .panel__name {
+        font-size: 1.5rem;
+        margin: .25rem 0 .75rem;
+        text-wrap: balance;
+      }
+
+      .panel__definition {
+        font-size: 1.0625rem;
+        line-height: 1.45;
+        margin: 0 0 .75rem;
+      }
+
+      .panel__note {
+        border-left: 3px solid var(--active);
+        color: var(--muted);
+        font-size: .9375rem;
+        line-height: 1.45;
+        margin: 0 0 1rem;
+        padding-left: .75rem;
+      }
+
+      .panel__count {
+        font-size: .875rem;
+        font-weight: bold;
+        margin: 0 0 .5rem;
+      }
+
+      .panel__countries {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .35rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .panel__country {
+        background-color: var(--chip);
+        border-radius: 999px;
+        font-size: .8125rem;
+        padding: .25rem .6rem;
+      }
+
+      .panel__country--territory {
+        font-style: italic;
+      }
+
+      .panel__legend {
+        color: var(--muted);
+        font-size: .8125rem;
+        margin: .75rem 0 0;
+      }
+
+      @keyframes progress {
+        to { transform: scaleX(1); }
+      }
+
+      @keyframes panel-in {
+        from { opacity: 0; transform: translateY(1rem); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .country {
+          transition: none;
+        }
+
+        .panel[open] {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="screen">
+      <header class="header">
+        <h1 class="header__title" id="title"></h1>
+
+        <div class="languages" role="group" aria-label="Idioma / Language">
+          <button class="language" id="language-en" type="button" lang="en" aria-label="English" title="English">
+            <!-- United Kingdom -->
+            <svg viewBox="0 0 60 30" aria-hidden="true">
+              <clipPath id="uk-flag"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+              <clipPath id="uk-diagonals"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+              <g clip-path="url(#uk-flag)">
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#ffffff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#uk-diagonals)" stroke="#c8102e" stroke-width="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#ffffff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#c8102e" stroke-width="6"/>
+              </g>
+            </svg>
+          </button>
+
+          <button class="language" id="language-es" type="button" lang="es" aria-label="Español" title="Español">
+            <!-- México -->
+            <svg viewBox="0 0 42 24" aria-hidden="true">
+              <rect width="14" height="24" fill="#006847"/>
+              <rect x="14" width="14" height="24" fill="#ffffff"/>
+              <rect x="28" width="14" height="24" fill="#ce1126"/>
+              <ellipse cx="21" cy="12" rx="3.2" ry="3.6" fill="#8c5a2b"/>
+              <path d="M17.6,14.6 q3.4,2.6 6.8,0" fill="none" stroke="#006847" stroke-width="1"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="map-container" id="map-container">
+        {% include americas-map.svg %}
+
+        <div class="country-info" id="country-info" hidden>
+          <p class="country-info__name" id="country-info-name"></p>
+          <ul class="country-info__categories" id="country-info-categories"></ul>
+        </div>
+      </div>
+
+      <nav class="controls" id="controls">
+        <div>
+          <div class="controls__header">
+            <p class="controls__label" data-i18n="geographic"></p>
+            <button class="playback" id="playback" type="button"></button>
+          </div>
+          <div class="controls__group" id="geographic"></div>
+        </div>
+
+        <div>
+          <div class="controls__header">
+            <p class="controls__label" data-i18n="cultural"></p>
+          </div>
+          <div class="controls__group" id="cultural"></div>
+        </div>
+      </nav>
+
+      <section class="summary" aria-live="polite">
+        <p class="summary__text" id="summary-text"><span class="summary__name" id="summary-name"></span> <span id="summary-definition"></span></p>
+
+        <button class="icon-button" id="maximize" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+          </svg>
+        </button>
+      </section>
+    </div>
+
+    <dialog class="panel" id="panel" aria-labelledby="panel-name">
+      <div class="panel__body">
+      <div class="panel__header">
+        <p class="panel__kind" id="panel-kind"></p>
+
+        <button class="icon-button" id="panel-close" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
+      </div>
+
+      <h2 class="panel__name" id="panel-name"></h2>
+      <p class="panel__definition" id="panel-definition"></p>
+      <p class="panel__note" id="panel-note"></p>
+      <p class="panel__count" id="panel-count"></p>
+      <ul class="panel__countries" id="panel-countries"></ul>
+      <p class="panel__legend" id="panel-legend"></p>
+      </div>
+    </dialog>
+
+    <script>
+      (function () {
+        const CYCLE_DURATION_MS = 5000;
+        const LANGUAGE_KEY = 'americas.language';
+
+        const i18n = {
+          es: {
+            title: 'Las Américas',
+            geographic: 'Geográficos',
+            cultural: 'Por idioma',
+            pause: 'Pausar',
+            play: 'Reproducir',
+            mapTitle: 'Mapa de América',
+            more: 'Ver todos los detalles',
+            close: 'Cerrar',
+            territoryLegend: 'En cursiva: territorios que dependen de otro país.',
+            countries: function (countries, territories) {
+              return countries + (countries === 1 ? ' país' : ' países') +
+                (territories ? ' y ' + territories + (territories === 1 ? ' territorio' : ' territorios') : '');
+            },
+          },
+          en: {
+            title: 'The Americas',
+            geographic: 'Geographic',
+            cultural: 'By language',
+            pause: 'Pause',
+            play: 'Play',
+            mapTitle: 'Map of the Americas',
+            more: 'See all the details',
+            close: 'Close',
+            territoryLegend: 'In italics: territories that belong to another country.',
+            countries: function (countries, territories) {
+              return countries + (countries === 1 ? ' country' : ' countries') +
+                (territories ? ' and ' + territories + (territories === 1 ? ' territory' : ' territories') : '');
+            },
+          },
+        };
+
+        // ISO 3166-1 alpha-2 -> names, territory: true for dependent territories
+        const COUNTRIES = {
+          AG: { es: 'Antigua y Barbuda', en: 'Antigua and Barbuda' },
+          AI: { es: 'Anguila', en: 'Anguilla', territory: true },
+          AR: { es: 'Argentina', en: 'Argentina' },
+          AW: { es: 'Aruba', en: 'Aruba', territory: true },
+          BB: { es: 'Barbados', en: 'Barbados' },
+          BL: { es: 'San Bartolomé', en: 'Saint Barthélemy', territory: true },
+          BM: { es: 'Bermudas', en: 'Bermuda', territory: true },
+          BO: { es: 'Bolivia', en: 'Bolivia' },
+          BQ: { es: 'Caribe Neerlandés', en: 'Caribbean Netherlands', territory: true },
+          BR: { es: 'Brasil', en: 'Brazil' },
+          BS: { es: 'Bahamas', en: 'Bahamas' },
+          BZ: { es: 'Belice', en: 'Belize' },
+          CA: { es: 'Canadá', en: 'Canada' },
+          CL: { es: 'Chile', en: 'Chile' },
+          CO: { es: 'Colombia', en: 'Colombia' },
+          CR: { es: 'Costa Rica', en: 'Costa Rica' },
+          CU: { es: 'Cuba', en: 'Cuba' },
+          CW: { es: 'Curazao', en: 'Curaçao', territory: true },
+          DM: { es: 'Dominica', en: 'Dominica' },
+          DO: { es: 'República Dominicana', en: 'Dominican Republic' },
+          EC: { es: 'Ecuador', en: 'Ecuador' },
+          FK: { es: 'Islas Malvinas', en: 'Falkland Islands', territory: true },
+          GD: { es: 'Granada', en: 'Grenada' },
+          GF: { es: 'Guayana Francesa', en: 'French Guiana', territory: true },
+          GL: { es: 'Groenlandia', en: 'Greenland', territory: true },
+          GP: { es: 'Guadalupe', en: 'Guadeloupe', territory: true },
+          GT: { es: 'Guatemala', en: 'Guatemala' },
+          GY: { es: 'Guyana', en: 'Guyana' },
+          HN: { es: 'Honduras', en: 'Honduras' },
+          HT: { es: 'Haití', en: 'Haiti' },
+          JM: { es: 'Jamaica', en: 'Jamaica' },
+          KN: { es: 'San Cristóbal y Nieves', en: 'Saint Kitts and Nevis' },
+          KY: { es: 'Islas Caimán', en: 'Cayman Islands', territory: true },
+          LC: { es: 'Santa Lucía', en: 'Saint Lucia' },
+          MF: { es: 'San Martín', en: 'Saint Martin', territory: true },
+          MQ: { es: 'Martinica', en: 'Martinique', territory: true },
+          MS: { es: 'Montserrat', en: 'Montserrat', territory: true },
+          MX: { es: 'México', en: 'Mexico' },
+          NI: { es: 'Nicaragua', en: 'Nicaragua' },
+          PA: { es: 'Panamá', en: 'Panama' },
+          PE: { es: 'Perú', en: 'Peru' },
+          PM: { es: 'San Pedro y Miquelón', en: 'Saint Pierre and Miquelon', territory: true },
+          PR: { es: 'Puerto Rico', en: 'Puerto Rico', territory: true },
+          PY: { es: 'Paraguay', en: 'Paraguay' },
+          SR: { es: 'Surinam', en: 'Suriname' },
+          SV: { es: 'El Salvador', en: 'El Salvador' },
+          SX: { es: 'Sint Maarten', en: 'Sint Maarten', territory: true },
+          TC: { es: 'Islas Turcas y Caicos', en: 'Turks and Caicos Islands', territory: true },
+          TT: { es: 'Trinidad y Tobago', en: 'Trinidad and Tobago' },
+          US: { es: 'Estados Unidos', en: 'United States' },
+          UY: { es: 'Uruguay', en: 'Uruguay' },
+          VC: { es: 'San Vicente y las Granadinas', en: 'Saint Vincent and the Grenadines' },
+          VE: { es: 'Venezuela', en: 'Venezuela' },
+          VG: { es: 'Islas Vírgenes Británicas', en: 'British Virgin Islands', territory: true },
+          VI: { es: 'Islas Vírgenes de EE. UU.', en: 'U.S. Virgin Islands', territory: true },
+        };
+
+        const CENTRAL_AMERICA = ['BZ', 'GT', 'SV', 'HN', 'NI', 'CR', 'PA'];
+        const CARIBBEAN = [
+          'CU', 'JM', 'HT', 'DO', 'PR', 'BS', 'TC', 'KY', 'VI', 'VG', 'AI', 'MF', 'SX', 'BL',
+          'KN', 'AG', 'MS', 'GP', 'DM', 'MQ', 'LC', 'VC', 'BB', 'GD', 'TT', 'AW', 'CW', 'BQ',
+        ];
+        const HISPANIC_AMERICA = [
+          'MX', 'GT', 'HN', 'SV', 'NI', 'CR', 'PA', 'CU', 'DO', 'PR',
+          'CO', 'VE', 'EC', 'PE', 'BO', 'CL', 'AR', 'PY', 'UY',
+        ];
+
+        // In the order they're cycled through
+        const CATEGORIES = [
+          {
+            id: 'north',
+            group: 'geographic',
+            countries: ['CA', 'US', 'MX', 'GL', 'BM', 'PM'].concat(CENTRAL_AMERICA, CARIBBEAN),
+            es: {
+              name: 'Norteamérica',
+              kind: 'Geográfico',
+              definition: 'Como subcontinente, Norteamérica va de Canadá a Panamá: incluye a México, Centroamérica, el Caribe y Groenlandia.',
+              note: 'En el uso cotidiano, sobre todo en México, «Norteamérica» suele referirse solo a Canadá, Estados Unidos y México.',
+            },
+            en: {
+              name: 'North America',
+              kind: 'Geographic',
+              definition: 'As a continent, North America goes from Canada to Panama, including Mexico, Central America, the Caribbean and Greenland.',
+              note: 'In everyday use, especially in Mexico, “North America” often means just Canada, the United States and Mexico.',
+            },
+          },
+          {
+            id: 'central',
+            group: 'geographic',
+            countries: CENTRAL_AMERICA,
+            es: {
+              name: 'Centroamérica',
+              kind: 'Geográfico',
+              definition: 'Los siete países del istmo que une a México con Colombia, de Belice a Panamá.',
+              note: 'Geográficamente es parte de Norteamérica. A veces se deja fuera a Panamá por razones históricas, y el Caribe no se incluye.',
+            },
+            en: {
+              name: 'Central America',
+              kind: 'Geographic',
+              definition: 'The seven countries on the isthmus that joins Mexico and Colombia, from Belize to Panama.',
+              note: 'Geographically, it’s part of North America. Panama is sometimes left out for historical reasons, and the Caribbean isn’t included.',
+            },
+          },
+          {
+            id: 'south',
+            group: 'geographic',
+            countries: ['CO', 'VE', 'GY', 'SR', 'GF', 'EC', 'PE', 'BO', 'BR', 'PY', 'CL', 'AR', 'UY', 'FK'],
+            es: {
+              name: 'Sudamérica',
+              kind: 'Geográfico',
+              definition: 'El subcontinente que va de Colombia y Venezuela hasta Tierra del Fuego.',
+              note: 'Incluye territorios de otros países: la Guayana Francesa, que es parte de Francia, y las Islas Malvinas, administradas por el Reino Unido y reclamadas por Argentina.',
+            },
+            en: {
+              name: 'South America',
+              kind: 'Geographic',
+              definition: 'The continent that goes from Colombia and Venezuela down to Tierra del Fuego.',
+              note: 'It includes territories of other countries: French Guiana, which is part of France, and the Falkland Islands (Malvinas), run by the United Kingdom and claimed by Argentina.',
+            },
+          },
+          {
+            id: 'latam',
+            group: 'cultural',
+            countries: HISPANIC_AMERICA.concat(['BR', 'HT']),
+            es: {
+              name: 'Latinoamérica',
+              kind: 'Por idioma',
+              definition: 'Los países de América donde se hablan lenguas romances, las que vienen del latín: español, portugués y francés.',
+              note: 'Incluye a Brasil y Haití. Los territorios franceses, como la Guayana Francesa, a veces se cuentan; Belice, de habla inglesa, normalmente no.',
+            },
+            en: {
+              name: 'Latin America',
+              kind: 'By language',
+              definition: 'The countries of the Americas where Romance languages, the ones that come from Latin, are spoken: Spanish, Portuguese and French.',
+              note: 'It includes Brazil and Haiti. French territories like French Guiana are sometimes counted; English-speaking Belize usually isn’t.',
+            },
+          },
+          {
+            id: 'hispano',
+            group: 'cultural',
+            countries: HISPANIC_AMERICA,
+            es: {
+              name: 'Hispanoamérica',
+              kind: 'Por idioma',
+              definition: 'Los países de América donde el español es la lengua principal.',
+              note: 'Deja fuera a Brasil, donde se habla portugués, y a Haití, donde se habla francés. Puerto Rico, territorio de Estados Unidos, suele incluirse.',
+            },
+            en: {
+              name: 'Hispanic America',
+              kind: 'By language',
+              definition: 'The countries of the Americas where Spanish is the main language.',
+              note: 'It leaves out Brazil, where Portuguese is spoken, and Haiti, where French is spoken. Puerto Rico, a U.S. territory, is usually included.',
+            },
+          },
+          {
+            id: 'ibero',
+            group: 'cultural',
+            countries: HISPANIC_AMERICA.concat(['BR']),
+            es: {
+              name: 'Iberoamérica',
+              kind: 'Por idioma',
+              definition: 'Los países de América donde se habla español o portugués, las lenguas de la península ibérica.',
+              note: 'Es Hispanoamérica más Brasil. A diferencia de Latinoamérica, deja fuera a Haití, donde se habla francés.',
+            },
+            en: {
+              name: 'Ibero-America',
+              kind: 'By language',
+              definition: 'The countries of the Americas where Spanish or Portuguese, the languages of the Iberian Peninsula, are spoken.',
+              note: 'It’s Hispanic America plus Brazil. Unlike Latin America, it leaves out Haiti, where French is spoken.',
+            },
+          },
+        ];
+
+        // ?lang=en-US or ?lang=es-MX wins, then the last language picked here.
+        // localStorage can throw, e.g. with blocked site data
+        function readLanguage() {
+          const urlLanguage = new URLSearchParams(window.location.search).get('lang');
+
+          if (urlLanguage) {
+            return urlLanguage.split('-')[0] === 'en' ? 'en' : 'es';
+          }
+
+          try {
+            return window.localStorage.getItem(LANGUAGE_KEY) === 'en' ? 'en' : 'es';
+          } catch (error) {
+            return 'es';
+          }
+        }
+
+        function saveLanguage() {
+          try {
+            window.localStorage.setItem(LANGUAGE_KEY, language);
+          } catch (error) {
+            // noop
+          }
+        }
+
+        let language = readLanguage();
+        let text = i18n[language];
+
+        const $root = document.documentElement;
+        const $controls = document.getElementById('controls');
+        const $playback = document.getElementById('playback');
+        const $mapContainer = document.getElementById('map-container');
+        const $countries = Array.prototype.slice.call(document.querySelectorAll('.country'));
+        const $countryInfo = document.getElementById('country-info');
+        const $countryInfoName = document.getElementById('country-info-name');
+        const $countryInfoCategories = document.getElementById('country-info-categories');
+        const $panel = document.getElementById('panel');
+        const $selectors = {};
+
+        let selected = null;
+        let cycling = false;
+        let resumeAfterPanel = false;
+        let timer = null;
+        let focusedCountry = null;
+        let resizeFrame = null;
+
+        function categoryById(id) {
+          return CATEGORIES.find(function (category) {
+            return category.id === id;
+          });
+        }
+
+        function byName(a, b) {
+          return COUNTRIES[a][language].localeCompare(COUNTRIES[b][language], language);
+        }
+
+        function renderText() {
+          text = i18n[language];
+          $root.lang = language === 'en' ? 'en-US' : 'es-MX';
+
+          document.getElementById('title').textContent = text.title;
+          document.getElementById('map-title').textContent = text.mapTitle;
+          document.getElementById('panel-legend').textContent = text.territoryLegend;
+
+          document.querySelectorAll('[data-i18n]').forEach(function (element) {
+            element.textContent = text[element.dataset.i18n];
+          });
+
+          ['maximize', 'panel-close'].forEach(function (id) {
+            const label = id === 'maximize' ? text.more : text.close;
+
+            document.getElementById(id).setAttribute('aria-label', label);
+            document.getElementById(id).title = label;
+          });
+
+          document.getElementById('language-en').setAttribute('aria-pressed', language === 'en' ? 'true' : 'false');
+          document.getElementById('language-es').setAttribute('aria-pressed', language === 'es' ? 'true' : 'false');
+
+          CATEGORIES.forEach(function (category) {
+            if ($selectors[category.id]) {
+              $selectors[category.id].firstChild.textContent = category[language].name;
+            }
+          });
+
+          renderPlayback();
+          fitSummary();
+        }
+
+        function renderPlayback() {
+          const label = cycling ? text.pause : text.play;
+
+          $playback.textContent = cycling ? '⏸' : '▶';
+          $playback.setAttribute('aria-label', label);
+          $playback.title = label;
+        }
+
+        // Sizes the summary for the longest one in the current language and
+        // width, so the page doesn't jump around as the categories change
+        function fitSummary() {
+          const $text = document.getElementById('summary-text');
+          let tallest = 0;
+
+          $text.style.minHeight = '';
+
+          CATEGORIES.forEach(function (category) {
+            renderSummary(category);
+            tallest = Math.max(tallest, $text.offsetHeight);
+          });
+
+          if (selected) {
+            renderSummary(categoryById(selected));
+          }
+
+          $text.style.minHeight = tallest + 'px';
+        }
+
+        function renderSummary(category) {
+          document.getElementById('summary-name').textContent = category[language].name + '.';
+          document.getElementById('summary-definition').textContent = category[language].definition;
+        }
+
+        function setLanguage(nextLanguage) {
+          if (nextLanguage === language) {
+            return;
+          }
+
+          language = nextLanguage;
+          saveLanguage();
+          renderText();
+          focusCountry(null, true);
+          renderDetails(categoryById(selected));
+        }
+
+        function renderSelectors() {
+          CATEGORIES.forEach(function (category) {
+            const button = document.createElement('button');
+            const progress = document.createElement('span');
+
+            button.className = 'selector';
+            button.type = 'button';
+            button.dataset.category = category.id;
+            button.setAttribute('aria-pressed', 'false');
+            button.appendChild(document.createTextNode(category[language].name));
+            progress.className = 'selector__progress';
+            button.appendChild(progress);
+
+            button.addEventListener('click', function () {
+              stopCycling();
+              select(category.id);
+            });
+
+            document.getElementById(category.group).appendChild(button);
+            $selectors[category.id] = button;
+          });
+
+          $controls.style.setProperty('--cycle-duration', CYCLE_DURATION_MS + 'ms');
+        }
+
+        function select(id) {
+          const category = categoryById(id);
+
+          selected = id;
+          $root.style.setProperty('--active', 'var(--' + id + ')');
+
+          Object.keys($selectors).forEach(function (key) {
+            $selectors[key].setAttribute('aria-pressed', key === id ? 'true' : 'false');
+          });
+
+          $countries.forEach(function (element) {
+            element.classList.toggle('is-highlighted', category.countries.indexOf(element.dataset.country) !== -1);
+          });
+
+          renderDetails(category);
+          updateUrl();
+        }
+
+        function renderDetails(category) {
+          const copy = category[language];
+          const territories = category.countries.filter(function (code) {
+            return COUNTRIES[code].territory;
+          }).length;
+          const $list = document.getElementById('panel-countries');
+
+          renderSummary(category);
+
+          document.getElementById('panel-kind').textContent = copy.kind;
+          document.getElementById('panel-name').textContent = copy.name;
+          document.getElementById('panel-definition').textContent = copy.definition;
+          document.getElementById('panel-note').textContent = copy.note;
+          document.getElementById('panel-count').textContent = text.countries(category.countries.length - territories, territories);
+          document.getElementById('panel-legend').hidden = territories === 0;
+
+          $list.replaceChildren();
+
+          category.countries.slice().sort(byName).forEach(function (code) {
+            const item = document.createElement('li');
+
+            item.className = 'panel__country' + (COUNTRIES[code].territory ? ' panel__country--territory' : '');
+            item.textContent = COUNTRIES[code][language];
+            $list.appendChild(item);
+          });
+        }
+
+        // Keeps the selected category in the link (#latam, #south…) so it can be
+        // shared, but only once someone picked one: while cycling there's none
+        function updateUrl() {
+          const hash = cycling ? '' : '#' + selected;
+
+          if (window.location.hash === hash) {
+            return;
+          }
+
+          try {
+            window.history.replaceState(null, '', hash || window.location.pathname + window.location.search);
+          } catch (error) {
+            // Not available in every viewer, the page works without it
+          }
+        }
+
+        function next() {
+          const index = CATEGORIES.findIndex(function (category) {
+            return category.id === selected;
+          });
+
+          select(CATEGORIES[(index + 1) % CATEGORIES.length].id);
+          restartProgress();
+        }
+
+        function schedule() {
+          window.clearInterval(timer);
+          timer = window.setInterval(next, CYCLE_DURATION_MS);
+        }
+
+        function restartProgress() {
+          const $progress = $selectors[selected].querySelector('.selector__progress');
+
+          $progress.style.animation = 'none';
+          void $progress.offsetWidth;
+          $progress.style.animation = '';
+        }
+
+        function startCycling(advance) {
+          cycling = true;
+          $controls.classList.add('is-cycling');
+          renderPlayback();
+
+          if (advance) {
+            next();
+          } else {
+            restartProgress();
+          }
+
+          updateUrl();
+          schedule();
+        }
+
+        function stopCycling() {
+          cycling = false;
+          window.clearInterval(timer);
+          $controls.classList.remove('is-cycling');
+          renderPlayback();
+          updateUrl();
+        }
+
+        // No point in cycling while nobody's looking; start over from the
+        // current category when the tab is visible again
+        function onVisibilityChange() {
+          if (!cycling) {
+            return;
+          }
+
+          if (document.hidden) {
+            window.clearInterval(timer);
+          } else {
+            restartProgress();
+            schedule();
+          }
+        }
+
+        // The details shouldn't change while someone is reading them, so cycling
+        // pauses while the panel is open and picks up again when it closes
+        function openPanel() {
+          resumeAfterPanel = cycling;
+
+          if (cycling) {
+            cycling = false;
+            window.clearInterval(timer);
+            $controls.classList.remove('is-cycling');
+          }
+
+          $panel.showModal();
+        }
+
+        function onPanelClose() {
+          if (resumeAfterPanel) {
+            resumeAfterPanel = false;
+            cycling = true;
+            $controls.classList.add('is-cycling');
+            restartProgress();
+            schedule();
+          }
+        }
+
+        function focusCountry(code, force) {
+          if (focusedCountry === code && !force) {
+            return;
+          }
+
+          focusedCountry = code;
+
+          $countries.forEach(function (element) {
+            element.classList.toggle('is-focused', element.dataset.country === code);
+          });
+
+          if (!code) {
+            $countryInfo.hidden = true;
+            return;
+          }
+
+          $countryInfoName.textContent = COUNTRIES[code][language];
+          $countryInfoCategories.replaceChildren();
+
+          CATEGORIES.filter(function (category) {
+            return category.countries.indexOf(code) !== -1;
+          }).forEach(function (category) {
+            const item = document.createElement('li');
+
+            item.className = 'country-info__category';
+            item.style.setProperty('--color', 'var(--' + category.id + ')');
+            item.textContent = category[language].name;
+            $countryInfoCategories.appendChild(item);
+          });
+
+          $countryInfo.hidden = false;
+        }
+
+        function initEvents() {
+          // Mouse: follows the pointer. Touch: a tap shows a country until
+          // something else is tapped
+          $mapContainer.addEventListener('pointerover', function (event) {
+            if (event.pointerType === 'mouse') {
+              focusCountry(event.target.dataset.country || null);
+            }
+          });
+
+          $mapContainer.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse') {
+              focusCountry(null);
+            }
+          });
+
+          $mapContainer.addEventListener('click', function (event) {
+            focusCountry(event.target.dataset.country || null);
+          });
+
+          $playback.addEventListener('click', function () {
+            if (cycling) {
+              stopCycling();
+            } else {
+              startCycling(true);
+            }
+          });
+
+          document.getElementById('language-en').addEventListener('click', setLanguage.bind(null, 'en'));
+          document.getElementById('language-es').addEventListener('click', setLanguage.bind(null, 'es'));
+
+          document.getElementById('maximize').addEventListener('click', openPanel);
+          document.getElementById('panel-close').addEventListener('click', function () {
+            $panel.close();
+          });
+
+          // A click on the backdrop lands on the dialog itself
+          $panel.addEventListener('click', function (event) {
+            if (event.target === $panel) {
+              $panel.close();
+            }
+          });
+
+          $panel.addEventListener('close', onPanelClose);
+
+          window.addEventListener('hashchange', function () {
+            const category = categoryById(window.location.hash.slice(1));
+
+            if (category && category.id !== selected) {
+              stopCycling();
+              select(category.id);
+            }
+          });
+
+          document.addEventListener('visibilitychange', onVisibilityChange);
+        }
+
+        renderSelectors();
+        renderText();
+        initEvents();
+        window.addEventListener('resize', function () {
+          window.cancelAnimationFrame(resizeFrame);
+          resizeFrame = window.requestAnimationFrame(fitSummary);
+        });
+
+        const initialCategory = categoryById(window.location.hash.slice(1));
+
+        if (initialCategory) {
+          select(initialCategory.id);
+          stopCycling();
+        } else {
+          select(CATEGORIES[0].id);
+          startCycling(false);
+        }
+
+        fitSummary();
+      })();
+    </script>
+  </body>
+</html>
