@@ -79,15 +79,6 @@ const AMERICAS = {
   'Venezuela': 'VE',
 };
 
-const IBERIA = {
-  'Andorra': 'AD',
-  'Portugal': 'PT',
-  'Spain': 'ES',
-};
-
-// Drawn in the Iberian Peninsula inset for context only
-const IBERIA_CONTEXT = ['France', 'Morocco', 'Algeria', 'Italy', 'Switzerland', 'Gibraltar'];
-
 function polygons(geometry) {
   return geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
 }
@@ -119,16 +110,13 @@ function split(features) {
       result.GF = multiPolygon(parts.filter((p) => inBox(p, -55, -51, 2, 6)));
       result.MQ = multiPolygon(parts.filter((p) => inBox(p, -61.3, -60.7, 14.3, 15)));
       result.GP = multiPolygon(parts.filter((p) => inBox(p, -62, -61, 15.7, 16.6)));
-      result.FR = multiPolygon(parts.filter((p) => centroid(p)[0] > -10 && centroid(p)[1] > 35));
     } else if (name === 'Netherlands') {
       result.BQ = multiPolygon(parts.filter((p) => centroid(p)[0] < -30));
     } else if (name === 'United States of America') {
       // Hawaii is in Oceania
       result.US = multiPolygon(parts.filter((p) => !inBox(p, -161, -154, 18, 23)));
-    } else if (AMERICAS[name] || IBERIA[name]) {
-      result[AMERICAS[name] || IBERIA[name]] = feature.geometry;
-    } else if (IBERIA_CONTEXT.includes(name)) {
-      result['context-' + name] = feature.geometry;
+    } else if (AMERICAS[name]) {
+      result[AMERICAS[name]] = feature.geometry;
     }
   });
 
@@ -146,7 +134,7 @@ function main() {
   // their full detail
   const fullGeometries = split(topojson.feature(world, world.objects.countries).features);
 
-  const americanCodes = Object.keys(geometries).filter((code) => /^[A-Z]{2}$/.test(code) && !Object.values(IBERIA).includes(code) && code !== 'FR');
+  const americanCodes = Object.keys(geometries);
 
   // Fit to the Americas without the far western Aleutians, which would leave a
   // lot of empty ocean
@@ -174,24 +162,11 @@ function main() {
     }
   });
 
-  // Iberian Peninsula inset, in the empty Pacific west of South America
-  const inset = { x: 20, y: 940, width: 400, height: 300 };
-  const iberiaProjection = d3.geoConicConformal().parallels([36, 44]).rotate([3.5, 0]);
-  iberiaProjection.fitExtent(
-    [[inset.x + 12, inset.y + 30], [inset.x + inset.width - 12, inset.y + inset.height - 12]],
-    // The peninsula, without the Canary Islands, Azores and Madeira
-    { type: 'MultiPoint', coordinates: [[-9.6, 35.9], [3.4, 35.9], [-9.6, 43.9], [3.4, 43.9]] }
-  );
-  const iberiaPath = d3.geoPath(iberiaProjection);
-
   const lines = [];
   const markers = [];
 
   lines.push('<svg class="map" viewBox="0 0 ' + WIDTH + ' ' + height + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="map-title">');
   lines.push('  <title id="map-title"></title>');
-  lines.push('  <defs>');
-  lines.push('    <clipPath id="inset-clip"><rect x="' + inset.x + '" y="' + inset.y + '" width="' + inset.width + '" height="' + inset.height + '" rx="12"/></clipPath>');
-  lines.push('  </defs>');
   lines.push('  <g class="countries">');
 
   americanCodes.sort().forEach(function (code) {
@@ -213,27 +188,6 @@ function main() {
   lines.push('  </g>');
   lines.push('  <g class="markers">');
   lines.push.apply(lines, markers);
-  lines.push('  </g>');
-  lines.push('  <g class="inset">');
-  lines.push('    <rect class="inset__background" x="' + inset.x + '" y="' + inset.y + '" width="' + inset.width + '" height="' + inset.height + '" rx="12"/>');
-  lines.push('    <g clip-path="url(#inset-clip)">');
-
-  Object.keys(geometries).filter((key) => key.indexOf('context-') === 0).forEach(function (key) {
-    lines.push('      <path class="context" d="' + round(iberiaPath(geometries[key])) + '"/>');
-  });
-
-  lines.push('      <path class="context" d="' + round(iberiaPath(geometries.FR)) + '"/>');
-
-  Object.values(IBERIA).forEach(function (code) {
-    lines.push('      <path class="country" data-country="' + code + '" d="' + round(iberiaPath(geometries[code])) + '"/>');
-  });
-
-  const [andorraX, andorraY] = iberiaPath.centroid(geometries.AD);
-
-  lines.push('      <circle class="country country--marker" data-country="AD" cx="' + andorraX.toFixed(1) + '" cy="' + andorraY.toFixed(1) + '" r="' + MARKER_RADIUS + '"/>');
-  lines.push('    </g>');
-  lines.push('    <rect class="inset__border" x="' + inset.x + '" y="' + inset.y + '" width="' + inset.width + '" height="' + inset.height + '" rx="12"/>');
-  lines.push('    <text class="inset__label" x="' + (inset.x + 14) + '" y="' + (inset.y + 24) + '"></text>');
   lines.push('  </g>');
   lines.push('</svg>');
 

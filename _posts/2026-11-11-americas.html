@@ -25,7 +25,6 @@ permalink: /americas
         --ocean: #e8f1f7;
         --land: #cfd8df;
         --land-stroke: #ffffff;
-        --context: #e3e7ea;
         --chip: #f1f4f6;
         --rule: #dde3e8;
 
@@ -50,7 +49,6 @@ permalink: /americas
           --ocean: #172129;
           --land: #34424d;
           --land-stroke: #12181d;
-          --context: #232d35;
           --chip: #1f2a32;
           --rule: #2a3640;
 
@@ -65,7 +63,6 @@ permalink: /americas
         --ocean: #172129;
         --land: #34424d;
         --land-stroke: #12181d;
-        --context: #232d35;
         --chip: #1f2a32;
         --rule: #2a3640;
 
@@ -324,29 +321,6 @@ permalink: /americas
         stroke-width: 2.5;
       }
 
-      .context {
-        fill: var(--context);
-        stroke: var(--land-stroke);
-        stroke-width: .6;
-      }
-
-      .inset__background {
-        fill: var(--ocean);
-      }
-
-      .inset__border {
-        fill: none;
-        stroke: var(--muted);
-        stroke-opacity: .5;
-        stroke-width: 1.5;
-      }
-
-      .inset__label {
-        fill: var(--muted);
-        font-size: 18px;
-        font-weight: bold;
-      }
-
       /* Name and categories of the tapped or hovered country */
       .country-info {
         background-color: var(--paper);
@@ -541,8 +515,7 @@ permalink: /americas
             cultural: 'Por idioma',
             pause: '⏸ Pausar',
             play: '▶ Reproducir',
-            mapTitle: 'Mapa de América, con España, Portugal y Andorra',
-            insetLabel: 'España, Portugal y Andorra',
+            mapTitle: 'Mapa de América',
             territoryLegend: 'En cursiva: territorios que dependen de otro país.',
             none: 'Ninguno',
             otherLanguage: 'English',
@@ -558,8 +531,7 @@ permalink: /americas
             cultural: 'By language',
             pause: '⏸ Pause',
             play: '▶ Play',
-            mapTitle: 'Map of the Americas, with Spain, Portugal and Andorra',
-            insetLabel: 'Spain, Portugal and Andorra',
+            mapTitle: 'Map of the Americas',
             territoryLegend: 'In italics: territories that belong to another country.',
             none: 'None',
             otherLanguage: 'Español',
@@ -572,7 +544,6 @@ permalink: /americas
 
         // ISO 3166-1 alpha-2 -> names, territory: true for dependent territories
         const COUNTRIES = {
-          AD: { es: 'Andorra', en: 'Andorra' },
           AG: { es: 'Antigua y Barbuda', en: 'Antigua and Barbuda' },
           AI: { es: 'Anguila', en: 'Anguilla', territory: true },
           AR: { es: 'Argentina', en: 'Argentina' },
@@ -594,7 +565,6 @@ permalink: /americas
           DM: { es: 'Dominica', en: 'Dominica' },
           DO: { es: 'República Dominicana', en: 'Dominican Republic' },
           EC: { es: 'Ecuador', en: 'Ecuador' },
-          ES: { es: 'España', en: 'Spain' },
           FK: { es: 'Islas Malvinas', en: 'Falkland Islands', territory: true },
           GD: { es: 'Granada', en: 'Grenada' },
           GF: { es: 'Guayana Francesa', en: 'French Guiana', territory: true },
@@ -617,7 +587,6 @@ permalink: /americas
           PE: { es: 'Perú', en: 'Peru' },
           PM: { es: 'San Pedro y Miquelón', en: 'Saint Pierre and Miquelon', territory: true },
           PR: { es: 'Puerto Rico', en: 'Puerto Rico', territory: true },
-          PT: { es: 'Portugal', en: 'Portugal' },
           PY: { es: 'Paraguay', en: 'Paraguay' },
           SR: { es: 'Surinam', en: 'Suriname' },
           SV: { es: 'El Salvador', en: 'El Salvador' },
@@ -703,13 +672,13 @@ permalink: /americas
               name: 'Latinoamérica',
               kind: 'Por idioma',
               definition: 'Los países de América donde se hablan lenguas romances, las que vienen del latín: español, portugués y francés.',
-              note: 'Incluye a Brasil y Haití, pero no a España ni a Portugal. Los territorios franceses, como la Guayana Francesa, a veces se cuentan; Belice, de habla inglesa, normalmente no.',
+              note: 'Incluye a Brasil y Haití. Los territorios franceses, como la Guayana Francesa, a veces se cuentan; Belice, de habla inglesa, normalmente no.',
             },
             en: {
               name: 'Latin America',
               kind: 'By language',
               definition: 'The countries of the Americas where Romance languages, the ones that come from Latin, are spoken: Spanish, Portuguese and French.',
-              note: 'It includes Brazil and Haiti, but not Spain or Portugal. French territories like French Guiana are sometimes counted; English-speaking Belize usually isn’t.',
+              note: 'It includes Brazil and Haiti. French territories like French Guiana are sometimes counted; English-speaking Belize usually isn’t.',
             },
           },
           {
@@ -732,18 +701,18 @@ permalink: /americas
           {
             id: 'ibero',
             group: 'cultural',
-            countries: HISPANIC_AMERICA.concat(['BR', 'ES', 'PT', 'AD']),
+            countries: HISPANIC_AMERICA.concat(['BR']),
             es: {
               name: 'Iberoamérica',
               kind: 'Por idioma',
-              definition: 'Los países de América de habla española o portuguesa, más España y Portugal, los países de la península ibérica.',
-              note: 'Es Hispanoamérica más Brasil, España y Portugal. Andorra también forma parte de la Conferencia Iberoamericana.',
+              definition: 'Los países de América donde se habla español o portugués, las lenguas de la península ibérica.',
+              note: 'Es Hispanoamérica más Brasil. A diferencia de Latinoamérica, deja fuera a Haití, donde se habla francés.',
             },
             en: {
               name: 'Ibero-America',
               kind: 'By language',
-              definition: 'The Spanish and Portuguese speaking countries of the Americas, plus Spain and Portugal, the countries of the Iberian Peninsula.',
-              note: 'It’s Hispanic America plus Brazil, Spain and Portugal. Andorra is also a member of the Ibero-American Conference.',
+              definition: 'The countries of the Americas where Spanish or Portuguese, the languages of the Iberian Peninsula, are spoken.',
+              note: 'It’s Hispanic America plus Brazil. Unlike Latin America, it leaves out Haiti, where French is spoken.',
             },
           },
         ];
@@ -775,7 +744,6 @@ permalink: /americas
           });
 
           document.getElementById('map-title').textContent = text.mapTitle;
-          document.querySelector('.inset__label').textContent = text.insetLabel;
           document.getElementById('details-legend').textContent = text.territoryLegend;
 
           const otherLanguageUrl = new URL(window.location.href);
