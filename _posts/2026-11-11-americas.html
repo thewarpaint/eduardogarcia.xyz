@@ -6,12 +6,14 @@ permalink: /americas
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="title" content="¿Latinoamérica, Iberoamérica o Hispanoamérica?">
+    <meta name="title" content="Las Américas">
     <meta name="description" content="Un mapa interactivo con las diferencias entre Latinoamérica, Iberoamérica, Hispanoamérica, Norteamérica, Centroamérica y Sudamérica.">
 
-    <title>¿Latinoamérica, Iberoamérica o Hispanoamérica? - eduardogarcia.xyz</title>
+    <title>Las Américas - eduardogarcia.xyz</title>
 
     <style>
+      /* One screen: title, map (takes whatever height is left), selectors and a
+         one sentence summary; the full details open in a panel */
       *,
       *::before,
       *::after {
@@ -27,6 +29,8 @@ permalink: /americas
         --land-stroke: #ffffff;
         --chip: #f1f4f6;
         --rule: #dde3e8;
+        --shadow: rgba(16, 24, 32, .18);
+        --backdrop: rgba(16, 24, 32, .45);
 
         --north: #1971c2;
         --central: #0b7285;
@@ -38,7 +42,7 @@ permalink: /americas
         /* Set from JS to the selected category's color */
         --active: var(--north);
 
-        color-scheme: light;
+        --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -51,6 +55,8 @@ permalink: /americas
           --land-stroke: #12181d;
           --chip: #1f2a32;
           --rule: #2a3640;
+          --shadow: rgba(0, 0, 0, .5);
+          --backdrop: rgba(0, 0, 0, .6);
 
           color-scheme: dark;
         }
@@ -65,110 +71,202 @@ permalink: /americas
         --land-stroke: #12181d;
         --chip: #1f2a32;
         --rule: #2a3640;
+        --shadow: rgba(0, 0, 0, .5);
+        --backdrop: rgba(0, 0, 0, .6);
 
         color-scheme: dark;
       }
 
+      html,
+      body {
+        height: 100%;
+      }
+
       html {
         background-color: var(--paper);
-        color: var(--ink);
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: 16px;
         -webkit-text-size-adjust: 100%;
       }
 
       body {
-        margin: 0;
         background-color: var(--paper);
+        color: var(--ink);
+        margin: 0;
+        font-family: var(--font);
+        font-size: 16px;
       }
 
-      .layout {
-        display: grid;
-        gap: 1rem;
-        grid-template-areas:
-          "header"
-          "map"
-          "controls"
-          "details";
+      button {
+        font: inherit;
+      }
+
+      .screen {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        height: 100%;
         margin: 0 auto;
-        max-width: 1200px;
-        padding: 1rem max(1rem, env(safe-area-inset-right)) 2rem max(1rem, env(safe-area-inset-left));
+        max-width: 60rem;
+        padding-block: max(.75rem, env(safe-area-inset-top, 0px)) max(.75rem, env(safe-area-inset-bottom, 0px));
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
       }
 
-      @media (min-width: 900px) {
-        .layout {
-          align-items: start;
-          gap: 1.25rem 2rem;
-          grid-template-areas:
-            "map header"
-            "map controls"
-            "map details";
-          grid-template-columns: minmax(0, 1fr) 26rem;
-          grid-template-rows: auto auto 1fr;
-          padding-top: 1.5rem;
-        }
-      }
-
-      /* Header */
+      /* Title and language */
 
       .header {
-        grid-area: header;
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
       }
 
       .header__title {
-        font-size: clamp(1.5rem, 5vw, 2rem);
-        letter-spacing: -.01em;
-        line-height: 1.15;
-        margin: 0 0 .5rem;
-      }
-
-      .header__intro {
-        color: var(--muted);
-        line-height: 1.45;
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        letter-spacing: -.015em;
+        line-height: 1.1;
         margin: 0;
       }
 
-      .header__language {
-        color: var(--muted);
-        display: inline-block;
-        font-size: .875rem;
-        margin-top: .5rem;
+      .languages {
+        display: flex;
+        gap: .375rem;
+      }
+
+      .language {
+        background: none;
+        border: 2px solid transparent;
+        border-radius: .375rem;
+        cursor: pointer;
+        display: flex;
+        line-height: 0;
+        opacity: .45;
+        padding: 2px;
+        transition: opacity .2s, border-color .2s;
+      }
+
+      .language:hover {
+        opacity: .85;
+      }
+
+      .language[aria-pressed="true"] {
+        border-color: var(--rule);
+        opacity: 1;
+      }
+
+      .language svg {
+        border-radius: 2px;
+        display: block;
+        height: 1.25rem;
+        width: 2.1rem;
+      }
+
+      /* Map */
+
+      .map-container {
+        background-color: var(--ocean);
+        border-radius: 1rem;
+        flex: 1 1 auto;
+        min-height: 9rem;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .map {
+        display: block;
+        height: 100%;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+      }
+
+      .country {
+        cursor: pointer;
+        fill: var(--land);
+        stroke: var(--land-stroke);
+        stroke-linejoin: round;
+        stroke-width: .6;
+        transition: fill .45s ease;
+      }
+
+      .country--marker {
+        stroke-width: 1.5;
+      }
+
+      .country.is-highlighted {
+        fill: var(--active);
+      }
+
+      .country.is-focused {
+        stroke: var(--ink);
+        stroke-width: 2;
+      }
+
+      .country--marker.is-focused {
+        stroke-width: 2.5;
+      }
+
+      /* Name and categories of the tapped or hovered country */
+      .country-info {
+        background-color: var(--paper);
+        border-radius: .75rem;
+        bottom: .75rem;
+        box-shadow: 0 .25rem 1rem var(--shadow);
+        left: .75rem;
+        max-width: calc(100% - 1.5rem);
+        padding: .6rem .8rem;
+        pointer-events: none;
+        position: absolute;
+      }
+
+      .country-info__name {
+        font-weight: bold;
+        margin: 0 0 .25rem;
+      }
+
+      .country-info__categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .25rem .75rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .country-info__category {
+        align-items: center;
+        display: flex;
+        font-size: .8125rem;
+        gap: .3rem;
+      }
+
+      .country-info__category::before {
+        background-color: var(--color);
+        border-radius: 50%;
+        content: '';
+        height: .5rem;
+        width: .5rem;
       }
 
       /* Category selectors */
 
-      /* On phones the selectors stay at the bottom of the screen while the
-         map is in view, within reach of a thumb */
       .controls {
-        background-color: var(--paper);
-        border-top: 1px solid var(--rule);
-        bottom: 0;
-        grid-area: controls;
-        margin: 0 -1rem;
-        padding: .6rem 1rem max(.6rem, env(safe-area-inset-bottom));
-        position: sticky;
-        z-index: 2;
+        display: grid;
+        gap: .5rem 1rem;
       }
 
-      @media (min-width: 900px) {
+      @media (min-width: 700px) {
         .controls {
-          border-top: 0;
-          margin: 0;
-          padding: 0;
-          position: static;
+          grid-template-columns: 1fr 1fr;
         }
       }
 
+      /* Same height with or without the pause button, so both rows line up */
       .controls__header {
-        align-items: baseline;
+        align-items: center;
         display: flex;
+        height: 1.25rem;
         justify-content: space-between;
-      }
-
-      .controls__group {
-        display: grid;
-        gap: .5rem;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-bottom: .3rem;
       }
 
       .controls__label {
@@ -176,12 +274,14 @@ permalink: /americas
         font-size: .75rem;
         font-weight: bold;
         letter-spacing: .06em;
-        margin: .5rem 0 .3rem;
+        margin: 0;
         text-transform: uppercase;
       }
 
-      .controls__header .controls__label {
-        margin-top: 0;
+      .controls__group {
+        display: grid;
+        gap: .5rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .selector {
@@ -195,15 +295,14 @@ permalink: /americas
         color: var(--ink);
         cursor: pointer;
         display: flex;
-        font: inherit;
         font-size: clamp(.6875rem, 3.1vw, .875rem);
         font-weight: bold;
+        /* Last resort on very narrow screens */
+        hyphens: auto;
         justify-content: center;
         line-height: 1.2;
         min-height: 2.75rem;
         overflow: hidden;
-        /* Last resort on very narrow screens */
-        hyphens: auto;
         overflow-wrap: anywhere;
         padding: .4rem .2rem;
         position: relative;
@@ -241,10 +340,6 @@ permalink: /americas
         animation: progress var(--cycle-duration) linear forwards;
       }
 
-      .is-paused .selector[aria-pressed="true"] .selector__progress {
-        animation-play-state: paused;
-      }
-
       .selector[data-category="north"] { --color: var(--north); }
       .selector[data-category="central"] { --color: var(--central); }
       .selector[data-category="south"] { --color: var(--south); }
@@ -253,127 +348,131 @@ permalink: /americas
       .selector[data-category="ibero"] { --color: var(--ibero); }
 
       .playback {
-        align-items: center;
         background: none;
         border: 0;
         color: var(--muted);
         cursor: pointer;
-        display: inline-flex;
-        font: inherit;
-        font-size: .875rem;
-        gap: .35rem;
-        padding: 0;
+        font-size: 1rem;
+        line-height: 1;
+        padding: 0 .125rem;
       }
 
       .playback:hover {
         color: var(--ink);
       }
 
-      /* Map */
-
-      .map-container {
-        background-color: var(--ocean);
-        border-radius: 1rem;
-        grid-area: map;
-        overflow: hidden;
-        position: relative;
+      .language:focus-visible,
+      .playback:focus-visible,
+      .icon-button:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
       }
 
-      @media (min-width: 900px) {
-        .map-container {
-          position: sticky;
-          top: 1.5rem;
-        }
+      /* One sentence summary */
+
+      .summary {
+        align-items: center;
+        border-left: 3px solid var(--active);
+        display: flex;
+        gap: .75rem;
+        padding-left: .75rem;
       }
 
-      .map {
-        display: block;
-        height: auto;
-        margin: 0 auto;
-        max-height: calc(100vh - 3rem);
-        max-height: calc(100dvh - 3rem);
+      .summary__text {
+        flex: 1 1 auto;
+        font-size: .9375rem;
+        line-height: 1.4;
+        margin: 0;
+        min-width: 0;
+      }
+
+      .summary__name {
+        font-weight: bold;
+      }
+
+      .icon-button {
+        align-items: center;
+        background-color: var(--chip);
+        border: 0;
+        border-radius: 50%;
+        color: var(--ink);
+        cursor: pointer;
+        display: flex;
+        flex: 0 0 auto;
+        height: 2.5rem;
+        justify-content: center;
+        padding: 0;
+        width: 2.5rem;
+      }
+
+      .icon-button:hover {
+        background-color: var(--rule);
+      }
+
+      .icon-button svg {
+        height: 1.125rem;
+        width: 1.125rem;
+      }
+
+      /* Full details panel: a bottom sheet on phones, a centered panel on wider
+         screens */
+
+      .panel {
+        background-color: var(--paper);
+        border: 0;
+        border-radius: 1rem 1rem 0 0;
+        box-shadow: 0 -.5rem 2rem var(--shadow);
+        color: var(--ink);
+        inset: auto 0 0 0;
+        margin: 0;
+        max-height: 85%;
+        max-width: 100%;
+        overflow: auto;
+        padding: 0;
+        position: fixed;
         width: 100%;
       }
 
-      .country {
-        cursor: pointer;
-        fill: var(--land);
-        stroke: var(--land-stroke);
-        stroke-linejoin: round;
-        stroke-width: .6;
-        transition: fill .45s ease;
+      /* Padding lives here, so a click on the dialog itself is always the backdrop */
+      .panel__body {
+        padding-block: 1.25rem max(1.5rem, env(safe-area-inset-bottom, 0px));
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
       }
 
-      .country--marker {
-        stroke-width: 1.5;
+      @media (min-width: 700px) {
+        .panel {
+          border-radius: 1rem;
+          box-shadow: 0 1rem 3rem var(--shadow);
+          inset: 0;
+          margin: auto;
+          max-height: min(85%, 40rem);
+          width: min(36rem, calc(100% - 2rem));
+        }
       }
 
-      .country.is-highlighted {
-        fill: var(--active);
+      @media (min-width: 700px) {
+        .panel__body {
+          padding: 1.5rem;
+        }
       }
 
-      .country.is-focused {
-        stroke: var(--ink);
-        stroke-width: 2;
+      .panel::backdrop {
+        background-color: var(--backdrop);
       }
 
-      .country--marker.is-focused {
-        stroke-width: 2.5;
+      .panel[open] {
+        animation: panel-in .25s ease-out;
       }
 
-      /* Name and categories of the tapped or hovered country */
-      .country-info {
-        background-color: var(--paper);
-        border-radius: .75rem;
-        bottom: .75rem;
-        box-shadow: 0 .25rem 1rem rgba(0, 0, 0, .15);
-        left: .75rem;
-        max-width: calc(100% - 1.5rem);
-        padding: .6rem .8rem;
-        pointer-events: none;
-        position: absolute;
-      }
-
-      .country-info[hidden] {
-        display: none;
-      }
-
-      .country-info__name {
-        font-weight: bold;
-        margin: 0 0 .25rem;
-      }
-
-      .country-info__categories {
+      .panel__header {
+        align-items: flex-start;
         display: flex;
-        flex-wrap: wrap;
-        gap: .25rem .75rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
+        gap: 1rem;
+        justify-content: space-between;
       }
 
-      .country-info__category {
-        align-items: center;
-        display: flex;
-        font-size: .8125rem;
-        gap: .3rem;
-      }
-
-      .country-info__category::before {
-        background-color: var(--color);
-        border-radius: 50%;
-        content: '';
-        height: .5rem;
-        width: .5rem;
-      }
-
-      /* Selected category */
-
-      .details {
-        grid-area: details;
-      }
-
-      .details__kind {
+      .panel__kind {
         color: var(--active);
         font-size: .75rem;
         font-weight: bold;
@@ -382,18 +481,19 @@ permalink: /americas
         text-transform: uppercase;
       }
 
-      .details__name {
+      .panel__name {
         font-size: 1.5rem;
-        margin: .25rem 0 .5rem;
+        margin: .25rem 0 .75rem;
+        text-wrap: balance;
       }
 
-      .details__definition {
+      .panel__definition {
         font-size: 1.0625rem;
         line-height: 1.45;
         margin: 0 0 .75rem;
       }
 
-      .details__note {
+      .panel__note {
         border-left: 3px solid var(--active);
         color: var(--muted);
         font-size: .9375rem;
@@ -402,13 +502,13 @@ permalink: /americas
         padding-left: .75rem;
       }
 
-      .details__count {
+      .panel__count {
         font-size: .875rem;
         font-weight: bold;
         margin: 0 0 .5rem;
       }
 
-      .details__countries {
+      .panel__countries {
         display: flex;
         flex-wrap: wrap;
         gap: .35rem;
@@ -417,34 +517,29 @@ permalink: /americas
         padding: 0;
       }
 
-      .details__country {
+      .panel__country {
         background-color: var(--chip);
         border-radius: 999px;
-        cursor: default;
         font-size: .8125rem;
         padding: .25rem .6rem;
       }
 
-      .details__country--territory {
+      .panel__country--territory {
         font-style: italic;
       }
 
-      .details__legend {
+      .panel__legend {
         color: var(--muted);
         font-size: .8125rem;
         margin: .75rem 0 0;
-      }
-
-      .details__animated {
-        animation: fade-in .35s ease;
       }
 
       @keyframes progress {
         to { transform: scaleX(1); }
       }
 
-      @keyframes fade-in {
-        from { opacity: 0; transform: translateY(.25rem); }
+      @keyframes panel-in {
+        from { opacity: 0; transform: translateY(1rem); }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -452,7 +547,7 @@ permalink: /americas
           transition: none;
         }
 
-        .details__animated {
+        .panel[open] {
           animation: none;
         }
       }
@@ -460,23 +555,38 @@ permalink: /americas
   </head>
 
   <body>
-    <div class="layout">
+    <div class="screen">
       <header class="header">
-        <h1 class="header__title" data-i18n="title"></h1>
-        <p class="header__intro" data-i18n="intro"></p>
-        <a class="header__language" id="language-link"></a>
-      </header>
+        <h1 class="header__title" id="title"></h1>
 
-      <nav class="controls" id="controls">
-        <div class="controls__header">
-          <p class="controls__label" data-i18n="geographic"></p>
-          <button class="playback" id="playback" type="button"></button>
+        <div class="languages" role="group" aria-label="Idioma / Language">
+          <button class="language" id="language-en" type="button" lang="en" aria-label="English" title="English">
+            <!-- United Kingdom -->
+            <svg viewBox="0 0 60 30" aria-hidden="true">
+              <clipPath id="uk-flag"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+              <clipPath id="uk-diagonals"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+              <g clip-path="url(#uk-flag)">
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#ffffff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#uk-diagonals)" stroke="#c8102e" stroke-width="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#ffffff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#c8102e" stroke-width="6"/>
+              </g>
+            </svg>
+          </button>
+
+          <button class="language" id="language-es" type="button" lang="es" aria-label="Español" title="Español">
+            <!-- México -->
+            <svg viewBox="0 0 42 24" aria-hidden="true">
+              <rect width="14" height="24" fill="#006847"/>
+              <rect x="14" width="14" height="24" fill="#ffffff"/>
+              <rect x="28" width="14" height="24" fill="#ce1126"/>
+              <ellipse cx="21" cy="12" rx="3.2" ry="3.6" fill="#8c5a2b"/>
+              <path d="M17.6,14.6 q3.4,2.6 6.8,0" fill="none" stroke="#006847" stroke-width="1"/>
+            </svg>
+          </button>
         </div>
-        <div class="controls__group" id="geographic"></div>
-
-        <p class="controls__label" data-i18n="cultural"></p>
-        <div class="controls__group" id="cultural"></div>
-      </nav>
+      </header>
 
       <div class="map-container" id="map-container">
         {% include americas-map.svg %}
@@ -487,54 +597,86 @@ permalink: /americas
         </div>
       </div>
 
-      <section class="details" id="details" aria-live="polite">
-        <div id="details-content">
-          <p class="details__kind" id="details-kind"></p>
-          <h2 class="details__name" id="details-name"></h2>
-          <p class="details__definition" id="details-definition"></p>
-          <p class="details__note" id="details-note"></p>
-          <p class="details__count" id="details-count"></p>
-          <ul class="details__countries" id="details-countries"></ul>
-          <p class="details__legend" id="details-legend"></p>
+      <nav class="controls" id="controls">
+        <div>
+          <div class="controls__header">
+            <p class="controls__label" data-i18n="geographic"></p>
+            <button class="playback" id="playback" type="button"></button>
+          </div>
+          <div class="controls__group" id="geographic"></div>
         </div>
+
+        <div>
+          <div class="controls__header">
+            <p class="controls__label" data-i18n="cultural"></p>
+          </div>
+          <div class="controls__group" id="cultural"></div>
+        </div>
+      </nav>
+
+      <section class="summary" aria-live="polite">
+        <p class="summary__text" id="summary-text"><span class="summary__name" id="summary-name"></span> <span id="summary-definition"></span></p>
+
+        <button class="icon-button" id="maximize" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+          </svg>
+        </button>
       </section>
     </div>
+
+    <dialog class="panel" id="panel" aria-labelledby="panel-name">
+      <div class="panel__body">
+      <div class="panel__header">
+        <p class="panel__kind" id="panel-kind"></p>
+
+        <button class="icon-button" id="panel-close" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
+      </div>
+
+      <h2 class="panel__name" id="panel-name"></h2>
+      <p class="panel__definition" id="panel-definition"></p>
+      <p class="panel__note" id="panel-note"></p>
+      <p class="panel__count" id="panel-count"></p>
+      <ul class="panel__countries" id="panel-countries"></ul>
+      <p class="panel__legend" id="panel-legend"></p>
+      </div>
+    </dialog>
 
     <script>
       (function () {
         const CYCLE_DURATION_MS = 5000;
-
-        const url = new URL(window.location.href);
-        const language = (url.searchParams.get('lang') || 'es').split('-')[0] === 'en' ? 'en' : 'es';
+        const LANGUAGE_KEY = 'americas.language';
 
         const i18n = {
           es: {
-            title: '¿Latinoamérica, Iberoamérica o Hispanoamérica?',
-            intro: 'Seis nombres que se confunden seguido. Tres son geográficos y tres se definen por el idioma. Elige uno para ver qué países incluye, o toca un país para ver a cuáles pertenece.',
+            title: 'Las Américas',
             geographic: 'Geográficos',
             cultural: 'Por idioma',
-            pause: '⏸ Pausar',
-            play: '▶ Reproducir',
+            pause: 'Pausar',
+            play: 'Reproducir',
             mapTitle: 'Mapa de América',
+            more: 'Ver todos los detalles',
+            close: 'Cerrar',
             territoryLegend: 'En cursiva: territorios que dependen de otro país.',
-            none: 'Ninguno',
-            otherLanguage: 'English',
             countries: function (countries, territories) {
               return countries + (countries === 1 ? ' país' : ' países') +
                 (territories ? ' y ' + territories + (territories === 1 ? ' territorio' : ' territorios') : '');
             },
           },
           en: {
-            title: 'Latin America, Ibero-America or Hispanic America?',
-            intro: 'Six names that are often mixed up. Three are geographic and three are defined by language. Pick one to see which countries it includes, or tap a country to see which ones it belongs to.',
+            title: 'The Americas',
             geographic: 'Geographic',
             cultural: 'By language',
-            pause: '⏸ Pause',
-            play: '▶ Play',
+            pause: 'Pause',
+            play: 'Play',
             mapTitle: 'Map of the Americas',
+            more: 'See all the details',
+            close: 'Close',
             territoryLegend: 'In italics: territories that belong to another country.',
-            none: 'None',
-            otherLanguage: 'Español',
             countries: function (countries, territories) {
               return countries + (countries === 1 ? ' country' : ' countries') +
                 (territories ? ' and ' + territories + (territories === 1 ? ' territory' : ' territories') : '');
@@ -717,7 +859,32 @@ permalink: /americas
           },
         ];
 
-        const text = i18n[language];
+        // ?lang=en-US or ?lang=es-MX wins, then the last language picked here.
+        // localStorage can throw, e.g. with blocked site data
+        function readLanguage() {
+          const urlLanguage = new URLSearchParams(window.location.search).get('lang');
+
+          if (urlLanguage) {
+            return urlLanguage.split('-')[0] === 'en' ? 'en' : 'es';
+          }
+
+          try {
+            return window.localStorage.getItem(LANGUAGE_KEY) === 'en' ? 'en' : 'es';
+          } catch (error) {
+            return 'es';
+          }
+        }
+
+        function saveLanguage() {
+          try {
+            window.localStorage.setItem(LANGUAGE_KEY, language);
+          } catch (error) {
+            // noop
+          }
+        }
+
+        let language = readLanguage();
+        let text = i18n[language];
 
         const $root = document.documentElement;
         const $controls = document.getElementById('controls');
@@ -727,33 +894,101 @@ permalink: /americas
         const $countryInfo = document.getElementById('country-info');
         const $countryInfoName = document.getElementById('country-info-name');
         const $countryInfoCategories = document.getElementById('country-info-categories');
-        const $detailsContent = document.getElementById('details-content');
+        const $panel = document.getElementById('panel');
         const $selectors = {};
 
         let selected = null;
         let cycling = false;
+        let resumeAfterPanel = false;
         let timer = null;
         let focusedCountry = null;
+        let resizeFrame = null;
 
-        function renderStaticText() {
+        function categoryById(id) {
+          return CATEGORIES.find(function (category) {
+            return category.id === id;
+          });
+        }
+
+        function byName(a, b) {
+          return COUNTRIES[a][language].localeCompare(COUNTRIES[b][language], language);
+        }
+
+        function renderText() {
+          text = i18n[language];
           $root.lang = language === 'en' ? 'en-US' : 'es-MX';
-          document.title = text.title + ' - eduardogarcia.xyz';
+
+          document.getElementById('title').textContent = text.title;
+          document.getElementById('map-title').textContent = text.mapTitle;
+          document.getElementById('panel-legend').textContent = text.territoryLegend;
 
           document.querySelectorAll('[data-i18n]').forEach(function (element) {
             element.textContent = text[element.dataset.i18n];
           });
 
-          document.getElementById('map-title').textContent = text.mapTitle;
-          document.getElementById('details-legend').textContent = text.territoryLegend;
+          ['maximize', 'panel-close'].forEach(function (id) {
+            const label = id === 'maximize' ? text.more : text.close;
 
-          const otherLanguageUrl = new URL(window.location.href);
+            document.getElementById(id).setAttribute('aria-label', label);
+            document.getElementById(id).title = label;
+          });
 
-          otherLanguageUrl.searchParams.set('lang', language === 'en' ? 'es-MX' : 'en-US');
+          document.getElementById('language-en').setAttribute('aria-pressed', language === 'en' ? 'true' : 'false');
+          document.getElementById('language-es').setAttribute('aria-pressed', language === 'es' ? 'true' : 'false');
 
-          const $languageLink = document.getElementById('language-link');
+          CATEGORIES.forEach(function (category) {
+            if ($selectors[category.id]) {
+              $selectors[category.id].firstChild.textContent = category[language].name;
+            }
+          });
 
-          $languageLink.href = otherLanguageUrl.pathname + otherLanguageUrl.search;
-          $languageLink.textContent = text.otherLanguage;
+          renderPlayback();
+          fitSummary();
+        }
+
+        function renderPlayback() {
+          const label = cycling ? text.pause : text.play;
+
+          $playback.textContent = cycling ? '⏸' : '▶';
+          $playback.setAttribute('aria-label', label);
+          $playback.title = label;
+        }
+
+        // Sizes the summary for the longest one in the current language and
+        // width, so the page doesn't jump around as the categories change
+        function fitSummary() {
+          const $text = document.getElementById('summary-text');
+          let tallest = 0;
+
+          $text.style.minHeight = '';
+
+          CATEGORIES.forEach(function (category) {
+            renderSummary(category);
+            tallest = Math.max(tallest, $text.offsetHeight);
+          });
+
+          if (selected) {
+            renderSummary(categoryById(selected));
+          }
+
+          $text.style.minHeight = tallest + 'px';
+        }
+
+        function renderSummary(category) {
+          document.getElementById('summary-name').textContent = category[language].name + '.';
+          document.getElementById('summary-definition').textContent = category[language].definition;
+        }
+
+        function setLanguage(nextLanguage) {
+          if (nextLanguage === language) {
+            return;
+          }
+
+          language = nextLanguage;
+          saveLanguage();
+          renderText();
+          focusCountry(null, true);
+          renderDetails(categoryById(selected));
         }
 
         function renderSelectors() {
@@ -779,23 +1014,6 @@ permalink: /americas
           });
 
           $controls.style.setProperty('--cycle-duration', CYCLE_DURATION_MS + 'ms');
-          $playback.addEventListener('click', function () {
-            if (cycling) {
-              stopCycling();
-            } else {
-              startCycling(true);
-            }
-          });
-        }
-
-        function categoryById(id) {
-          return CATEGORIES.find(function (category) {
-            return category.id === id;
-          });
-        }
-
-        function byName(a, b) {
-          return COUNTRIES[a][language].localeCompare(COUNTRIES[b][language], language);
         }
 
         function select(id) {
@@ -821,45 +1039,42 @@ permalink: /americas
           const territories = category.countries.filter(function (code) {
             return COUNTRIES[code].territory;
           }).length;
-          const $list = document.getElementById('details-countries');
+          const $list = document.getElementById('panel-countries');
 
-          document.getElementById('details-kind').textContent = copy.kind;
-          document.getElementById('details-name').textContent = copy.name;
-          document.getElementById('details-definition').textContent = copy.definition;
-          document.getElementById('details-note').textContent = copy.note;
-          document.getElementById('details-count').textContent = text.countries(category.countries.length - territories, territories);
+          renderSummary(category);
+
+          document.getElementById('panel-kind').textContent = copy.kind;
+          document.getElementById('panel-name').textContent = copy.name;
+          document.getElementById('panel-definition').textContent = copy.definition;
+          document.getElementById('panel-note').textContent = copy.note;
+          document.getElementById('panel-count').textContent = text.countries(category.countries.length - territories, territories);
+          document.getElementById('panel-legend').hidden = territories === 0;
 
           $list.replaceChildren();
 
           category.countries.slice().sort(byName).forEach(function (code) {
             const item = document.createElement('li');
 
-            item.className = 'details__country' + (COUNTRIES[code].territory ? ' details__country--territory' : '');
-            item.dataset.country = code;
+            item.className = 'panel__country' + (COUNTRIES[code].territory ? ' panel__country--territory' : '');
             item.textContent = COUNTRIES[code][language];
             $list.appendChild(item);
           });
-
-          document.getElementById('details-legend').hidden = territories === 0;
-
-          // Restart the fade in
-          $detailsContent.classList.remove('details__animated');
-          void $detailsContent.offsetWidth;
-          $detailsContent.classList.add('details__animated');
         }
 
-        // Keeps the selected category in the URL so it can be shared, but only
-        // once someone picked one: the cycling default stays a clean URL
+        // Keeps the selected category in the link (#latam, #south…) so it can be
+        // shared, but only once someone picked one: while cycling there's none
         function updateUrl() {
-          const nextUrl = new URL(window.location.href);
+          const hash = cycling ? '' : '#' + selected;
 
-          if (cycling) {
-            nextUrl.searchParams.delete('category');
-          } else {
-            nextUrl.searchParams.set('category', selected);
+          if (window.location.hash === hash) {
+            return;
           }
 
-          window.history.replaceState(null, '', nextUrl.pathname + nextUrl.search);
+          try {
+            window.history.replaceState(null, '', hash || window.location.pathname + window.location.search);
+          } catch (error) {
+            // Not available in every viewer, the page works without it
+          }
         }
 
         function next() {
@@ -887,7 +1102,7 @@ permalink: /americas
         function startCycling(advance) {
           cycling = true;
           $controls.classList.add('is-cycling');
-          $playback.textContent = text.pause;
+          renderPlayback();
 
           if (advance) {
             next();
@@ -903,7 +1118,7 @@ permalink: /americas
           cycling = false;
           window.clearInterval(timer);
           $controls.classList.remove('is-cycling');
-          $playback.textContent = text.play;
+          renderPlayback();
           updateUrl();
         }
 
@@ -922,8 +1137,32 @@ permalink: /americas
           }
         }
 
-        function focusCountry(code) {
-          if (focusedCountry === code) {
+        // The details shouldn't change while someone is reading them, so cycling
+        // pauses while the panel is open and picks up again when it closes
+        function openPanel() {
+          resumeAfterPanel = cycling;
+
+          if (cycling) {
+            cycling = false;
+            window.clearInterval(timer);
+            $controls.classList.remove('is-cycling');
+          }
+
+          $panel.showModal();
+        }
+
+        function onPanelClose() {
+          if (resumeAfterPanel) {
+            resumeAfterPanel = false;
+            cycling = true;
+            $controls.classList.add('is-cycling');
+            restartProgress();
+            schedule();
+          }
+        }
+
+        function focusCountry(code, force) {
+          if (focusedCountry === code && !force) {
             return;
           }
 
@@ -955,7 +1194,7 @@ permalink: /americas
           $countryInfo.hidden = false;
         }
 
-        function initCountryInfo() {
+        function initEvents() {
           // Mouse: follows the pointer. Touch: a tap shows a country until
           // something else is tapped
           $mapContainer.addEventListener('pointerover', function (event) {
@@ -974,24 +1213,52 @@ permalink: /americas
             focusCountry(event.target.dataset.country || null);
           });
 
-          // Hovering a name in the list points out the country on the map
-          document.getElementById('details-countries').addEventListener('pointerover', function (event) {
-            if (event.target.dataset.country) {
-              focusCountry(event.target.dataset.country);
+          $playback.addEventListener('click', function () {
+            if (cycling) {
+              stopCycling();
+            } else {
+              startCycling(true);
             }
           });
 
-          document.getElementById('details-countries').addEventListener('pointerleave', function () {
-            focusCountry(null);
+          document.getElementById('language-en').addEventListener('click', setLanguage.bind(null, 'en'));
+          document.getElementById('language-es').addEventListener('click', setLanguage.bind(null, 'es'));
+
+          document.getElementById('maximize').addEventListener('click', openPanel);
+          document.getElementById('panel-close').addEventListener('click', function () {
+            $panel.close();
           });
+
+          // A click on the backdrop lands on the dialog itself
+          $panel.addEventListener('click', function (event) {
+            if (event.target === $panel) {
+              $panel.close();
+            }
+          });
+
+          $panel.addEventListener('close', onPanelClose);
+
+          window.addEventListener('hashchange', function () {
+            const category = categoryById(window.location.hash.slice(1));
+
+            if (category && category.id !== selected) {
+              stopCycling();
+              select(category.id);
+            }
+          });
+
+          document.addEventListener('visibilitychange', onVisibilityChange);
         }
 
-        renderStaticText();
         renderSelectors();
-        initCountryInfo();
-        document.addEventListener('visibilitychange', onVisibilityChange);
+        renderText();
+        initEvents();
+        window.addEventListener('resize', function () {
+          window.cancelAnimationFrame(resizeFrame);
+          resizeFrame = window.requestAnimationFrame(fitSummary);
+        });
 
-        const initialCategory = categoryById(url.searchParams.get('category'));
+        const initialCategory = categoryById(window.location.hash.slice(1));
 
         if (initialCategory) {
           select(initialCategory.id);
@@ -1000,6 +1267,8 @@ permalink: /americas
           select(CATEGORIES[0].id);
           startCycling(false);
         }
+
+        fitSummary();
       })();
     </script>
   </body>
